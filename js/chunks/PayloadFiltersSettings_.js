@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[22883],{245667(t,e,a){a.r(e);var l=a(477937);let r={breadcrumb:(0,l.R)("projectSettings.payloadFilters_Page.title"),title:(0,l.R)("projectSettings.payloadFilters_Page.title")};a.d(e,{},{handle:r})}}]);
+//# sourceMappingURL=PayloadFiltersSettings_.0db090e78de32569.js.map

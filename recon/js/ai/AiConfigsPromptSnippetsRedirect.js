@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[61335],{242244(t,e,n){n.r(e);var r=n(713779),o=n(965920),a=n(253201),l=n(261390);let c=async({request:t})=>{let{context:e}=await (0,o.Q)(t);return(0,r.V2)((0,a.j)((0,l.DS)({projectKey:e.projectKey})))};function u(){return null}n.d(e,{Component:()=>u},{loader:c})}}]);
+//# sourceMappingURL=AiConfigsPromptSnippetsRedirect.8cd79d8a29496065.js.map

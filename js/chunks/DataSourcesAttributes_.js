@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[96852],{596482(a,r,e){e.r(r);let s={breadcrumb:(0,e(477937).R)("dataSources.attributes_Page.breadcrumb")};e.d(r,{},{handle:s})}}]);
+//# sourceMappingURL=DataSourcesAttributes_.8f25e88c5c2c0f04.js.map

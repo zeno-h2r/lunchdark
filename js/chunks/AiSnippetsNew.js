@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[8976],{956059(e,t,a){a.r(t);var r=a(713779),l=a(965920),i=a(477937),n=a(253201),s=a(261390);let o={title:(0,i.R)("aiLibrary.snippetsNewPage.title")},c=async({request:e})=>{let{context:t}=await (0,l.Q)(e);return(0,r.V2)((0,n.j)((0,s.DS)({projectKey:t.projectKey})))};a.d(t,{},{handle:o,loader:c})}}]);
+//# sourceMappingURL=AiSnippetsNew.8b23989a561f24b1.js.map

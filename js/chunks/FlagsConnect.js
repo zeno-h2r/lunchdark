@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[46747],{81390(e,r,a){a.r(r);var n=a(713779),t=a(965920),s=a(253201),c=a(261390);let l=async({request:e})=>{let{context:r}=await (0,t.Q)(e),a=r.projectKey;return(0,n.V2)((0,s.j)((0,c.KBL)({projectKey:a,environmentKey:""},{search:new URL(e.url).search})))};a.d(r,{},{loader:l})}}]);
+//# sourceMappingURL=FlagsConnect.42d491ee96178edc.js.map

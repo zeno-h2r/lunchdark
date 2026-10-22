@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[11104],{944348(e,t,o){o.r(t);var r=o(713779),n=o(965920),c=o(253201),a=o(261390);let l=async({request:e,params:t})=>{let{context:o}=await (0,n.Q)(e),{configKey:l}=t;return void 0===l?(0,r.V2)((0,c.j)((0,a.DMU)({projectKey:o.projectKey}))):(0,r.V2)((0,c.j)((0,a.uF_)({projectKey:o.projectKey,configKey:l})))};function u(){return null}o.d(t,{Component:()=>u},{loader:l})}}]);
+//# sourceMappingURL=AiConfigsModelConfigRedirect.6fa500e94572826d.js.map

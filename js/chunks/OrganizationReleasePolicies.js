@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[95008],{305824(n,e,t){t.r(e);var o=t(91987),r=t(143196),s=t(41027),c=t(304437);let l=(0,r.Y)()?function(){let n,e=(0,s.c)(1);return e[0]===Symbol.for("react.memo_cache_sentinel")?(n=(0,o.jsx)(c.sv,{}),e[0]=n):n=e[0],n}:function(){return(0,o.jsx)(c.sv,{})};t.d(e,{},{Component:l})}}]);
+//# sourceMappingURL=OrganizationReleasePolicies.857b67a6cc334b0c.js.map

@@ -184,3 +184,40 @@ Candidate next techniques:
 - T7: SSO/OAuth flows (github/google client IDs in bootstrap), SAML config
 - T8: Contexts/segments — big segment rules, context instance access
 - T9: Deep dive /internal/ usage endpoints + auditlog search filters (injection in search params)
+
+---
+
+## R0 — Full application exploration (browser walk) — COMPLETE (2026-10-23)
+
+Method: authenticated agent-browser sessions (org account), 60+ routes walked, redirects + titles + headings captured (`recon/r0_walk.txt`).
+
+**Live surfaces confirmed:**
+- Account settings: `/settings/{general,projects,members,teams,roles,billing,integrations,relay,sdks}` + **`/settings/authorization` → redirects `/settings/authorization/tokens`** (API tokens + OAuth2 apps UI)
+- Project: `/projects/default/{flags,segments,contexts,live,experiments,multi-armed-bandits,holdouts,sessions,errors,logs,traces,observability-metrics,alerts,dashboards,metrics,observe,data-sources/{metrics,assignments,attributes},approvals,guarded-rollouts,ai-configs,settings}`
+- Audit log lives at `/projects/{k}/audit` → redirects `/projects/{k}/settings?activity=true`
+- Org-level: **`/insights` (Launch Insights)** live
+- Escalation UI: `/settings/escalate` (EscalatePrivileges chunk)
+- 404-on-direct-GET: `/views`, `/applications`, `/workflows`, `/archived`, `/vega-conversations` (nested/contextual routes), `/foundation-cost-calculator`, `/launchlitely/{p}`, `/internal/new-hires` crash the page render (beta surfaces)
+
+## R1 — JavaScript deep dive — COMPLETE (2026-10-23)
+
+Corpus: runtime.js chunk map parsed (h.u function) → **548 chunk URLs reconstructed + downloaded (96MB)** + main bundles (11.3MB) + AI chunks (8.8MB). All saved to repo `js/`.
+
+**Extraction results:**
+- `analysis/endpoints_full.txt`: **543 unique endpoint patterns** (337 prior → +206 net new; 250 new /internal patterns)
+- `analysis/spa_routes.json`: 255 router paths incl. `confirm-auth/:deviceCode`, `launchlitely/:projectKey`, `factory/releases`, `judge-templates/:templateKey`
+- `LD-API-Version: beta` senders: 45 chunks. GraphQL: `POST /graphql` (product-analytics). WS: `wss://realtime.courier.com`.
+
+**New high-value surfaces (full list in analysis/attack_surface.md):**
+- Warehouse/SSRF: clickhouse destination setup (`/kinds/clickhouse/setup` + complete-setup), `test-warehouse-destination-connection`, `generate-warehouse-destination-key-pair`, warehouse-native `{health,metric-data-source-preview}`, datasets `{upload-url,download,preview}`
+- Auth/signup: `GET /internal/accounts/{email}` (enumeration candidate), `/internal/unauthenticated-members/organization-verifications` (unauth), `/internal/device/{deviceCode}`, `/internal/invite/{p}`, `/internal/account/join`, `/settings/escalate`
+- Billing: `billingv2/account/subscription/{cooloff-retrial,cooloff-retrial-extension,trial-extension,campaigns}` — potential plan-gate unlock path for SSRF surfaces
+- IDOR remainder: approval-requests apply/reviews, comments/{id}, datasets/{id}/*, generic followers API, destinations path-mismatch tests
+- Injection: observability query DSL, flag-templates server-side rendering, AI output rendering (comments + Vega conversations)
+
+**Deliverables pushed to GitHub `zeno-h2r/lunchdark`:**
+- `js/` — full SPA corpus (main/ + 548 chunks/ + ai/)
+- `analysis/app_map.md` — complete application map (routes → features → APIs)
+- `analysis/attack_surface.md` — prioritized attack surface + test queue (A-H sections)
+- `analysis/{endpoints_full.txt,spa_routes.json,chunk_urls.json,r1_meta.json}`
+- `worklog.md` — this update

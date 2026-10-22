@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[72053],{531527(a,e,t){t.r(e);var l=t(477937);let s={shortcutType:"flags",breadcrumb:(0,l.R)("flags_.page.title"),title:(0,l.R)("flags_.page.title"),usageBanner:"features"};t.d(e,{},{handle:s})}}]);
+//# sourceMappingURL=Flags.d79d0dd3c5f0dd2f.js.map

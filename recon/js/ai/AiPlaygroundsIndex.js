@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[65300],{269731(e,o,r){r.r(o);var s=r(713779),t=r(253201),n=r(261390);r.d(o,{},{loader:({params:e})=>{let o=e.projectKey;if(!o)throw new Response("Not found",{status:404});return(0,s.V2)((0,t.j)((0,n.GRn)({projectKey:o})))}})}}]);
+//# sourceMappingURL=AiPlaygroundsIndex.65a52c0c101b95c4.js.map

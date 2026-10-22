@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[68314],{607463(e,r,s){s.r(r);var d=s(713779),i=s(256584),a=s(253201),n=s(261390),o=s(25385);s.d(r,{},{handle:{breadcrumb:({data:e})=>e.sessionId},loader:({params:e})=>{let{projectKey:r,sessionId:s}=e;return((0,o.A)(r,"projectKey is required"),(0,o.A)(s,"sessionId is required"),(0,i.t$L)())?(0,d.V2)((0,a.j)((0,n.P7_)({projectKey:r}))):{sessionId:s}}})}}]);
+//# sourceMappingURL=ObservabilitySessionDetail.5c617972350a62e6.js.map

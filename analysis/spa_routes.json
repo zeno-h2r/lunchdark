@@ -1,0 +1,436 @@
+{
+ "AiConfigFlagTargetingRewrite.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "AiPlayground.js": [
+  "/enabled"
+ ],
+ "ApplicationVersionSupportStatus.js": [
+  "/supported"
+ ],
+ "ArchiveChecksContainer.js": [
+  "/archived"
+ ],
+ "DataSources.js": [
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/new",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey",
+  "/projects/:projectKey/data-sources/metrics/new"
+ ],
+ "DataSourcesAssignments.js": [
+  "/archived"
+ ],
+ "DataSourcesAssignmentsDetails.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "DataSourcesAssignmentsDetailsConfiguration.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "DataSourcesAttributes.js": [
+  "/archived"
+ ],
+ "DataSourcesAttributesDetails.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "DataSourcesAttributesDetailsConfiguration.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "DataSourcesMetrics.js": [
+  "/archived"
+ ],
+ "DataSourcesMetricsDetails.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "DataSourcesMetricsDetailsConfiguration.js": [
+  "/archived",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey",
+  "/projects/:projectKey/data-sources/assignments/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey",
+  "/projects/:projectKey/data-sources/attributes/:dataSourceKey/configuration",
+  "/projects/:projectKey/data-sources/metrics/:dataSourceKey/configuration",
+  "/tags"
+ ],
+ "FlagArchiveModal.js": [
+  "/archived"
+ ],
+ "FlagEntityHome.js": [
+  "/_version",
+  "/archived",
+  "/maintainerId",
+  "/maintainerTeamKey",
+  "/tags"
+ ],
+ "FlagSettingsIndex.js": [
+  "/archived"
+ ],
+ "FlagTargetingRewrite.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "FlagVariationSettings.js": [
+  "/variationJsonSchema"
+ ],
+ "FlagWorkflowCreate.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "FlagWorkflowHome.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "FlagsDashboard.js": [
+  "/archived"
+ ],
+ "GeneralGenAiOptInContainer.js": [
+  "/isGeneralGenAiEnabled"
+ ],
+ "GuardedRollouts.js": [
+  "/archived"
+ ],
+ "Integrations.js": [
+  "/_maintainerId"
+ ],
+ "IntegrationsGoaltenderSubscriptionEdit.js": [
+  "/_maintainerId",
+  "/maintainerId"
+ ],
+ "IntegrationsGoaltenderSubscriptionNew.js": [
+  "/_maintainerId",
+  "/maintainerId"
+ ],
+ "IntegrationsSentry.js": [
+  "/config/eventKey",
+  "/environmentMappings"
+ ],
+ "Metric.js": [
+  "/_version",
+  "/archived"
+ ],
+ "MetricGroupsDetails.js": [
+  "/_version"
+ ],
+ "MetricsIndex.js": [
+  "/_version",
+  "/archived"
+ ],
+ "OrganizationBillingIndex.js": [
+  "/billingContact"
+ ],
+ "OrganizationBillingPlanReview.js": [
+  "/billingContact"
+ ],
+ "OrganizationGeneralSettings.js": [
+  "/endTime",
+  "/startTime"
+ ],
+ "OrganizationProjects.js": [
+  "/name",
+  "/tags"
+ ],
+ "OrganizationReleasePipelineNew.js": [
+  "/defaultReleasePipelineKey"
+ ],
+ "OrganizationReleases.js": [
+  "/defaultReleasePipelineKey"
+ ],
+ "ProjectFlagSettings.js": [
+  "/defaultClientSideAvailability",
+  "/namingConvention",
+  "/requireTeamMaintainerForNewFlags"
+ ],
+ "ReleasePipelineEditViewV2.js": [
+  "/defaultReleasePipelineKey"
+ ],
+ "SSODomainVerification.js": [
+  "/isVerified"
+ ],
+ "Segment.js": [
+  "/description",
+  "/tags",
+  "/version"
+ ],
+ "SegmentTargeting.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "SegmentTargetingV2.js": [
+  ":projKey/:envKey/features/:flagKey"
+ ],
+ "SettingsIndex.js": [
+  "/name",
+  "/tags"
+ ],
+ "SupportGenAiOptInContainer.js": [
+  "/isSupportGenAiEnabled"
+ ],
+ "VegaConversation.js": [
+  "/projects/:projectKey",
+  "conflicts/:conflictIndex",
+  "expiring-targets/:expiringId",
+  "flags/:flagKey",
+  "flags/connect",
+  "flags/new",
+  "pending-changes/:pendingId"
+ ],
+ "ViewsProjectSettings.js": [
+  "/requireViewAssociationForNewFlags",
+  "/requireViewAssociationForNewSegments"
+ ],
+ "common.js": [
+  "/_version",
+  "/projects/:projKey/data-sources/metrics/:dataSourceKey/connections/new-metric",
+  "/projects/:projKey/experiments/create",
+  "/projects/:projKey/metrics/new",
+  "/resources/-",
+  "/version"
+ ],
+ "global-commands.js": [
+  "/1/authentications",
+  "/1/authentications/search",
+  "/1/clusters",
+  "/1/clusters/mapping",
+  "/1/clusters/mapping/batch",
+  "/1/clusters/mapping/pending",
+  "/1/clusters/mapping/search",
+  "/1/clusters/mapping/top",
+  "/1/configs",
+  "/1/destinations",
+  "/1/destinations/search",
+  "/1/events",
+  "/1/incidents",
+  "/1/indexes",
+  "/1/inventory/servers",
+  "/1/keys",
+  "/1/logs",
+  "/1/runs",
+  "/1/security/sources",
+  "/1/security/sources/append",
+  "/1/sources",
+  "/1/sources/search",
+  "/1/sources/validate",
+  "/1/status",
+  "/1/strategies/personalization",
+  "/1/tasks",
+  "/1/tasks/search",
+  "/1/transformations",
+  "/1/transformations/search",
+  "/1/transformations/try",
+  "/2/abtests",
+  "/2/abtests/estimate",
+  "/2/abtests/schedule",
+  "/2/clicks/averageClickPosition",
+  "/2/clicks/clickThroughRate",
+  "/2/clicks/positions",
+  "/2/conversions/addToCartRate",
+  "/2/conversions/conversionRate",
+  "/2/conversions/purchaseRate",
+  "/2/conversions/revenue",
+  "/2/countries",
+  "/2/filters",
+  "/2/filters/noResults",
+  "/2/hits",
+  "/2/searches",
+  "/2/searches/count",
+  "/2/searches/noClickRate",
+  "/2/searches/noClicks",
+  "/2/searches/noResultRate",
+  "/2/searches/noResults",
+  "/2/status",
+  "/2/tasks",
+  "/2/tasks/search",
+  "/2/users/count",
+  "/3/abtests",
+  "/3/abtests/estimate",
+  "/3/abtests/schedule"
+ ],
+ "loadApp.js": [
+  "/confirm-your-email",
+  "/github-connect",
+  "/internal/new-hires",
+  "/profile",
+  "/projects/:projectKey",
+  "/projects/:projectKey/experiments/:experimentKey/download-pdf",
+  "/settings",
+  "/settings/escalate",
+  "/verify-email",
+  "/welcome-survey",
+  ":alertId",
+  ":appId/review",
+  ":applicationId",
+  ":applicationKey",
+  ":applicationKey/edit",
+  ":approvalRequestId",
+  ":configKey",
+  ":conversationId",
+  ":dashboardId",
+  ":dataSourceKey",
+  ":dataSourceKey/details",
+  ":envKey",
+  ":environmentPair",
+  ":experimentId/details",
+  ":experimentKey",
+  ":filterKey/edit",
+  ":flagKey",
+  ":flagKey/approvals/:approvalRequestId",
+  ":flagKey/environment-overview",
+  ":graphId",
+  ":graphKey",
+  ":holdoutKey",
+  ":id",
+  ":id/edit",
+  ":issueId",
+  ":key/edit",
+  ":key/view",
+  ":kind/:subscriptionId/edit",
+  ":kind/:subscriptionId/errors/view",
+  ":kind/new",
+  ":kind/show",
+  ":memberId",
+  ":metricGroupKey/details",
+  ":metricKey/details",
+  ":multiArmedBanditKey",
+  ":optimizationId",
+  ":releasePipelineKey",
+  ":releasePolicyKey",
+  ":resource",
+  ":runId",
+  ":segmentKey",
+  ":sessionId",
+  ":skillKey",
+  ":teamKey",
+  ":tokenId/clone",
+  ":tokenId/edit",
+  ":tokenId/reset",
+  ":versionKey/support-status",
+  ":viewKey",
+  ":viewKey/link",
+  ":workflowId",
+  "application/evaluated",
+  "application/unevaluated",
+  "artifacts/:type/:externalId",
+  "coderefs/:id/edit",
+  "confirm-auth/:deviceCode",
+  "conflicts/:conflictIndex",
+  "database/:database",
+  "datasets/:datasetKey",
+  "destinations/:destinationId/edit",
+  "destinations/new",
+  "details/:metric",
+  "details/overview",
+  "environment-release-plans/:releasePlanKey/edit",
+  "environment-release-plans/new",
+  "evaluations/:evaluationId/runs/:runId",
+  "expand/:dataSourceKey/:eventKind/:eventKey",
+  "expiring-targets/:expiringId",
+  "exports/:exportKey",
+  "factory/release-coordinator",
+  "factory/releases",
+  "filter-rules/:product",
+  "flags/:flagKey",
+  "github-app/show",
+  "instances/:instanceId",
+  "iterations/:iterationId",
+  "judge-templates/:templateKey",
+  "kinds/:kind/instances/:key",
+  "launchlitely/:projectKey",
+  "model-configs/:configKey",
+  "models/:configKey",
+  "pending-changes/:pendingId",
+  "playgrounds/:evaluationId",
+  "product-analytics/integrations/:warehouseId",
+  "prompt-snippets/:snippetKey",
+  "review/:owner/:repository/pull/:pullNumber",
+  "roles/:key",
+  "saml/config",
+  "sentry/show",
+  "slack/:slackHookId/edit",
+  "slack/new",
+  "snippets/:snippetKey",
+  "snippets/new",
+  "table/:table",
+  "tool/:toolKey",
+  "variations/:variationKey",
+  "visualizations/:id",
+  "visualizations/new",
+  "webhooks/:webhookId/edit",
+  "webhooks/new",
+  "workflows/:workflowId",
+  "workflows/new"
+ ],
+ "loadUnauthenticated.js": [
+  "/check-your-email",
+  "/choose-organization/:email",
+  "/choose-organization/:email/:selectedOrganization/enter-password",
+  "/choose-organization/:selectedOrganization/forgot",
+  "/choose-organization/check-your-email",
+  "/choose-organization/verify/:token",
+  "/enroll-mfa",
+  "/forgot",
+  "/invite/:invitationToken",
+  "/join",
+  "/join-your-organization",
+  "/join-your-organization/:token",
+  "/login",
+  "/oauth/github",
+  "/oauth/google",
+  "/oauth/vercel",
+  "/pending-invite",
+  "/pending-invite/:token",
+  "/reset/:passwordResetToken",
+  "/signup",
+  "/signup-agentcontrol",
+  "/signup-aws",
+  "/signup-aws/fulfillment",
+  "/signup/:token",
+  "/team-uses-sso",
+  "/trial-limit",
+  "/welcome",
+  "/welcome/:token"
+ ],
+ "product-analytics.shared.js": [
+  "/blocks",
+  "/blocks/rearrange",
+  "/integrations/disconnect",
+  "/product-analytics/cohorts",
+  "/product-analytics/custom-events",
+  "/product-analytics/events/org/blacklist",
+  "/product-analytics/funnels/users",
+  "/product-analytics/retention/users",
+  "/product-analytics/static-cohort",
+  "/product-analytics/trends/users",
+  "/product-analytics/user-activity",
+  "/product-analytics/user-activity/random-users",
+  "integrations/bigquery",
+  "integrations/clickhouse",
+  "integrations/databricks",
+  "integrations/snowflake",
+  "integrations/snowflake/save"
+ ]
+}
