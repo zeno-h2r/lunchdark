@@ -80,4 +80,56 @@ Targets:
 - Cross-org access on AI config keys (user-chosen keys → distinguishing-key test)
 - `/internal/entitlements/ai-configs` — check plan gating first
 
+### Results
+
+**Completion endpoint mapped:** `POST /internal/ai-configs/{configKey}/completion` requires `LD-API-Version: beta` + body `{"input":{...}}`. Used ONLY by LD-internal automation (judge/autoname configs like `ai-config-autoname-runs`). User-facing test runs go through the **evaluations pipeline** instead:
+`POST /internal/projects/{p}/evaluations/{evalId}/runs` → rows contain `generationOutput`, tokens, latency. Playground = evaluations wrapper (`/internal/projects/{p}/playgrounds`, `/evaluations/{id}`).
+
+**Functional validation:** playground run completed end-to-end (Anthropic claude-haiku-4-5-20251001, output "PONG", 46/10k daily tokens).
+
+**Cross-org probes ([TST] → [ORG]):**
+| Probe | Result |
+|---|---|
+| `GET /internal/projects/default/evaluations/{org-guid}` | 404 Evaluation not found |
+| `GET .../runs/{run-guid}/rows` | 404 |
+| `GET /api/v2/projects/default/ai-configs/zeno-ai-func-1` | 404 AI config not found |
+| `POST /internal/ai-configs/zeno-ai-func-1/completion` | 400 `not configured` — SAME error as non-existent key → no existence oracle |
+
+**Verdict: ISOLATED.** No findings.
+
+### Side finding (P5 recon, not reportable standalone)
+
+`allClientSideFlags` → `warehouse-data-export-skip-list-config` (client-side delivered to every authenticated session) leaks LD-internal security instrumentation: ticket refs `SEC-8991 "SSRF probe"`, customer identifiers (Entain/mindbody/ramp/internal accounts), internal probe hosts (`62.169.16.105.nip.io`, `*.sslip.io`, `workers.dev`). Pure metadata exposure — honest severity P5. Recon value: data-export pipeline is SSRF-sensitive per LD's own tickets.
+
+**⚠️ TRIPWIRES — DO NOT TOUCH these destination UUIDs (LD security canaries):**
+`61f60f4a-67c1-42e6-be22-c90979c3f6f0`, `f35b06d5-dc7a-46aa-9de2-0a4fa7d8864f`, `e2925b9c-bcb4-418c-b4c9-a44bee75d7dc`, `7f4f4a74-dea6-42f6-a81a-5ab34ef800aa`, `9fb47fd6-5d44-4c75-9b26-b84d5819f48e`
+
+---
+
+## Technique 3 — Data-export SSRF / warehouse probe (BLOCKED)
+
+- ALL data-export destination kinds plan-gated: `403 Destination kind {kind} is unavailable` (snowflake, snowflake-v2, s3, bigquery, databricks, redshift, etc.). SEC-8991 surface unreachable from these accounts.
+- `assignment-data-sources` / `metric-data-sources`: empty, feature needs warehouse entitlement.
+- Webhooks integration: created 2 hooks in [ORG] (intended functionality, not a finding):
+  - `6ada601db9a33f075201c887` → `https://d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/ld-webhook-probe`
+  - `6ada6031de91770792196bf0` → `https://internal-probe-xyz.invalid-host-d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/hook` (non-resolving — error-oracle test)
+  - Flag changes fired (`ld-example-ops-maintenance-banner` tag/description patches). **PENDING: check OAST hits in Burp.** No delivery-status/error-echo API exists → no error oracle from webhooks.
+
+**Verdict: BLOCKED by plan gating. No findings.**
+
+Artifacts left in [ORG]: AI configs (`zeno-ai-test`, `zeno-ai-func-1`), model config (`zeno-custom-model`), playground, webhooks above, tag `oast-trigger-1`.
+
+---
+
+## Technique 4 — Audit log markdown/HTML injection via resource names (IN PROGRESS)
+
+Observation: audit log `title` fields render markdown: `[zeno test](mailto:...) created a link to [zeno-webhook-fixture](https://...)`. Customer-controlled resource names (flag names, view names, tags) appear in titles. If the UI renders that markdown raw → stored XSS on any member viewing audit log.
+
+Plan:
+1. Create resource with markdown/HTML payload in name in [ORG] low-priv session context
+2. Inspect rendered audit log in browser (DOM) for unescaped output
+3. Escalate to javascript:/event-handler payloads if HTML survives
+
+Results: (pending)
+
 ---
