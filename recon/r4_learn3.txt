@@ -1,0 +1,32 @@
+try {"dataSource": {"domain": "observability", "kind": "traces"}}
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.from", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange", "reason": "'to' must be after 'from
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"}}
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+try {"dataSource": {"domain": "observability", "kind": "traces"}, "timeRange": {"start": "2026-10-16T00:00:00Z", "end": "2026-10-23T00:00:00Z"},
+  -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+
+final status: 400

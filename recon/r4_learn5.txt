@@ -1,0 +1,47 @@
+=== optional field probes (observability.traces) ===
+[1] top-level filters: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level groupBy: 200 {"fields": [], "group_by_fields": [], "items": [{"data": [[]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "
+[1] top-level groupBys: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level select: 200 {"fields": [], "group_by_fields": [], "items": [{"data": [[]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "
+[1] top-level selects: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level limit: 200 {"fields": [], "group_by_fields": [], "items": [{"data": [[]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "
+[1] top-level offset: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level query: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level search: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level orderBy: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level sortBy: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level aggregations: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level metrics: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level dimensions: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level granularity: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] top-level cursor: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   filters: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   groupBy: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   groupBys: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   select: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   selects: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   limit: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   offset: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   query: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   search: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   orderBy: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   sortBy: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   aggregations: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   metrics: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   dimensions: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   granularity: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[1] ds-level   cursor: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]
+=== filter grammar probes ===
+[2] filters [{"key": "service", "op": "=", "value": "api"}]: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[2] filters [{"key": "service", "operator": "equals", "values": ["api"]}]: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[2] filters [{"attribute": "service", "operator": "=", "value": "api"}]: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[2] filters [{"field": "service", "value": "api"}]: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[2] filters ["service = api"]: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[3] query "service = api": 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[3] query "service:api": 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[3] query "status:error": 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[3] query {"expr": "status=error"}: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+=== list/data shapes ===
+[4] list/data sdk.flag_evaluations (TST): 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource", "reason": "must be one of: ai_config.metric_v2, context.associations, context.details, experimentatio
+[4] list/data observability.traces (TST): 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "select", "reason": "must include at least one selected field"}]}
+[5] TST chart/data own: 200 {"fields": [], "group_by_fields": [], "items": [{"data": [[]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "meta": {"f

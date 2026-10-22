@@ -291,3 +291,25 @@ Stage Summary:
 - Role authz verdict: policy engine correct on all real writes; only no-op-patch short-circuit (P5).
 - Info-leak verdict: no secrets, no stack traces; only P5-grade schema/policy-action reflections.
 - Net this round: 0 reportable P1/P2; P5 notes logged. Remaining untested: comments resourceId grammar (blocked), invite-token entropy (needs password step-up we don't have).
+
+---
+Task ID: R4-LEARN
+Agent: Super Z (main)
+Task: Keep learning the app — refresh JS corpus, map new surfaces, live characterization
+
+Work Log:
+- New runtime runtime.2ae60dfa8499d398.js parsed (name map inline in h.u): 547 chunks, 0 new names, 24 updated hashes (Application views, observability.shared, AiEvaluationRuns, AiLibraryDatasets, CreateOrJoinSwitcher, Profile...). Diff saved analysis/chunk_diff_new.txt.
+- Downloaded common.js (7.7MB) + observability.shared.js (3.4MB); 21 others CDN-403. Extracted 379 endpoints -> analysis/endpoints_new.txt.
+- Live GET sweep: Views/Layers/Holdouts/ReleasePolicies/Roles/ContextKinds/SDK-keys/AI-evals/Playgrounds all live on Foundation plan; release-plans 403 gated.
+- MAPPED the new generic query engine (chart/data + list/data): full DSL via validation-oracle mining + SPA bundle extraction (scripts/learn1-7.py). Valid queries return 200 with real data (traces span zeno.genai.probe).
+- E2 (query injection) tested to closure: enum + parameterization = defended; cross-org projectKey fenced; op/type enums leak in errors (P5).
+- verify-code/forgot/contact-us: no enumeration oracles (uniform responses).
+- access-check bulk: service=app-api valid, needs Authorization header param; validator inconsistency with/without header (P5, time-boxed).
+- SDK-keys API returns full key values on GET (own-org by-design; reader-role visibility unverified).
+- AI evals/playgrounds/layers/views cross-org: uniform 404 = org-fenced.
+- attack_surface.md updated with §I (R4 results + next queue).
+
+Stage Summary:
+- Net: E2 closed as defended; query-API grammar fully documented; new feature surfaces (views/layers/evals) all org-fenced on first cross-org probe; no P1/P2 from learning round.
+- Artifacts: recon/r4_learn1-7.txt, analysis/endpoints_new.txt, analysis/chunk_diff_new.txt, scripts/learn*.py.
+- Next queue: segment exports IDOR (file download), layers experiments cross-org, evaluation runs write-verbs cross-org, AI completion grammar, access-check bulk full body.

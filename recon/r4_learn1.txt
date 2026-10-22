@@ -1,0 +1,54 @@
+======================================================================
+PHASE 1: generic query APIs (chart/list/schema-suggestion)
+======================================================================
+[1] POST /api/v2/chart/data {}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"dataSource.domain","reason":"must be one of: ai_config, context, example, experimentation, metrics, observability, sdk"}]}
+[1] POST /api/v2/list/data {}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"dataSource","reason":"must be one of: ai_config.metric_v2, context.associations, context.details, experimentation.audience, metrics.context_kind_counts, metrics.event_counts, metrics.events_last_seen, metrics.integration_event_counts, observability.traces, sdk.click_event, sdk.custom_event, sdk.event_batch, sdk.flag_ev
+[1] POST /api/v2/chart/schema/suggestion {}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"dataSource.domain","reason":"unknown domain"}]}
+[1] chart/data try {"select": ["flags"], "filters": [], "groupBy": [], "timeRange": "7d"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[1] chart/data try {"metric": "flags", "filters": [], "timeRange": {"start": "2026-10-01", "end": ": 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[1] chart/data try {"query": {"select": [], "filters": []}}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+======================================================================
+PHASE 2: access-check bulk
+======================================================================
+[2] access-check console {}: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being required, however it's missing from the requests, Line: 1, Column: 156"}
+[2] access-check app {}: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being required, however it's missing from the requests, Line: 1, Column: 156"}
+[2] access-check frontend {}: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being required, however it's missing from the requests, Line: 1, Column: 156"}
+[2] access-check web {}: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being required, however it's missing from the requests, Line: 1, Column: 156"}
+======================================================================
+PHASE 3: GET sweep new areas (ORG session)
+======================================================================
+[3] /api/v2/applications: 200 {"_links":{"self":{"href":"/api/v2/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0}
+[3] /api/v2/projects/default/views: 200 {"_links":{"self":{"href":"/api/v2/projects/default/views?limit=20","type":"application/json"}},"items":[{"_access":{"denied":[],"allowed":[]},"_affectsSdkPayload":false,"_links":{"parent":{"href":"/api/v2/projects/defau
+[3] /api/v2/projects/default/layers: 200 {"items":[{"key":"zeno-victim-layer","name":"zeno victim layer","description":"TOP-SECRET-LAYER","createdAt":1792677045662}],"totalCount":1,"_links":null}
+[3] /api/v2/projects/default/environments/test/holdouts: 200 {"items":[],"_links":{"self":{"href":"/api/v2/projects/default/environments/test/holdouts?limit=20\u0026offset=0","type":"application/json"}},"total_count":0}
+[3] /api/v2/projects/default/release-pipelines: 404 
+[3] /api/v2/projects/default/release-plans: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[3] /api/v2/projects/default/release-policies: 200 {"items":[],"totalCount":0} 
+[3] /api/v2/projects/default/environments/test/sdk-keys: 200 {"_links":{"self":{"href":"/api/v2/projects/default/environments/test/sdk-keys","type":"application/json"}},"items":[{"_createdAt":1791135697950,"_links":{"parent":{"href":"/api/v2/projects/default/environments/test/sdk-
+[3] /api/v2/projects/default/context-kinds: 200 {"items":[{"key":"ld-example-device","name":"LD Example Context: Device","description":"This example context kind represents a physical device. Use it to target flag variations by device attributes such as platform, OS v
+[3] /api/v2/projects/default/environments/test/context-instances/search: 405 
+[3] /api/v2/roles: 200 {"_links":{"self":{"href":"/api/v2/roles?limit=1000000","type":"application/json"}},"items":[{"_id":"6ac3b53a62ca700732fdb893","_links":{"parent":{"href":"/api/v2/roles","type":"application/json"},"self":{"href":"/api/v2
+[3] /internal/role-presets-bundle: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[3] /internal/projects/default/metric-data-sources: 200 {"items":null,"_links":{"self":{"href":"/internal/projects/default/metric-data-sources","type":"application/json"}},"totalCount":0}
+[3] /internal/ai/evaluations/providers: 200 {"experience":"trial","providers":["anthropic"]} 
+[3] /internal/projects/default/evaluations: 200 {"items":[{"id":"f33ce22d-fdf1-4b0f-be31-7e8d311d90f5","version":2,"name":"Untitled playground","messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"{{input}}"}],"variables":{"
+[3] /internal/projects/default/playgrounds: 200 {"items":[{"id":"e3d38d15-8bbd-41d7-acbb-8ffdb190e14b","name":"Untitled playground","variants":[{"evaluationId":"f33ce22d-fdf1-4b0f-be31-7e8d311d90f5","position":0},{"evaluationId":"13249c4e-e7bb-4108-8532-f897e3ec1df7",
+[3] /internal/projects/default/applications: 200 {"_links":{"self":{"href":"/internal/projects/default/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0} 
+[3] /internal/projects/default/flags/search: 405 
+[3] /internal/usage/sdk-active: 200 {"active":false}
+[3] /internal/warehouse-integrations-health: 200 {"items":[]}
+======================================================================
+PHASE 4: unauth forgot / verify-code / contact-us
+======================================================================
+[4] forgot REAL-email: 400 {"message":"Invalid email address"}
+[4] forgot FAKE-email: 400 {"message":"Invalid email address"}
+[4] verify-code: 400 {"message":"Invalid verification code.","attemptsRemaining":4} 
+[4] contact-us public-submit: 404 
+======================================================================
+PHASE 5: flag copy + misc
+======================================================================
+[5] flag copy env->env: 403 {"message":"Plan does not allow this operation"}
+[5] destinations list: 405 
+[5] accrued-invoices: 200 {"items":[{"amount":0,"createdAt":1792339219,"discount":null,"id":"2fhVtrJn8rTSQgh6","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+
+DONE r4_learn1

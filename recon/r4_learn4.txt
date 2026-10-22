@@ -1,0 +1,22 @@
+--- mining observability.traces: seed={"dataSource": {"domain": "observability", "kind": "traces"}}
+  0 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.from", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisec
+  1 set dataSource.timeRange.from=1792711534368 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange", "reason": "'to' must be after 'from'"}]}
+  2 set dataSource.timeRange.to=1792711535463 -> 200 {"fields": [], "group_by_fields": [], "items": [], "meta": {"from": 1792711534368, "to": 1792711535463}}
+  FINAL: 200
+  BODY: {"dataSource": {"domain": "observability", "kind": "traces", "timeRange": {"from": 1792711534368, "to": 1792711535463}}}
+  RESPONSE: {"fields": [], "group_by_fields": [], "items": [], "meta": {"from": 1792711534368, "to": 1792711535463}}
+--- mining metrics.context_kind_counts: seed={"dataSource": {"domain": "metrics", "kind": "context_kind_counts"}}
+  0 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.from", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisec
+  1 set dataSource.timeRange.from=1792711537760 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange", "reason": "'to' must be after 'from'"}]}
+  2 set dataSource.timeRange.to=1792711538631 -> 200 {"fields": [], "group_by_fields": [], "items": [], "meta": {"from": 1792711537760, "to": 1792711538631}}
+  FINAL: 200
+  BODY: {"dataSource": {"domain": "metrics", "kind": "context_kind_counts", "timeRange": {"from": 1792711537760, "to": 1792711538631}}}
+  RESPONSE: {"fields": [], "group_by_fields": [], "items": [], "meta": {"from": 1792711537760, "to": 1792711538631}}
+--- mining context.details: seed={"dataSource": {"domain": "context", "kind": "details"}}
+  0 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.from", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisec
+  1 set dataSource.timeRange.from=1792711540469 -> 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "dataSource.timeRange.to", "reason": "must be a positive epoch millisecond timestamp"}, {"attribute": "dataSource.timeRange", "reason": "'to' must be after 'from'"}]}
+  2 set dataSource.timeRange.to=1792711541351 -> 408 {"code": "request_timeout", "message": "Request processing exceeded maximum duration"}
+  FINAL: 408
+  BODY: {"dataSource": {"domain": "context", "kind": "details", "timeRange": {"from": 1792711540469, "to": 1792711541351}}}
+
+DONE r4_learn4

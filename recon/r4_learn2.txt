@@ -1,0 +1,44 @@
+======================================================================
+PHASE A: list/data DSL mining
+======================================================================
+[A] list/data bogus: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] chart/data bogus-domain: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"dataSource.domain","reason":"must be one of: ai_config, context, example, experimentation, metrics, observability, sdk"}]}
+[A] chart/data {"domain": "observability", "key": "traces"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] list/data  {"domain": "observability", "key": "traces"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] chart/data {"domain": "context", "key": "details"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] list/data  {"domain": "context", "key": "details"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] chart/data {"domain": "sdk", "key": "flag_evaluations"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] list/data  {"domain": "sdk", "key": "flag_evaluations"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] chart/data {"domain": "metrics", "key": "event_counts"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+[A] list/data  {"domain": "metrics", "key": "event_counts"}: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"request_body","reason":"could not be deserialized"}]}
+======================================================================
+PHASE B: verify-code oracle
+======================================================================
+[B] zeno0+org@bugcrowdninja.com: ['400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.']
+[B] definitely-not-real-98765@bugcrowdninja.com: ['400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.']
+[B] admin@launchdarkly.com: ['400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.', '400/attempts=4/Invalid verification code.']
+======================================================================
+PHASE C: sdk-keys body
+======================================================================
+[C] sdk-keys: 200 {"_links":{"self":{"href":"/api/v2/projects/default/environments/test/sdk-keys","type":"application/json"}},"items":[{"_createdAt":1791135697950,"_links":{"parent":{"href":"/api/v2/projects/default/environments/test/sdk-keys","type":"application/json"},"self":{"href":"/api/v2/projects/default/environments/test/sdk-keys/mob-key-d0ea2f1994","type":"application/json"}},"_updatedAt":1791135697950,"_version":1,"description":"Auto-created default mobile SDK key","isDefault":true,"key":"mob-key-d0ea2f1994","kind":"mobile","name":"Default Mobile Key","value":"mob-08e184a6-329b-4eb8-8be1-ab9466868298"},{"_createdAt":1791135697950,"_links":{"parent":{"href":"/api/v2/projects/default/environments/test/sdk-keys","type":"application/json"},"self":{"href":"/api/v2/projects/default/environments/test/sdk-keys/sdk-key-9d26032ed1","type":"application/json"}},"_updatedAt":1791135697950,"_version":1,"descri
+======================================================================
+PHASE D: access-check bulk shape
+======================================================================
+[D] with dummy auth hdr: 400 {"code":"invalid_request","message":"The path parameter 'service' has pre-defined values set via an enum. The value 'console' is not one of those values."}
+[D] accesses body: 400 {"code":"invalid_request","message":"The path parameter 'service' has pre-defined values set via an enum. The value 'console' is not one of those values."}
+======================================================================
+PHASE E: cross-org UUID replay (AI evals, playgrounds)
+======================================================================
+[E] ORG evaluation ids: ['f33ce22d-fdf1-4b0f-be31-7e8d311d90f5', '13249c4e-e7bb-4108-8532-f897e3ec1df7'] playground ids: ['e3d38d15-8bbd-41d7-acbb-8ffdb190e14b']
+[E] TST GET evaluation f33ce22d-fdf1-4b0f-be31-7e8d311d90f5: 404 {"code":"not_found","message":"Evaluation not found"}
+[E] TST GET evaluation 13249c4e-e7bb-4108-8532-f897e3ec1df7: 404 {"code":"not_found","message":"Evaluation not found"}
+[E] TST GET playground e3d38d15-8bbd-41d7-acbb-8ffdb190e14b: 404 {"code":"not_found","message":"Playground not found"}
+[E] TST layers in default proj (cross-org key!): 200 {"items":[],"totalCount":0,"_links":null}
+[E] TST GET ORG layer by key: 405 
+======================================================================
+PHASE F: views
+======================================================================
+[F] view keys: ['zeno-victim-view']
+[F] TST GET ORG view zeno-victim-view: 404 {"code":"not_found","message":"View not found"}
+
+DONE r4_learn2

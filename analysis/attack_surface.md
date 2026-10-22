@@ -76,3 +76,29 @@ Canary destination UUIDs: `61f60f4a-67c1-42e6-be22-c90979c3f6f0`, `f35b06d5-dc7a
 8. **C3** device-code flow
 9. **B2** code-refs repo key + flag-templates distinguisher tests
 10. **E2** observability query DSL injection
+
+## I. R4 learning round (2026-10-23) — new query API + feature surfaces
+### I1. Generic query engine (NEW, fully mapped)
+- `POST /api/v2/chart/data` + `POST /api/v2/list/data` — structured analytics DSL:
+  `{projectKey, dataSource:{domain, kind, timeRange:{from,to(epoch ms)}}, select:[{field, expression}], groupBy:[{field}], filters:{and:[{field, op, values|value}], or:...}, limit}`
+- domains/kinds: observability.traces, metrics.{context_kind_counts,event_counts,events_last_seen,integration_event_counts}, context.{associations,details}, sdk.{click_event,custom_event,event_batch,flag_evaluation,...}, ai_config.metric_v2, experimentation.audience (+interval/timezone), example.timeseries_single
+- E2 VERDICT: DEFENDED. expressions/fields enum-validated ("unknown expression field:'X' expression:'Y'"), filters fully parameterized (injection strings -> clean empty result, no SQL error), op enum: = != > < >= <= in not_in contains does_not_contain starts_with exists; contains requires type:arraystring|arraynumber.
+- Cross-org: body projectKey resolved against session org -> "not found" for other org (fenced).
+- P5: errors reflect arbitrary field/expression/op input; `contains` leaks type system.
+- context.details on 1s window -> 408 request_timeout (server-side heavy; DoS excluded by program).
+### I2. Feature surfaces characterized
+- Views (/api/v2/projects/{p}/views): live, org-fenced cross-org (404 View not found).
+- Layers: live on Foundation (own layer + experiments readable); layer-by-key GET 405 (path quirk).
+- AI evaluations/playgrounds: live; UUID ids; cross-org 404 uniform (fenced). `/internal/ai/evaluations/providers` -> {experience:trial, providers:[anthropic]}.
+- sdk-keys API (`/api/v2/projects/{p}/environments/{e}/sdk-keys`): returns FULL key VALUES (value:"mob-...") on GET — own-org by design (verify reader-role UI visibility before any claim).
+- release-plans 403 plan-gated; release-pipelines 404 (env-scoped path); release-policies 200.
+- `/internal/authorization/access-check/app-api/bulk`: service enum incl. app-api; needs Authorization header param + body type:array; WITHOUT auth header path-enum passes, WITH header it fails -> validator inconsistency (P5). Time-boxed.
+### I3. Auth surface
+- `/internal/forgot`: uniform "Invalid email address" for real+fake (subaddress emails rejected at regex) -> no oracle.
+- `/internal/account/verify-code`: uniform 400 attemptsRemaining:4 for any email -> NO pending-verification oracle.
+- `/internal/contact-us/forms/{id}/public-submit`: 404.
+### I4. Misc
+- `/internal/account/accrued-invoices`: invoice lines w/ Stripe-style ids (own org).
+- Segment exports/imports endpoints exist (/api/v2/segments/{p}/{e}/{s}/exports/{id}) — NOT yet probed (needs segment with export; candidate IDOR file-download).
+- 21/24 updated chunks CDN-403 (unfetchable new hashes); common.js+observability.shared.js captured (10.7MB).
+- Next queue: segment exports IDOR, layers experiments cross-org, access-check bulk full grammar (low), evaluation runs cancel cross-org (fenced per GET, verify write), AI completion endpoint (`/internal/ai-configs/{k}/completion`) grammar.

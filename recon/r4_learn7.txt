@@ -1,0 +1,39 @@
+[0] valid traces query: 200 {"fields": [{"name": "duration_count", "type": "count"}], "group_by_fields": [{"name": "span_name", "type": "string"}], "items": [{"data": [[1]], "group_by_values": ["zeno.genai.probe"], "key": "3930225490795993666", "rollup_key": null}], "meta": {"from": 1792106947855, "to": 1792711687855}}
+[0b] minimal (no groupBy/filters): 200 {"fields": [{"name": "duration_count", "type": "count"}], "group_by_fields": [], "items": [{"data": [[1]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "meta": {"from": 1792106947855, "to": 1792711687855}}
+=== expression probes ===
+[1] expr='count': 200 [{"data": [[1]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}]
+[1] expr='count)': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count)'"}]
+[1] expr='count;--': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count;--'"}]
+[1] expr='1) OR (1=1': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'1) OR (1=1'"}]
+[1] expr='count) AS x--': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count) AS x--'"}]
+[1] expr='avg': 200 [{"data": [[50000000]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}]
+[1] expr='p95': 200 [{"data": [[49973599.25297268]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}]
+[1] expr='sum': 200 [{"data": [[50000000]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}]
+[1] expr='count(*)': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count(*)'"}]
+[1] expr='count(1)': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count(1)'"}]
+[1] expr='count(1); SELECT 1--': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count(1); SELECT 1--'"}]
+[1] expr="count'--": 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'count'--'"}]
+[1] expr="_extract('x')": 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' expression:'_extract('x')'"}]
+=== field probes ===
+[2] field='duration': 200 [{"data": [[1]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}]
+[2] field='duration--': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration--' expression:'count'"}]
+[2] field='duration; SELECT 1': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration; SELECT 1' expression:'count'"}]
+[2] field='span_name': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'span_name' expression:'count'"}]
+[2] field='(SELECT 1)': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'(SELECT 1)' expression:'count'"}]
+[2] field="duration' OR '1'='1": 400 [{"attribute": "select[0]", "reason": "unknown expression field:'duration' OR '1'='1' expression:'count'"}]
+[2] field='*': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'*' expression:'count'"}]
+[2] field='1=1) --': 400 [{"attribute": "select[0]", "reason": "unknown expression field:'1=1) --' expression:'count'"}]
+=== filters probes ===
+[3] filters={"and": [{"field": "span_name", "op": "in", "values": ["test' OR '1'='1"]}]}: 200 []
+[3] filters={"and": [{"field": "span_name", "op": "eq", "value": "x'"}]}: 400 [{"attribute": "filters.and[0].op", "reason": "must be one of: =, !=, >, <, >=, <=, in, not_in, contains, does_not_contain, starts_with, exists"}]
+[3] filters={"and": [{"field": "span_name", "op": "contains", "values": ["%27"]}]}: 400 [{"attribute": "filters.and[0].type", "reason": "operator 'contains' requires explicit array type (arraystring, arraynumber)"}, {"attribute": "filters
+[3] filters={"or": [{"field": "duration", "op": "gt", "values": [0]}]}: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[3] filters={"and": [{"field": "span_name", "op": "regex", "values": [".*"]}]}: 400 [{"attribute": "filters.and[0].op", "reason": "must be one of: =, !=, >, <, >=, <=, in, not_in, contains, does_not_contain, starts_with, exists"}, {"a
+[3] filters={"and": [{"field": "(1=1) OR (\"span_name\"", "op": "in", "values": ["x"]}]}: 200 []
+=== list/data ===
+[4] list traces select span_name: 200 {"fields": [{"name": "span_name", "type": "string"}], "group_by_fields": [], "items": [{"data": [["zeno.genai.probe"]], "group_by_values": [], "key": "rows", "rollup_key": null}], "meta": {"from": 1792106947855, "to": 1792711687855}}
+=== cross-org projectKey ===
+[5] ORG session + TST projectKey: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "projectKey", "reason": "not found"}]}
+[5] TST session + own default: 200 {"fields": [{"name": "duration_count", "type": "count"}], "group_by_fields": [], "items": [{"data": [[3]], "group_by_values": [], "key": "10577349846663553072", "rollup_key": null}], "meta": {"from": 
+
+DONE r4_learn7

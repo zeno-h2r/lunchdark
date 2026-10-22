@@ -1,0 +1,23 @@
+[1] chart select bogus: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[2] list select bogus: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[3] chart groupBy bogus: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[4] list select timestamp: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select service: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select status: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select duration: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select operation: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select method: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select environment: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select project: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select flag_key: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select context_key: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[4] list select kind: 400 [{"attribute": "request_body", "reason": "could not be deserialized"}]
+[5] sdk.flag_evaluations select bogus: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select flag_key: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select user_key: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select context_key: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select timestamp: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select variation: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+[5] sdk.flag_evaluations select value: 400 {"code": "invalid_request", "message": "validation failed", "errors": [{"attribute": "request_body", "reason": "could not be deserialized"}]}
+
+DONE r4_learn6
