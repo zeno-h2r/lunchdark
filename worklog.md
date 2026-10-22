@@ -52,3 +52,58 @@ Repo: zeno-h2r/lunchdark | Target: app.launchdarkly.com | Platform: Bugcrowd | O
 - Enumerate /internal/* endpoints
 - Map org IDs: org A (zeno0+org): ajs_group_id=6a0ccb4bd46a010aac3a7b3f, user 6a0ccb4bd46a010aac3a7b41
 - org B (zeno0+tester): ajs_group_id=6a0ccca921be370a8e15825e, user 6a0ccca921be370a8e158260
+
+---
+
+## Session 1 (cont.) — API Surface Extraction + Observability Deep-Dive
+
+### Task 5: Endpoint extraction from bundles
+- 405 unique endpoints extracted (recon/endpoints.txt on GitHub)
+- Key internal: /internal/account/session/escalate, /internal/authorization/access-check/{service}/bulk,
+  /internal/members/{id}/access-summary, /internal/contact-us/forms/{formId}/public-submit,
+  /internal/ai-configs/{configKey}/completion
+- Full /api/v2 surface incl. undocumented: release-policies, views, layers, holdouts, flag-links,
+  approval-requests/{id}/apply|reviews, destinations, segment exports/imports
+
+### Task 6: Session verification (both accounts)
+- ORG A (zeno0+org, "zeno test"): member 6ac28fd11c28fb07516cf363, role=owner, account 6ac28fd11c28fb07516cf361
+  - envs: test=6ac28fd11c28fb07516cf364, production=6ac28fd11c28fb07516cf365
+- ORG B (zeno0+tester, "zeno victim"): member 6ac29057ccacd606b1576cb9, role=owner, account 6ac29057ccacd606b1576cb7
+- Both: Developer2025 plan, MFA disabled, backend dd7f96edb, frontend 896789324
+- 2652 client-side flags each; notable: enable-canary-token, factory-user-token-oauth-enabled,
+  enable-modernized-tokens-endpoint, tui-agentcontrol-targeting
+- Observability config: observabilityProjectID="1jdkoe52" (BOTH orgs same value!), 
+  pub graph: pub.observability.app.ld.catamorphic.com, otel: otel.observability.app.ld.catamorphic.com
+
+### Task 7: TECHNIQUE #1 — Cross-Org IDOR baseline (results: properly scoped)
+| Endpoint | B->A result | Verdict |
+|---|---|---|
+| GET /api/v2/members/{A_member} | 404 not_found | scoped |
+| GET /api/v2/auditlog/{A_entry} | 404 | scoped |
+| GET /internal/members/{A_member}/access-summary | 403 "Plan does not allow this operation" | plan-check fires BEFORE org check (noted) |
+| GET /api/v2/tokens/{A_token} | 404 Token not found | scoped |
+| PATCH /api/v2/tokens/{A_token} | 404 | scoped |
+- Org A fixture created: access token _id=6ad9fbdd910326079dc637cf (reader, value known)
+- Destination webhook creation: 403 "Destination kind webhook is unavailable" (plan-gated)
+
+### Task 8: Observability service (pri.observability.app.launchdarkly.com) analysis
+- Highlight.io-derived backend. GraphQL at "/", Go router ("page not found" on /graphql)
+- **Introspection ENABLED**: 190 queries, 70 mutations, 1 subscription (recon/obs_graphql_schema.txt on GitHub)
+- High-value queries: session(secure_id), sessions(project_id,...), ld_flag(project_key,flag_key,env_key),
+  ld_flag_evaluations(...), ld_environments(project_key), conversation_history(conversation_id), alert(id),
+  graph(id), visualization(id), billingDetails(workspace_id), workspace_admins(workspace_id),
+  aiConversationHistory(project_id,...,user_email), topUsers(project_id), session_summary, trace(project_id,trace_id)
+- Auth model: LDProjectAuth middleware. Enumerating projects/workspaces blocked: "LDProjectAuth does not support GetProjects"
+- Unauth requests: "LDProjectAuth requires LDAccountID in context"
+- LDAccountID NOT client-header controllable (tested x-ld-account-id, ld-account-id, LDAccountID, etc. unauth — all rejected)
+- ld_flag/ld_environments proxy to Gonfalon: fail with "Invalid account ID header" using our cookies
+  (account resolution for gonfalon callback fails — likely needs full Observability enablement)
+- project(id:"1jdkoe52") returns null for BOTH orgs; workspace_for_project expects numeric ID
+- ob_ldso cookie = signed token, cannot be forged without server key
+- Public graph (pub...catamorphic.com): only {ignore, sampling} queries — locked down
+- VERDICT so far: no cross-org leak demonstrated on observability private graph. Session binding is server-side. Honest: no finding here yet.
+- Suspicious: otel.observability.app.ld.catamorphic.com/v1/traces returned HTTP 200 to unauth empty POST — IN PROGRESS
+
+### Next
+- Verify OTel ingestion auth (trace/log injection cross-tenant?)
+- Technique #2 candidates: OTel ingestion auth, approval-requests IDOR (needs fixture), AI configs, Vega
