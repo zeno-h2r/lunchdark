@@ -130,6 +130,30 @@ Plan:
 2. Inspect rendered audit log in browser (DOM) for unescaped output
 3. Escalate to javascript:/event-handler payloads if HTML survives
 
-Results: (pending)
+Results: **SANITIZED — no finding.**
+
+1. Audit log list view does NOT render raw title markdown. Parser converts `[text](internal-href)` to sanitized React Router links (`/settings/members/{id}`, `/projects/default/flags/{key}`). No external/javascript hrefs observed.
+2. Server-side resource-name sanitizer mutates markdown-ish names: `zeno [mdlink](https://example.com/zxprobe) probe` stored as `zeno dlink](https://example.com/zxprobe) probe`; audit titles escape name markdown (`\]\(`, `\-`).
+3. Flag descriptions render markdown with live external links (confirmed), BUT sanitizer blocks: `javascript:` (all cases), tab-entity, `data:` URIs, `vbscript:`, raw HTML, reference-style links, `javascript&colon;`. All render as href="" anchors or plain text.
+
+Program explicitly excludes "HTML injection on text fields within the app or emails". No P1-P3 finding.
+
+Artifacts left in [ORG]: metric `zeno-md-probe-1`, flag `zeno-numflag` test payloads.
 
 ---
+
+## Technique 5 — Policy engine edge cases via scoped API tokens (IN PROGRESS)
+
+Focus areas: "Privilege escalation that bypasses org isolation controls", "Authorization Issues".
+
+LD policy resources: `proj/{key}:env/{key}:flag/{key}` matched against statements. Edge cases:
+1. Case sensitivity (`flag/KEY` vs `flag/key`)
+2. URL-encoding normalization (`%2D`, `%2F` splits)
+3. Trailing whitespace / unicode lookalikes
+4. Wildcard segment matching
+5. Cross-project same-key env scoping
+6. `/internal/authorization/access-check/{service}/bulk` oracle
+
+Setup: fresh scoped token in [ORG] allowing only `flag/zeno-allowed-*` in `proj/default:env/test`.
+
+Results: (pending)
