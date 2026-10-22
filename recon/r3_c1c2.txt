@@ -1,0 +1,39 @@
+===== R3 C1: /internal/accounts/{email} =====
+[C1 self[ORG]] GET /internal/accounts/zeno0%2Borg@bugcrowdninja.com -> 200
+  body: [{"id":"6ac28fd11c28fb07516cf361","membersCount":2,"organization":"zenocrowd","signInType":"password"}]
+
+[C1 cross[ORG->TST email]] GET /internal/accounts/zeno0%2Btester@bugcrowdninja.com -> 403
+  body: {"code":"forbidden","message":"You do not have permission to perform this operation"}
+
+[C1 control[ORG]] GET /internal/accounts/nobody-zeno%2Bx@bugcrowdninja.com -> 403
+  body: {"code":"forbidden","message":"You do not have permission to perform this operation"}
+
+[C1 unauth] GET /internal/accounts/zeno0%2Borg@bugcrowdninja.com -> 403
+  body: {"code":"forbidden","message":"You do not have permission to perform this operation"}
+
+===== R3 C2: unauthenticated organization-verifications =====
+[C2 unauth list] GET /internal/unauthenticated-members/organization-verifications -> 405
+  body: 
+
+[C2 unauth by-id(guess)] GET /internal/unauthenticated-members/organization-verifications/6ac28fd11c28fb07516cf361 -> 404
+  body: {"message":"token not found"}
+
+[C2 auth[ORG] list] GET /internal/unauthenticated-members/organization-verifications -> 405
+  body: 
+
+[C2 auth[ORG] by-id(own account id)] GET /internal/unauthenticated-members/organization-verifications/6ac28fd11c28fb07516cf361 -> 404
+  body: {"message":"token not found"}
+
+[C2 auth[TST->ORG id]] GET /internal/unauthenticated-members/organization-verifications/6ac28fd11c28fb07516cf361 -> 404
+  body: {"message":"token not found"}
+
+===== R3 C2b: profile/context + device code recon =====
+[C2b profile[ORG]] GET /internal/profile -> 200
+  body: {"_links":{"canonical":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"self":{"href":"/internal/profile","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com","_pendingInvite":false,"_verified":true,"isBeta":false,"customRoles":[],"mfa":"disabled","excludedDashboards":[],
+
+[C2b profile-context[ORG]] GET /internal/profile/context -> 200
+  body: {"projectContext":{"id":"6ac28fd11c28fb07516cf362","key":"default"},"environmentContext":{"environments":[{"id":"6ac28fd11c28fb07516cf364","key":"test"}],"selectedEnvironment":{"id":"6ac28fd11c28fb07516cf364","key":"test"}}}
+
+[C2b device-code control[ORG]] POST /internal/device/AAAA-BBBB-CCCC -> 405
+  body: 
+

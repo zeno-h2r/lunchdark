@@ -1,0 +1,54 @@
+########## B1.5 destinations path-mismatch (ORG dest id via TST path) ##########
+[B1.5 TST-path+ORG-dest] GET /api/v2/destinations/default/test/6ada601db9a33f075201c887 -> 404
+  {"code":"not_found","message":"Unknown destination, 6ada601db9a33f075201c887."}
+
+[B1.5 ORG-path+ORG-dest (baseline)] GET /api/v2/destinations/default/test/6ada601db9a33f075201c887 -> 404
+  {"code":"not_found","message":"Unknown destination, 6ada601db9a33f075201c887."}
+
+[B1.5 ORG dest list [ORG]] GET /api/v2/destinations/default/test -> 405
+  
+
+########## B1.1 comments ##########
+[B1.1 comments create probe [ORG]] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"/required missing properties 'resourceId', 'mentionedUserIds'."}
+
+[B1.1 comments list [ORG]] GET /internal/comments?projectKey=default&flagKey=zeno-allowed-1 -> 400
+  {"code":"invalid_request","message":"Query parameter 'resourceId' is missing."}
+
+########## B1.3 followers (generic resource) ##########
+[B1.3 TST add ORG-member follower] POST /internal/resources/project/zenohacker/environment/test/resourceKind/flag/resourceKey/zeno-denied-1/followers -> 404
+   
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">
+    <link rel="
+
+[B1.3 TST add ORG-member follower v2] POST /internal/resources/project/zenohacker/environment/test/flag/zeno-denied-1/followers -> 405
+  
+
+[B1.3 ORG follower list own flag] GET /internal/resources/project/default/environment/test/flag/zeno-allowed-1/followers -> 200
+  {"followers":[],"totalCount":0}
+
+########## B1.4 approval-requests ##########
+[B1.4 approval list [TST]] GET /api/v2/approval-requests -> 200
+  {"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/approval-requests","type":"application/json"}}}
+
+[B1.4 approval settings [TST]] GET /api/v2/approval-requests/projects/zenohacker/settings -> 404
+  {"code":"not_found","message":"Project not found"}
+
+########## B1.2 datasets ##########
+[B1.2 datasets list [ORG]] GET /internal/projects/default/datasets -> 200
+  {"datasets":[],"totalCount":0,"page":1,"pageSize":50}
+
+[B1.2 datasets list [TST]] GET /internal/projects/default/datasets -> 200
+  {"datasets":[],"totalCount":0,"page":1,"pageSize":50}
+

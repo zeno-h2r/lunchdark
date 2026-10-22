@@ -221,3 +221,27 @@ Corpus: runtime.js chunk map parsed (h.u function) → **548 chunk URLs reconstr
 - `analysis/attack_surface.md` — prioritized attack surface + test queue (A-H sections)
 - `analysis/{endpoints_full.txt,spa_routes.json,chunk_urls.json,r1_meta.json}`
 - `worklog.md` — this update
+
+---
+
+## R3 — Hunting round 1 (P1/P2 focus) — 2026-10-23
+
+All results: `recon/r3_*.txt`. Verdict per technique:
+
+| # | Technique | Result |
+|---|---|---|
+| C1 | `GET /internal/accounts/{email}` (choose-org lookup) | **FENCED** — own-org email 200 (leaks org id/membersCount/signInType, owner-visible anyway), other-org + nonexistent = uniform 403 → no enumeration oracle. Pre-auth `PUT /internal/account/login2` returns `{}` 200 for ALL emails → no oracle. |
+| C2 | `/internal/unauthenticated-members/organization-verifications/{id}` | **FENCED** — uniform `404 token not found` (auth + unauth, own id + other id). Token space unexplored (invite-linked). |
+| C4 | `/internal/account/session/escalate` | **PASSWORD-GATED** — 401 `Invalid password` for both owner sessions. No bypass. |
+| D3 | `PATCH /internal/billingv2/account/subscription/campaigns` | **VALIDATED** — every guessable plan-code (`FOUNDATION2023/2025`, `ENTERPRISE2023`, `PROFESSIONAL2021`, `STARTER2021`, `GUARDIAN2024`, trials) → 400 `campaignType not supported`; subscription state unchanged. User promo codes are Stripe-coupon backed (not guessable). No entitlement forgery. |
+| A1 | Warehouse destination v2 endpoints | **PARTIALLY UNGATED, DEFENDED SSRF.** Setup endpoints now 201 for this plan: `kinds/{s3,clickhouse}/setup`, `generate-warehouse-destination-key-pair`. `test-warehouse-destination-connection` + destination CREATE remain kind-gated 403. **`kinds/clickhouse/complete-setup` performs REAL server-side connections** to user-supplied `host` (+port allowed): validation chain = strict host parse → DNS resolve (`Host does not resolve` oracle) → private/metadata IP block (`Host is not permitted`: 169.254.169.254, localhost) → SSRF-service blocklist (all Burp Collaborator TLDs oast.site/.pro/.live/.fun, subdomains, nip.io, trailing dot, uppercase) → TCP connect (s3.amazonaws.com:22/8123 → `ClickHouse connection test failed: An unknown error occurred.`; s3.amazonaws.com default → 504 gateway timeout). Connect errors are UNIFORM — no response oracle. `kinds/s3/complete-setup` does STS `AssumeRoleWithWebIdentity` w/ user ARN (error leaks trust-policy requirements). **Rebinding untestable: rbndr.us/whonow dead. PENDING: user-supplied non-blocklisted callback host for TOCTOU test.** |
+| A4 | `/internal/projects/{p}/datasets/*` pipeline | **LIVE + ORG-SCOPED.** Create 201 (got `datasetId` UUID + presigned S3 uploadUrl `launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/{accId}/proj/{projId}/datasets/{id}/file.csv`, SigV2 + STS token). Cross-org [TST]→[ORG]: get/upload-url/rows/delete all `404 Dataset not found`; preview validates mode BEFORE authz (Pydantic `RowSelectionInput` verbose errors leak model fields — P5 info only, `mode=all` → 404). upload-url `filename` param NOT reflected in object key (fixed `file.csv`) → no S3 key traversal. |
+| B1.3 | Generic followers API (`PUT /internal/resources/.../followers/{memberId}`) | **ORG-SCOPED** — cross-org memberId → 404 `Member not found` (member resolver org-scoped); self-org PUT 204. |
+| B1.4 | Approval-requests list | List is org-scoped (both orgs see only own). Create-endpoint path not yet found (my guessed path 404) — TODO grammar from JS. |
+| B2 | flag-templates / code-refs | Templates are LD global builtins (identical across orgs — not org data). code-refs repos empty both orgs. `automated-rollout-configs` plan-gated 403. `adaptive-triggers` needs sourceType param. |
+
+**New recon intel:** LD data-export egress IP from clickhouse setup script: `35.192.85.117/32` (GCP us-central1). SEC-8991-style SSRF blocklist confirmed live at warehouse-complete-setup layer (covers oast.*, nip.io, sslip.io, workers.dev patterns).
+
+**Net R3: 0 reportable P1/P2 yet — all surfaces either org-fenced, plan-gated, or parameter-validated.** Highest-potential pending item: warehouse complete-setup rebinding SSRF (needs external callback host), plus un-run: observability query DSL injection (E2), device-code flow (C3), product-analytics `/graphql` surface, approval-request create grammar.
+
+Artifacts created in [ORG]: dataset `zeno-ds-probe` (e3ddcc72-d35e-43f5-8dcd-db74687f1b50); follower on flag `zeno-allowed-1` (ORG member). No canary destination UUIDs touched.

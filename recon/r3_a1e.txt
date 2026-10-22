@@ -1,0 +1,29 @@
+########## CROSS-ORG PREVIEW with valid modes ##########
+[PX1 TST preview mode=top] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=top -> 400 (2253ms)
+  {"code":"invalid_request","message":"1 validation error for RowSelectionInput
+  Value error, unit is required when mode is \"top\" or \"random\" [type=value_error, input_value={'mode': <RowSelectionMod...it': None, 'seed': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error"}
+
+[PX2 TST preview mode=all] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=all -> 404 (946ms)
+  {"code":"not_found","message":"Dataset not found"}
+
+[PX3 TST preview mode=random] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=random -> 400 (920ms)
+  {"code":"invalid_request","message":"1 validation error for RowSelectionInput
+  Value error, unit is required when mode is \"top\" or \"random\" [type=value_error, input_value={'mode': <RowSelectionMod...it': None, 'seed': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error"}
+
+[PO0 ORG preview mode=top (baseline)] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=top -> 400 (8065ms)
+  {"code":"invalid_request","message":"1 validation error for RowSelectionInput
+  Value error, unit is required when mode is \"top\" or \"random\" [type=value_error, input_value={'mode': <RowSelectionMod...it': None, 'seed': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error"}
+
+########## clickhouse complete-setup password + connect attempt ##########
+[H4 valid host + password (connect test)] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400 (984ms)
+  {"code":"invalid_request","message":"s3BucketRegion is required"}
+
+[H5 userinfo bypass @oast] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400 (2119ms)
+  {"code":"invalid_request","message":"Host must be a hostname or IP address, optionally with a numeric port"}
+
+[H6 backslash bypass] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400 (1749ms)
+  {"code":"invalid_request","message":"Host must be a hostname or IP address, optionally with a numeric port"}
+

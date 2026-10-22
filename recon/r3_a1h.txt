@@ -1,0 +1,35 @@
+########## rebinding + port probes ##########
+[RB1 whonow public-internal rebind] host=A.8.8.8.8.A.127.0.0.1.whonow.security.love -> 400 (1797ms)
+  {"code":"invalid_request","message":"Host does not resolve"}
+
+[RB2 1u.ms rebind] host=8e652f0d.rbndr.us -> 400 (2165ms)
+  {"code":"invalid_request","message":"Host does not resolve"}
+
+[PORT1 host with port 22] host=s3.amazonaws.com:22 -> 400 (3137ms)
+  {"code":"invalid_request","message":"ClickHouse connection test failed: An unknown error occurred."}
+
+[PORT2 host with port 8123] host=s3.amazonaws.com:8123 -> 400 (3488ms)
+  {"code":"invalid_request","message":"ClickHouse connection test failed: An unknown error occurred."}
+
+########## C5: invite/pending token probes [TST] ##########
+[C5.0 pending-invites TST] -> 401
+   
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Server error</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type=
+
+[C5.1 suggest-invites TST] -> 405
+  
+
+[C5.2 invite guessed-uuid TST] -> 405
+  
+

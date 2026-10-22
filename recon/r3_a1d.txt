@@ -1,0 +1,40 @@
+########## D5 authz order: preview mode param ##########
+[P0 preview self w/ mode [ORG]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=head -> 400
+  {"code":"invalid_request","message":"mode: input should be 'all', 'top' or 'random'"}
+
+[P1 preview cross w/ mode [TST]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=head -> 400
+  {"code":"invalid_request","message":"mode: input should be 'all', 'top' or 'random'"}
+
+[P2 preview cross sample [TST]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview?mode=sample -> 400
+  {"code":"invalid_request","message":"mode: input should be 'all', 'top' or 'random'"}
+
+[P3 rows self [ORG] baseline] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/rows?limit=1 -> 200
+  {"items":[],"totalCount":0,"_links":{"self":{"href":"/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/rows?limit=1"},"next":null,"prev":null,"first":{"href":"/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/rows?limit=1&offset=0"},"last":{"href":"/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/rows?limit=1&offset=0"}}}
+
+########## upload-url filename traversal (self-org) ##########
+[U1 filename traversal] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 200
+  {"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28fd11c28fb07516cf361/proj/6ac28fd11c28fb07516cf362/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/file.csv?AWSAccessKeyId=ASIAYCH5OTOSTHLTB2PS&Signature=FaeoNJ0xeAO9FEopQlZEFG71mcg%3D&content-type=text%2Fcsv&x-amz-security-token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQCMfK84p
+
+[U2 filename dotdot deep] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 200
+  {"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28fd11c28fb07516cf361/proj/6ac28fd11c28fb07516cf362/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/file.csv?AWSAccessKeyId=ASIAYCH5OTOSTHLTB2PS&Signature=Ywgq5YVRjUqZuMuob0ApVO9YJeo%3D&content-type=text%2Fcsv&x-amz-security-token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQCMfK84p
+
+[U3 filename absolute] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 200
+  {"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28fd11c28fb07516cf361/proj/6ac28fd11c28fb07516cf362/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/file.csv?AWSAccessKeyId=ASIAYCH5OTOSTHLTB2PS&Signature=2vUDGtioSdINVwjMAs1%2Fk0w43Gw%3D&content-type=text%2Fcsv&x-amz-security-token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQCMfK8
+
+[U4 filename control (normal)] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 200
+  {"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28fd11c28fb07516cf361/proj/6ac28fd11c28fb07516cf362/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/file.csv?AWSAccessKeyId=ASIAYCH5OTOSTHLTB2PS&Signature=BP2LzZWMrHnPNIMiHMsoZrVSJng%3D&content-type=text%2Fcsv&x-amz-security-token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQCMfK84p
+
+########## host validation pattern (clickhouse complete-setup) ##########
+[H1 snowflakecomputing suffix] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400
+  {"code":"invalid_request","message":"password is required"}
+
+[H2 localhost variant] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[H3 oast in path trick] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+########## s3 complete-setup with bucketRegion ##########
+[S3CS s3 complete full] POST /api/v2/destinations/projects/default/environments/test/kinds/s3/complete-setup -> 400
+  {"code":"invalid_request","message":"S3 connection test failed: The S3 connection was denied permission to assume the configured IAM role. Please verify the custom trust policy on the role allows sts:AssumeRoleWithWebIdentity from the service identity, and that the required oaud/sub conditions are set correctly, and try again."}
+

@@ -1,0 +1,25 @@
+===== B2: flag-templates + code-refs key distinguishers =====
+[B2.0 flag-templates create [ORG]] POST /internal/projects/default/flag-templates -> 405
+  
+
+[B2.1 flag-templates list [ORG]] GET /internal/projects/default/flag-templates -> 200
+  {"items":[{"name":"Release","key":"release","description":"A temporary flag that initially serves false to all targets, then progressively rolls out true to targets until it reaches 100%","_clientSideAvailability":{"usingMobileKey":false,"usingEnvironmentId":false},"variationType":"boolean","variations":[{"value":true,
+
+[B2.2 flag-templates list [TST]] GET /internal/projects/default/flag-templates -> 200
+  {"items":[{"name":"Release","key":"release","description":"A temporary flag that initially serves false to all targets, then progressively rolls out true to targets until it reaches 100%","_clientSideAvailability":{"usingMobileKey":false,"usingEnvironmentId":false},"variationType":"boolean","variations":[{"value":true,
+
+[B2.3 code-refs repos [ORG]] GET /api/v2/code-refs/repositories -> 200
+  {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+
+[B2.4 code-refs repos [TST]] GET /api/v2/code-refs/repositories -> 200
+  {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+
+[B2.5 ux-insights runs [ORG]] GET /internal/projects/default/ux-insights/runs -> 405
+  
+
+[B2.6 adaptive-triggers [ORG]] GET /internal/projects/default/adaptive-triggers -> 400
+  {"code":"invalid_request","message":"Query parameter 'sourceType' is missing."}
+
+[B2.7 automated-rollout-configs [ORG]] GET /internal/projects/default/automated-rollout-configs -> 403
+  {"code":"forbidden","message":"Plan does not allow this operation"}
+

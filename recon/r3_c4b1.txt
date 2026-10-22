@@ -1,0 +1,38 @@
+########## C4 escalate matrix ##########
+[E0 GET session state [ORG]] GET /internal/account/session -> 200
+  {"accountId":"6ac28fd11c28fb07516cf361","environmentId":"6ac28fd11c28fb07516cf364"}
+
+[E1 POST escalate empty [ORG]] POST /internal/account/session/escalate -> 401
+  {"code":"unauthorized","message":"Invalid password"}
+
+[E2 POST escalate reason [ORG]] POST /internal/account/session/escalate -> 401
+  {"code":"unauthorized","message":"Invalid password"}
+
+[E3 POST escalate ticket [TST]] POST /internal/account/session/escalate -> 401
+  {"code":"unauthorized","message":"Invalid password"}
+
+[E4 GET escalate state [TST]] GET /internal/account/session -> 200
+  {"accountId":"6ac29057ccacd606b1576cb7","environmentId":"6ac29057ccacd606b1576cba"}
+
+########## B1.4 approval-requests cross-org ##########
+[A0 create approval [ORG]] POST /api/feature-flags/default/zeno-allowed-1/approval-requests -> 404
+   
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-o
+
+[A1 list approvals [ORG]] GET /api/v2/approval-requests -> 200
+  {"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/approval-requests","type":"application/json"}}}
+
+[A2 list approvals [TST] (cross-visibility check)] GET /api/v2/approval-requests -> 200
+  {"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/approval-requests","type":"application/json"}}}
+

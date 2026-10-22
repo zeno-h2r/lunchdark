@@ -1,0 +1,47 @@
+########## destination CREATE with new kinds ##########
+[K1 create clickhouse dest] POST /api/v2/destinations/projects/default/environments/test -> 404 (2098ms)
+   
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">
+    <link rel="icon" type="image/png" href="https://static.launch
+
+[K2 create s3-v2 dest] POST /api/v2/destinations/projects/default/environments/test -> 404 (1945ms)
+   
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">
+    <link rel="icon" type="image/png" href="https://static.launch
+
+########## complete-setup phase (post-script verification) ##########
+[CS1 clickhouse complete-setup] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400 (1092ms)
+  {"code":"invalid_request","message":"host is required"}
+
+[CS2 s3 complete-setup] POST /api/v2/destinations/projects/default/environments/test/kinds/s3/complete-setup -> 400 (450ms)
+  {"code":"invalid_request","message":"bucketName is required"}
+
+########## datasets with format ##########
+[DS1 datasets create w/ format] POST /internal/projects/default/datasets -> 201 (1382ms)
+  {"datasetId":"e3ddcc72-d35e-43f5-8dcd-db74687f1b50","name":"zeno-ds-probe","key":"zeno-ds-probe","filename":"zeno-ds-probe","description":null,"format":"csv","status":"pending","createdAt":"2026-10-22T20:29:47.524962Z","updatedAt":"2026-10-22T20:29:47.524962Z","sizeBytes":null,"upload":{"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28f
+
+[DS2 entitlements w/ projectKey] GET /internal/entitlements/ai-configs?projectKey=default -> 200 (7836ms)
+  {"state":"disabled","usageGatedTrials":{"hardLimit":0,"softLimit":0,"usage":3,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}}
+

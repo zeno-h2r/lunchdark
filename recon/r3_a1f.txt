@@ -1,0 +1,31 @@
+########## host allowlist mapping ##########
+[M1 snowflake subdomain] host=zeno-test.snowflakecomputing.com -> 400 (2272ms)
+  {"code":"invalid_request","message":"s3IamRoleArn is required"}
+
+[M2 snowflakecomputing apex] host=snowflakecomputing.com -> 400 (2413ms)
+  {"code":"invalid_request","message":"s3IamRoleArn is required"}
+
+[M3 clickhouse.cloud] host=zeno-test.clickhouse.cloud -> 400 (1114ms)
+  {"code":"invalid_request","message":"Host does not resolve"}
+
+[M4 clickhouse.com] host=zeno-test.clickhouse.com -> 400 (4067ms)
+  {"code":"invalid_request","message":"Host does not resolve"}
+
+[M5 OAST direct] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site -> 400 (16400ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[M6 public IP] host=8.8.8.8 -> 400 (1810ms)
+  {"code":"invalid_request","message":"s3IamRoleArn is required"}
+
+[M7 metadata IP] host=169.254.169.254 -> 400 (1103ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[M8 LD egress IP] host=35.192.85.117 -> 400 (2324ms)
+  {"code":"invalid_request","message":"s3IamRoleArn is required"}
+
+[M9 localhost] host=localhost -> 400 (16794ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[M10 snowflake-house suffix spoof] host=zeno-test.oast.site.snowflakecomputing.com -> 400 (2247ms)
+  {"code":"invalid_request","message":"s3IamRoleArn is required"}
+

@@ -1,0 +1,30 @@
+########## complete-setup with correct host param ##########
+[CS1 clickhouse complete +OAST host] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/complete-setup -> 400 (1112ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[CS2 s3 complete bucketName] POST /api/v2/destinations/projects/default/environments/test/kinds/s3/complete-setup -> 400 (1084ms)
+  {"code":"invalid_request","message":"bucketRegion is required"}
+
+########## destination create correct path ##########
+[K3 create dest clickhouse (correct path)] POST /api/v2/destinations/default/test -> 403 (1104ms)
+  {"code":"forbidden","message":"Destination kind clickhouse is unavailable"}
+
+########## datasets pipeline: self + cross-org ##########
+[D1 upload-url self [ORG]] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 200 (2239ms)
+  {"uploadUrl":"https://s3.amazonaws.com/launchdarkly-production-us-east-1-user-upload-gfra/ai-evaluator/acc/6ac28fd11c28fb07516cf361/proj/6ac28fd11c28fb07516cf362/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/file.csv?AWSAccessKeyId=ASIAYCH5OTOS3KCLVJ7Q&Signature=wugr%2F2de7zHpNLU9coyho6o7AIU%3D&content-type=text%2Fcsv&x-amz-security-token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIFlnBIylS31S7rmy1KO7ScE6jXwud8zNdj60G0XJAa2YAiBzBRxgkQ%2F%2FYPFoFquDnTQStUb9oIoNorihqlA
+
+[D2 get dataset cross-org [TST->ORG uuid]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50 -> 404 (3133ms)
+  {"code":"not_found","message":"Dataset not found"}
+
+[D3 upload-url cross-org [TST->ORG uuid]] POST /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/upload-url -> 404 (2181ms)
+  {"code":"not_found","message":"Dataset not found"}
+
+[D4 rows cross-org [TST]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/rows -> 404 (1154ms)
+  {"code":"not_found","message":"Dataset not found"}
+
+[D5 preview cross-org [TST]] GET /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50/preview -> 400 (1130ms)
+  {"code":"invalid_request","message":"mode is required"}
+
+[D6 delete cross-org [TST]] DELETE /internal/projects/default/datasets/e3ddcc72-d35e-43f5-8dcd-db74687f1b50 -> 404 (4304ms)
+  {"code":"not_found","message":"Dataset not found"}
+

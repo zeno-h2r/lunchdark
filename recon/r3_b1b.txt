@@ -1,0 +1,23 @@
+===== followers cross-org =====
+[F0 baseline ORG self] PUT /internal/resources/project/default/environment/test/flag/zeno-allowed-1/followers/6ac28fd11c28fb07516cf363 -> 204
+  
+
+[F1 TST+ORG-member] PUT /internal/resources/project/zenohacker/environment/test/flag/zeno-denied-1/followers/6ac28fd11c28fb07516cf363 -> 404
+  {"code":"not_found","message":"Project not found"}
+
+[F2 ORG reads TST followers] GET /internal/resources/project/zenohacker/environment/test/flag/zeno-denied-1/followers -> 000
+  
+
+[F3 TST reads ORG followers] GET /internal/resources/project/default/environment/test/flag/zeno-allowed-1/followers -> 404
+  {"code":"not_found","message":"Flag not found"}
+
+===== comments cross-org =====
+[C0 baseline ORG self] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+
+[C1 TST comments ORG flag] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+
+[C2 TST reads ORG comments] GET /internal/comments?resourceId=proj/default:env/test:flag/zeno-allowed-1 -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+

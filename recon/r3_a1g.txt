@@ -1,0 +1,39 @@
+########## normalization bypass attempts ##########
+[N1 uppercase OAST] host=D9C558SOBM9HLGRRKSSG17BWIA6P4DICF.OAST.SITE -> 400 (2162ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N2 trailing dot] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site. -> 400 (1078ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N3 double dot] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast..site -> 400 (1148ms)
+  {"code":"invalid_request","message":"Host must be a hostname or IP address, optionally with a numeric port"}
+
+[N4 collab oast.pro] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.pro -> 400 (8029ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N5 collab oast.live] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.live -> 400 (11551ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N6 collab oast.fun] host=d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.fun -> 400 (2927ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N7 subdomain of oast] host=probe.d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site -> 400 (5104ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N8 nip.io style] host=35.192.85.117.nip.io -> 400 (3798ms)
+  {"code":"invalid_request","message":"Host is not permitted"}
+
+[N9 resolvable legit public] host=s3.amazonaws.com -> 504 (26026ms)
+  <html>
+<head><title>504 Gateway Time-out</title></head>
+<body>
+<center><h1>504 Gateway Time-out</h1></center>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and
+
+[N10 internal name probe] host=gonfalon.internal.launchdarkly.com -> 400 (2887ms)
+  {"code":"invalid_request","message":"Host does not resolve"}
+

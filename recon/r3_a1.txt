@@ -1,0 +1,47 @@
+########## A1: destination kind setup gating ##########
+[A1.0 s3/setup baseline [ORG]] POST /api/v2/destinations/projects/default/environments/test/kinds/s3/setup -> 201
+  {"script":"","s3BucketName":"zeno-ssrf-probe-bucket-1","iamPolicy":"{
+    \"Statement\": [
+        {
+            \"Action\": [
+                \"s3:PutObject\",
+                \"s3:DeleteObject\"
+            ],
+            \"Effect\": \"Allow\",
+            \"Resource\": \"arn:aws:s3:::zeno-ssrf-probe-bucket-1/*\"
+        }
+    ],
+    \"Version\": \"2012-10-17\"
+}","trustPolicy":"{
+ 
+
+[A1.1 clickhouse/setup [ORG]] POST /api/v2/destinations/projects/default/environments/test/kinds/clickhouse/setup -> 201
+  {"script":"/*
+Execute each of the following steps in your ClickHouse SQL console.
+All statements are idempotent and safe to re-run.
+*/
+
+-- Step 1: Create database
+CREATE DATABASE IF NOT EXISTS `default`;
+
+-- Step 2: Create user
+-- Password may only contain alphanumeric characters, dashes, and underscores.
+CREATE USER IF NOT EXISTS `zeno` IDENTIFIED BY 'x' HOST IP '35.192.85.117/32';
+-- 
+
+[A1.2 test-warehouse-connection [ORG]] POST /api/v2/destinations/projects/default/environments/test/test-warehouse-destination-connection -> 400
+  {"code":"invalid_request","message":"S3 destination is missing required connection details (bucket, region, or IAM role)"}
+
+[A1.3 snowflake-v2/setup [ORG]] POST /api/v2/destinations/projects/default/environments/test/kinds/snowflake-v2/setup -> 400
+  {"code":"invalid_request","message":"snowflakeHostAddress is required"}
+
+[A1.4 key-pair gen [ORG]] POST /api/v2/destinations/generate-warehouse-destination-key-pair -> 201
+  {"public_key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC2JDKc0tVYzaIVZGzW9ItTB8Fu2p+5Q83u2Sc8LR/cCySit0ASuX+fNrRg/L3/gzAW8lmSYumr8+1fD5c5yvMej0A6R65t7/sX1/hsUo83K+is5VJl2Z3cmGYV/d/+Rney0JfIdGwpo5qKyeaXjAeAjz9iWYbHkyhrGnNzfz1H/aeVeRQH2ZSCygLL/SBb1CNgpW4Pi2qxCbGydqu/BXeJwOvVN29fhBqKlKRqZeLJ0Y0YO9obDHzpPinqcF/M3qf2lT/wCRYZKVyMu0H4lGLJNVAEOgeTuW/uRL8qMR0n+GWGJMtAjX7jEOoo8uYJlk37pk7vV577CyBLtrV/8Dux preq
+
+########## A4: datasets pipeline ##########
+[A4.0 datasets create probe [ORG]] POST /internal/projects/default/datasets -> 400
+  {"code":"invalid_request","message":"format is required"}
+
+[A4.1 entitlements check [ORG]] GET /internal/entitlements/ai-configs -> 400
+  {"code":"invalid_request","message":"Query parameter 'projectKey' is missing."}
+

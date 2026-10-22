@@ -1,0 +1,21 @@
+=== confirm TST flag exists ===
+[T0 TST flag targeting] GET /api/v2/flags/default/ld-example-ops-maintenance-banner?env=test -> 200
+  {"name":"LD Example Flag: Maintenance Banner","kind":"multivariate","description":"Sample multivariate flag (None/Scheduled/Active). Prerequisite on the Third-Party Chat Kill Switch — flip it off and this banner stops evaluating.","key":"ld-example-ops-maintenance-banner","_version":1,"creationDat
+
+=== followers cross-org (correct keys) ===
+[F1 TST adds ORG member to TST flag] PUT /internal/resources/project/default/environment/test/flag/ld-example-ops-maintenance-banner/followers/6ac28fd11c28fb07516cf363 -> 404
+  {"code":"not_found","message":"Member not found"}
+
+[F2 ORG reads who follows it (check leak)] GET /internal/resources/project/default/environment/test/flag/ld-example-ops-maintenance-banner/followers -> 200
+  {"followers":[],"totalCount":0}
+
+=== comments format variants (self-org) ===
+[C-V [proj/default:env/test:flag/ld-example-ops-maintenance-banner]] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+
+[C-V [proj/default/env/test/flag/ld-example-ops-maintenance-banner]] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+
+[C-V [proj/default:env/test:flag/ld-example-ops-maintenance-banner:]] POST /internal/comments -> 400
+  {"code":"invalid_request","message":"Invalid resource ID format"}
+
