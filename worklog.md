@@ -107,3 +107,33 @@ Repo: zeno-h2r/lunchdark | Target: app.launchdarkly.com | Platform: Bugcrowd | O
 ### Next
 - Verify OTel ingestion auth (trace/log injection cross-tenant?)
 - Technique #2 candidates: OTel ingestion auth, approval-requests IDOR (needs fixture), AI configs, Vega
+
+---
+
+## Session 1 (cont.) — TECHNIQUE #2: Observability ingestion auth → FINDING 001
+
+### Discovery path
+- GraphQL introspection ENABLED on pub graph (public ingestion): mutations initializeSession,
+  pushPayload, pushSessionEvents, pushBackendPayload, addSessionFeedback, identifySession
+- SDK source review (launchdarkly/observability-sdk, in-scope -sdk repo):
+  - ingestion GraphQLClient created with headers: {} — NO auth token in ingestion path
+  - session_secure_id client-generated: GenerateSecureID(`${organizationID}-${sessionKey}`)
+  - organization_verbose_id = plain client option
+  - "1jdkoe52" = Highlight org placeholder (isRunningOnHighlight check), NOT shared tenant mapping
+
+### FINDING 001: Unauthenticated cross-tenant injection (P3 candidate)
+- initializeSession unauth with forged secure_id → 200, server echoed attacker secure_id
+- pushSessionEvents unauth with fake error JSON → 200 accepted
+- pushPayload unauth with rrweb events → 200 {"data":{"pushPayload":172}}
+- Origin header attacker-chosen and accepted; no CSRF token; no auth
+- Read isolation verified INTACT: session(secure_id) foreign → "record not found";
+  LDProjectAuth blocks enumeration; LDAccountID not client-controllable
+- Full writeup: FINDING_001_obs_injection.md (repo root)
+- Impact honesty: cross-tenant WRITE only. No data READ. Session replay poisoning,
+  fake errors/alerts. P3 proposal.
+
+### Also tested (dead ends, documented)
+- pri graph ld_flag/ld_environments: gonfalon callback fails "Invalid account ID header" with our cookies
+- OTLP /v1/traces|logs JSON: accepts bogus highlight.project_id ({"partialSuccess":{}}), landing unverified
+- Header injection for LDAccountID: all rejected unauth
+- Cross-org IDOR baseline (members/auditlog/tokens): properly scoped 404s
