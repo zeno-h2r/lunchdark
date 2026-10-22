@@ -33,3 +33,15 @@
 ## OTLP injection findings recap
 - /v1/traces accepts arbitrary highlight.project_id at HTTP level (partialSuccess empty), landing verified ONLY for valid SDK keys
 - traceId/spanId must be hex (server: ID.UnmarshalJSONIter)
+
+## TECH: authz oracle + tokens — FINDING 002 (P2)
+- access-check oracle: POST /internal/authorization/access-check/gonfalon/bulk, Authorization: <document.cookie>; cross-org resources → "Invalid resource" (scoped)
+- teams addMembers: cross-org member ID → "does not exist" (scoped); member-existence oracle within own account
+- **FINDING 002 (P2): API token with basePermissions=no_access reads account-level endpoints**:
+  - 200: /api/v2/members(+{id}), /api/v2/auditlog(+{id}), /api/v2/tokens (inventory w/ lastUsed), /api/v2/webhooks(+{id}), /api/v2/roles(+{key}), /api/v2/projects (list)
+  - 403 (correct): flags, project detail, environments (SDK keys safe), segments, metrics, teams; ALL writes 403
+  - Report: FINDING_002_noaccess_token_bypass.md
+- Anomaly: reader-base custom-role token — mixed-type-variation flags (string+bool) 404/disappear from list+item reads; boolean-variation flags all readable (policy filter bug, not root-caused)
+- Flag create route: POST /api/v2/flags/{projectKey}; members invite: POST /api/v2/members with ARRAY body [{"email","role"}]
+- 2nd member fixture in org A: 6ada14122e3d84072f7dcf53 (zeno0+second@…, reader, pending invite)
+- Webhook SSRF: works by design (outbound to arbitrary https), delivery confirmed via webhook.site (LD-Integrations/1.0, AWS IPs)
