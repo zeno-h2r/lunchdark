@@ -68,3 +68,16 @@
 Fixtures created org A: metrics zeno-victim-metric, layers zeno-victim-layer, experiment zeno-victim-experiment (c54c3c9c-31ec-41d1-946e-0f074a2c35e3), flags zeno-secret-fixture/-2/-3, zeno-pre-t4, zeno-numflag, zeno-strflag, roles zeno-flag-viewer(+noaccess), tokens zeno-scoped-ui/-2/-3, zeno-noaccess-tok
 Fixtures org B: project zenovictimproj (6ada0cce6f9f4507ca1c771e), env vtest, flag victimflag
 2nd member org A: 6ada14122e3d84072f7dcf53 (reader, invited)
+
+## Session 2 (final) — remaining surfaces
+- Views cross-org: 404 "View not found" — scoped
+- flag-links cross-org (beta header): 200 with empty items (does not 404 on foreign flag — non-distinguishing, negligible); link fixture zeno-link/_deepLink TOP-SECRET-LINK-7741 NOT leaked to org B
+- release-policies route not present in this app version (404)
+- Destinations (warehouse) setup: 405 on GET; setup flow requires integration entitlements (plan-gated)
+- integration-configurations: list route 404; per-key setup 405 (entitlement-gated)
+
+## SESSION 2 BOTTOM LINE
+- 1 new P2-class finding: FINDING_002_noaccess_token_bypass.md (no_access tokens read members/auditlog/tokens/webhooks/roles)
+- 1 anomaly documented (mixed-variation flags vanish for custom-role tokens)
+- All cross-org surfaces (layers/experiments/metrics/views/flag-links/relay/agent-control/billing/shortcuts/auditlog) properly session-scoped
+- Observability OTLP ingestion: routing key = SDK key in body (secret); gen_ai span landed + verified on traces page
