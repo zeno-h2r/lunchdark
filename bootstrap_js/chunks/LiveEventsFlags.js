@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[22260],{8965(a,e,n){n.r(e);var r=n(713779),t=n(965920),l=n(253201),s=n(261390);let o=async({request:a})=>{let{context:e}=await (0,t.Q)(a),{projectKey:n,selectedEnvironmentKey:o}=e;return(0,r.V2)((0,l.j)((0,s.zuM)({projectKey:n,environmentKey:o})))};n.d(e,{},{loader:o})}}]);
+//# sourceMappingURL=LiveEventsFlags.ba501e2887eaabdf.js.map

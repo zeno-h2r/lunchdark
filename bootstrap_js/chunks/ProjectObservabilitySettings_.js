@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[66614],{952266(e,t,i){i.r(t);var r=i(853205),a=i(477937),l=i(78972);let o={breadcrumb:(0,a.R)("projectSettings.observability_Page.title"),title:(0,a.R)("projectSettings.observability_Page.title"),activity:({params:e})=>e.projectKey?[{resources:[(0,l.dI)((0,l.z)((0,l.Cv)(e.projectKey),"*"))],effect:"allow",actions:r.jQ}]:[]};i.d(t,{},{handle:o})}}]);
+//# sourceMappingURL=ProjectObservabilitySettings_.5892c8be531148ea.js.map

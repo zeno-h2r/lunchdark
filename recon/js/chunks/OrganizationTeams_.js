@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[9140],{903819(t,e,s){s.r(e);var a=s(477937);let l={breadcrumb:(0,a.R)("settings.teams_Page.title"),title:(0,a.R)("settings.teams_Page.title")};s.d(e,{},{handle:l})}}]);
+//# sourceMappingURL=OrganizationTeams_.f23b2cc829f519c5.js.map

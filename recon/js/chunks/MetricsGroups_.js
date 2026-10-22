@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[25426],{505217(e,r,t){t.r(r);var c=t(91987),a=t(261390),o=t(228657);t.d(r,{},{handle:{breadcrumb:({data:e})=>(0,c.jsx)(o.N_E,{href:(0,a.FQS)({projectKey:e.projectKey},{search:{tab:"metric-groups"}}),children:e.breadcrumbName}),title:({data:e})=>e.title},loader:({params:e})=>({breadcrumbName:"Metric groups",title:"Metric groups",projectKey:e.projectKey})})}}]);
+//# sourceMappingURL=MetricsGroups_.e83a8fb39ac2bb95.js.map

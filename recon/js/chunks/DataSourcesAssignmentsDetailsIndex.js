@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[89634],{823920(e,r,a){a.r(r);var o=a(713779),t=a(253201),u=a(261390),s=a(25385);a.d(r,{},{loader:({params:e})=>{let r=e.projectKey,a=e.dataSourceKey;return(0,s.A)(r,"projectKey is required"),(0,s.A)(a,"dataSourceKey is required"),(0,o.V2)((0,t.j)((0,u.e_P)({projectKey:r,dataSourceKey:a})))}})}}]);
+//# sourceMappingURL=DataSourcesAssignmentsDetailsIndex.ef5d98386b45c778.js.map

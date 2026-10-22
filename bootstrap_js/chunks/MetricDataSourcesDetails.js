@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[79644],{863321(e,t,a){a.r(t);var r=a(713779),s=a(477937),l=a(253201),o=a(261390);let n={title:(0,s.R)("metricDataSources.detailsPage.title")};a.d(t,{},{handle:n,loader:({request:e,params:t})=>{let a=t.projectKey,s=t.dataSourceKey;if(!a||!s)throw new Response("Not found",{status:404});let{search:n,hash:c}=new URL(e.url);return(0,r.V2)((0,l.j)((0,o.pbp)({projectKey:a,dataSourceKey:s},{search:new URLSearchParams(n),hash:c.slice(1)})))}})}}]);
+//# sourceMappingURL=MetricDataSourcesDetails.4eec198a70e01aa4.js.map

@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[76954],{345053(e,t,a){a.r(t);var l=a(477937);let r={breadcrumb:(0,l.R)("metrics_.page.title"),title:(0,l.R)("metrics_.page.title")};a.d(t,{},{handle:r})}}]);
+//# sourceMappingURL=Metrics_.cbf04a10d3132620.js.map

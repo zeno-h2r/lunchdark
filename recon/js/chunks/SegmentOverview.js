@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[66404],{495188(e,t,n){n.r(t);var r=n(713779),s=n(965920),a=n(253201),c=n(261390),l=n(25385);let o=async({params:e,request:t})=>{let{context:n}=await (0,s.Q)(t),o=n.projectKey,y=n.selectedEnvironmentKey,d=e.segmentKey;return(0,l.A)(d,"Expected segment key"),(0,r.V2)((0,a.j)((0,c.wRy)({projectKey:o,environmentKey:y,segmentKey:d})))};n.d(t,{},{loader:o})}}]);
+//# sourceMappingURL=SegmentOverview.f4a46fd6e76398e1.js.map

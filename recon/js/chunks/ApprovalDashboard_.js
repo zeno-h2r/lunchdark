@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[63674],{794548(a,l,e){e.r(l);var t=e(477937);let p={breadcrumb:(0,t.R)("approvals_.page.title"),title:(0,t.R)("approvals_.page.title")};e.d(l,{},{handle:p})}}]);
+//# sourceMappingURL=ApprovalDashboard_.75ca4e53fef6c29a.js.map
