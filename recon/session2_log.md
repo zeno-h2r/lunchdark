@@ -45,3 +45,26 @@
 - Flag create route: POST /api/v2/flags/{projectKey}; members invite: POST /api/v2/members with ARRAY body [{"email","role"}]
 - 2nd member fixture in org A: 6ada14122e3d84072f7dcf53 (zeno0+second@…, reader, pending invite)
 - Webhook SSRF: works by design (outbound to arbitrary https), delivery confirmed via webhook.site (LD-Integrations/1.0, AWS IPs)
+
+## Session 2 (cont.) — systematic technique sweep results (all SCOPED unless noted)
+
+| Technique | Result |
+|---|---|
+| Layers cross-org (same 'default' key) | org B list empty; scoped |
+| Experiments cross-org | 404 "experiment not found"; scoped |
+| Metrics cross-org | 404 "metric resource key not found"; scoped |
+| internal/.../experiments/{k}/files/{fileId} | 500 on own (route broken w/o files), 404 cross-org; needs LD-API-Version |
+| Agent Control settings /internal/accounts/{id}/agent-control/settings | path accountId IGNORED — session-rewritten read AND write (fail-closed) |
+| Relay auto-configs IDOR by _id | 404 cross-org; displayKey truncated even for owner |
+| Billing /internal/billingv2/* | query params ignored; session-scoped |
+| SSO domain verification | DNS TXT-based; claiming any domain allowed but verification needs TXT control (proper design) |
+| Context-instances search | strict FQL parser, no injection |
+| assignment/metric data sources | session-scoped |
+| flag-cleanup insights | param appears ignored; no discriminator proven |
+| Shortcuts (LD-API-Version: beta required) | scoped per project |
+| Audit log cross-org | org B sees only own entries; scoped |
+| Variation-type anomaly | reader-base token: mixed-type-variation flags (string+bool) → 404; bool/bool, str/str, num/num → 200 (pattern confirmed) |
+
+Fixtures created org A: metrics zeno-victim-metric, layers zeno-victim-layer, experiment zeno-victim-experiment (c54c3c9c-31ec-41d1-946e-0f074a2c35e3), flags zeno-secret-fixture/-2/-3, zeno-pre-t4, zeno-numflag, zeno-strflag, roles zeno-flag-viewer(+noaccess), tokens zeno-scoped-ui/-2/-3, zeno-noaccess-tok
+Fixtures org B: project zenovictimproj (6ada0cce6f9f4507ca1c771e), env vtest, flag victimflag
+2nd member org A: 6ada14122e3d84072f7dcf53 (reader, invited)
