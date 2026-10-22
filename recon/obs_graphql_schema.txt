@@ -1,0 +1,277 @@
+
+======================================================================
+QUERYTYPE (190 fields)
+======================================================================
+  incident_io_incidents(project_id: NON_NULL, page_size: Int) -> NON_NULL
+  incident_io_incident(project_id: NON_NULL, incident_id: NON_NULL) -> NON_NULL
+  incident_io_follow_ups(project_id: NON_NULL, incident_id: String, page_size: Int) -> NON_NULL
+  incident_io_incident_updates(project_id: NON_NULL, incident_id: NON_NULL, page_size: Int) -> NON_NULL
+  incident_io_alerts(project_id: NON_NULL, query: String, page_size: Int) -> NON_NULL
+  incident_io_alert(project_id: NON_NULL, alert_id: NON_NULL) -> NON_NULL
+  automatedRolloutConfig(project_id: NON_NULL, id: NON_NULL) -> AutomatedRolloutConfig
+  session(secure_id: NON_NULL) -> Session
+  events(session_secure_id: NON_NULL) -> LIST
+  session_intervals(session_secure_id: NON_NULL) -> NON_NULL
+  get_concurrent_browser_tab_sessions(session_secure_id: NON_NULL) -> NON_NULL
+  timeline_indicator_events(session_secure_id: NON_NULL) -> NON_NULL
+  websocket_events(session_secure_id: NON_NULL) -> LIST
+  rage_clicks(session_secure_id: NON_NULL) -> NON_NULL
+  sessionChunkPreviewFrames(session_secure_id: NON_NULL, timestamp_ms: NON_NULL) -> NON_NULL
+  rageClicksForProject(project_id: NON_NULL, lookback_days: NON_NULL) -> NON_NULL
+  error_groups(project_id: NON_NULL, count: NON_NULL, params: NON_NULL, page: Int) -> NON_NULL
+  error_groups_for_flag_variation(ld_project_id: NON_NULL, ld_environment_id: NON_NULL, flag_key: NON_NULL, flag_variation_value_json: NON_NULL, count: NON_NULL, params: NON_NULL, page: Int) -> NON_NULL
+  errors_histogram(project_id: NON_NULL, params: NON_NULL, histogram_options: NON_NULL) -> NON_NULL
+  error_group(secure_id: NON_NULL, use_clickhouse: Boolean) -> ErrorGroup
+  error_object(id: NON_NULL) -> ErrorObject
+  error_objects(project_id: String, error_group_secure_id: String, count: NON_NULL, params: NON_NULL, page: Int, query_settings: QuerySettingsInput) -> NON_NULL
+  error_object_for_log(log_cursor: NON_NULL) -> ErrorObject
+  error_instance(error_group_secure_id: NON_NULL, error_object_id: ID, params: QueryInput) -> ErrorInstance
+  errors(session_secure_id: NON_NULL) -> LIST
+  resources(session_secure_id: NON_NULL) -> LIST
+  web_vitals(session_secure_id: NON_NULL) -> NON_NULL
+  session_comments(session_secure_id: NON_NULL) -> NON_NULL
+  isSessionPending(session_secure_id: NON_NULL) -> Boolean
+  workspace_admins(workspace_id: NON_NULL) -> NON_NULL
+  workspace_admins_by_project_id(project_id: NON_NULL) -> NON_NULL
+  clientIntegration(project_id: NON_NULL) -> NON_NULL
+  serverIntegration(project_id: NON_NULL) -> NON_NULL
+  logsIntegration(project_id: NON_NULL) -> NON_NULL
+  tracesIntegration(project_id: NON_NULL) -> NON_NULL
+  metricsIntegration(project_id: NON_NULL) -> NON_NULL
+  unprocessedSessionsCount(project_id: NON_NULL) -> Int64
+  liveUsersCount(project_id: NON_NULL) -> Int64
+  projectHasViewedASession(project_id: NON_NULL) -> Session
+  dailySessionsCount(project_id: NON_NULL, date_range: NON_NULL) -> NON_NULL
+  dailyErrorsCount(project_id: NON_NULL, date_range: NON_NULL) -> NON_NULL
+  dailyErrorFrequency(project_id: NON_NULL, error_group_secure_id: NON_NULL, date_offset: NON_NULL) -> NON_NULL
+  errorGroupTags(error_group_secure_id: NON_NULL, use_clickhouse: Boolean, date_range: DateRangeInput) -> NON_NULL
+  referrers(project_id: NON_NULL, lookback_days: NON_NULL) -> NON_NULL
+  newUsersCount(project_id: NON_NULL, lookback_days: NON_NULL) -> NewUsersCount
+  topUsers(project_id: NON_NULL, lookback_days: NON_NULL) -> NON_NULL
+  averageSessionLength(project_id: NON_NULL, lookback_days: NON_NULL) -> AverageSessionLength
+  userFingerprintCount(project_id: NON_NULL, lookback_days: NON_NULL) -> UserFingerprintCount
+  sessions(project_id: NON_NULL, count: NON_NULL, params: NON_NULL, sort_field: String, sort_desc: NON_NULL, page: Int, query_settings: QuerySettingsInput) -> NON_NULL
+  sessions_histogram(project_id: NON_NULL, params: NON_NULL, histogram_options: NON_NULL) -> NON_NULL
+  session_users_report(project_id: NON_NULL, params: NON_NULL, timezone: String) -> NON_NULL
+  billingDetailsForProject(project_id: NON_NULL) -> BillingDetails
+  billingDetails(workspace_id: NON_NULL) -> NON_NULL
+  aiChatLimitStatus(project_id: NON_NULL) -> NON_NULL
+  aiConversationHistory(project_id: NON_NULL, count: NON_NULL, page: Int, user_email: String, date_range: DateRangeInput, tag_key: String, tag_value: String, shared_only: Boolean, query: String, origin: AgentConversationOrigin, run_kind: AgentConversationRunKind, agent_kind: String) -> NON_NULL
+  flagCleanups(project_id: NON_NULL, count: NON_NULL, page: Int, date_range: DateRangeInput) -> NON_NULL
+  projectArtifacts(project_id: NON_NULL, search: String, type: String, source: String, count: NON_NULL, page: Int, creator: ArtifactCreatorFilter) -> NON_NULL
+  conversationArtifacts(project_id: NON_NULL, conversation_id: NON_NULL, relationships: LIST, limit: Int) -> NON_NULL
+  agentArtifact(project_id: NON_NULL, type: NON_NULL, external_id: NON_NULL) -> ArtifactDetail
+  usageHistory(workspace_id: NON_NULL, product_type: NON_NULL, date_range: DateRangeRequiredInput) -> NON_NULL
+  projects() -> LIST
+  workspaces() -> LIST
+  workspaces_count() -> NON_NULL
+  joinable_workspaces() -> LIST
+  alerts(project_id: NON_NULL) -> NON_NULL
+  alert(id: NON_NULL) -> NON_NULL
+  alerting_alert_state_changes(alert_id: NON_NULL, start_date: NON_NULL, end_date: NON_NULL, page: Int, count: Int) -> NON_NULL
+  last_alert_state_changes(alert_id: NON_NULL) -> NON_NULL
+  last_alerting_state_change(alert_id: NON_NULL) -> AlertStateChange
+  alerting_alert_group_states(alert_id: NON_NULL, start_date: NON_NULL, end_date: NON_NULL, page: Int, count: Int) -> NON_NULL
+  last_alert_group_states(alert_id: NON_NULL) -> NON_NULL
+  last_alerting_alert_group_state(alert_id: NON_NULL) -> AlertGroupState
+  projectSuggestion(query: NON_NULL) -> NON_NULL
+  environment_suggestion(project_id: NON_NULL) -> LIST
+  identifier_suggestion(project_id: NON_NULL, query: NON_NULL) -> NON_NULL
+  slack_channel_suggestion(project_id: NON_NULL) -> NON_NULL
+  search_issues(integration_type: NON_NULL, project_id: NON_NULL, query: NON_NULL) -> NON_NULL
+  is_integrated_with(integration_type: NON_NULL, project_id: NON_NULL) -> NON_NULL
+  is_workspace_integrated_with(integration_type: NON_NULL, workspace_id: NON_NULL) -> NON_NULL
+  is_project_integrated_with(integration_type: NON_NULL, project_id: NON_NULL) -> NON_NULL
+  vega_integration_status(project_id: NON_NULL) -> NON_NULL
+  vega_slack_configuration() -> VegaSlackConfiguration
+  vega_project_configuration(project_id: NON_NULL) -> VegaProjectConfiguration
+  vega_workflows(project_id: NON_NULL) -> NON_NULL
+  vega_workflow(project_id: NON_NULL, id: NON_NULL) -> VegaWorkflow
+  vega_workflow_executions(project_id: NON_NULL, workflow_id: NON_NULL, limit: Int) -> NON_NULL
+  vega_inference_models(project_id: NON_NULL) -> NON_NULL
+  integration_project_mappings(workspace_id: NON_NULL, integration_type: IntegrationType) -> NON_NULL
+  jira_projects(project_id: NON_NULL) -> LIST
+  gitlab_projects(workspace_id: NON_NULL) -> LIST
+  github_repos(workspace_id: NON_NULL) -> LIST
+  github_issue_labels(workspace_id: NON_NULL, repository: NON_NULL) -> NON_NULL
+  project(id: NON_NULL) -> Project
+  projectSettings(projectId: NON_NULL) -> AllProjectSettings
+  workspace(id: NON_NULL) -> Workspace
+  workspace_for_invite_link(secret: NON_NULL) -> NON_NULL
+  workspace_invite_links(workspace_id: NON_NULL) -> NON_NULL
+  workspacePendingInvites(workspace_id: NON_NULL) -> NON_NULL
+  workspaceSettings(workspace_id: NON_NULL) -> AllWorkspaceSettings
+  workspace_for_project(project_id: NON_NULL) -> Workspace
+  admin() -> Admin
+  admin_role(workspace_id: NON_NULL) -> WorkspaceAdminRole
+  admin_role_by_project(project_id: NON_NULL) -> WorkspaceAdminRole
+  saved_segments(project_id: NON_NULL, entity_type: NON_NULL) -> LIST
+  get_source_map_upload_urls_ld(api_key: NON_NULL, project_id: NON_NULL, paths: NON_NULL) -> NON_NULL
+  get_symbol_upload_urls_ld(api_key: NON_NULL, project_id: NON_NULL, paths: NON_NULL, skip_existing: Boolean, digests: LIST) -> NON_NULL
+  get_flag_preview_bundle_upload_url(api_key: NON_NULL, project_id: NON_NULL, version: NON_NULL) -> NON_NULL
+  customer_portal_url(workspace_id: NON_NULL) -> NON_NULL
+  subscription_details(workspace_id: NON_NULL) -> SubscriptionDetails
+  metric_tags(project_id: NON_NULL, metric_name: NON_NULL, query: String) -> NON_NULL
+  metric_tag_values(project_id: NON_NULL, metric_name: NON_NULL, tag_name: NON_NULL) -> NON_NULL
+  network_histogram(project_id: NON_NULL, params: NON_NULL) -> CategoryHistogramPayload
+  event_chunk_url(secure_id: NON_NULL, index: NON_NULL) -> NON_NULL
+  event_chunks(secure_id: NON_NULL) -> NON_NULL
+  timestamp_event_chunk_url(secure_id: NON_NULL, timestamp: NON_NULL) -> NON_NULL
+  sourcemap_files(project_id: NON_NULL, version: String, query: String, after: String, count: Int) -> NON_NULL
+      # Lists uploaded sourcemap files for an app version in lexicographic key order. `query` is a case-inse
+  sourcemap_versions(project_id: NON_NULL) -> NON_NULL
+  oauth_client_metadata(client_id: NON_NULL) -> OAuthClient
+  sso_login(domain: NON_NULL) -> SSOLogin
+  email_opt_outs(token: String, admin_id: ID) -> NON_NULL
+  experiment_hypothesis_suggestion(project_id: NON_NULL, prompt: NON_NULL) -> NON_NULL
+  logs(project_id: NON_NULL, params: NON_NULL, after: String, before: String, at: String, direction: NON_NULL, limit: Int, query_settings: QuerySettingsInput) -> NON_NULL
+  logs_histogram(project_id: NON_NULL, params: NON_NULL) -> NON_NULL
+  logs_metrics(project_id: NON_NULL, params: NON_NULL, sql: String, column: String, metric_types: LIST, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, expressions: LIST) -> NON_NULL
+  logs_keys(project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, count: Int) -> NON_NULL
+  logs_error_objects(log_cursors: NON_NULL) -> NON_NULL
+  existing_logs_traces(project_id: NON_NULL, trace_ids: NON_NULL, date_range: NON_NULL) -> NON_NULL
+  error_resolution_suggestion(error_object_id: NON_NULL) -> NON_NULL
+  session_insight(secure_id: NON_NULL) -> SessionInsight
+  session_exports(project_id: NON_NULL) -> NON_NULL
+  system_configuration() -> NON_NULL
+  services(project_id: NON_NULL, after: String, before: String, query: String) -> ServiceConnection
+  serviceByName(project_id: NON_NULL, name: NON_NULL) -> Service
+  serviceSettings(service_id: NON_NULL, project_id: NON_NULL) -> ServiceSettings
+  trace(project_id: NON_NULL, trace_id: NON_NULL, timestamp: NON_NULL, session_secure_id: String) -> TracePayload
+  trace_for_span(project_id: NON_NULL, trace_id: NON_NULL, span_id: NON_NULL, timestamp: NON_NULL, session_secure_id: String) -> TracePayload
+  trace_conversation(project_id: NON_NULL, conversation_id: NON_NULL, start_date: Timestamp, end_date: Timestamp) -> TraceConversationPayload
+  traces(project_id: NON_NULL, params: NON_NULL, after: String, before: String, at: String, direction: NON_NULL, limit: Int, omitBody: Boolean, query_settings: QuerySettingsInput) -> NON_NULL
+  traceSummaries(project_id: NON_NULL, params: NON_NULL, after: String, limit: Int) -> NON_NULL
+  traceConversations(project_id: NON_NULL, params: NON_NULL, after: String, limit: Int) -> NON_NULL
+  traces_metrics(project_id: NON_NULL, params: NON_NULL, sql: String, column: String, metric_types: LIST, group_by: NON_NULL, bucket_by: String, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, expressions: LIST) -> NON_NULL
+  traces_keys(project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, count: Int) -> NON_NULL
+  sessions_for_flag_evaluation(project_id: NON_NULL, flag_key: NON_NULL, variation_value: String, date_range: NON_NULL, limit: NON_NULL) -> NON_NULL
+  team_query_history(project_id: NON_NULL, query_type: NON_NULL, limit: Int) -> NON_NULL
+  serviceMap(project_id: NON_NULL, date_range: NON_NULL) -> NON_NULL
+  serviceConnections(project_id: NON_NULL, service_name: NON_NULL, date_range: NON_NULL, environment_ids: LIST) -> NON_NULL
+  errors_keys(project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, count: Int) -> NON_NULL
+  errors_metrics(project_id: NON_NULL, params: NON_NULL, sql: String, column: String, metric_types: LIST, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, expressions: LIST) -> NON_NULL
+  sessions_keys(project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, count: Int) -> NON_NULL
+  sessions_metrics(project_id: NON_NULL, params: NON_NULL, sql: String, column: String, metric_types: LIST, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, expressions: LIST) -> NON_NULL
+  events_keys(project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, event: String, count: Int) -> NON_NULL
+  events_metrics(project_id: NON_NULL, params: NON_NULL, sql: String, column: String, metric_types: LIST, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, expressions: LIST) -> NON_NULL
+  pa_events_funnel(project_id: NON_NULL, params: NON_NULL, funnel_steps: NON_NULL, group_by: NON_NULL, strict_order: Boolean) -> NON_NULL
+  pa_events_funnel_v2(project_id: NON_NULL, params: NON_NULL, funnel_steps: NON_NULL, group_by: NON_NULL, strict_order: Boolean, breakdown_by: NON_NULL, breakdown_limit: NON_NULL) -> NON_NULL
+      # v2 funnel query with optional cohort breakdown. `breakdown_by` is a separate dimension from `group_b
+  event_sessions(project_id: NON_NULL, count: NON_NULL, params: NON_NULL, sort_field: String, sort_desc: NON_NULL, page: Int) -> NON_NULL
+  metrics(product_type: NON_NULL, project_id: NON_NULL, params: NON_NULL, column: String, metric_types: LIST, sql: String, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, prediction_settings: PredictionSettings, expressions: LIST, query_settings: QuerySettingsInput, include_null_or_empty_groups: Boolean, population_function_type: MetricAggregator, population_query: String, population_window: Int) -> NON_NULL
+  metric_exemplars(project_id: NON_NULL, params: NON_NULL, bucket_window: Int, limit: Int) -> NON_NULL
+      # Per-datapoint exemplars (trace/session references) for a single metric, sampled for overlay on the m
+  metrics_batched(project_id: NON_NULL, queries: NON_NULL) -> NON_NULL
+  metrics_formula(project_id: NON_NULL, product_type: NON_NULL, series: NON_NULL, formulas: NON_NULL, group_by: NON_NULL, bucket_by: NON_NULL, bucket_count: Int, bucket_window: Int, limit: Int, limit_aggregator: MetricAggregator, limit_column: String, query_settings: QuerySettingsInput, include_null_or_empty_groups: Boolean) -> NON_NULL
+      # Evaluate calculated expressions over multiple independently-filtered metric series. All series share
+  heatmap_clicks(project_id: NON_NULL, params: NON_NULL) -> LIST
+  click_sessions(project_id: NON_NULL, count: NON_NULL, params: NON_NULL, sort_field: String, sort_desc: NON_NULL, page: Int) -> NON_NULL
+  keys(product_type: ProductType, project_id: NON_NULL, date_range: NON_NULL, query: String, type: KeyType, event: String, count: Int) -> NON_NULL
+  key_values(product_type: ProductType, project_id: NON_NULL, key_name: NON_NULL, date_range: NON_NULL, query: String, count: Int, event: String) -> NON_NULL
+  value_suggestions(product_type: ProductType, project_id: NON_NULL, key_name: NON_NULL, date_range: NON_NULL, query: String, count: Int, event: String) -> NON_NULL
+  key_values_suggestions(product_type: NON_NULL, project_id: NON_NULL, date_range: NON_NULL, keys: NON_NULL) -> NON_NULL
+  visualization(id: NON_NULL) -> NON_NULL
+  visualizations(project_id: NON_NULL, input: NON_NULL, count: NON_NULL, offset: NON_NULL) -> NON_NULL
+  graph(id: NON_NULL) -> NON_NULL
+  graph_templates() -> NON_NULL
+  log_lines(product_type: NON_NULL, project_id: NON_NULL, params: NON_NULL) -> NON_NULL
+  session_summary(project_id: NON_NULL, session_id: NON_NULL, ts: Int, ts_end: Int) -> NON_NULL
+  github_installation_id(project_id: NON_NULL) -> NON_NULL
+  github_access_token() -> NON_NULL
+  github_git_access() -> NON_NULL
+  factory_github_repo_access(repo_ids: NON_NULL) -> NON_NULL
+  ld_environments(project_key: NON_NULL) -> NON_NULL
+  ld_flag(project_key: NON_NULL, flag_key: NON_NULL, environment_key: String) -> LDFlag
+  ld_flag_evaluations(project_key: NON_NULL, environment_key: NON_NULL, flag_key: NON_NULL, from_timestamp: String, to_timestamp: String) -> NON_NULL
+  conversation_history(conversation_id: NON_NULL, after_turn: Int) -> NON_NULL
+  url_key_values(project_id: NON_NULL, date_range: NON_NULL, query: String, count: Int) -> NON_NULL
+  debug_ld_account_gen_ai_setting_enabled(project_id: NON_NULL) -> NON_NULL
+  queryFilterRule(id: NON_NULL, project_id: NON_NULL) -> NON_NULL
+  filterRules(project_id: NON_NULL, product_type: NON_NULL) -> NON_NULL
+  dashboard_options(project_id: NON_NULL, query: String, limit: Int) -> NON_NULL
+  graph_options(project_id: NON_NULL, dashboard_id: ID, query: String, limit: Int) -> NON_NULL
+  alert_options(project_id: NON_NULL, query: String, limit: Int) -> NON_NULL
+  agentDispatchStatus(conversation_id: NON_NULL) -> NON_NULL
+  pa_events(project_id: NON_NULL, params: NON_NULL, after: String, before: String, at: String, direction: NON_NULL, limit: Int, query_settings: QuerySettingsInput) -> NON_NULL
+  traceServiceSummary(project_id: NON_NULL, params: NON_NULL) -> NON_NULL
+  release_autopilot_review_session(owner: NON_NULL, repository: NON_NULL, pull_number: NON_NULL) -> ReleaseAutopilotReviewSession
+
+======================================================================
+MUTATIONTYPE (70 fields)
+======================================================================
+  createProject(name: NON_NULL, workspace_id: NON_NULL) -> Project
+  editProjectSettings(projectId: NON_NULL, excluded_users: StringArray, error_filters: StringArray, error_json_paths: StringArray, rage_click_window_seconds: Int, rage_click_radius_pixels: Int, rage_click_count: Int, filter_chrome_extension: Boolean, filterSessionsWithoutError: Boolean, autoResolveStaleErrorsDayInterval: Int, sampling: SamplingInput) -> AllProjectSettings
+  exportSession(session_secure_id: NON_NULL) -> NON_NULL
+  markErrorGroupAsViewed(error_secure_id: NON_NULL, viewed: Boolean) -> ErrorGroup
+  markSessionAsViewed(secure_id: NON_NULL, viewed: Boolean) -> Session
+  updateErrorGroupState(secure_id: NON_NULL, state: NON_NULL, snoozed_until: Timestamp) -> ErrorGroup
+  createSavedSegment(project_id: NON_NULL, name: NON_NULL, entity_type: NON_NULL, query: NON_NULL, advanced_search_params: AdvancedSearchParamsInput) -> SavedSegment
+  editSavedSegment(id: NON_NULL, project_id: NON_NULL, name: NON_NULL, entity_type: NON_NULL, query: NON_NULL, advanced_search_params: AdvancedSearchParamsInput) -> Boolean
+  deleteSavedSegment(segment_id: NON_NULL) -> Boolean
+  createJiraIssueForAlert(alertID: NON_NULL, input: NON_NULL) -> JiraIssueCreateResult
+  createJiraIssueForErrorGroup(errorGroupSecureID: NON_NULL, input: NON_NULL) -> JiraIssueCreateResult
+  createJiraIssueForSession(sessionSecureID: NON_NULL, input: NON_NULL) -> JiraIssueCreateResult
+  addIntegrationToProject(integration_type: IntegrationType, project_id: NON_NULL, code: NON_NULL) -> NON_NULL
+  removeIntegrationFromProject(integration_type: IntegrationType, project_id: NON_NULL) -> NON_NULL
+  addIntegrationToWorkspace(integration_type: IntegrationType, workspace_id: NON_NULL, code: NON_NULL) -> NON_NULL
+  removeIntegrationFromWorkspace(integration_type: NON_NULL, workspace_id: NON_NULL) -> NON_NULL
+  syncSlackIntegration(project_id: NON_NULL) -> NON_NULL
+  testAlertConfiguration(project_id: NON_NULL, alert_configuration: NON_NULL) -> NON_NULL
+  createAlert(project_id: NON_NULL, name: NON_NULL, message_content: String, product_type: NON_NULL, function_type: NON_NULL, population_function_type: MetricAggregator, population_query: String, population_window: Int, function_column: String, query: String, group_by_key: String, group_by_keys: LIST, default: Boolean, threshold_value: Float, threshold_window: Int, threshold_cooldown: Int, threshold_type: ThresholdType, threshold_condition: ThresholdCondition, warn_threshold_value: Float, hide_graph: Boolean, no_data_behavior: NoDataBehavior, send_resolved_alert: Boolean, destinations: NON_NULL, sql: String, auto_investigation_enabled: Boolean, investigation_cooldown: Int, permission_mode: String, investigation_repositories: StringArray, investigation_prompt: String, evaluation_delay_seconds: Int, tags: StringMap) -> Alert
+  updateAlert(project_id: NON_NULL, alert_id: NON_NULL, name: String, message_content: String, product_type: ProductType, function_type: MetricAggregator, population_function_type: MetricAggregator, population_query: String, population_window: Int, function_column: String, query: String, group_by_key: String, group_by_keys: LIST, threshold_value: Float, threshold_window: Int, threshold_cooldown: Int, threshold_type: ThresholdType, threshold_condition: ThresholdCondition, warn_threshold_value: Float, hide_graph: Boolean, no_data_behavior: NoDataBehavior, send_resolved_alert: Boolean, destinations: LIST, sql: String, auto_investigation_enabled: Boolean, investigation_cooldown: Int, permission_mode: String, investigation_repositories: StringArray, investigation_prompt: String, evaluation_delay_seconds: Int, tags: StringMap) -> Alert
+  updateAlertDisabled(project_id: NON_NULL, alert_id: NON_NULL, disabled: NON_NULL) -> NON_NULL
+  deleteAlert(project_id: NON_NULL, alert_id: NON_NULL) -> NON_NULL
+  updateSessionIsPublic(session_secure_id: NON_NULL, is_public: NON_NULL) -> Session
+  updateErrorGroupIsPublic(error_group_secure_id: NON_NULL, is_public: NON_NULL) -> ErrorGroup
+  updateAllowMeterOverage(workspace_id: NON_NULL, allow_meter_overage: NON_NULL) -> Workspace
+  submitRegistrationForm(workspace_id: NON_NULL, team_size: NON_NULL, role: NON_NULL, use_case: NON_NULL, heard_about: NON_NULL, pun: String) -> Boolean
+  deleteSessions(project_id: NON_NULL, params: NON_NULL, sessionCount: NON_NULL) -> NON_NULL
+  createCloudflareProxy(workspace_id: NON_NULL, proxy_subdomain: NON_NULL) -> NON_NULL
+  updateIntegrationProjectMappings(workspace_id: NON_NULL, integration_type: NON_NULL, project_mappings: NON_NULL) -> NON_NULL
+  editServiceGithubSettings(id: NON_NULL, project_id: NON_NULL, github_repo_path: String, build_prefix: String, github_prefix: String) -> Service
+  editServiceSettings(service_id: NON_NULL, project_id: NON_NULL, input: NON_NULL) -> ServiceSettings
+  upsertSlackChannel(project_id: NON_NULL, name: NON_NULL) -> NON_NULL
+  testErrorEnhancement(error_object_id: NON_NULL, github_repo_path: NON_NULL, github_prefix: String, build_prefix: String, save_error: Boolean) -> ErrorObject
+  upsertVisualization(visualization: NON_NULL) -> NON_NULL
+  deleteVisualization(id: NON_NULL) -> NON_NULL
+  upsertGraph(graph: NON_NULL) -> NON_NULL
+  deleteGraph(id: NON_NULL) -> NON_NULL
+  agentPrompt(input: NON_NULL) -> NON_NULL
+  flagCleanupPrompt(input: NON_NULL) -> NON_NULL
+  createAutomatedRolloutConfig(input: NON_NULL) -> NON_NULL
+  pricingConciergePrompt(input: NON_NULL) -> NON_NULL
+  experiment_hypothesis_builder_assist(input: NON_NULL) -> NON_NULL
+  search_query_suggestion(input: NON_NULL) -> NON_NULL
+  storeAgentMessage(input: NON_NULL) -> NON_NULL
+  recordAgentResult(input: NON_NULL) -> NON_NULL
+  agentFollowupPrompt(input: NON_NULL) -> NON_NULL
+  startIncidentInvestigation(input: NON_NULL) -> NON_NULL
+  agentDispatch(input: NON_NULL) -> NON_NULL
+  automatedFlagCleanup(input: NON_NULL) -> NON_NULL
+  startRollbackInvestigation(input: NON_NULL) -> NON_NULL
+  upsertVegaSlackConfiguration(input: NON_NULL) -> NON_NULL
+  upsertVegaProjectConfiguration(input: NON_NULL) -> NON_NULL
+  createVegaWorkflow(project_id: NON_NULL, input: NON_NULL) -> NON_NULL
+  updateVegaWorkflow(project_id: NON_NULL, id: NON_NULL, input: NON_NULL) -> NON_NULL
+  runVegaWorkflowNow(project_id: NON_NULL, workflow_id: NON_NULL, idempotency_key: NON_NULL) -> NON_NULL
+  setVegaInferenceSettings(project_id: NON_NULL, mode: NON_NULL, provider: NON_NULL, default_model: NON_NULL, small_model: NON_NULL, integration_config_id: String) -> NON_NULL
+  createQueryFilterRule(input: NON_NULL) -> NON_NULL
+  updateQueryFilterRule(input: NON_NULL) -> NON_NULL
+  deleteQueryFilterRule(input: NON_NULL) -> NON_NULL
+  updateFilterSettings(input: NON_NULL) -> NON_NULL
+  setConversationCanvas(input: NON_NULL) -> NON_NULL
+  tagConversation(project_id: NON_NULL, conversation_id: NON_NULL, key: NON_NULL, value: NON_NULL) -> NON_NULL
+  untagConversation(project_id: NON_NULL, conversation_id: NON_NULL, key: NON_NULL) -> NON_NULL
+  shareConversation(project_id: NON_NULL, conversation_id: NON_NULL) -> NON_NULL
+  ld_patch_flag_tags(project_id: NON_NULL, project_key: NON_NULL, flag_key: NON_NULL, add_tags: LIST, remove_tags: LIST) -> NON_NULL
+  vega_upsert_artifact(conversation_id: NON_NULL, artifact_type: NON_NULL, external_id: NON_NULL, title: String, url: String, status: String, payload: Any, relationship: NON_NULL, event_type: String, event_payload: Any) -> Artifact
+  release_autopilot_review_action(conversation_id: NON_NULL, owner: NON_NULL, repository: NON_NULL, pull_number: NON_NULL, action: NON_NULL, message: String, flag_edits: ReleaseAutopilotReviewFlagEdits) -> NON_NULL
+  stopAgent(conversation_id: NON_NULL) -> NON_NULL
+  signAiTermsRecord(enabled: NON_NULL) -> NON_NULL
+  disconnectGitHub() -> NON_NULL
+
+======================================================================
+SUBSCRIPTIONTYPE (1 fields)
+======================================================================
+  session_payload_appended(session_secure_id: NON_NULL, initial_events_count: NON_NULL) -> SessionPayload
