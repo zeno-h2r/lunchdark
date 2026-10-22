@@ -1,0 +1,75 @@
+[1] create reader token: 201 token=YES len=40 
+======================================================================
+PHASE 2: reader-token vs owner-session matrix
+======================================================================
+[2] members-list       GET    /api/v2/members
+     READER: 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application <<< reader 200
+     OWNER : 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28
+[2] member-invite      POST   /api/v2/members
+     READER: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+     OWNER : 400 {"code":"invalid_request","message":"Unexpected JSON representation"}
+[2] tokens-create      POST   /api/v2/tokens
+     READER: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+     OWNER : 400 {"message":"The 'owner' role is not allowed for tokens.  Use role 'admin'."}
+[2] tokens-list        GET    /api/v2/tokens
+     READER: 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api <<< reader 200
+     OWNER : 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","
+[2] account-get        GET    /internal/account
+     READER: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+     OWNER : 200 {"_id":"6ac28fd11c28fb07516cf361","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"
+[2] account-settings   GET    /internal/account/settings
+     READER: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+     OWNER : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta
+[2] billing-sub        GET    /internal/billingv2/account/subscription
+     READER: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+     OWNER : 200 {"_links":{"parent":{"href":"/internal/account","type":"application/json"},"self":{"href":"/internal/billingv2/account/s
+[2] billing-cooloff    POST   /internal/billingv2/account/subscription/cooloff-retrial
+     READER: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateSubscription","resource":"account"},"code":"forbid
+     OWNER : 422 {"code":"unprocessable_entity","message":"cooloff_not_elapsed"}
+[2] dv-list            GET    /internal/account/domain-verifications
+     READER: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+     OWNER : 200 {"_access":{"denied":[],"allowed":[]},"items":[{"_access":{"denied":[],"allowed":[]},"domainVerificationID":"2c12190a-67
+[2] oauth2-list        GET    /internal/account/oauth2/applications
+     READER: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+     OWNER : 200 {"_links":{"self":{"href":"/internal/account/oauth2/applications?limit=20","type":"application/json"}},"items":[],"total
+[2] webhooks-list      GET    /api/v2/webhooks
+     READER: 200 {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"sel <<< reader 200
+     OWNER : 200 {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/w
+[2] webhook-create     POST   /api/v2/webhooks
+     READER: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+     OWNER : 400 {"code":"invalid_request","message":"Invalid webhook document"}
+[2] auditlog           GET    /api/v2/auditlog
+     READER: 200 {"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6ada970e8d015c070cdccc1f","type":"applicati <<< reader 200
+     OWNER : 200 {"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6ad
+[2] projects-list      GET    /api/v2/projects
+     READER: 200 {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links":{"environments":{"href":"/api/v2/projects/zxorg-proj-7f3a/e <<< reader 200
+     OWNER : 200 {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links":{"environments":{"h
+[2] flag-patch         PATCH  /api/v2/flags/default/zeno-allowed-1
+     READER: 415 {"code":"invalid_request","message":"Content-Type must conform to one of 'application/json-patch+json', 'application/json'"}
+     OWNER : 200 {"name":"zeno-esc-test","kind":"boolean","description":"ssrf-fire-1792707328-1","key":"zeno-allowed-1","_version":6,"cre
+[2] teams-list         GET    /api/v2/teams
+     READER: 200 {"items":[{"description":"org A team","key":"zeno-team-a","name":"zeno team A","_creationDate":1792675552990,"_links":{"maintainers":{"href":"/api/v2/teams/zeno <<< reader 200
+     OWNER : 200 {"items":[{"description":"org A team","key":"zeno-team-a","name":"zeno team A","_access":{"denied":[],"allowed":[]},"_cr
+[2] relays-list        GET    /api/v2/relay-proxies
+     READER: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+     OWNER : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta
+[2] escalate-get       GET    /internal/account/session/escalate
+     READER: 405 
+     OWNER : 405 
+[2] sessions-list      GET    /internal/account/sessions
+     READER: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+     OWNER : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta
+[2] integrations-cfg   GET    /internal/integrations/configs
+     READER: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+     OWNER : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta
+[2] subscription-post  POST   /internal/billingv2/account/subscription/campaigns
+     READER: 405 
+     OWNER : 405 
+[2] members-me         GET    /api/v2/members/me
+     READER: 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"s <<< reader 200
+     OWNER : 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb0
+
+[2] matrix done; reader-200 count = see above
+[3] reader /api/v2/members/me: 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf
+
+DONE r3_role7

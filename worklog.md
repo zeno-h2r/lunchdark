@@ -268,3 +268,26 @@ Stage Summary:
 - Egress intel: webhooks/imports = AWS EC2 us-east-1; warehouse = GCP 35.192.85.117/32.
 - Test assets in [ORG] to clean later: 12 webhooks (zeno-ssrf tag), 7 unleash imports (2 with IMDS URL), flags zeno-imported-flag(-2), tokens zeno-import-poc/zeno-import-writer, datasets/followers from earlier rounds. Canaries untouched.
 - Next queue: CA create schema (via UI proxy capture), ADS columnMappings grammar, E2 observability injection, C3 device-code, /graphql surface.
+
+---
+Task ID: R3-IDOR-LEAK
+Agent: Super Z (main)
+Task: IDOR + info-leak hunting (user directive: skip SSRF, keep hunting IDOR/info leak)
+
+Work Log:
+- scripts/idor2.py-idor4.py, leak5/6.py, role7-10.py persisted; outputs recon/r3_idor2/3/4.txt, r3_leak5/6.txt, r3_role7/8/9/10.txt
+- Cross-org replay [TST]->[ORG] ids: members/{id}, members/{id}/teams, auditlog/{id}, webhooks/{id}, approval-requests/{id}(+/apply,/reviews), domain-verifications/{id} -> ALL 404/403 org-fenced, owner control 200 = clean oracle contrast
+- Approval-request grammar solved: POST /api/v2/projects/{p}/flags/{f}/environments/{e}/approval-requests {description,instructions:[{kind:turnFlagOn}]} -> 201, AR id 6ada9379831a640734b4ffda; apply blocked by minNumApprovals (405 w/ message); cross-org apply/reviews 404
+- comments: POST /internal/comments requires resourceId+mentionedUserIds+comment; resourceId URN formats from chunks: proj/{p}:env/{e}:flag/{f} and proj/{p}:env/{e}:experiment/{e} BOTH -> "Invalid resource ID format" (time-boxed out)
+- domain-verifications: PATCH cross-org -> 404 fenced; own-org PATCH /isVerified triggers real TXT lookup ("failed to find matching TXT record")
+- invite/{accId} POST = password step-up ("Invalid password") both orgs; suggest-invites 204 no content; device/{code} uniform 400 "bad device code" (no oracle)
+- ROLE MATRIX (new axis): reader API token vs owner. Reads (members/auditlog/tokens/webhooks/teams/projects) 200 = by-design reader scope. Writes: token-create/member-invite/project-create/own-token-policy-patch -> 403 w/ policy action disclosure (action:createAccessToken etc = P5). /internal/* rejects API tokens entirely (401 Invalid account ID header) = session-only fence.
+- FLAG-PATCH ANOMALY CLOSED: r8 reader PATCH flag name 200 -> isolated as NO-OP policy short-circuit: merge-patch with fields equal to current values returns 200 WITHOUT state change (version unchanged); real change -> 403 updateName. Not a write primitive (P5 curiosity, do not report as priv-esc).
+- INFO LEAK sweep: 613 chunks secret-scanned (rg): 0 secrets/JWTs/internal hosts/staff emails; no stack traces anywhere; JSON-Schema validation messages leak property names/types (P5); billing 403 leaks internal policy action names (P5); auditlog attributes token actions to member email (token=None).
+- Cleanup: 6 test tokens (zeno-reader-r7..r11, zeno-writer-r9) deleted. Created: AR 6ada9379..., flags zeno-esc-target/zeno-esc-proj-nope, webhook esc attempt (400, none created).
+
+Stage Summary:
+- IDOR verdict: cross-org object resolvers universally org-fenced; no IDOR found in members/auditlog/webhooks/approvals/domain-verifications/datasets/followers.
+- Role authz verdict: policy engine correct on all real writes; only no-op-patch short-circuit (P5).
+- Info-leak verdict: no secrets, no stack traces; only P5-grade schema/policy-action reflections.
+- Net this round: 0 reportable P1/P2; P5 notes logged. Remaining untested: comments resourceId grammar (blocked), invite-token entropy (needs password step-up we don't have).

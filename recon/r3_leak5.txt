@@ -1,0 +1,44 @@
+======================================================================
+PHASE P: secret scan of downloaded JS chunks
+======================================================================
+[P] scanned 7 files
+[P] no secret-pattern hits
+======================================================================
+PHASE Q: GraphQL introspection
+======================================================================
+======================================================================
+PHASE R: billing internals (TST + ORG)
+======================================================================
+[R] TST /internal/billingv2/account/subscription: 200 {"_links":{"parent":{"href":"/internal/account","type":"application/json"},"self":{"href":"/internal/billingv2/account/subscription","type":"application/json"}},"planType":"Developer2025","version":2,"trialStartDate":"2026-10-04T17:43:51.948094413Z","trialEndDate":"2026-10-18T16:00:16.93005482Z","trialExtensionCount":0,"campaigns":{},"periodStartDate":"2026-10-18T16:00:18Z","periodEndDate":"2026-11-01T00:00:00Z","usagePeriodStartDate":"2026-10-01
+[R] TST /internal/billingv2/account: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">     <link rel="icon" type="image/png" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.png">      
+[R] TST /internal/billingv2/account/payment: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">     <link rel="icon" type="image/png" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.png">      
+[R] TST /internal/billingv2/plans/foundation/limits: 404 
+[R] ORG subscription: 200 {"_links":{"parent":{"href":"/internal/account","type":"application/json"},"self":{"href":"/internal/billingv2/account/subscription","type":"application/json"}},"planType":"Developer2025","version":2,"trialStartDate":"2026-10-04T17:41:37.950132231Z","trialEndDate":"2026-10-18T16:00:18.057370273Z","trialExtensionCount":0,"campaigns":{},"periodStartDate":"2026-10-18T16:00:19Z","periodEndDate":"2026-11-01T00:00:00Z","usagePeriodStartDate":"2026-10-0
+======================================================================
+PHASE S: token endpoints (value exposure?)
+======================================================================
+[S] GET /api/v2/tokens: 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"name":"idor-probe-token","creationDate":1792670685090,"lastModified":1792670685090,"role":"reader","token":"3488","serviceToken":false,"_links":{"par
+[S] /internal/tokens: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[S] /internal/account/tokens: 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","t
+[S] /api/v2/tokens?filter=q:zeno: 400 {"code":"invalid_request","message":"Unsupported filter field. Must be one of: type, creator, query, expired, expiresBy"}
+======================================================================
+PHASE T: error mining for stack traces / internals
+======================================================================
+[T] POST /internal/comments: 400 {"code":"invalid_request","message":"/required missing property 'comment'. /properties/resourceId/type got object, want string. /properties/
+[T] POST /api/v2/projects: 400 {"code":"invalid_request","message":"Unexpected JSON representation"}
+[T] POST /api/v2/projects: 400 {"code":"invalid_request","message":"Invalid key 'ZENO UPPER SPACE!'. Keys must only contain letters, numbers, '-', '_', or '.' and must sta
+[T] POST /internal/billingv2/account/subscription/campaigns: 405 
+[T] PUT /internal/account/login2: 200 {}
+[T] POST /api/v2/webhooks: 400 {"code":"invalid_request","message":"Invalid webhook document"}
+[T] POST /api/v2/webhooks: 400 {"code":"invalid_request","message":"Invalid webhook document"}
+[T] POST /internal/account/session/escalate: 400 {"code":"invalid_request","message":"Invalid session details"}
+======================================================================
+PHASE U: xpert/insights surfaces
+======================================================================
+[U] TST /internal/xpert/assignments: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[U] TST /internal/xpert/conversations: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[U] TST /internal/insights/scores: 200 {"overallScore":0,"scores":{"monitor":0,"optimize":0,"release":0}}
+[U] TST /internal/insights/member-metrics: 200 {"totalCount":1,"activeCount":1}
+[U] TST /internal/members/me/access-summary: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+
+DONE r3_leak5

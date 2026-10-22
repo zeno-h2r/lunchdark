@@ -1,0 +1,52 @@
+======================================================================
+PHASE E: approval-request creation (default/zeno-allowed-1/test)
+======================================================================
+[E] list as ORG: 200 {"items":[],"_links":{"self":{"href":"/api/v2/projects/default/flags/zeno-allowed-1/environments/test/approval-requests","type":"application/json"}}}
+[E] POST try keys=['description', 'instructions', 'comment', 'notifyMemberIds']: 201 {"_id":"6ada9379831a640734b4ffda","_version":0,"creationDate":1792709497939,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno test","reviewStatus":"pending","allReviews":[],"notifyMemberIds":[],"status":"pending","instructions":[{"kind":"turnFlagOn"}],"conflic
+[E] CREATED approval-request id=6ada9379831a640734b4ffda keys=['_id', '_links', '_version', 'allReviews', 'conflicts', 'creationDate', 'description', 'instructions', 'notifyMemberIds', 'requestorId', 'reviewStatus', 'serviceKind', 'status']
+======================================================================
+PHASE F: comments create + cross-org {id}
+======================================================================
+[F] POST comments resourceId=proj/default:flag/zeno-allowed-1:env/tes: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[F] POST comments resourceId=zeno-allowed-1: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[F] POST comments resourceId=proj/default:env/test:flag/zeno-allowed-: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[F] POST comments resourceId=api/v2/flags/default/zeno-allowed-1: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+======================================================================
+PHASE G: domain-verifications cross-org
+======================================================================
+[G] ORG records: [('2c12190a-67d3-4b5e-b2d2-e627bed9935b', 'bugcrowdninja.com'), ('8d25abfd-1c3f-41b2-940e-4b259652a5a4', 'launchdarkly.com')]
+[G] TST GET 2c12190a-67d3-4b5e-b2d2-e627bed9935b (bugcrowdninja.com): 405 
+[G] TST PATCH same-domain: 400 {"code":"invalid_request","message":"invalid json-patch document, extra fields: domain"}
+[G] TST GET 8d25abfd-1c3f-41b2-940e-4b259652a5a4 (launchdarkly.com): 405 
+[G] TST PATCH same-domain: 400 {"code":"invalid_request","message":"invalid json-patch document, extra fields: domain"}
+======================================================================
+PHASE H: invite surface
+======================================================================
+[H] ORG _accountId=6ac28fd11c28fb07516cf361
+[H] ORG POST invite/6ac28fd11c28fb07516cf361: 400 {"message":"Invalid password"}
+[H] TST POST invite/6ac28fd11c28fb07516cf361 (cross-org invite create!): 400 {"message":"Invalid password"}
+[H] TST suggest-invites: 400 {"code":"invalid_request","message":"No emails provided"}
+[H] UNAUTH suggest-invites: 415 {"code":"invalid_request","message":"Content-Type must be application/json"}
+[H] UNAUTH GET signup/AAAA/pending-invites: 401   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Server error</title>     <meta name="description" content
+[H] UNAUTH POST signup/pending-invites: 405 
+[H] UNAUTH POST device/start: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="im
+[H] UNAUTH GET device/AAAA-BBBB-CCCC: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+======================================================================
+PHASE I: auditlog token field / info leak shapes
+======================================================================
+[I] audit 6ada9379831a640734b4ffde kind=flag token=null member_email_present=True
+     target={"_links": {"canonical": {"href": "/api/v2/flags/default/zeno-allowed-1", "type": "application/json"}, "site": {"href": "/default/test/features/zeno-allowed-1", "type": "text/html"}}, "name": "zeno-al
+[I] audit 6ada9105d32b2007b953da03 kind=flag token={"_links": {"parent": {"href": "/api/v2/tokens", "type": "application/json"}, "self": {"href": "/api/v2/tokens/6ada91048f049f073760920b", "type": "application/json"}}, "_id": "6ada member_email_present=True
+     target={"_links": {"canonical": {"href": "/api/v2/flags/default/zeno-imported-flag", "type": "application/json"}, "site": {"href": "/default/~/features/zeno-imported-flag", "type": "text/html"}}, "name": "ze
+[I] audit 6ada9105831a640734b4b956 kind=integration token=null member_email_present=True
+     target={"_links": {"canonical": {"href": "/api/v2/flags/default/flag-key", "type": "application/json"}, "site": {"href": "/default/~/features/flag-key", "type": "text/html"}}, "name": "Unleash: b80ce20f-23a6
+[I] member full: {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com","_pendingInvite":false,"_verified":true,"isBeta":false,"customRoles":[],"mfa":"disabled","_access":{"denied":[],"allowed":[]},"excludedDashboards":[],"_lastSeen":1792709518154,"creationDate":1791135697957,
+[I] TST avatar cross-org: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta
+======================================================================
+PHASE J: apply cross-project injection
+======================================================================
+[J] TST projects: ['zenovictimproj', 'default']
+[J] ORG apply + body projectKey=zenovictimproj: 405 {"code":"method_not_allowed","message":"The minimum number of approvals is 1 and has not been received yet"}
+[J] TST apply cross-org: 404 {"code":"not_found","message":"Unable to find approval request"}
+
+DONE r3_idor3

@@ -1,0 +1,19 @@
+[0] new reader token: 201 OK
+[0] reader identity: 6ac28fd11c28fb07516cf363
+======================================================================
+PHASE 1: reader WRITE matrix (CT fixed)
+======================================================================
+[1] self-escalate-role       PATCH  -> 409 {"message":"You cannot modify your own role"}
+[1] self-escalate-patchapi   PATCH  -> 409 {"message":"You cannot modify your own role"}
+[1] token-create-own         POST   -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createAccessToken","resource":"member/6ac28fd11c28fb07516cf363:token/6ada975a2c6a6907472c15f7"},"code":"forbidden"}
+[1] token-create-ownerrole   POST   -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createAccessToken","resource":"member/6ac28fd11c28fb07516cf363:token/6ada975b9afc50073b858a63"},"code":"forbidden"}
+[1] member-invite            POST   -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createMember","resource":"member/6ada975c4b429f07a7f552d2"},"code":"forbidden"}
+[1] webhook-create           POST   -> 400 {"code":"invalid_request","message":"Invalid webhook document"}
+[1] flag-patch               PATCH  -> 200 {"name":"zeno-esc-test","kind":"boolean","description":"ssrf-fire-1792707328-1","key":"zeno-allowed-1","_version":6,"creationDate":1792696789540,"includeInSnippet":true,"clientSideAvailability":{"usingMobileKey":false,"u
+[1] flag-patch-jsonp         PATCH  -> 200 {"name":"zeno-esc-test","kind":"boolean","description":"ssrf-fire-1792707328-1","key":"zeno-allowed-1","_version":6,"creationDate":1792696789540,"includeInSnippet":true,"clientSideAvailability":{"usingMobileKey":false,"u
+[1] project-create           POST   -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createProject","resource":"proj/zeno-esc-proj"},"code":"forbidden"}
+[1] policy-massassign        POST   -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createAccessToken","resource":"member/6ac28fd11c28fb07516cf363:token/6ada9761d674f0075812befa"},"code":"forbidden"}
+[1] own token id: 6ada97571b2f0b079966f60c
+[1] own-token role patch -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateAccessTokenPolicy","resource":"member/6ac28fd11c28fb07516cf363:token/6ada97571b2f0b079966f60c"},"code":"forbid
+
+DONE r3_role8

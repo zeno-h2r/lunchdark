@@ -1,0 +1,21 @@
+[0] token zeno-reader-r7: role=reader id=6ada970e8d015c070cdccc1e
+[0] token zeno-reader-r8: role=reader id=6ada97571b2f0b079966f60c
+[0] r8 role confirmed: reader
+[0] fresh token created: role(field)=reader
+[1] create test flag: 201 {"name":"zeno-esc-target","kind":"boolean","description":"","key":"zeno-esc-target","_version":1,"creationDate":17927105
+[2] READER env-on-toggle      PATCH -> 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[2] READER env-on-toggle-v2   PATCH -> 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[2] READER flag-name          PATCH -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateName","resource":"proj/default:env/test:flag/zeno-esc-target
+[2] READER flag-tags          PATCH -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateTags","resource":"proj/default:env/test:flag/zeno-esc-target
+[2] READER flag-defaultOn     PATCH -> 400 {"code":"invalid_patch","message":"invalid json-patch document, extra fields: defaultOn"}
+[2] READER segment-create     POST -> 405 
+[3] env read: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[3] flag after: name=zeno-esc-target tags=[] defaultOn=None
+[4] audit 6ada9798f1ac9b07c30be85d kind=flag title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the  token=None member=6ac28fd11c28fb07516cf363 name=zeno0+org@bugcrowdninja.com
+[4] audit 6ada9798fa35a0073a1ba29d kind=token title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the  token=None member=6ac28fd11c28fb07516cf363 name=zeno0+org@bugcrowdninja.com
+[4] audit 6ada97571b2f0b079966f60d kind=token title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the  token=None member=6ac28fd11c28fb07516cf363 name=zeno0+org@bugcrowdninja.com
+[4] audit 6ada972adc498e07b0c6523a kind=flag title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) updated the  token=None member=6ac28fd11c28fb07516cf363 name=zeno0+org@bugcrowdninja.com
+[4] audit 6ada970e8d015c070cdccc1f kind=token title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the  token=None member=6ac28fd11c28fb07516cf363 name=zeno0+org@bugcrowdninja.com
+[5] WRITER flag-name (legit role): 200 {"name":"writer-was-here","kind":"boolean","description":"","key":"zeno-esc-target","_version":2,"creationDate":17927105
+
+DONE r3_role9

@@ -1,0 +1,16 @@
+[0] custom-roles: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com
+[0] flag zeno-allowed-1: tags=[] access=null version=6
+[0] flag zeno-esc-target: tags=[] access=null version=2
+[1] r10 reader token created (role field: reader)
+[2] READER patch name zeno-allowed-1: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateName","resource":"proj/default:env/test:flag/zeno-allowed-1"},"code":"forbidden"
+[2] READER patch name zeno-esc-target: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateName","resource":"proj/default:env/test:flag/zeno-esc-target"},"code":"forbidden
+[2] READER patch name zeno-imported-flag: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateName","resource":"proj/default:env/test:flag/zeno-imported-flag;imported-from-un
+[3] flag zeno-allowed-1: name now = zeno-esc-test
+[3] flag zeno-esc-target: name now = writer-was-here
+[3] flag zeno-imported-flag: name now = zeno-imported-flag
+[4] audit flag-update 6ada97a3235a4e0788e693de: title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) updated the flag [writ token_ref=6ada97a218341e07be4b354f desc=* Changed the name from ~~`zeno-esc-target`~~ to `writer-was
+[4] audit flag-update 6ada9798f1ac9b07c30be85d: title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the flag [zeno token_ref=None desc=* Created the flag from **Custom** template
+
+[5] r10 token self-view: role=reader policy=null fineGrained=None
+
+DONE r3_role10

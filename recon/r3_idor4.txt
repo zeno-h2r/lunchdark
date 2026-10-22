@@ -1,0 +1,26 @@
+======================================================================
+PHASE K: comments URN=proj/default:env/test:flag/zeno-allowed-1
+======================================================================
+[K] ORG create: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[K] ORG create on TST-resource URN: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+======================================================================
+PHASE L: domain-verifications JSON-patch cross-org
+======================================================================
+[L] ORG ctrl patch /domain: 400 {"code":"invalid_request","message":"invalid json-patch document, extra fields: domain"}
+[L] TST cross patch /domain: 400 {"code":"invalid_request","message":"invalid json-patch document, extra fields: domain"}
+[L] ORG ctrl patch /isVerified: 400 {"code":"invalid_request","message":"failed to find matching TXT record for domain"}
+[L] TST cross patch /isVerified: 404 {"code":"not_found","message":"domain verification not found"}
+[L] ORG records after: {"_access":{"denied":[],"allowed":[]},"items":[{"_access":{"denied":[],"allowed":[]},"domainVerificationID":"2c12190a-67d3-4b5e-b2d2-e627bed9935b","domain":"bugcrowdninja.com","isVerified":false,"_links":{"self":{"href":"/internal/account/domain-verifications","type":"application/json"}}},{"_access":{"denied":[],"allowed":[]},"domainVerificationID":"8d25abfd-1c3f-41b2-940e-4b259652a5a4","domain":"
+======================================================================
+PHASE M: suggest-invites (enumeration oracle?)
+======================================================================
+[M] UNAUTH suggest-invites: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[M] TST suggest-invites: 204 
+======================================================================
+PHASE N: approval self-review chain + cross-org reviews
+======================================================================
+[N] PATCH approval-settings: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[N] TST cross-review: 404 {"code":"not_found","message":"Unable to find approval request"}
+[N] ORG self-review: 400 {"code":"invalid_request","message":"invalid review kind"}
+
+DONE r3_idor4

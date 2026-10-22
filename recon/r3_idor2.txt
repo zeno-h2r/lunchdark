@@ -1,0 +1,107 @@
+======================================================================
+PHASE A: harvest [ORG] resource ids
+======================================================================
+[A] projects(ORG): ['zxorg-proj-7f3a', 'default']
+[A] flags(ORG) n=0: []
+[A] env keys detected: []
+[A] members(ORG) n=2 status=200
+    member keys=['_access', '_id', '_lastSeen', '_links', '_pendingInvite', '_verified', 'creationDate', 'customRoles', 'email', 'excludedDashboards', 'firstName', 'hasPassword', 'isBeta', 'lastName', 'mfa', 'role', 'version']
+    member keys=['_access', '_id', '_lastSeen', '_links', '_pendingInvite', '_verified', 'creationDate', 'customRoles', 'email', 'excludedDashboards', 'hasPassword', 'isBeta', 'mfa', 'role', 'version']
+[A] auditlog ids(ORG): ['6ada9105d32b2007b953da03', '6ada9105831a640734b4b956', '6ada91048f049f073760920c', '6ada90ce6b58f107e07464e1', '6ada90cef785cc0757386f05']
+    audit entry keys=['_accountId', '_id', '_links', 'accesses', 'date', 'description', 'kind', 'member', 'name', 'shortDescription', 'target', 'title', 'titleVerb', 'token']
+    audit.member sample={"_links": {"parent": {"href": "/api/v2/members", "type": "application/json"}, "self": {"href": "/api/v2/members/6ac28fd11c28fb07516cf363", "type": "application/json"}}, "_id": "6ac28fd11c28fb07516cf3
+[A] approval-request ids(ORG): NONE (empty lists)
+[A] domain-verifications(ORG): {"_access": {"denied": [], "allowed": []}, "items": [{"_access": {"denied": [], "allowed": []}, "domainVerificationID": "2c12190a-67d3-4b5e-b2d2-e627bed9935b", "domain": "bugcrowdninja.com", "isVerified": false, "_links": {"self": {"href": "/internal/account/domain-verifications", "type": "application/json"}}}, {"_access": {"denied": [], "allowed": []}, "domainVerificationID": "8d25abfd-1c3f-41b2-
+[A] domain-verifications(TST): 200 {"_access":{"denied":[],"allowed":[]},"items":[],"_links":{"self":{"href":"/internal/account/domain-verifications?limit=10","type":"application/json"}},"totalCount":0}
+[A] webhooks(ORG) n=14 sample=['6ada0e0ff68b4507c663d7d5', '6ada601db9a33f075201c887', '6ada6031de91770792196bf0']
+    webhook keys=['_access', '_id', '_links', 'name', 'on', 'tags', 'url']
+    webhook value sample (secret masked check): {"url": "https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584", "secret": null, "sign": null}
+[A] experiments(ORG) test: []
+[A] code-refs repos(ORG): [] status=200
+======================================================================
+PHASE B: [TST] replay against [ORG] ids (cross-org IDOR)
+======================================================================
+[B] member-get /api/v2/members/6ac28fd11c28fb07516cf363
+     TST(cross): 404 {"code":"not_found","message":"Invalid resource identifier"}
+     ORG(ctrl): 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest"
+[B] member-access-summary /internal/members/6ac28fd11c28fb07516cf363/access-summary
+     TST(cross): 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+     ORG(ctrl): 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[B] member-teams /api/v2/members/6ac28fd11c28fb07516cf363/teams
+     TST(cross): 405 
+     ORG(ctrl): 405 
+[B] member-get /api/v2/members/6ada14122e3d84072f7dcf53
+     TST(cross): 404 {"code":"not_found","message":"Invalid resource identifier"}
+     ORG(ctrl): 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"resendInvitation":{"href":"/api/v2/members/6ada14122e3d84072f7dcf53/resend-invitation","type":"application
+[B] member-access-summary /internal/members/6ada14122e3d84072f7dcf53/access-summary
+     TST(cross): 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+     ORG(ctrl): 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[B] member-teams /api/v2/members/6ada14122e3d84072f7dcf53/teams
+     TST(cross): 405 
+     ORG(ctrl): 405 
+[B] audit-get /api/v2/auditlog/6ada9105d32b2007b953da03
+     TST(cross): 404 
+     ORG(ctrl): 200 {"_links":{"canonical":{"href":"/api/v2/flags/default/zeno-imported-flag","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"
+[B] audit-get /api/v2/auditlog/6ada9105831a640734b4b956
+     TST(cross): 404 
+     ORG(ctrl): 200 {"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6ada9105831a640734b4b956","type":"application/json"},"site":{"href":"/int
+[B] webhook-get /api/v2/webhooks/6ada0e0ff68b4507c663d7d5
+     TST(cross): 404 
+     ORG(ctrl): 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada0e0ff68b4507c663d7d5","type":"application/json"}},"_id":"6ada0e0ff68b
+[B] webhook-get /api/v2/webhooks/6ada601db9a33f075201c887
+     TST(cross): 404 
+     ORG(ctrl): 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada601db9a33f075201c887","type":"application/json"}},"_id":"6ada601db9a3
+
+--- B verdicts ---
+  member-get: 404 = org-fenced resolver
+  member-access-summary: fenced/error
+  member-teams: fenced/error
+  audit-get: 404 = org-fenced resolver
+  webhook-get: 404 = org-fenced resolver
+======================================================================
+PHASE C: unauth GET sweep (no cookie) — info leak
+======================================================================
+[C] UNAUTH /api/v2/projects: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/members: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/auditlog: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/webhooks: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/approval-requests: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/code-refs/repositories: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/account/domain-verifications: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/comments: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/members/access-summary/preview: 405 
+[C] UNAUTH /internal/invite/test: 405 
+[C] UNAUTH /internal/account/signup/pending-invites: 401   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Server error</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width
+[C] UNAUTH /internal/unauthenticated-members/organization-verifications: 405 
+[C] UNAUTH /internal/billingv2/plans/foundation/limits: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/billingv2/account/subscription: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/entitlements/ai-configs: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/entitlements/release-guardian: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/tokens: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/account: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/teams: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/projects/default/flag-templates: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/account/suggest-invites: 405 
+[C] UNAUTH /internal/account/oauth2/applications: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /internal/billingv2/account/trials: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /api/v2/execution-connections: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /api/v2/connect/applications: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /internal/xpert/assignments: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /internal/insights/scores: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] UNAUTH /api/v2/public-keys: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /internal/config: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] UNAUTH /internal/version: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+======================================================================
+PHASE D: verbose error mining (info leak)
+======================================================================
+[D] POST /api/v2/approval-requests/x/not-an-objectid/reviews -> 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[D] GET /api/v2/auditlog/../../v2/members -> 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type"
+[D] GET /internal/comments/999999999999999999999999 -> 405 
+[D] POST /internal/comments -> 400 {"code":"invalid_request","message":"/required missing properties 'resourceId', 'mentionedUserIds'."}
+[D] GET /internal/projects/default/datasets/zzz/preview?mode=bogus -> 400 {"code":"invalid_request","message":"mode: input should be 'all', 'top' or 'random'"}
+[D] POST /internal/account/session/escalate -> 400 {"code":"invalid_request","message":"Invalid session details"}
+[D] GET /api/v2/members/not-a-uuid -> 404 {"code":"not_found","message":"Invalid resource identifier"}
+[D] POST /internal/billingv2/account/subscription/campaigns -> 405 
+[D] GET /internal/resources/project/default/environment/test/featureFlag/zz/followers/zzz -> 405 
+
+DONE r3_idor2
