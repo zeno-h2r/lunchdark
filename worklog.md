@@ -156,4 +156,31 @@ LD policy resources: `proj/{key}:env/{key}:flag/{key}` matched against statement
 
 Setup: fresh scoped token in [ORG] allowing only `flag/zeno-allowed-*` in `proj/default:env/test`.
 
-Results: (pending)
+Results: **POLICY ENGINE SOLID — no finding.**
+
+Setup learnings:
+- Token API requires built-in role OR `customRoleIds` (IDs not keys). `customRoleKeys` silently dropped. `role:null + customRoleIds` = clean scoped token (`zeno-policy-final`, id 6ada62aa7d401b07a495ab9b, bound to role `zeno-restricted-8f3a` id 6ada620f2f4da00753fc44e7).
+- Flag-level resources REQUIRE env segment (`proj/x:flag/y` is rejected by parser). Flag-description updates evaluate against EVERY env (deny if any env lacks grant) — hence policy needs `proj/x:env/*:flag/k*`.
+- `proj/*` wildcard in first segment rejected by parser.
+
+Baselines (PATCH as scoped token): allowed flag 200, denied flag 403, production env 404 (deny→404 masking).
+
+Edge matrix (all safe): uppercase 404/invalid; %2D not decoded pre-match; dot-dot normalized; extra segments invalid; cross-account resource grammar rejected (`account/{other-org}:proj/x` invalid).
+
+Access-check oracle: `POST /internal/authorization/access-check/gonfalon/bulk` (service enum = `gonfalon`), requires explicit Authorization header; SPA sends `Authorization: document.cookie` (same-origin, no leak — single usage). Oracle reflects policy decisions only; no cross-org expressibility in resource grammar.
+
+Artifacts left in [ORG]: role `zeno-restricted-8f3a`, tokens `zeno-policy-probe` (6ada61dd...), `zeno-policy-final` (6ada62aa...), flags `zeno-allowed-1`/`zeno-denied-1`.
+
+---
+
+## Session status (2026-10-23)
+
+Completed techniques: T1 cross-org IDOR (isolated), T2 AI Configs (isolated), T3 data-export SSRF (plan-gated), T4 audit/markdown XSS (sanitized), T5 policy engine (solid).
+
+Pending user action: check Burp OAST for hits from webhook probes (`/ld-webhook-probe` should HIT from flag-change events; `invalid-host-...` should NOT resolve).
+
+Candidate next techniques:
+- T6: Auth/session surface — `/internal/account/session/escalate`, `revoke-sessions`, MFA enable/disable flows, invite-token entropy (`/internal/account/join`, `signup/{token}/pending-invites`, `suggest-invites`)
+- T7: SSO/OAuth flows (github/google client IDs in bootstrap), SAML config
+- T8: Contexts/segments — big segment rules, context instance access
+- T9: Deep dive /internal/ usage endpoints + auditlog search filters (injection in search params)
