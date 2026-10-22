@@ -313,3 +313,24 @@ Stage Summary:
 - Net: E2 closed as defended; query-API grammar fully documented; new feature surfaces (views/layers/evals) all org-fenced on first cross-org probe; no P1/P2 from learning round.
 - Artifacts: recon/r4_learn1-7.txt, analysis/endpoints_new.txt, analysis/chunk_diff_new.txt, scripts/learn*.py.
 - Next queue: segment exports IDOR (file download), layers experiments cross-org, evaluation runs write-verbs cross-org, AI completion grammar, access-check bulk full body.
+
+---
+Task ID: R5-HUNT
+Agent: Super Z (main)
+Task: "start hunting" — R5 round: segment exports IDOR, no_access escalation, /internal via API tokens, layers/experiments cross-org, relay configs, flag-import gating
+
+Work Log:
+- scripts/r5_hunt1-5.py persisted; outputs recon/r5_hunt1-5.txt
+- SEGMENT EXPORTS (last live IDOR candidate): POST /api/v2/segments/{p}/{e}/{s}/exports -> 204 + Location header w/ UUID id (id only via Location header; regular segments 500, big/unbounded segments work). GET export: status in_progress->complete, then _links.file = PRESIGNED S3 URL (SigV4 + STS token, X-Amz-Expires=600). Cross-org [TST] GET -> 500 "Error looking up export" (uniform 500 for non-existent too -> NO existence oracle; 500-not-404 = sloppy error, P5). Unauth -> 401. S3 layer locked: unsigned GET 403, list-type=2 own-prefix 403, dir listing 403. VERDICT: DEFENDED. Bucket name/path structure disclosed: launchdarkly-bigsegment-files-production/acct-{accId}/env-{envId}/exports/{segKey}/{exportId}/{segKey}.csv.
+- FINDING_002 STRENGTHENED (no_access bypass, read-only): newly confirmed 200s under no_access token: GET /api/v2/account (org name, requireMfa, sessionConfig), GET /api/v2/account/relay-auto-configs[/{id}] (INCL. FULL POLICY DOCUMENTS proj/*:env/*:* + creator identity/email), GET /api/v2/usage + usage/{streams,streams/server,data-export-events,warehouse-export}, GET /api/v2/code-refs/repositories, GET /internal/entitlements/release-guardian ({"state":"enabled",usageGatedTrials}). All WRITE verbs correctly 403 (createCodeRefsRepository, createAccessToken, createWebhook, updateAccessTokenName) -> bypass strictly READ-ONLY, no priv-esc.
+- /internal/* + API tokens: newer internal endpoints use unified policy middleware (NOT the old account-header fence): project-scoped ones 403 viewProject (correct); /internal/entitlements/release-guardian 200 = fence miss (entitlement state only, P5); /internal/comments accepts API tokens (400 resourceId invalid, not 401) — but comments resourceId grammar STILL unsolved (URN formats proj/{p}:env/{e}:flag/{f} + 9 variants all "Invalid resource ID format"; GET query-param form probed too) — permanently time-boxed.
+- Layers/experiments cross-org: layer-by-key GET=405 path quirk; experiments: [TST] GET/reload on ORG experiment key -> 404 uniform (fenced); PATCH needs {comment,instructions:[...]} semantic body (updateTags/updateMaintainerId kinds; updateTags value field name unresolved — time-boxed).
+- Evaluation runs cross-org write: POST runs on ORG eval id as [TST] -> 404 fenced; DELETE -> 405 (no such route). Fenced.
+- Destinations list endpoint times out server-side (>45s, 2 attempts) — skipped, canaries untouched.
+- Flag-import gating CLOSED: allClientSideFlags enable-flag-import-integration=True on Foundation plan -> R3 flag-import SSRF reflection chain is a legitimately-enabled feature (no plan-gate-bypass angle; stands at P4/P5 as response-reflection finding, not recommended for submission).
+- Cleanup: all r5 tokens/roles deleted (r5/r5b/r5c/r5d), segments zeno-bigseg-r5 + zeno-export-seg deleted. No canary UUIDs touched. Artifacts: exports can't be deleted via API (405) but bigseg deletion cascades.
+
+Stage Summary:
+- Net R5: segment-export IDOR = DEFENDED (presigned S3, no cross-org oracle); no_access bypass = READ-ONLY + endpoint list expanded (strengthens FINDING_002 to ~11 endpoint families incl. policy documents + relay configs); entitlements/release-guardian = first /internal bypass (P5 content); experiments/eval-runs cross-org fenced; flag-import plan-gate angle closed.
+- Reportable inventory unchanged: FINDING_001 (P3 obs cross-tenant injection) + FINDING_002 (P2 no_access read bypass, now stronger). Nothing new reportable this round.
+- Next queue: patch/verify FINDING_002 repro with expanded endpoint table and submit P2; optionally FINDING_001 as P3; new-round ideas: OAuth2 apps redirect_uri validation (C8), SSO/SAML flows (T7), contexts instance access (T8), auditlog search filter injection (T9).

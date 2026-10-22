@@ -1,0 +1,49 @@
+========================================================================
+R5 HUNT 4 — 2026-10-22 23:46:41
+========================================================================
+
+PHASE Q: segment export cross-org download test
+------------------------------------------------------------------------
+[Q0] bigseg create: 201
+[Q1] POST export: 204 location=/api/v2/segments/default/test/zeno-bigseg-r5/exports/16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb
+[Q2] ORG GET export: 200 {"id":"16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb","segmentKey":"zeno-bigseg-r5","creationTime":1792712803819,"status":"in_progress","sizeBytes":0,"size":"0 B","initiator":{"name":"zeno test","email":"zeno0+org@bugcrowdninja.com"},"_links":{"self":{"href":"/api/v2/segments/default/test/zeno-bigseg-r5/exports/16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb","type":"application/json"}}}
+[Q3] TST GET ORG export: 500 {"code":"internal_service_error","message":"Error looking up export 16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb"}
+[Q4] unauth GET export: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[Q5.0] ORG poll: 200 {"id":"16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb","segmentKey":"zeno-bigseg-r5","creationTime":1792712803819,"status":"complete","sizeBytes":0,"size":"0 B","initiator":{"name":"zeno test","email":"zeno0+org@bugcrowdninja.com"},"_links":{"file":{"href":"https://s3.amazonaws.com/launchdarkly-bigsegment-files-production/acct-6ac28fd11c28fb07516cf361/env-6ac28fd11c28fb07516cf364/exports/zeno-bigseg-r5/16c7
+[Q6] TST GET export (post-completion): 500 {"code":"internal_service_error","message":"Error looking up export 16c7c3ac-bcd2-4222-94b8-dd3c023dfaeb"}
+
+PHASE R: relay-auto-config detail under no_access
+------------------------------------------------------------------------
+[R0] no_access token: OK
+[R1] config 6ac3b42d7c3e1a06f53cf211: keys=['_creator', '_id', 'creationDate', 'displayKey', 'lastModified', 'name', 'policy']
+[R2] detail: 200 {"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"name":"zeno testss","policy":[{"resources":["proj/*:env/*"],"actions":["*"],"effect":"allow"}],"displayKey":"2dad","creationDate":1791210541678,"lastModified":1791210558218}
+[R3] environments: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com
+[R4] /api/v2/usage: 200 {"_links":{"parent":{"href":"/api/v2/","type":"application/json"},"self":{"href":"/api/v2/usage","type":"application/json"},"subseries":[{"href":"/api/v2/usage/events","type":"application/json"},{"hre
+[R4] /api/v2/usage/evaluations/2026/10: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[R4] /api/v2/usage/streams/server: 200 {"_links":{"parent":{"href":"/api/v2/usage/streams","type":"application/json"},"self":{"href":"/api/v2/usage/streams/server","type":"application/json"},"subseries":[{"href":"/api/v2/usage/streams/serv
+[R4] /api/v2/usage/current: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[R4] /api/v2/usage/monthly-active-contexts: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[R4] /api/v2/usage/members: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+PHASE S: final comments resourceId shapes (time-boxed)
+------------------------------------------------------------------------
+[S] resourceId='proj/default:env/test:flag/zeno-allowed-1/': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[S] resourceId='flag/default/test/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[S] resourceId='proj:default:env:test:flag:zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[S] resourceId='proj/default/env/test/flag/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[S] resourceId='proj/default:env/test:flag/zeno-allowed-1;version=1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+
+PHASE T: experiment PATCH updateTags + cross-org replay
+------------------------------------------------------------------------
+[T1] ORG PATCH updateTags (baseline): 400 {"code":"invalid_request","message":"unknown field \"tags\""}
+[T2] TST PATCH ORG exp: 400 {"code":"invalid_request","message":"unknown field \"tags\""}
+[T3] ORG revert: EXC
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+[X] bigseg delete: 204
+[X] export-seg delete: 204
+
+DONE

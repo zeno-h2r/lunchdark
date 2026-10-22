@@ -1,0 +1,76 @@
+========================================================================
+R5 HUNT 1 — 2026-10-22 23:39:22
+========================================================================
+
+PHASE A: segment exports (cross-org file download candidate)
+------------------------------------------------------------------------
+[A0] ORG segments: 200 count=1 ['ld-example-beta-users']
+[A0] create segment zeno-export-seg: 201 {"name":"zeno export seg","tags":[],"creationDate":1792712364522,"lastModifiedDate":1792712364522,"key":"zeno-export-seg","included":[],"excluded":[],"includedC
+[A1] ORG list exports: 405 
+[A2] ORG create export: 500 {"code":"internal_service_error","message":"internal error"}
+[A4] TST list ORG-seg exports (cross-org path): 405 
+
+PHASE B: layers + experiments cross-org (read + write verbs)
+------------------------------------------------------------------------
+[B0] ORG layers: 200 keys=['zeno-victim-layer'] exps=[]
+[B1] TST GET ORG layer key: 405 
+[B2] TST PATCH ORG layer: 400 {"code":"invalid_request","message":"Error reading patch body"}
+[B3] TST GET ORG exp: 404 {"code":"not_found","message":"experiment not found"}
+[B3] TST PATCH ORG exp: 400 {"code":"invalid_request","message":"json: cannot unmarshal array into Go value of type struct { Comment string }"}
+[B3] TST POST ORG exp: 404 {"code":"not_found","message":"experiment not found"}
+[B3] TST DELETE ORG exp: 404 {"code":"not_found","message":"Experiment not found"}
+[B4] ORG baseline GET exp (oracle contrast): 404 {"code":"not_found","message":"experiment not found"}
+
+PHASE C: AI evaluation runs cross-org WRITE verbs
+------------------------------------------------------------------------
+[C0] ORG evals: 200 first=f33ce22d-fdf1-4b0f-be31-7e8d311d90f5
+[C1] TST GET ORG eval: 404 {"code":"not_found","message":"Evaluation not found"}
+[C2] TST POST ORG eval run (cross-org write!): 404 {"code":"not_found","message":"Evaluation not found"}
+[C3] TST DELETE ORG eval: 405 
+
+PHASE D: no_access token — FINDING_002 escalation surface (sdk-keys/usage)
+------------------------------------------------------------------------
+[D0] role create: 201 {"_id":"6ada9ebbb0477207a8bfd274","_links":{"parent":{"href":"/api/v2/roles","type":"application/json"},"self":{"href":"/api/v2/roles/zeno-noaccess-r5","type":" id=6ada9ebbb0477207a8bfd274
+[D1] no_access token: 201 OK
+[D2] sdk-keys (P1 candidate)     : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D2] mobile sdk-keys             : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[D2] environments detail         : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D2] flag item                   : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D2] flag list                   : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D2] code-refs repos             : 200 {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+[D2] usage warehouse-export      : 200 {"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/warehouse-export","type":"application/json"}},"metadata":[],"totalEvaluations":null,"series":[],"dataThrough":"2026-10-22T23:00:00Z","delayed":false}
+[D2] usage data-export-events    : 200 {"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/data-export-events","type":"application/json"}},"metadata":[],"totalEvaluations":null,"series":[],"dataThrough":"2026-10-22T23:00:00Z","delayed":false}
+[D2] usage stream/sdk-end        : 200 {"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/streams","type":"application/json"},"subseries":[{"href":"/api/v2/usage/streams/server","type":"application/json"},{"href":"/api/v2/usage/streams/client","type":"applica
+[D2] tokens detail               : 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","
+[D2] members/{id}/teams          : 405 
+[D2] account detail              : 200 {"_id":"6ac28fd11c28fb07516cf361","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/members","type":"application/json"},"paymentCard":{"href":"/internal/account/card","type":"application/json"},"sel
+[D2] relay config                : 200 {"items":[{"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugc
+[D2] integration-capabilities    : 405 
+[D2] internal via token          : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D2] gitops                      : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+
+PHASE E: destinations path mismatch (OWN webhook ids ONLY — canaries untouched)
+------------------------------------------------------------------------
+[E0] ORG destinations: EXC total=0 own_ids=[]
+
+PHASE F: flag-import UI gating (entitlement check for R3-SSRF angle)
+------------------------------------------------------------------------
+[F1] client-side flags import/entitlement hits (10):
+     big-segments-import-max-records = 1000000
+     docs-statsig-metric-importer-cli = False
+     enable-ai-config-bedrock-import = False
+     enable-bundler-image-imports = False
+     enable-flag-import-integration = True
+     enable-native-big-segment-import = True
+     enable-otel-import-logging = False
+     flag-import-false-door = False
+     native-big-segment-import-max-file-size = 40
+     show-important-audit-log-entries = False
+[F2] entitlements integration-capabilities: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg">     <link rel="icon" type="image/png" href="https://static.launch
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+
+DONE

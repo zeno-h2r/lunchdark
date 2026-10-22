@@ -113,6 +113,28 @@ policy granting only `proj/default:env/test:flag/zeno-webhook-fixture`:
   than evaluating policy correctly. Not fully root-caused; flag-level READ
   enforcement for custom-role tokens looks unreliable in this version.
 
+
+## R5 update (2026-10-23) — expanded bypass surface (re-verified with fresh no_access token)
+
+Additional account-level GET endpoints that also return **200 under the same
+zero-privilege token** (beyond the original matrix):
+
+| Endpoint | Leaks |
+|---|---|
+| `GET /api/v2/account` | org name, `requireMfa`, session config (duration/refresh) |
+| `GET /api/v2/account/relay-auto-configs` + `/{id}` | relay proxy configs **incl. full policy documents** (`proj/*:env/*` actions `*`) and creator identity (name/email/role) |
+| `GET /api/v2/usage` + `/usage/streams[/server|/client]`, `/usage/data-export-events`, `/usage/warehouse-export` | account usage series/metadata |
+| `GET /api/v2/code-refs/repositories` | code-refs repository inventory |
+| `GET /internal/entitlements/release-guardian` | internal entitlement state (`{"state":"enabled",...}`) — also notable as the first `/internal/*` endpoint reachable by a pure API token |
+
+Write verbs on this endpoint class remain correctly denied (403 `createCodeRefsRepository`,
+`createAccessToken`, `createWebhook`, `updateAccessTokenName`) — the bypass is
+**strictly read-only**. Cross-org isolation is unaffected (this is intra-account
+least-privilege failure only).
+
+S3 files behind segment exports are properly presigned (SigV4, 10-min expiry);
+bucket listing denied. Segment exports are org-fenced (uniform 500, no oracle).
+
 ## Notes
 
 - Sessions/cookies, project-scoped resources, and all write paths tested were

@@ -1,0 +1,81 @@
+========================================================================
+R5 HUNT 2 — 2026-10-22 23:41:47
+========================================================================
+[0] no_access role id=6ada9f3caba81f07acb07cbf token=OK
+
+PHASE G: full bodies of newly-bypassed endpoints
+------------------------------------------------------------------------
+[G] account detail: 200 {"_id":"6ac28fd11c28fb07516cf361","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/members","type":"application/json"},"paymentCard":{"href":"/internal/account/card","type":"application/json"},"self":{"href":"/internal/account","type":"application/json"},"session":{"href":"/internal/account/session","type":"application/json"},"subscription":{"href":"/internal/account/subscription","type":"application/json"}},"organization":"zenocrowd","requireMfa":false,"sessionConfig":{"durationMins":20160,"refresh":false},"isSupportGenAiEnabled":true,"isGeneralGenAiEnabled":true}
+
+[G] relay-auto-configs: 200 {"items":[{"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"name":"zeno testss","policy":[{"resources":["proj/*:env/*"],"actions":["*"],"effect":"allow"}],"displayKey":"2dad","creationDate":1791210541678,"lastModified":1791210558218}]}
+
+[G] code-refs repos: 200 {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+
+[G] members/me: 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com","_pendingInvite":false,"_verified":true,"isBeta":false,"customRoles":[],"mfa":"disabled","excludedDashboards":[],"_lastSeen":1792712513263,"_lastSeenMetadata":{"tokenId":"6ada9f3dd6d8d50793ae6e57"},"creationDate":1791135697957,"hasPassword":true,"version":0}
+
+
+PHASE H: WRITE verbs on bypassed class (code-refs) + other writes
+------------------------------------------------------------------------
+[H1] no_access POST code-refs repo: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createCodeRefsRepository","resource":"code-reference-repository/zeno-pwn-repo"},"code":"forbidden"}
+[H2] no_access PATCH other token: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateAccessTokenName","resource":"member/6ac28fd11c28fb07516cf363:token/6ad9fbdd910326079dc637c
+[H3] no_access POST webhook: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createWebhook","resource":"webhook/6ada9f43ba00d90781f20b56"},"code":"forbidden"}
+[H4] no_access POST token (escalation): 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createAccessToken","resource":"member/6ac28fd11c28fb07516cf363:token/6ada9f4418341e07be4b7c1d"},
+
+PHASE I: /internal/* sweep under no_access token
+------------------------------------------------------------------------
+[I] /internal/account/invoices                             : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/account/accrued-invoices                     : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/account/card                                 : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/account/subscription                         : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/billingv2/account/subscription               : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/entitlements/ai-configs                      : 400 {"code":"invalid_request","message":"Query parameter 'projectKey' is missing."}
+[I] /internal/entitlements/release-guardian                : 200 {"state":"enabled","usageGatedTrials":{"hardLimit":-1,"softLimit":-1,"usage":0,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}}   <<< BYPASS
+[I] /internal/members/6ac28fd11c28fb07516cf363/access-summary: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[I] /internal/teams/zeno-team-a/access-summary             : 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[I] /internal/insights/scores                              : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/usage/evaluations                            : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/projects/default/evaluations                 : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[I] /internal/projects/default/playgrounds                 : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[I] /internal/projects/default/views                       : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/projects/default/flags/search                : 405 
+[I] /internal/projects/default/ai-configs                  : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/projects/default/datasets                    : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[I] /internal/projects/default/assignment-data-sources     : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[I] /internal/projects/default/environments/test/sdk-keys  : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/projects/default/settings                    : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/account/oauth2/applications                  : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/authorization/access-check/gonfalon          : 405 
+[I] /internal/account/domain-verifications                 : 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[I] /internal/comments                                     : 400 {"code":"invalid_request","message":"Query parameter 'resourceId' is missing."}
+[I] /internal/notifications                                : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/account/sessions                             : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/account/organizations                        : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] /internal/exempt-actions                               : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[I] POST flags/search: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+
+PHASE J: destinations retry (own webhook id, canaries untouched)
+------------------------------------------------------------------------
+[J0] ORG destinations: EXC total=0
+
+PHASE K: big-segment export retry
+------------------------------------------------------------------------
+[K0] create big segment: 201 {"name":"zeno big seg","tags":[],"creationDate":1792712544431,"lastModifiedDate":1792712544431,"key":"zeno-bigseg-r5","included":[],"excluded":[],"includedContexts":[],"excludedContexts":[],"_links":{
+[K1] create export (empty body): 204 
+[K2] create export (expiration): 204 
+[K3] GET export bogus-id (shape): 400 {"code":"invalid_request","message":"invalid id 000000000000000000000000"}
+
+PHASE L: real experiment cross-org writes
+------------------------------------------------------------------------
+[L0] ORG metrics: ['ld-example-page-load-time', 'ld-example-error-rate', 'ld-example-weekly-active-users-per-account', 'ld-example-support-tickets-per-account', 'zeno-victim-metric', 'zeno-md-probe-1']
+[L1] create experiment: 400 {"code":"invalid_request","message":"iteration is required"}
+[L2] ORG experiments: [('zeno-victim-experiment', 'c54c3c9c-31ec-41d1-946e-0f074a2c35e3'), ('test', 'f820febe-ea2a-4d07-bfb6-61fc079974ab')]
+[L3] TST GET ORG exp: 404 {"code":"not_found","message":"experiment not found"}
+[L3] TST PATCH ORG exp: 400 {"code":"invalid_request","message":"json: cannot unmarshal array into Go value of type struct { Comment string }"}
+[L3] TST POST ORG exp: 404 {"code":"not_found","message":"experiment not found"}
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token zeno-noaccess-r5b delete: 204
+[X] role delete: 204
+
+DONE

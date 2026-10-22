@@ -1,0 +1,72 @@
+========================================================================
+R5 HUNT 3 — 2026-10-22 23:44:46
+========================================================================
+[0] no_access token: OK role=6ada9fefb1d13907a27145e8
+
+PHASE M: comments GET — shape discovery + policy bypass probe
+------------------------------------------------------------------------
+[M1] ORG GET resourceId='proj/default:env/test:flag/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M1] ORG GET resourceId='proj/default:env/test/experiment/zeno-victim-experiment': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M1] ORG GET resourceId='proj/default:env/test:metric/zeno-victim-metric': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M1] ORG GET resourceId='flag/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M1] ORG GET resourceId='proj/default:flag/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M1] ORG GET resourceId='proj/default:env/test': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M2] no_access resourceId='proj/default:env/test:flag/zeno-allowed-1': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M2] no_access resourceId='proj/default:env/test:flag/ld-example-flag': 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+[M3] ORG POST comment full-shape: 400 {"code":"invalid_request","message":"Invalid resource ID format"}
+
+PHASE N: segment export chain — headers + id discovery + cross-org
+------------------------------------------------------------------------
+[N1] POST export: 204 headers={'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Ld-Api-Version': 'beta', 'Location': '/api/v2/segments/default/test/zeno-bigseg-r5/exports/d20d12be-15e4-4c71-8181-2eb675056f99', 'Referrer-Policy': 'strict-origin-when-cross-origin', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-Xss-Protection': '1', 'Accept-Ranges': 'bytes', 'Date': 'Thu, 22 Oct 2026 23:44:58 GMT', 'Via': '1.1 varnish', 'X-Served-By': 'cache-sin-wsap440054-SIN', 'X-Cache': 'MISS', 'X-Cache-Hits': '0', 'X-Timer': 'S1792712697.388619,VS0,VE1108', 'Vary': 'Accept-Encoding, Origin', 'Age': '0'}
+[N2] audit: [zeno test](mailto:zeno0+org@bugcrowdninja.com) started an export for segment [zeno big seg](https://app.launc
+[N2] audit: [zeno test](mailto:zeno0+org@bugcrowdninja.com) updated [zeno-noaccess-r5c (…31ea)](https://app.launchdarkly.c
+[N2] audit: [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the role [zeno-noaccess-r5c](https://app.launchdarkly.
+[N2] audit: [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the role zeno\-noaccess\-r5b
+[N2] audit: [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the access token zeno\-noaccess\-r5b \(…c822\)
+[N3] GET /api/v2/segments/default/test/zeno-bigseg-r5/exports/: 301 <a href="/api/v2/segments/default/test/zeno-bigseg-r5/exports">Moved Permanently</a>.  
+[N3] POST /api/v2/segments/default/test/zeno-bigseg-r5/exports/search: 405 
+[N4] TST GET export fake-id: 400 {"code":"invalid_request","message":"invalid id 6ada9f500000000000000000"}
+[N4] unauth GET export fake-id: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+
+PHASE O: entitlements family under no_access token
+------------------------------------------------------------------------
+[O] release-guardian            : 200 {"state":"enabled","usageGatedTrials":{"hardLimit":-1,"softLimit":-1,"usage":0,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}}   <<< BYPASS
+[O] ai-configs                  : 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[O] insights                    : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] early-access                : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] warehouse-export            : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] experiments                 : 200   <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.308ee96aa.json"       data-b  <<< BYPASS
+[O] sdk-keys                    : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] data-export                 : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] service-discovery           : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] guardrails                  : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] observability               : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] flag-import                 : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] integration-capabilities    : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] big-segments                : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] segment-membership          : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] advanced-experimentation    : 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[O] session baseline release-guardian: 200 {"state":"enabled","usageGatedTrials":{"hardLimit":-1,"softLimit":-1,"usage":0,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}} 
+
+PHASE P: experiment PATCH body resolution + cross-org replay
+------------------------------------------------------------------------
+[P0] ORG PATCH try0: 400 {"code":"invalid_request","message":"must have at least one instruction"}
+[P1] ORG PATCH try1: 400 {"code":"invalid_request","message":"must have at least one instruction"}
+[P2] ORG PATCH try2: 400 {"code":"invalid_request","message":"json: cannot unmarshal array into Go value of type struct { Comment string }"}
+[P3] ORG PATCH try3: 400 {"code":"invalid_request","message":"must have at least one instruction"}
+[P+] TST POST /start: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] ORG POST /start (baseline): 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] TST POST /stop: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] ORG POST /stop (baseline): 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] TST POST /archive: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] ORG POST /archive (baseline): 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[P+] TST DELETE DELETE: 405 
+[P+] ORG DELETE DELETE (baseline): 405 
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+[X] bigseg delete: 204
+
+DONE
