@@ -1,0 +1,154 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/elastic",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/elastic",
+   "type": "application/json"
+  }
+ },
+ "key": "elastic",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Authorization",
+      "value": "ApiKey {{token}}"
+     },
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{url}}/{{index}}/_doc"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "default": "templates/template.json.hbs",
+    "validation": "templates/template.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  }
+ },
+ "categories": [
+  "incident-response",
+  "monitoring"
+ ],
+ "description": "This integration sends LaunchDarkly audit log events to an Elasticsearch endpoint.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the URL for your Elasticsearch endpoint, including the socket",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Elasticsearch endpoint URL",
+   "placeholder": "https://cluster.region.aws.found.io:9243",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the base64 _credentials_ based on your [API Key](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html)",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "token",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Authentication token",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the index name where you want to store your LaunchDarkly data",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "index",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Index",
+   "placeholder": "launchdarkly-audit",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/elastic/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/elastic/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/elastic-stack",
+  "privacyPolicy": "https://www.elastic.co/legal/privacy-statement",
+  "site": "https://elastic.co",
+  "supportWebsite": ""
+ },
+ "name": "Elastic (ELK) Stack",
+ "overview": "Observe LaunchDarkly flag changes in the Elastic (ELK) Stack.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

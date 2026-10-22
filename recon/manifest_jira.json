@@ -1,0 +1,258 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/jira",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/jira",
+   "type": "application/json"
+  }
+ },
+ "key": "jira",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/*:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": {
+     "headerName": "X-LD-Signature",
+     "hmacSecretFormVariableKey": "secret"
+    },
+    "method": "POST",
+    "url": "{{url}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {},
+   "useStandardWebhookPayload": true
+  },
+  "flagLink": {
+   "emptyState": {
+    "leadText": "To enable the Jira integration, [read the documentation](https://launchdarkly.com/docs/home/flags/links#create-jira-flag-links)",
+    "title": "No Jira issues link to this flag."
+   },
+   "header": "Jira issue",
+   "metadata": {
+    "creator": {
+     "type": "string"
+    },
+    "iconUrl": {
+     "type": "uri"
+    },
+    "issueKey": {
+     "type": "string"
+    },
+    "issueTitle": {
+     "type": "string"
+    }
+   },
+   "uiBlocks": {
+    "context": {
+     "elements": [
+      {
+       "isBold": false,
+       "isTimestamp": false,
+       "text": "Issue created by",
+       "url": ""
+      },
+      {
+       "isBold": true,
+       "isTimestamp": false,
+       "text": "{{{metadata.creator}}}",
+       "url": ""
+      }
+     ]
+    },
+    "image": {
+     "isAvatar": false,
+     "isIcon": true,
+     "sourceUrl": "{{{metadata.iconUrl}}}"
+    },
+    "title": {
+     "elements": [
+      {
+       "isBold": false,
+       "isTimestamp": false,
+       "text": "{{{metadata.issueKey}}}: {{{metadata.issueTitle}}}",
+       "url": ""
+      }
+     ],
+     "linkToReference": true
+    }
+   }
+  },
+  "hideConfiguration": true,
+  "jiraIssueCreate": {
+   "creationRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": {
+      "headerName": "X-LD-Signature",
+      "hmacSecretFormVariableKey": "secret"
+     },
+     "method": "POST",
+     "url": "{{issueCreateUrl}}"
+    },
+    "jsonBody": "{\"title\":\"{{{title}}}\",\"description\":\"{{{description}}}\",\"projectKey\":\"{{{projectKey}}}\",\"issueType\":\"{{{issueType}}}\",\"labels\":{{{labelsJson}}},\"sourceLink\":\"{{{sourceLink}}}\",\"sourceKind\":\"{{{sourceKind}}}\"}",
+    "parser": {
+     "issueKey": "/issueKey",
+     "issueUrl": "/issueUrl",
+     "self": "/self"
+    }
+   },
+   "issueCreateFormVariables": null,
+   "name": "Jira issue"
+  }
+ },
+ "categories": [
+  "issue-tracking"
+ ],
+ "description": "Integrate LaunchDarkly with Jira to see your feature flags alongside your team's Jira issues.",
+ "details": "Jira is the #1 software development tool used by agile teams to plan, track, and release great software. Built for all team members, Jira enables collaboration by providing everyone with visibility into important information for planning and coordinating projects, tracking progress, and reporting results in real-time. Integrate LaunchDarkly with Jira to see your feature flags alongside your team's Jira issues.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Jira web trigger URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Jira web trigger URL",
+   "placeholder": "",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "Enter your Jira issue-create web trigger URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "issueCreateUrl",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Jira issue-create trigger URL",
+   "placeholder": "",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "Enter your Jira meta web trigger URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "jiraMetaUrl",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Jira meta trigger URL",
+   "placeholder": "",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the secret shared between Jira and LaunchDarkly",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "secret",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Secret",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/jira/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/jira/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/jira",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://www.atlassian.com/software/jira",
+  "supportWebsite": ""
+ },
+ "name": "Jira Cloud",
+ "otherCapabilities": [
+  "webhooks"
+ ],
+ "overview": "Link your feature flags with your team's Jira issues.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

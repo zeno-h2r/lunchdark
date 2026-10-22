@@ -1,0 +1,283 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/vercel-native",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/vercel-native",
+   "type": "application/json"
+  }
+ },
+ "key": "vercel-native",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "allowIntegrationConfigurations": true,
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "createFlag",
+      "cloneFlag",
+      "updateName",
+      "updateDescription",
+      "updateGlobalArchived",
+      "deleteFlag"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/*:flag/*"
+     ]
+    },
+    {
+     "actions": [
+      "createProject",
+      "updateProjectName",
+      "deleteProject"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*"
+     ]
+    },
+    {
+     "actions": [
+      "updateApiKey"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Authorization",
+      "value": "Bearer {{accessToken}}"
+     },
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "{{#equal context.verbKind \"createFlag\"}}POST{{/equal}}{{#equal context.verbKind \"cloneFlag\"}}POST{{/equal}}{{#equal context.verbKind \"updateName\"}}PATCH{{/equal}}{{#equal context.verbKind \"updateDescription\"}}PATCH{{/equal}}{{#equal context.verbKind \"updateGlobalArchived\"}}PATCH{{/equal}}{{#equal context.verbKind \"deleteFlag\"}}DELETE{{/equal}}{{#equal context.verbKind \"createProject\"}}PUT{{/equal}}{{#equal context.verbKind \"updateProjectName\"}}PATCH{{/equal}}{{#equal context.verbKind \"deleteProject\"}}DELETE{{/equal}}{{#equal context.verbKind \"updateApiKey\"}}PATCH{{/equal}}",
+    "url": "https://api.vercel.com/v1/installations/{{installationId}}/resources/{{#equal context.kind \"flag\"}}{{context.project.key}}/experimentation/items{{#equal context.verbKind \"updateName\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"updateDescription\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"updateGlobalArchived\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"deleteFlag\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{/equal}}{{#equal context.kind \"project\"}}{{context.key}}{{/equal}}{{#equal context.kind \"environment\"}}{{context.project.key}}{{/equal}}"
+   },
+   "includeErrorResponseBody": true,
+   "templates": {
+    "default": "templates/default.json.hbs",
+    "environment": "templates/environment.json.hbs",
+    "flag": "templates/flag.json.hbs",
+    "project": "templates/project.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  },
+  "featureStore": {
+   "featureStoreRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Bearer {{accessToken}}"
+      },
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "User-Agent",
+       "value": "launchdarkly"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "PUT",
+     "url": "https://api.vercel.com/v1/installations/{{installationId}}/resources/{{resourceId}}/experimentation/edge-config"
+    },
+    "payloadPrefix": "{\"data\": {\"LD-Env-{{envId}}\": ",
+    "payloadSuffix": "}}"
+   },
+   "formVariables": [
+    {
+     "allowedValues": null,
+     "clearSecretsOnChange": false,
+     "codeLanguage": "",
+     "defaultValue": null,
+     "dependsOn": null,
+     "description": "Vercel access token.",
+     "disableAfterSaving": false,
+     "divider": false,
+     "dynamicOptions": null,
+     "hideEmpty": false,
+     "instructions": null,
+     "instructionsHeading": "",
+     "isHidden": true,
+     "isOptional": false,
+     "isSecret": true,
+     "key": "accessToken",
+     "multiselectDefaultOptions": null,
+     "multiselectOptions": null,
+     "name": "Access Token",
+     "placeholder": "",
+     "type": "string"
+    },
+    {
+     "allowedValues": null,
+     "clearSecretsOnChange": false,
+     "codeLanguage": "",
+     "defaultValue": null,
+     "dependsOn": null,
+     "description": "The Vercel installation ID.",
+     "disableAfterSaving": false,
+     "divider": false,
+     "dynamicOptions": null,
+     "hideEmpty": false,
+     "instructions": null,
+     "instructionsHeading": "",
+     "isHidden": true,
+     "isOptional": false,
+     "isSecret": false,
+     "key": "installationId",
+     "multiselectDefaultOptions": null,
+     "multiselectOptions": null,
+     "name": "Installation ID",
+     "placeholder": "",
+     "type": "string"
+    },
+    {
+     "allowedValues": null,
+     "clearSecretsOnChange": false,
+     "codeLanguage": "",
+     "defaultValue": null,
+     "dependsOn": null,
+     "description": "The Vercel resource ID for this project.",
+     "disableAfterSaving": false,
+     "divider": false,
+     "dynamicOptions": null,
+     "hideEmpty": false,
+     "instructions": null,
+     "instructionsHeading": "",
+     "isHidden": true,
+     "isOptional": false,
+     "isSecret": false,
+     "key": "resourceId",
+     "multiselectDefaultOptions": null,
+     "multiselectOptions": null,
+     "name": "Vercel Resource ID",
+     "placeholder": "",
+     "type": "string"
+    }
+   ],
+   "validationRequest": null
+  },
+  "hideConfiguration": true
+ },
+ "categories": [
+  "infrastructure"
+ ],
+ "description": "Evaluate feature flags and bootstrap the LaunchDarkly Vercel SDK.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the access token generated from Vercel.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "accessToken",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Access Token",
+   "placeholder": "e.g. 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the installation ID generated from Vercel.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "installationId",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Installation ID",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "A link to the user's installation page on vercel.com",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": true,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "URL",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "hideOnIntegrationsPage": true,
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/vercel-native/assets/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/vercel-native/assets/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/vercel",
+  "privacyPolicy": "https://vercel.com/legal/privacy-policy",
+  "site": "https://www.vercel.com/",
+  "supportWebsite": ""
+ },
+ "name": "Vercel Native",
+ "otherCapabilities": [
+  "external"
+ ],
+ "overview": "Evaluate feature flags and bootstrap the LaunchDarkly Vercel SDK.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

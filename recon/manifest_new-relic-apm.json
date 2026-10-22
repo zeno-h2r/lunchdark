@@ -1,0 +1,166 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/new-relic-apm",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/new-relic-apm",
+   "type": "application/json"
+  }
+ },
+ "key": "new-relic-apm",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "X-Api-Key",
+      "value": "{{apiKey}}"
+     },
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "https://{{#if domain}}{{domain}}{{else}}api.newrelic.com{{/if}}/v2/applications/{{applicationId}}/deployments.json"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "flag": "templates/flag.json.hbs",
+    "validation": "templates/flag.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  },
+  "trigger": {
+   "auth": "",
+   "defaultEventName": "",
+   "documentation": "https://launchdarkly.com/docs/integrations/new-relic/triggers#connect-a-flag-trigger-to-new-relic-one",
+   "parser": {
+    "eventName": "/condition_name",
+    "url": "/incident_url"
+   },
+   "testEventNameRegexp": "^New Relic Alert - Test Condition$"
+  }
+ },
+ "categories": [
+  "monitoring"
+ ],
+ "description": "This integration sends LaunchDarkly audit events to New Relic as [deployment events](https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/record-monitor-deployments). Deprecated: New Relic no longer accepts REST API keys. Use the New Relic change tracking integration instead.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your [New Relic REST API key](https://docs.newrelic.com/docs/apis/get-started/intro-apis/types-new-relic-api-keys#rest-api-key).",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "apiKey",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "New Relic REST API key",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your [New Relic application ID](https://docs.newrelic.com/docs/accounts/install-new-relic/account-setup/app-id-other-product-ids#ui).",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "applicationId",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "New Relic application ID",
+   "placeholder": "123456",
+   "type": "string"
+  },
+  {
+   "allowedValues": [
+    "api.newrelic.com",
+    "api.eu.newrelic.com"
+   ],
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "api.newrelic.com",
+   "dependsOn": null,
+   "description": "Your New Relic data center. The default(US) is \"api.newrelic.com\". Use \"api.eu.newrelic.com\" if you are using the EU data center.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "domain",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Data Center",
+   "placeholder": "",
+   "type": "enum"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/new-relic-apm/assets/images/new-relic-horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/new-relic-apm/assets/images/new-relic-square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/new-relic",
+  "privacyPolicy": "https://newrelic.com/termsandconditions/privacy",
+  "site": "https://newrelic.com/",
+  "supportWebsite": ""
+ },
+ "name": "New Relic [Deprecated]",
+ "overview": "Monitor LaunchDarkly flag events in New Relic.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.1.0"
+}

@@ -1,0 +1,224 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/custom-approvals",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/custom-approvals",
+   "type": "application/json"
+  }
+ },
+ "key": "custom-approvals",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "allowIntegrationConfigurations": true,
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "approval": {
+   "allowAdditionalApprovalFormVariables": true,
+   "allowApprovalIntegrationConfigurations": true,
+   "approvalFormVariables": [],
+   "creationRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{ baseURL }}/api/approvals"
+    },
+    "jsonBody": "{\"_site\": {\"href\": \"{{_links.approval.href}}\"}, \"_id\": \"{{approvalId}}\", {{#if details.plainText}}\"details\": \"{{{details.plainText}}}\",{{/if}} \"project\": {\"name\":\"{{{project.name}}}\", \"key\": \"{{project.key}}\", \"tags\":[{{#each project.tags}}\"{{{this}}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]}, \"environment\": {\"name\":\"{{{project.environment.name}}}\", \"key\": \"{{project.environment.key}}\", \"tags\":[{{#each project.environment.tags}}\"{{this}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]}, \"{{{resource.resourceKind}}}\": {\"name\":\"{{{resource.name}}}\", \"key\": \"{{resource.key}}\", \"tags\":[{{#each resource.tags}}\"{{this}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]},{{#if title.member}}\"requestedBy\": {\"id\": \"{{member._id}}\", \"email\": \"{{member.email}}\"},{{/if}}\"shortDescription\": \"{{{title.plainText}}}\", \"timestamp\": \"{{timestamp.milliseconds}}\", \"approvalFormVariables\": { {{#each approvalFormVariables}} \"{{@key}}\": \"{{{this}}}\"{{#if @last}}{{else}},{{/if}}{{/each}} },\"comment\": \"{{{approvalDescription}}}\" }",
+    "parser": {
+     "approvalId": "/_id",
+     "approvalMatcher": "approved",
+     "rejectionMatcher": "declined",
+     "statusDisplay": "/status/display",
+     "statusValue": "/status/value",
+     "urlTemplate": "{{ baseURL }}/approvals?approvalID={{ context.approvalId }}"
+    }
+   },
+   "deletionRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/cancel"
+    },
+    "jsonBody": "",
+    "parser": {
+     "approvalId": "",
+     "approvalMatcher": "approved",
+     "rejectionMatcher": "declined",
+     "statusDisplay": "/status/display",
+     "statusValue": "/status/value",
+     "urlTemplate": ""
+    }
+   },
+   "environmentFormVariables": null,
+   "memberListRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Bearer {{apiKey}}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "GET",
+     "url": "{{baseURL}}/api/members"
+    },
+    "jsonBody": "",
+    "parser": {
+     "memberArrayPath": "/members",
+     "memberItems": {
+      "email": "/email",
+      "memberId": "/name"
+     }
+    }
+   },
+   "name": "Custom Approvals",
+   "postApplyRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/apply"
+    },
+    "jsonBody": "",
+    "parser": {
+     "approvalId": "",
+     "approvalMatcher": "approved",
+     "rejectionMatcher": "declined",
+     "statusDisplay": "/status/display",
+     "statusValue": "/status/value",
+     "urlTemplate": ""
+    }
+   },
+   "statusRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "GET",
+     "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/status"
+    },
+    "jsonBody": "",
+    "parser": {
+     "approvalId": "",
+     "approvalMatcher": "approved",
+     "rejectionMatcher": "declined",
+     "statusDisplay": "/status/display",
+     "statusValue": "/status/value",
+     "urlTemplate": ""
+    }
+   }
+  }
+ },
+ "categories": [
+  "approvals"
+ ],
+ "description": "Integrate LaunchDarkly approvals with an application of your own design.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the API your custom service will use to authenticate.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "apiKey",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "API Token",
+   "placeholder": "e.g. 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "The base URL of your custom approval service. This is where all of the API handlers should be set up.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "baseURL",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Custom approval service base URL",
+   "placeholder": "e.g. https://mycustomapprovalservice.com",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/custom-approvals/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/custom-approvals/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/custom-approvals",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://launchdarkly.com/",
+  "supportWebsite": ""
+ },
+ "name": "Custom Approvals",
+ "overview": "Integrate LaunchDarkly approvals with an application of your own design.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

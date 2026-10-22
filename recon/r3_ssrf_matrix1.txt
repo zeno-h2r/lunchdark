@@ -1,0 +1,51 @@
+[V1-direct] 400 900ms host='0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me'
+    is .oast.me blocklisted?
+    -> Host is not permitted
+
+[V2-idn-3002] 400 867ms host='0xfvy9xf0l070a369a4ln51he8uvdev0h.oast。me'
+    ideographic full stop -> IDNA dot
+    -> Host must be a hostname or IP address, optionally with a numeric port
+
+[V3-idn-ff0e] 400 877ms host='0xfvy9xf0l070a369a4ln51he8uvdev0h.oast．me'
+    fullwidth full stop -> IDNA dot
+    -> Host must be a hostname or IP address, optionally with a numeric port
+
+[V4-idn-ff61] 400 414ms host='0xfvy9xf0l070a369a4ln51he8uvdev0h.oast｡me'
+    halfwidth ideographic -> IDNA dot
+    -> Host must be a hostname or IP address, optionally with a numeric port
+
+[V5-metadata-goog] 400 865ms host='metadata.goog'
+    public DNS name resolving to 169.254.169.254
+    -> Host is not permitted
+
+[V6-md-ginternal] 400 972ms host='metadata.google.internal'
+    string-check coverage probe
+    -> Host is not permitted
+
+[V7-ipv4mapped] 400 1096ms host='[::ffff:169.254.169.254]'
+    IPv4-mapped IPv6 form
+    -> Host is not permitted
+
+[V8-baseline] 400 1146ms host='example.com'
+    baseline: allowed public host
+    -> Password may only include alphanumeric characters (A-Z, a-z, 0-9), dashes (-), and underscores (_)
+
+[V9-resolve-oracle] 400 1103ms host='r3dns-1792707186.0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me'
+    if passes: DNS query hits Collaborator NS
+    -> Host is not permitted
+
+[V10-dnsfail] 400 1108ms host='nonexistent-1792707186.example.com'
+    confirm NXDOMAIN oracle string
+    -> Host does not resolve
+
+===== SUMMARY =====
+V1-direct            400 BLOCKED
+V2-idn-3002          400 other
+V3-idn-ff0e          400 other
+V4-idn-ff61          400 other
+V5-metadata-goog     400 BLOCKED
+V6-md-ginternal      400 BLOCKED
+V7-ipv4mapped        400 BLOCKED
+V8-baseline          400 PASSED validation
+V9-resolve-oracle    400 BLOCKED
+V10-dnsfail          400 DNS-NX (passed blocklist!)

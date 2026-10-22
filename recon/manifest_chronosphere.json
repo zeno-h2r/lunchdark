@@ -1,0 +1,145 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/chronosphere",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/chronosphere",
+   "type": "application/json"
+  }
+ },
+ "key": "chronosphere",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "updateFallthrough",
+      "updateFlagVariations",
+      "updateFeatureWorkflows",
+      "updateGlobalArchived",
+      "updateOffVariation",
+      "updateOn",
+      "updatePrerequisites",
+      "updateRules",
+      "updateScheduledChanges",
+      "updateTargets",
+      "createFlag",
+      "deleteFlag",
+      "updateClientSideFlagAvailability",
+      "updateFlagDefaultVariations",
+      "updateName",
+      "updateTemporary",
+      "createTriggers",
+      "deleteTriggers",
+      "updateTriggers",
+      "updateFlagSalt"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": {
+     "headerName": "X-LD-Signature",
+     "hmacSecretFormVariableKey": "secretToken"
+    },
+    "method": "POST",
+    "url": "{{receiverURL}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {},
+   "useStandardWebhookPayload": true
+  }
+ },
+ "categories": [
+  "monitoring"
+ ],
+ "description": "Monitor LaunchDarkly feature flag change events in Chronosphere.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Chronosphere secret token.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "secretToken",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Chronosphere secret token",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Your Chronosphere receiver URL. Should look like https://{MY_COMPANY}.chronosphere.io/api/v1/data/events/receiver/launchdarkly",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "receiverURL",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Chronosphere receiver URL",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/chronosphere/assets/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/chronosphere/assets/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/chronosphere",
+  "privacyPolicy": "https://chronosphere.io/privacy/",
+  "site": "https://chronosphere.io/",
+  "supportWebsite": ""
+ },
+ "name": "Chronosphere Events",
+ "overview": "Monitor LaunchDarkly feature flag changes in Chronosphere.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

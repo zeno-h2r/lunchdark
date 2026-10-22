@@ -1,0 +1,7 @@
+### 1. token with inlineRole (createFlag on proj/default:env/test)
+ -> 400 {"message": "Unable to parse statement 1/2: Error parsing resource specifier \"proj/default:env/test:*\". Please refer to documentation for formatting conventions."}
+
+### 2. assignment-data-sources list + create + probe
+ list -> 200 (0 existing)
+ [ADS-clickhouse] 404 -> {"code": "not_found", "message": "Environment with key  not found"}
+ [ADS-flat] 404 -> {"code": "not_found", "message": "Environment with key  not found"}

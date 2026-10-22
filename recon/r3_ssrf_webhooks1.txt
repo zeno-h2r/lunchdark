@@ -1,0 +1,17 @@
+### Creating webhook.site listener
+webhook.site token: 9ed8f3c2-fcda-4e20-b554-3c02c62321a3 | url: https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3
+poll: https://webhook.site/token/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/requests?sorting=newest
+
+### W1 existing webhooks
+  None url=https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584 on=True tags=['bounty']
+  None url=https://d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/ld-webhook-probe on=True tags=['bounty']
+  None url=https://internal-probe-xyz.invalid-host-d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/hook on=True tags=['bounty']
+
+[W2-oast-direct] 201 {'_links': {'parent': {'href': '/api/v2/webhooks', 'type': 'application/json'}, 'self': {'href': '/api/v2/webhooks/6ada8abf40a7b8072deeefa8', 'type': 'applicati
+[W3-private-ip] 201 {'_links': {'parent': {'href': '/api/v2/webhooks', 'type': 'application/json'}, 'self': {'href': '/api/v2/webhooks/6ada8ac050300b07828f8ee2', 'type': 'applicati
+[W3b-localhost] 400 {'code': 'invalid_request', 'message': 'Port defined on the URL is not allowed. Use either port 80 or 443'}
+[W4-webhooksite] 201 {'_links': {'parent': {'href': '/api/v2/webhooks', 'type': 'application/json'}, 'self': {'href': '/api/v2/webhooks/6ada8ac28f049f07376083bf', 'type': 'applicati
+[W5-redirect-in] 201 {'_links': {'parent': {'href': '/api/v2/webhooks', 'type': 'application/json'}, 'self': {'href': '/api/v2/webhooks/6ada8ac38d015c070cdc3f42', 'type': 'applicati
+[W5b-redirect-md] 201 {'_links': {'parent': {'href': '/api/v2/webhooks', 'type': 'application/json'}, 'self': {'href': '/api/v2/webhooks/6ada8ac4de917707921ac6bc', 'type': 'applicati
+
+STATE SAVED. Next: fire flags then poll webhook.site.

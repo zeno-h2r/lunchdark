@@ -1,0 +1,19 @@
+### C1: custom-approvals without extra fields
+[CA-minimal] 400 -> {"code": "invalid_request", "message": "unknown field \"config\""}
+[CA-defaults] 400 -> {"code": "invalid_request", "message": "unknown field \"config\""}
+
+### C2: data-export destinations (GET then POST kinds)
+GET /api/v2/destinations/default/test -> 405 
+[msteams] 403 -> {"code": "forbidden", "message": "Destination kind msteams is unavailable"}
+[zapier] 403 -> {"code": "forbidden", "message": "Destination kind zapier is unavailable"}
+[datadog] 403 -> {"code": "forbidden", "message": "Destination kind datadog is unavailable"}
+[new-relic] 403 -> {"code": "forbidden", "message": "Destination kind new-relic is unavailable"}
+
+### C4: two-phase setup path for gated integrations
+[redis/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[unleash/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[grafana/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[jira/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[mattermost/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[zapier/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}
+[msteams/setup] 400 -> {"code": "invalid_request", "message": "setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}

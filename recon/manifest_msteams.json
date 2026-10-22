@@ -1,0 +1,105 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/msteams",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/msteams",
+   "type": "application/json"
+  }
+ },
+ "key": "msteams",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{{url}}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "default": "templates/default.json.hbs",
+    "environment": "templates/environment.json.hbs",
+    "project": "templates/project.json.hbs",
+    "validation": "templates/default.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  }
+ },
+ "categories": [
+  "messaging"
+ ],
+ "description": "Receive LaunchDarkly notifications in your Teams workspaces. Subscribe to changes in flags, projects, and other resources.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Microsoft Teams [incoming webhook URL](https://launchdarkly.com/docs/integrations/microsoft-teams/webhooks#set-up-a-workflow-in-microsoft-teams).",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Incoming webhook URL",
+   "placeholder": "",
+   "type": "uri"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/msteams/assets/images/microsoft-teams.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/msteams/assets/images/microsoft-teams.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/microsoft-teams/webhooks",
+  "privacyPolicy": "https://privacy.microsoft.com/en-us",
+  "site": "https://www.microsoft.com/microsoft-365/microsoft-teams/group-chat-software",
+  "supportWebsite": ""
+ },
+ "name": "Microsoft Teams incoming webhooks",
+ "overview": "Receive flag change notifications in your Teams workspaces.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

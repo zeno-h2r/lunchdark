@@ -1,0 +1,13 @@
+### 1. WS2 redirect -> IMDS
+ redirect set: True
+ fid: 6454e22f-419d-4dec-a4ba-2f2950a70023
+  [RD4-IMDS] failed: error listing unleash flags:  (302)
+
+### 2. create scoped API token with createFlag
+ token create -> 400 {"message": "Token must have a built-in role, at least one custom role, or an inline role with at least one statement"}
+ full: {"message": "Token must have a built-in role, at least one custom role, or an inline role with at least one statement"}
+
+### 3. restore WS2 to unleash JSON (fresh client response)
+ json set: True
+
+ (skipping REAL4 - no token)

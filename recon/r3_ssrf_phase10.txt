@@ -1,0 +1,25 @@
+### 0. sanity: httpbin redirect-to up?
+ httpbin: 302 -> http://example.com/
+ tinyurl->IMDS: <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <!
+
+### 1. fresh webhook.site tokens
+ WS2: 994a6f1a-8128-4a67-9697-9fd399e58ccf
+
+### 2. tinyurl redirect -> IMDS via flag-import (per-hop dial check)
+ fid: 0a1f0e8d-0bc8-4c2b-8a53-21d59f64ea6e
+  [RD2-IMDS] importing: (no error yet)
+
+### 3. real ldApiKey + fresh listener -> full unleash import
+ PUT json ok: True
+ fid: da40549d-1f24-4725-9e82-de2211f8f7d2
+  [REAL2] complete: (no error yet)
+  flag zeno-imported-flag: 404
+  flag zeno-imported-flag-2: 404
+   hit: 2026-10-22 22:33:23 GET https://webhook.site/994a6f1a-8128-4a67-9697-9fd399e58ccf/unleash-api/
+
+### 4. CA config-key discovery round 3
+  [CA-configuration] 400 -> {"code": "invalid_request", "message": "unknown field \"configuration\""}
+  [CA-settings] 400 -> {"code": "invalid_request", "message": "unknown field \"settings\""}
+  [CA-fields] 400 -> {"code": "invalid_request", "message": "unknown field \"fields\""}
+  [CA-data] 400 -> {"code": "invalid_request", "message": "unknown field \"data\""}

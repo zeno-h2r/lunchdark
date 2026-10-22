@@ -1,0 +1,65 @@
+### 1. PUT webhook.site default response (unleash client features JSON)
+ PUT: {"uuid":"9ed8f3c2-fcda-4e20-b554-3c02c62321a3","redirect":true,"alias":null,"actions":false,"cors":false,"expiry":null,"timeout":0,"listen":0,"premium":false,"user_id":0,"password":false,"description"
+
+### 2. retrigger import #1 (webhook.site now returns valid JSON)
+trigger -> 201
+
+### 3. check if imported flags were CREATED (parse-driven side effect)
+  zeno-imported-flag: 404
+  zeno-imported-flag-2: 404
+
+### 4. listener hit list (fetch sequence)
+ total: 31
+  2026-10-22 22:25:23 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client/features
+  2026-10-22 22:24:34 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect
+  2026-10-22 22:24:34 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook
+  2026-10-22 22:24:17 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect
+  2026-10-22 22:24:17 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook
+  2026-10-22 22:23:54 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client/features
+  2026-10-22 22:21:53 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client/features
+  2026-10-22 22:21:10 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client/features
+  2026-10-22 22:21:08 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook
+  2026-10-22 22:21:08 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect
+
+### 5. IMDS import #2 config - status/error fields after trigger
+ keys: ['_links', '_id', 'integrationKey', 'projectKey', 'config', 'tags', 'name', 'version', '_access', '_status']
+ sourceBaseUrl: http://169.254.169.254/latest/meta-data/iam/security-credentials/ld-ssrf-role
+  _status: {"status": "failed", "lastError": 1792707857181, "errors": [{"integrationId": "ada3edd9-2c79-4937-8ecf-02f89691a4d9", "message": "Get \"http://169.254.169.254/latest/meta-data/iam/security-credentials
+
+### 6. aiconfig-test-run full manifest
+[
+{
+"allowedValues": [
+"Anthropic",
+"Bedrock",
+"OpenAI"
+],
+"clearSecretsOnChange": false,
+"codeLanguage": "",
+"defaultValue": null,
+"dependsOn": null,
+"description": "Select your model provider",
+"disableAfterSaving": false,
+"divider": false,
+"dynamicOptions": null,
+"hideEmpty": false,
+"instructions": null,
+"instructionsHeading": "",
+"isHidden": false,
+"isOptional": false,
+"isSecret": false,
+"key": "provider",
+"multiselectDefaultOptions": null,
+"multiselectOptions": null,
+"name": "Model Provider",
+"placeholder": "Select your model provider",
+"type": "enum"
+},
+{
+"allowedValues": null,
+"clearSec
+
+### 7. flagImport capability across manifests
+  split: flagImport fields=[]
+  statsig: flagImport fields=[]
+  unleash: flagImport fields=[]

@@ -1,0 +1,153 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/splunk",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/splunk",
+   "type": "application/json"
+  }
+ },
+ "key": "splunk",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Authorization",
+      "value": "Splunk {{token}}"
+     },
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{base-url}}/services/collector/event"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "default": "templates/template.json.hbs",
+    "validation": "templates/template.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  }
+ },
+ "categories": [
+  "monitoring"
+ ],
+ "description": "Monitor LaunchDarkly flag and other change events in Splunk and include these events in your reports, charts, alerts, and dashboards.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your [Splunk HTTP event collector base URL](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector) (omitting the path).",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "base-url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "HTTP event collector base URL",
+   "placeholder": "https://http-inputs-<host>.splunkcloud.com",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your HTTP event collector token value.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "token",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Token",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Splunk Cloud instances sign their own SSL certificates by default. If you use Splunk Cloud, you may need to skip certificate validation in order for this integration to work.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "skip-ca-verification",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Skip certificate verification",
+   "placeholder": "",
+   "type": "boolean"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/splunk/assets/images/splunk-logo.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/splunk/assets/images/splunk-icon.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/splunk",
+  "privacyPolicy": "https://www.splunk.com/en_us/legal/splunk-data-security-and-privacy.html",
+  "site": "https://www.splunk.com/",
+  "supportWebsite": ""
+ },
+ "name": "Splunk",
+ "overview": "Monitor LaunchDarkly flag changes in Splunk.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

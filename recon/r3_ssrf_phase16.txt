@@ -1,0 +1,8 @@
+### ADS clickhouse-experimentation: create with table + OAST host
+create -> 400 {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}
+
+### variant: private IP host (defense check on this path)
+create(private) -> 400 {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}
+
+### variant: metadata.goog
+create(mdgoog) -> 400 {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}

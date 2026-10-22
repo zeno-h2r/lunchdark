@@ -1,0 +1,11 @@
+### 1. REAL4 with fixed resource specifier
+ token created: api-328a2383-a765-4f...
+ REAL4 create -> 201 fid=16ec7413-c9fa-4154-b5fd-fc688847784a
+ REAL4 status: failed
+   err: {"integrationId": "16ec7413-c9fa-4154-b5fd-fc688847784a", "message": "received 1 errors. Errors:\n{\"message\":\"Access to the requested resource was denied\",\"reason\":{\"effect\":\"deny\"},\"access\":{\"action\":\"createFlag\",\"resource
+   err: {"integrationId": "16ec7413-c9fa-4154-b5fd-fc688847784a", "message": "received 1 errors. Errors:\n{\"message\":\"Access to the requested resource was denied\",\"reason\":{\"effect\":\"deny\"},\"access\":{\"action\":\"createFlag\",\"resource
+ flag check: 404
+
+### 2. ADS create with environmentKey
+ [ADS-env] 400 -> {"code": "invalid_request", "message": "Unsupported integration key:"}
+ [ADS-env2] 400 -> {"code": "invalid_request", "message": "Unsupported integration key:"}

@@ -1,0 +1,178 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/msteams-app",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/msteams-app",
+   "type": "application/json"
+  }
+ },
+ "key": "msteams-app",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": {
+     "headerName": "X-LD-Signature",
+     "hmacSecretFormVariableKey": "secret"
+    },
+    "method": "POST",
+    "url": "{{url}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {},
+   "useStandardWebhookPayload": true
+  },
+  "flagLink": {
+   "emptyState": {
+    "title": "No Microsoft Teams conversations link to this flag."
+   },
+   "header": "Microsoft Teams conversation",
+   "metadata": {
+    "avatarUrl": {
+     "type": "uri"
+    },
+    "channelName": {
+     "type": "string"
+    },
+    "displayName": {
+     "type": "string"
+    },
+    "message": {
+     "type": "string"
+    }
+   },
+   "uiBlocks": {
+    "context": {
+     "elements": [
+      {
+       "isBold": false,
+       "isTimestamp": false,
+       "text": "Posted in",
+       "url": ""
+      },
+      {
+       "isBold": true,
+       "isTimestamp": false,
+       "text": "#{{{metadata.channelName}}}",
+       "url": ""
+      },
+      {
+       "isBold": false,
+       "isTimestamp": false,
+       "text": "View message",
+       "url": "{{{deepLink}}}"
+      }
+     ]
+    },
+    "description": "{{{metadata.message}}}",
+    "image": {
+     "isAvatar": true,
+     "isIcon": false,
+     "sourceUrl": "{{{metadata.avatarUrl}}}"
+    },
+    "name": "{{{metadata.displayName}}}"
+   }
+  },
+  "hideConfiguration": true
+ },
+ "categories": [
+  "messaging"
+ ],
+ "description": "With the LaunchDarkly Microsoft Teams app, you can view, monitor, and control feature flags directly from your Teams workspaces. Use the app to find feature flags, subscribe channels to notifications about flag changes, and toggle flags on or off.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Microsoft Teams webhook URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Incoming webhook URL",
+   "placeholder": "",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "Enter the secret shared between Microsoft Teams and LaunchDarkly",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": true,
+   "key": "secret",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Secret",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/msteams-app/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/msteams-app/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/microsoft-teams",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software",
+  "supportWebsite": ""
+ },
+ "name": "Microsoft Teams App",
+ "overview": "View, monitor, and control flags interactively from our official Microsoft Teams app.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

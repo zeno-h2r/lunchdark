@@ -1,0 +1,13 @@
+[I1-unleash-oast] 403 unleash -> {"code": "forbidden", "message": "Integration \"unleash\" does not allow integration configurations"}
+[I2-approvals-oast] 400 custom-approvals -> {"code": "invalid_request", "message": "unknown field \"on\""}
+[I3-redis-oast] 403 redis -> {"code": "forbidden", "message": "Integration \"redis\" does not allow integration configurations"}
+[I4-redis-private] 403 redis -> {"code": "forbidden", "message": "Integration \"redis\" does not allow integration configurations"}
+[I5-redis-internal-ports] 403 redis -> {"code": "forbidden", "message": "Integration \"redis\" does not allow integration configurations"}
+[I6-jira-oast] 403 jira -> {"code": "forbidden", "message": "Integration \"jira\" does not allow integration configurations"}
+[I7-grafana-oast] 403 grafana -> {"code": "forbidden", "message": "Integration \"grafana\" does not allow integration configurations"}
+[I8-zapier-oast] 403 zapier -> {"code": "forbidden", "message": "Integration \"zapier\" does not allow integration configurations"}
+[I9-mattermost] 403 mattermost -> {"code": "forbidden", "message": "Integration \"mattermost\" does not allow integration configurations"}
+[I10-msteams] 403 msteams -> {"code": "forbidden", "message": "Integration \"msteams\" does not allow integration configurations"}
+
+saved 0 created configs -> recon/r3_ssrf_integrations.json
+NEXT: fire flag change, then trigger unleash import, then poll listener.

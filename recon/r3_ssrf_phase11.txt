@@ -1,0 +1,29 @@
+### 1. httpbin redirect -> IMDS, retry with clean URL
+ fid: 47e4384f-bfb1-4cfc-afd2-f8b465e93a9e
+  [RD3-IMDS] failed: error listing unleash flags: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p>
+ (404)
+
+### 2. REAL3: aligned sourceProjectId, full JSON -> flag creation proof
+ fid: ae151bd7-c924-4bef-b694-464b52cc1f56
+  [REAL3] failed: received 2 errors. Errors:
+{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createFlag","resource":"proj/default:env/test:flag/zeno-imported-flag;imported-from-unleash"},"code":"forbidden"}
+{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createFlag","resource":"proj/default:env/test:flag/
+  listener hits: 2
+    2026-10-22 22:35:08 GET https://webhook.site/994a6f1a-8128-4a67-9697-9fd399e58ccf/unleash-api/api/c
+    2026-10-22 22:33:23 GET https://webhook.site/994a6f1a-8128-4a67-9697-9fd399e58ccf/unleash-api/api/c
+  flag zeno-imported-flag: 404
+  flag zeno-imported-flag-2: 404
+
+### 3. RD2-IMDS final status (garbage tinyurl import)
+  [RD2] importing: (no error yet)
+
+### 4. CA create WITHOUT beta header
+  [CA-nobeta-flat] 403 -> {"message": "This API is in beta. To use it, your request must include the header `LD-API-Version: beta`."}
+  [CA-nobeta-cfg] 403 -> {"message": "This API is in beta. To use it, your request must include the header `LD-API-Version: beta`."}
+  [CA-beta-cfg-only] 400 -> {"code": "invalid_request", "message": "unknown field \"apiKey\""}
+
+### 5. list integration-configurations (any existing? shape?)
+  [404] 0 configurations

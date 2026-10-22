@@ -1,0 +1,72 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/launchdarkly-developer-toolbar",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/launchdarkly-developer-toolbar",
+   "type": "application/json"
+  }
+ },
+ "key": "launchdarkly-developer-toolbar",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "allowIntegrationConfigurations": true,
+ "author": "LaunchDarkly",
+ "capabilities": {},
+ "categories": [
+  "developer-tools"
+ ],
+ "description": "Allows users to whitelist domains where the LaunchDarkly Developer Toolbar can be used. This is needed to allow the Developer Toolbar to be used in hosted environments.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Comma-separated list of domains where the Developer Toolbar can be used.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "allowedDomains",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Allowed Domains",
+   "placeholder": "e.g. localhost:3000, dev.myapp.com, staging.myapp.com",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/launchdarkly-developer-toolbar/assets/images/osmo.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/launchdarkly-developer-toolbar/assets/images/osmo.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://launchdarkly.com",
+  "supportWebsite": ""
+ },
+ "name": "LaunchDarkly Developer Toolbar",
+ "overview": "Configure allowed domains for LaunchDarkly Developer Toolbar.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

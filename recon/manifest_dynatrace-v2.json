@@ -1,0 +1,271 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/dynatrace-v2",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/dynatrace-v2",
+   "type": "application/json"
+  }
+ },
+ "key": "dynatrace-v2",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "name": "Authorization",
+      "value": "Api-Token {{apiToken}}"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{url}}/api/v2/events/ingest"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "flag": "templates/flag.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  },
+  "reservedCustomProperties": [
+   {
+    "description": "",
+    "key": "dynatrace-v2",
+    "name": "Dynatrace tags (V2 API)"
+   }
+  ]
+ },
+ "categories": [
+  "monitoring"
+ ],
+ "description": "Monitor LaunchDarkly flag change events alongside your Dynatrace performance graphs. Correlate feature rollouts to changes in your system's operational health.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Dynatrace Access token. [Learn more](https://www.dynatrace.com/support/help/shortlink/api-authentication#generate-a-token) about generating tokens. The 'Access problem and event feed, metrics, and topology' scope is required.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "apiToken",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Dynatrace Access token",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the URL used to access your Dynatrace (managed or hosted) service. Follow the pattern shown in the placeholder text.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Dynatrace URL",
+   "placeholder": "https://{your-environment-id}.live.dynatrace.com",
+   "type": "uri"
+  },
+  {
+   "allowedValues": [
+    "APPLICATION",
+    "APPLICATION_METHOD",
+    "APPLICATION_METHOD_GROUP",
+    "AUTO_SCALING_GROUP",
+    "AUXILIARY_SYNTHETIC_TEST",
+    "AWS_APPLICATION_LOAD_BALANCER",
+    "AWS_AVAILABILITY_ZONE",
+    "AWS_CREDENTIALS",
+    "AWS_LAMBDA_FUNCTION",
+    "AWS_NETWORK_LOAD_BALANCER",
+    "AZURE_API_MANAGEMENT_SERVICE",
+    "AZURE_APPLICATION_GATEWAY",
+    "AZURE_COSMOS_DB",
+    "AZURE_CREDENTIALS",
+    "AZURE_EVENT_HUB",
+    "AZURE_EVENT_HUB_NAMESPACE",
+    "AZURE_FUNCTION_APP",
+    "AZURE_IOT_HUB",
+    "AZURE_LOAD_BALANCER",
+    "AZURE_MGMT_GROUP",
+    "AZURE_REDIS_CACHE",
+    "AZURE_REGION",
+    "AZURE_SERVICE_BUS_NAMESPACE",
+    "AZURE_SERVICE_BUS_QUEUE",
+    "AZURE_SERVICE_BUS_TOPIC",
+    "AZURE_SQL_DATABASE",
+    "AZURE_SQL_ELASTIC_POOL",
+    "AZURE_SQL_SERVER",
+    "AZURE_STORAGE_ACCOUNT",
+    "AZURE_SUBSCRIPTION",
+    "AZURE_TENANT",
+    "AZURE_VM",
+    "AZURE_VM_SCALE_SET",
+    "AZURE_WEB_APP",
+    "CF_APPLICATION",
+    "CF_FOUNDATION",
+    "CINDER_VOLUME",
+    "CLOUD_APPLICATION",
+    "CLOUD_APPLICATION_INSTANCE",
+    "CLOUD_APPLICATION_NAMESPACE",
+    "CONTAINER_GROUP",
+    "CONTAINER_GROUP_INSTANCE",
+    "CUSTOM_APPLICATION",
+    "CUSTOM_DEVICE",
+    "CUSTOM_DEVICE_GROUP",
+    "DCRUM_APPLICATION",
+    "DCRUM_SERVICE",
+    "DCRUM_SERVICE_INSTANCE",
+    "DEVICE_APPLICATION_METHOD",
+    "DISK",
+    "DOCKER_CONTAINER_GROUP_INSTANCE",
+    "DYNAMO_DB_TABLE",
+    "EBS_VOLUME",
+    "EC2_INSTANCE",
+    "ELASTIC_LOAD_BALANCER",
+    "ENVIRONMENT",
+    "EXTERNAL_SYNTHETIC_TEST_STEP",
+    "GCP_ZONE",
+    "GEOLOCATION",
+    "GEOLOC_SITE",
+    "GOOGLE_COMPUTE_ENGINE",
+    "HOST",
+    "HOST_GROUP",
+    "HTTP_CHECK",
+    "HTTP_CHECK_STEP",
+    "HYPERVISOR",
+    "KUBERNETES_CLUSTER",
+    "KUBERNETES_NODE",
+    "MOBILE_APPLICATION",
+    "NETWORK_INTERFACE",
+    "NEUTRON_SUBNET",
+    "OPENSTACK_PROJECT",
+    "OPENSTACK_REGION",
+    "OPENSTACK_VM",
+    "OS",
+    "PROCESS_GROUP",
+    "PROCESS_GROUP_INSTANCE",
+    "RELATIONAL_DATABASE_SERVICE",
+    "SERVICE",
+    "SERVICE_INSTANCE",
+    "SERVICE_METHOD",
+    "SERVICE_METHOD_GROUP",
+    "SWIFT_CONTAINER",
+    "SYNTHETIC_LOCATION",
+    "SYNTHETIC_TEST",
+    "SYNTHETIC_TEST_STEP",
+    "VIRTUALMACHINE",
+    "VMWARE_DATACENTER"
+   ],
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "APPLICATION",
+   "dependsOn": null,
+   "description": "Select the Dynatrace entity `meType` to associate with all events.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "entity",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Dynatrace entity",
+   "placeholder": "",
+   "type": "enum"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "If provided, all feature flag events matching the policy filter will be associated with Dynatrace entities with the same tag.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "tag",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Dynatrace tag",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/dynatrace-v2/assets/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/dynatrace-v2/assets/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/dynatrace",
+  "privacyPolicy": "https://www.dynatrace.com/company/trust-center/privacy/",
+  "site": "https://www.dynatrace.com/",
+  "supportWebsite": ""
+ },
+ "name": "Dynatrace (V2 API)",
+ "overview": "Monitor LaunchDarkly flag changes in Dynatrace.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

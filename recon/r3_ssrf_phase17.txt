@@ -1,0 +1,3 @@
+[ADS-dbtable] 400 -> {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}
+[ADS-sql] 400 -> {"code": "invalid_request", "message": "Invalid key ''. Keys must only contain letters, numbers, '-', '_', or '.' and must start with an alphanumeric"}
+[ADS-nested] 400 -> {"code": "invalid_request", "message": "Either a table name, a view name, or a SQL query must be provided"}

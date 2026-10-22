@@ -1,0 +1,62 @@
+### custom-approvals schema discovery
+[CA-empty] 400 -> {"code": "invalid_request", "message": "Required config value not found: 'apiKey'"}
+[CA-name] 400 -> {"code": "invalid_request", "message": "Required config value not found: 'apiKey'"}
+[CA-config-str] 400 -> {"code": "invalid_request", "message": "unknown field \"config\""}
+
+### flag-import capability path (unleash)
+[FI-unleash] 201 -> {"_links": {"self": {"href": "/api/v2/integration-capabilities/flag-import/default/unleash/87fd93d6-82de-4da2-b940-d417051fcaae", "type": "application/json"}, "parent": {"href": "/api/v2/integration-capabilities/flag-import", "type": "application/json"}, "project": {"href": "/api/v2/projects/default
+[FI-unleash-flat] 400 -> {"code": "invalid_request", "message": "unknown field \"sourceBaseUrl\""}
+
+### flag-import GET list
+[404] " \n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    \n\n    <meta charset=\"utf-8\">\n    \n    <title>Not found</title>\n    <meta name=\"description\" content=\"LaunchDarkly\">\n    <meta name=\"viewport\" content=\"width=device-width\">\n\n    <link rel=\"icon\" type=\"image/svg+xml\" href=\"https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg\">\n    <link rel=\"icon\" type=\"ima
+
+### check manifest createSchema hints (custom-approvals)
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/custom-approvals",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/custom-approvals",
+   "type": "application/json"
+  }
+ },
+ "key": "custom-approvals",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "allowIntegrationConfigurations": true,
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "approval": {
+   "allowAdditionalApprovalFormVariables": true,
+   "allowApprovalIntegrationConfigurations": true,
+   "approvalFormVariables": [],
+   "creationRequest": {
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{ baseURL }}/api/approvals"
+    },
+    "jsonBody": "{\"_site\": {\"href\": \"{{_links.approval.href}}\"}, \"_id\": \"{{approvalId}}\", {{#if details.plainText}}\"details\": \"{{{details.plainText}}}\",{{/if}} \"project\": {\"name\":\"{{{project.name}}}\", \"key\": \"{{project.key}}\", \"tags\":[{{#each project.tags}}\"{{{this}}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]}, \"environment\": {\"name\":\"{{{project.environment.name}}}\", \"key\": \"{{project

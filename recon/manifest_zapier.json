@@ -1,0 +1,103 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/zapier",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/zapier",
+   "type": "application/json"
+  }
+ },
+ "key": "zapier",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{url}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {
+    "default": "templates/default.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  },
+  "hideConfiguration": true
+ },
+ "categories": [
+  "automation"
+ ],
+ "description": "Trigger Zaps based on LaunchDarkly audit log events, and take actions in LaunchDarkly from your Zaps.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your zap webhook URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Incoming webhook URL",
+   "placeholder": "",
+   "type": "uri"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/zapier/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/zapier/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/zapier",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://zapier.com",
+  "supportWebsite": ""
+ },
+ "name": "Zapier",
+ "overview": "Zapier triggers and actions for LaunchDarkly.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.4"
+}

@@ -1,0 +1,168 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/redis",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/redis",
+   "type": "application/json"
+  }
+ },
+ "key": "redis",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "bigSegmentStore": {
+   "dbStyle": "redis"
+  }
+ },
+ "categories": [
+  "audience-sync",
+  "big-segment-store"
+ ],
+ "description": "Integrate with a persistent store for segments with over 15k targets or synced from external tools. The Redis big segment store syncs these LaunchDarkly segments with your Redis DB.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Your Redis host.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "host",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Host",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "6379",
+   "dependsOn": null,
+   "description": "Your Redis port. Uses the default port of 6379 if not specified.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "port",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Port",
+   "placeholder": "6379",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "Your Redis username. Leave this field empty if your Redis DB does not have a username configured.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "username",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Username",
+   "placeholder": "default",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "",
+   "dependsOn": null,
+   "description": "Your Redis password.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": true,
+   "key": "password",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Password",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": false,
+   "dependsOn": null,
+   "description": "Check this box if your Redis DB has TLS (SSL) enabled.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "tlsEnabled",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Connect with TLS",
+   "placeholder": "",
+   "type": "boolean"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/redis/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/redis/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/redis",
+  "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+  "site": "https://redis.io/",
+  "supportWebsite": ""
+ },
+ "name": "Redis big segment store",
+ "overview": "Integrate with a persistent store for segments with over 15k targets or synced from external tools.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

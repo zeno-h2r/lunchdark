@@ -1,0 +1,179 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/datadog",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/datadog",
+   "type": "application/json"
+  }
+ },
+ "key": "datadog",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "LaunchDarkly",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/production:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     },
+     {
+      "name": "DD-API-KEY",
+      "value": "{{apiKey}}"
+     }
+    ],
+    "hmacSignature": null,
+    "method": "POST",
+    "url": "{{hostURL}}/api/v1/events"
+   },
+   "includeErrorResponseBody": true,
+   "templates": {
+    "default": "templates/default.json.hbs",
+    "environment": "templates/environment.json.hbs",
+    "member": "templates/member.json.hbs",
+    "project": "templates/project.json.hbs",
+    "validation": "templates/default.json.hbs"
+   },
+   "useStandardWebhookPayload": false
+  },
+  "reservedCustomProperties": [
+   {
+    "description": "Tags are a way of adding additional dimension to LaunchDarkly change events in Datadog so they can be filtered, aggregated, and compared in visualizations.",
+    "key": "datadog",
+    "name": "Datadog tags"
+   }
+  ],
+  "trigger": {
+   "auth": "",
+   "defaultEventName": "",
+   "documentation": "https://launchdarkly.com/docs/integrations/datadog/triggers#connect-a-flag-trigger-to-datadog",
+   "parser": {
+    "eventName": "/title",
+    "url": "/url"
+   },
+   "testEventNameRegexp": ".+ \\[TEST\\].+"
+  }
+ },
+ "categories": [
+  "monitoring"
+ ],
+ "description": "Monitor LaunchDarkly flag and other change events in DataDog. Correlate feature rollouts to changes in your system\u2019s operational health.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Datadog [API key](https://app.datadoghq.com/organization-settings/api-keys).",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "apiKey",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Datadog API key",
+   "placeholder": "",
+   "type": "string"
+  },
+  {
+   "allowedValues": [
+    "https://api.datadoghq.com",
+    "https://api.datadoghq.eu",
+    "https://us3.datadoghq.com",
+    "https://us5.datadoghq.com",
+    "https://app.ddog-gov.com"
+   ],
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": "https://api.datadoghq.com",
+   "dependsOn": null,
+   "description": "Your Datadog host URL. Read [How do I tell which Datadog site I am on?](https://docs.datadoghq.com/getting_started/site/#how-do-i-tell-which-datadog-site-i-am-on) if you are unsure which host URL to select.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "hostURL",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Datadog host URL",
+   "placeholder": "",
+   "type": "enum"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": false,
+   "dependsOn": null,
+   "description": "Don't send related member email and names.",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": true,
+   "isSecret": false,
+   "key": "hideMemberDetails",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Hide member details",
+   "placeholder": "",
+   "type": "boolean"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/datadog/assets/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/datadog/assets/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/datadog",
+  "privacyPolicy": "https://www.datadoghq.com/legal/privacy",
+  "site": "https://www.datadoghq.com/",
+  "supportWebsite": ""
+ },
+ "name": "Datadog Events",
+ "overview": "Monitor LaunchDarkly changes in Datadog.",
+ "supportEmail": "support@launchdarkly.com",
+ "version": "1.0.0"
+}

@@ -245,3 +245,26 @@ All results: `recon/r3_*.txt`. Verdict per technique:
 **Net R3: 0 reportable P1/P2 yet — all surfaces either org-fenced, plan-gated, or parameter-validated.** Highest-potential pending item: warehouse complete-setup rebinding SSRF (needs external callback host), plus un-run: observability query DSL injection (E2), device-code flow (C3), product-analytics `/graphql` surface, approval-request create grammar.
 
 Artifacts created in [ORG]: dataset `zeno-ds-probe` (e3ddcc72-d35e-43f5-8dcd-db74687f1b50); follower on flag `zeno-allowed-1` (ORG member). No canary destination UUIDs touched.
+
+---
+Task ID: R3-SSRF
+Agent: Super Z (main)
+Task: Deep SSRF + server-side fetch surface testing on app.launchdarkly.com using fresh OAST 0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me
+
+Work Log:
+- Matrix 1 (clickhouse dest complete-setup): .oast.me IS blocklisted (all 6 Collaborator TLDs covered); IDN dot tricks (U+3002/FF0E/FF61) rejected by host parser pre-IDNA; metadata.goog + metadata.google.internal blocked; [::ffff:169.254.169.254] blocked; example.com passes; NXDOMAIN oracle confirmed. Surface DEFENDED.
+- Webhook layer: NO URL blocklist at creation — accepted http://169.254.169.254/, http://localhost/, http://metadata.goog/, http://metadata.google.internal/, http://[fd00:ec2::254]/ (12 webhooks created, tags zeno-ssrf); only port 80/443 enforced. Redirect following CONFIRMED (httpbin 302 -> webhook.site hit, UA LD-Integrations/1.0). Egress = AWS us-east-1 (54.144.218.89, 34.236.6.43, 54.221.221.197). Delivery status NOT exposed via API -> private-IP reachability unprovable via webhooks.
+- Integration manifests: 19 URL/host-bearing integrations enumerated (recon/manifest_*.json). Almost all plan-gated 403 "does not allow integration configurations". custom-approvals NOT gated but create schema unresolved (tried name/config/on/apiKey/baseURL/values/variables/settings/fields/data/configuration/variables — all unknown-field errors; SPA sends {name,config,on} per JS bundle; manifest shows POST {{baseURL}}/api/approvals with Bearer apiKey + Handlebars body).
+- Flag import (unleash) = UNGATED at API on Foundation plan. Full characterization: POST /api/v2/integration-capabilities/flag-import/{proj}/unleash {config:{sourceBaseUrl,sourceApiKey,ldApiKey,sourceProjectId,sourceEnvironmentId}} + /trigger.
+  * Fetch path: GET {sourceBaseUrl}/api/client/features from AWS 52.21.152.96, arbitrary ports allowed, NO redirect following (302 treated as final response), dial-time Go Control func: "dial tcp HOST:PORT: X is not a public IP address" — catches loopback/link-local/metadata.goog/sslip/nip/IPv4-mapped-v6.
+  * FULL ERROR REFLECTION via _status.errors[].message: dial errors, JSON parse first-char, AND full upstream response bodies for non-2xx ("error listing LD flags: {body} (401)"). Public-HTTP port-scan oracle possible.
+  * *** POC COMPLETE (reflected SSRF + data injection): attacker JSON served at sourceBaseUrl -> LD parsed features[] -> createFlag executed -> REAL flag "zeno-imported-flag" created (desc/tags attacker-chosen, tag imported-from-unleash). Verified GET /api/v2/flags/default/zeno-imported-flag = 200. Chain blocked ONLY by ldApiKey privileges (writer token sufficed). ***
+- Warehouse experimentation ADS (POST /internal/projects/{p}/assignment-data-sources): LIVE surface, integrationKey clickhouse-experimentation accepted; schema needs key+sqlQuery+columnMappings; blocked at "Unexpected JSON representation" (columnMappings shape) — time-boxed. Probe endpoint exists: /assignment-data-sources/{k}/probe.
+- OAST usage: webhook W2 (oast.me/wh-direct), import FI3 (oast/unleash-api — LD fetched Collaborator HTML twice, parse error 'invalid character <' proves HTTP interaction), clickhouse V1/V9 blocked pre-DNS. USER: check Burp Collaborator for DNS+HTTP hits from 52.x/54.x AWS.
+
+Stage Summary:
+- Artifacts: recon/r3_ssrf_*.txt (phases 1-19), recon/manifest_*.json, scripts/ssrf_*.py (persisted harness).
+- Verdict: clickhouse dest + import fetcher + ADS = defended (dial-time public-IP + blocklists + no-redirect). Webhook layer = weakest (no hostname checks at creation, accepts private/metadata URLs, follows redirects) but no status oracle -> impact unprovable blind. Flag-import = full reflection + attacker-JSON->createFlag PoC (by-design fetch, feature is admin-configured; reportable angle = response-driven object creation + body reflection, likely P4/P5 unless paired with plan-gate bypass claim — verify UI gating for Flag Import on Foundation plan first).
+- Egress intel: webhooks/imports = AWS EC2 us-east-1; warehouse = GCP 35.192.85.117/32.
+- Test assets in [ORG] to clean later: 12 webhooks (zeno-ssrf tag), 7 unleash imports (2 with IMDS URL), flags zeno-imported-flag(-2), tokens zeno-import-poc/zeno-import-writer, datasets/followers from earlier rounds. Canaries untouched.
+- Next queue: CA create schema (via UI proxy capture), ADS columnMappings grammar, E2 observability injection, C3 device-code, /graphql surface.

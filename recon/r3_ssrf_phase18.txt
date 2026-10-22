@@ -1,0 +1,2 @@
+create -> 400 {"code": "invalid_request", "message": "Assignment timestamp column is required"}
+not created

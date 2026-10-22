@@ -1,0 +1,36 @@
+### 0. what does the listener actually return now?
+HTTP/2 200 
+server: nginx
+content-type: application/json
+x-request-id: 1de9c27b-8767-49e9-9af8-855da5a0a81f
+x-token-id: 9ed8f3c2-fcda-4e20-b554-3c02c62321a3
+cache-control: no-cache, private
+date: Thu, 22 Oct 2026 22:27:59 GMT
+
+{"version": 1, "features": [{"name": "zeno-imported-flag", "description": "created via LD SSRF response parsing", "enabled": true, "stale": false, "type": "release", "projec
+
+### 1. dial-check bypass matrix
+  [R1-redirect-imds] failed: error listing unleash flags: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p
+  [R2-redirect-mapped6] failed: error listing unleash flags: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server.  If you entered the URL manually please check your spelling and try again.</p
+  [R3-direct-mapped6] failed: Get "http://[::ffff:169.254.169.254]/api/client/features": dial tcp 169.254.169.254:80: 169.254.169.254 is not a public IP address
+  [R4-port8080] failed: Get "http://example.com:8080/api/client/features": net/http: request canceled
+  [R5-sslip-private] failed: Get "http://10.0.0.5.sslip.io/api/client/features": dial tcp 10.0.0.5:80: 10.0.0.5 is not a public IP address
+  [R6-nip-private] failed: Get "http://192.168.1.1.nip.io/api/client/features": dial tcp 192.168.1.1:80: 192.168.1.1 is not a public IP address
+  [R7-mdgoog] failed: Get "http://metadata.goog/api/client/features": dial tcp 169.254.169.254:80: 169.254.169.254 is not a public IP address
+  [R8-loopback] failed: Get "http://localhost/api/client/features": dial tcp 127.0.0.1:80: 127.0.0.1 is not a public IP address
+  [R9-non2xx-reflect] failed: error listing LD flags: {"code":"unauthorized","message":"Invalid account ID header"} (401)
+
+### 2. set listener to 403+JSON to test non-2xx body reflection
+ PUT status403: {"uuid":"9ed8f3c2-fcda-4e20-b554-3c02c62321a3","redirect":true,"alias":null,"actions":false,"cors":false,"expiry":null,"
+  [R9 retrigger] failed: error listing LD flags: {"code":"unauthorized","message":"Invalid account ID header"} (401)
+
+### 3. custom-approvals field discovery
+  [CA-url] 400 -> {"code": "invalid_request", "message": "unknown field \"apiKey\""}
+  [CA-baseUrl] 400 -> {"code": "invalid_request", "message": "unknown field \"apiKey\""}
+  [CA-base_url] 400 -> {"code": "invalid_request", "message": "unknown field \"apiKey\""}

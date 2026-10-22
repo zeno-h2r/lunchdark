@@ -1,0 +1,131 @@
+{
+ "_links": {
+  "parent": {
+   "href": "/api/v2/integration-manifests",
+   "type": "application/json"
+  },
+  "self": {
+   "href": "/api/v2/integration-manifests/compass",
+   "type": "application/json"
+  },
+  "subscriptions": {
+   "href": "/api/v2/integrations/compass",
+   "type": "application/json"
+  }
+ },
+ "key": "compass",
+ "additionalFields": {
+  "status": "default",
+  "upsellKind": "none",
+  "shouldUpsell": false
+ },
+ "oauth": {
+  "connected": false,
+  "member": ""
+ },
+ "author": "Atlassian",
+ "capabilities": {
+  "auditLogEventsHook": {
+   "defaultPolicy": [
+    {
+     "actions": [
+      "*"
+     ],
+     "effect": "allow",
+     "resources": [
+      "proj/*:env/*:flag/*"
+     ]
+    }
+   ],
+   "deliveryMethod": "",
+   "endpoint": {
+    "headers": [
+     {
+      "name": "Content-Type",
+      "value": "application/json"
+     }
+    ],
+    "hmacSignature": {
+     "headerName": "X-LD-Signature",
+     "hmacSecretFormVariableKey": "secret"
+    },
+    "method": "POST",
+    "url": "{{url}}"
+   },
+   "includeErrorResponseBody": false,
+   "templates": {},
+   "useStandardWebhookPayload": true
+  },
+  "hideConfiguration": true
+ },
+ "categories": [
+  "developer-tools",
+  "infrastructure"
+ ],
+ "description": "Add a visual timeline of LaunchDarkly feature flag changes to related software components in Atlassian Compass.",
+ "formVariables": [
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": true,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter your Compass web trigger URL",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": false,
+   "key": "url",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Compass web trigger URL",
+   "placeholder": "",
+   "type": "uri"
+  },
+  {
+   "allowedValues": null,
+   "clearSecretsOnChange": false,
+   "codeLanguage": "",
+   "defaultValue": null,
+   "dependsOn": null,
+   "description": "Enter the secret shared between Compass and LaunchDarkly",
+   "disableAfterSaving": false,
+   "divider": false,
+   "dynamicOptions": null,
+   "hideEmpty": false,
+   "instructions": null,
+   "instructionsHeading": "",
+   "isHidden": false,
+   "isOptional": false,
+   "isSecret": true,
+   "key": "secret",
+   "multiselectDefaultOptions": null,
+   "multiselectOptions": null,
+   "name": "Secret",
+   "placeholder": "",
+   "type": "string"
+  }
+ ],
+ "icons": {
+  "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/compass/assets/images/horizontal.svg",
+  "square": "https://static.launchdarkly.com/integrations/0c2514ac/compass/assets/images/square.svg"
+ },
+ "links": {
+  "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/compass",
+  "privacyPolicy": "https://www.atlassian.com/legal/privacy-policy",
+  "site": "https://www.atlassian.com/software/compass",
+  "supportWebsite": "https://community.atlassian.com/t5/Compass-Alpha/gh-p/compass-alpha"
+ },
+ "name": "Compass",
+ "otherCapabilities": [
+  "webhooks"
+ ],
+ "overview": "Visualize feature flag changes for software components in Atlassian Compass.",
+ "supportEmail": "compassfb@customerfeedback.atlassian.net",
+ "version": "1.0.0"
+}

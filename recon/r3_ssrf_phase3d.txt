@@ -1,0 +1,14 @@
+### custom-approvals flat body
+[CA-flat] 400 -> {"code": "invalid_request", "message": "unknown field \"baseURL\""}
+[CA-flat2] 400 -> {"code": "invalid_request", "message": "unknown field \"baseURL\""}
+
+### experimentation setup flows
+
+[clickhouse-experimentation/setup] 404
+   {"code": "not_found", "message": "Integration \"clickhouse-experimentation\" not found"}
+
+[redshift-experimentation/setup] 404
+   {"code": "not_found", "message": "Integration \"redshift-experimentation\" not found"}
+
+[snowflake-experimentation/setup] 404
+   {"code": "not_found", "message": "Integration \"snowflake-experimentation\" not found"}

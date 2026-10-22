@@ -1,0 +1,37 @@
+### 1. webhook.site native redirect -> IMDS (per-hop Control test)
+ PUT redirect: {"uuid":"9ed8f3c2-fcda-4e20-b554-3c02c62321a3","redirect":true,"alias":null,"actions":false,"cors":f
+ fid: 92883945-eff4-4b6f-9ba9-06a59b6f76ca
+  [RD-IMDS] failed: error listing unleash flags: <!DOCTYPE html>
+<html>
+<head>
+    <title>Error: Request limit exceeded. Sign up to unlock more requests. - Webhook.site</title>
+    <link href="https://cdn.webhook.site/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="padding: 50px">
+    <div c
+
+### 2. restore listener to valid unleash JSON, real ldApiKey import
+ PUT json: {"uuid":"9ed8f3c2-fcda-4e20-b554-3c02c62321a3","redirect":true,"alias":null,"act
+ fid: 88289624-751d-4e92-8994-9c1bf0c1536f
+  [REAL-KEY] failed: error listing unleash flags: <!DOCTYPE html>
+<html>
+<head>
+    <title>Error: Request limit exceeded. Sign up to unlock more requests. - Webhook.site</title>
+    <link href="https://cdn.webhook.site/css/app.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="padding: 50px">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1><img src="https://cdn.webhoo
+  flag zeno-imported-flag: 404
+  flag zeno-imported-flag-2: 404
+
+### 3. also retrigger FI1 with real key? (patch FI1 config)
+ PATCH FI1 -> 400
+
+### 4. custom-approvals config-key discovery round 2
+  [CA-values] 400 -> {"code": "invalid_request", "message": "unknown field \"values\""}
+  [CA-variables] 400 -> {"code": "invalid_request", "message": "unknown field \"variables\""}
+  [CA-formVariables] 400 -> {"code": "invalid_request", "message": "unknown field \"formVariables\""}
