@@ -54,6 +54,30 @@ Probes:
 4. `[TST] GET /api/v2/projects` (list — should only show zenohacker)
 5. `[TST] GET /api/v2/auditlog?limit=5` (should only show TST org events)
 
-Results: (pending)
+Results: **ISOLATED — no cross-org access found.**
+
+| Probe ([TST] → [ORG] resource) | Result |
+|---|---|
+| `GET /api/v2/members` (list) | 200 — only own org members |
+| `GET /api/v2/members/6ac28fd11c28fb07516cf363` | 404 `not_found` |
+| `GET /internal/members/{id}/access-summary` | 403 `Plan does not allow this operation` (plan-gate, not authz) |
+| `GET /api/v2/tokens/6ad9fbdd910326079dc637cf` | 404 `Token not found` |
+| `GET /api/v2/auditlog/6ada17625e45b8076673741c` | 404 |
+| `GET /api/v2/teams/zeno-team-a` + `/roles` | 404 `team not found` |
+| `GET /api/v2/projects/zxorg-proj-7f3a` (distinguisher) | 404 `Unknown project key` |
+| `POST /api/v2/flags/zxorg-proj-7f3a` (write probe) | 404 — owner-side confirmed flag absent |
+| `POST /internal/projects/zxorg-proj-7f3a/flags/search` | 404 |
+
+Analysis: every resource lookup resolves against the session-bound account ID server-side. `not_found` (not `forbidden`) responses mean org scoping happens at the query layer, not via post-fetch authorization — no oracle to distinguish existing vs non-existing resources cross-org. ID space (Mongo ObjectId) is enumerable but useless without a resolver flaw.
+
+Artifacts left in [ORG]: project `zxorg-proj-7f3a`.
+
+## Technique 2 — AI Configs surface (NEW FEATURE, high yield) (PENDING)
+
+Targets:
+- `/api/v2/projects/{p}/ai-configs/{configKey}` family (model-configs, prompt-snippets, skills, ai-tools)
+- `POST /internal/ai-configs/{configKey}/completion` — server-side LLM completion proxy (potential SSRF via custom model provider config; prompt-injection; stored XSS via rendered AI output)
+- Cross-org access on AI config keys (user-chosen keys → distinguishing-key test)
+- `/internal/entitlements/ai-configs` — check plan gating first
 
 ---
