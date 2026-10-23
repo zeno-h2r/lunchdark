@@ -1,0 +1,18 @@
+=== schema introspection: scopes (TST admin) ===
+POST {'scopes': ['scim']} -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/9db106b5-2707-42f0-8b19-ab6c50ba8c54","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"9db106b5-2707-42f0-8b19-ab6c50ba8c54","_clientSecret":"b2a41429-ffc6-4568-945f-1d370f3954ab'
+POST {'scopes': ['scim', 'read']} -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f8019195-3cf6-45e5-b0ae-7a790991f0c4","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"f8019195-3cf6-45e5-b0ae-7a790991f0c4","_clientSecret":"12a87df4-319d-4afc-90b7-7e70d4e3a85a'
+POST {'scopes': 'scim'} -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/985f4829-e032-4957-8eb2-4503b5ccb705","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"985f4829-e032-4957-8eb2-4503b5ccb705","_clientSecret":"3ca8dcbd-9381-476f-8cbd-3b3240365208'
+
+=== NA (no_access) create on ORG ===
+NA POST plain -> 403 b'{"code":"forbidden","message":"You do not have permission to create OAuth clients"}'
+
+=== NA create with scopes:['scim'] ===
+NA POST scim -> 403 b'{"code":"forbidden","message":"You do not have permission to create OAuth clients"}'
+
+=== OPTIONS detail (TST own client) ===
+OPTIONS /2e4fca8e-0d49-42a1-81e7-729ca755aa00 -> 200 allow=b''
+
+=== NA delete own ORG zeno client (write plane) ===
+NA DELETE /f2680f30-82f1-4e21-b72e-3d26159963bb -> 403 b'{"code":"forbidden","message":"You do not have permission to delete OAuth clients"}'
+verify ORGsess GET -> 200 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f26'
+saved scripts/.r18_oauth_clients_na.json

@@ -1,0 +1,78 @@
+=== TST auditlog mine (scim/sso/okta/oauth/provision/token) ===
+  [1792794486491]  ?
+     [Abdelrahman mohamed](mailto:zeno0+tester@bugcrowdninja.com) enable team sync with SCIM [the account](https://app.launchdarkly.com/settings)
+  [1792794372970]  ?
+     [Abdelrahman mohamed](mailto:zeno0+tester@bugcrowdninja.com) configured SCIM settings for [the account](https://app.launchdarkly.com/settings)
+  [1792793775256]  ?
+     [zeno victim](mailto:zeno0+tester@bugcrowdninja.com) configured SAML settings for [the account](https://app.launchdarkly.com/settings)
+  [1792792315015]  ?
+     [zeno victim](mailto:zeno0+tester@bugcrowdninja.com) deleted the access token zeno \(…8bbe\)
+  [1792792307272]  ?
+     [zeno victim](mailto:zeno0+tester@bugcrowdninja.com) deleted the access token hacking \(…f535\)
+scanned=20 matched=5
+
+=== /trust/scim/v2 auth matrix ===
+[UN ] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[TST] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[ORG] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:M] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:NA] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:TF] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[apiNA-raw] /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+
+[UN ] /Users -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[TST] /Users -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[ORG] /Users -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[B:M] /Users -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:NA] /Users -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:TF] /Users -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[apiNA-raw] /Users -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+
+[UN ] /Groups -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[TST] /Groups -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[ORG] /Groups -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[B:M] /Groups -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:NA] /Groups -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:TF] /Groups -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[apiNA-raw] /Groups -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+
+[UN ] /Schemas -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[TST] /Schemas -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[ORG] /Schemas -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[B:M] /Schemas -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:NA] /Schemas -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:TF] /Schemas -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[apiNA-raw] /Schemas -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+
+[UN ] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[TST] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[ORG] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:M] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:NA] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[B:TF] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+[apiNA-raw] /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <tit'
+
+[UN ] /Users?startIndex=1&count=5 -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[TST] /Users?startIndex=1&count=5 -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[ORG] /Users?startIndex=1&count=5 -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+[B:M] /Users?startIndex=1&count=5 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:NA] /Users?startIndex=1&count=5 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[B:TF] /Users?startIndex=1&count=5 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+[apiNA-raw] /Users?startIndex=1&count=5 -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status"'
+
+=== OAuth2 clients REST API ===
+[UN ] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n   '
+[TST] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[ORG] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[M] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[NA] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[TF] /api/v2/oauth2/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+
+[UN ] /api/v2/oauth/clients -> 401 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+[TST] /api/v2/oauth/clients -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[ORG] /api/v2/oauth/clients -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[M] /api/v2/oauth/clients -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[NA] /api/v2/oauth/clients -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[TF] /api/v2/oauth/clients -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+
+=== done ===

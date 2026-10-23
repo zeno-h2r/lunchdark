@@ -1,0 +1,45 @@
+=== R18 HUNT0: identity liveness ===
+token M: 200 ? / ?
+token NA: 200 ? / ?
+token TF: 200 ? / ?
+session ORG: 200 ? / ? / acct=?
+session TST: 200 ? / ? / acct=?
+UN control /members/me: 401 b'{"code":"unauthorized","message":"Invalid account ID header"'
+
+=== R18 HUNT1: SCIM endpoint authz matrix (read-only) ===
+[UN ] /internal/account/scim -> 401 len=61 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+[  M] /internal/account/scim -> 401 len=61 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ NA] /internal/account/scim -> 401 len=61 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ TF] /internal/account/scim -> 401 len=61 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ORG] /internal/account/scim -> 404 len=54 {"code": "not_found", "message": "scim client not found"}
+[TST] /internal/account/scim -> 200 len=102 {"_provider": "Okta", "_providerUrl": "http://system-admin.okta1.com:1802", "iconUrl": "", "description": ""}
+
+[UN ] /internal/account/scim/managed-teams -> 405 len=0 b''
+[  M] /internal/account/scim/managed-teams -> 405 len=0 b''
+[ NA] /internal/account/scim/managed-teams -> 405 len=0 b''
+[ TF] /internal/account/scim/managed-teams -> 405 len=0 b''
+[ORG] /internal/account/scim/managed-teams -> 405 len=0 b''
+[TST] /internal/account/scim/managed-teams -> 405 len=0 b''
+
+[UN ] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+[  M] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ NA] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ TF] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ORG] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[TST] /api/v2/scim-keys -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+
+[UN ] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+[  M] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ NA] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ TF] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ORG] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[TST] /internal/scim -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+
+[UN ] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+[  M] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ NA] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ TF] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[ORG] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+[TST] /internal/account/sso -> 404 len=4339 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'
+
+=== done ===

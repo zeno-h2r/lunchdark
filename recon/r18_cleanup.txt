@@ -1,0 +1,16 @@
+DELETE TST 2e4fca8e-0d49-42a1-81e7-729ca755aa00 -> 204 b''
+DELETE TST 9db106b5-2707-42f0-8b19-ab6c50ba8c54 -> 204 b''
+DELETE TST f8019195-3cf6-45e5-b0ae-7a790991f0c4 -> 204 b''
+DELETE TST 985f4829-e032-4957-8eb2-4503b5ccb705 -> 204 b''
+DELETE ORG f2680f30-82f1-4e21-b72e-3d26159963bb -> 204 b''
+
+=== verify lists empty ===
+TST list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+ORG list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+
+=== SCIM config untouched check (TST) ===
+GET /internal/account/scim -> 200 b'{"_provider":"Okta","_providerUrl":"http://system-admin.okta1.com:1802","iconUrl":"","description":""}' (must still show Okta)
+
+=== canary check: zeno webhooks not touched (read-only listing) ===
+destinations TST -> 200 len=88
+cleanup done

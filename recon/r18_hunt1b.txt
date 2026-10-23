@@ -1,0 +1,28 @@
+=== R18 HUNT1b: raw identity shapes ===
+token M: 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb'
+token NA: 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb'
+token TF: 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb'
+
+=== LD-Account-Id matrix on /internal/account/scim ===
+[  M+nohdr] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[  M+  ORG] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[  M+  TST] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ NA+nohdr] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ NA+  ORG] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ NA+  TST] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ TF+nohdr] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ TF+  ORG] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+[ TF+  TST] -> 401 {"code": "unauthorized", "message": "Invalid account ID header"}
+
+=== sessions with explicit LD-Account-Id ===
+[ORGsess+ORG] -> 404 {"code": "not_found", "message": "scim client not found"}
+[ORGsess+TST] -> 404 {"code": "not_found", "message": "scim client not found"}
+[TSTsess+ORG] -> 200 {"_provider": "Okta", "_providerUrl": "http://system-admin.okta1.com:1802", "iconUrl": "", "description": ""}
+[TSTsess+TST] -> 200 {"_provider": "Okta", "_providerUrl": "http://system-admin.okta1.com:1802", "iconUrl": "", "description": ""}
+
+=== x-account-id / LDAccountID variants with NA token (TST header) ===
+NA+x-account-id:TST -> 401 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+NA+LDAccountID:TST -> 401 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+NA+ld-account-id:TST -> 401 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+NA+LDAccountId:TST -> 401 b'{"code":"unauthorized","message":"Invalid account ID header"}'
+=== done ===

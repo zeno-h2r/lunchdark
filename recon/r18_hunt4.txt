@@ -1,0 +1,49 @@
+=== OPTIONS (TST) ===
+OPTIONS -> 200 b''
+=== POST introspection (TST session) ===
+POST {} -> 400 b'{"code":"invalid_request","message":"\'name\' is a required field"}'
+
+=== create zeno-r18 client on TST ===
+POST create TST -> 400 b'{"code":"invalid_request","message":"\'redirectUri\' is a required field"}'
+
+=== create zeno-r18 client on ORG ===
+POST create ORG -> 400 b'{"code":"invalid_request","message":"\'redirectUri\' is a required field"}'
+
+=== read matrix after creation ===
+TST client id: ?
+ORG client id: ?
+[M] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[NA] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[TF] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[TSTsess] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[ORGsess] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[NA+LD-Account-Id:TST] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[ORGsess+LD-Account-Id:TST] GET list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+
+saved scripts/.r18_oauth_clients.json (gitignored)
+
+=== HUNT4b: create with redirectUri ===
+POST create TST -> 400 b'{"code":"invalid_request","message":"http is not a supported scheme for \'redirectUri\'"}'
+POST create ORG -> 400 b'{"code":"invalid_request","message":"http is not a supported scheme for \'redirectUri\'"}'
+
+=== read matrix after creation ===
+tid=None oid=None
+[TSTsess] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[ORGsess] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[M] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[NA] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[TF] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+[NA+hdr:TST] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[]}'
+
+=== HUNT4b: create with redirectUri ===
+POST create TST -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/2e4fca8e-0d49-42a1-81e7-729ca755aa00","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"2e4fca8e-0d49-42a1-81e7-729ca755aa00","_clientSecret":"a4f09b51-5d00-4c82-a17d-b53d67e752f88011400b-744a-4748-8445-e294960119e8","redirectUri":"https://zeno0.example/callback","_creationDate":1792795568326}'
+POST create ORG -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f2680f30-82f1-4e21-b72e-3d26159963bb","_clientSecret":"b489679e-a94e-4b92-8fa0-a305f05ae84bec0e2546-44a5-47e8-8250-eb68358c73ad","redirectUri":"https://zeno0.example/callback","_creationDate":1792795569572}'
+
+=== read matrix after creation ===
+tid=None oid=None
+[TSTsess] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/2e4fca8e-0d49-42a1-81e7-729ca755aa00","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"2e4f'
+[ORGsess] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f268'
+[M] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f268'
+[NA] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f268'
+[TF] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f268'
+[NA+hdr:TST] list -> 200 b'{"_links":{"self":{"href":"/api/v2/oauth/clients","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/f2680f30-82f1-4e21-b72e-3d26159963bb","type":"application/json"}},"name":"zeno-r18-oauth","description":"R18 security testing temp client","_accountId":"6ac28fd11c28fb07516cf361","_clientId":"f268'

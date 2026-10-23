@@ -1,0 +1,14 @@
+=== TST auditlog: scim/sso/saml/okta mentions (last 500) ===
+auditlog p1 -> 400 len=87
+page 1 -> 400 b'{"code":"invalid_request","message":"`limit` must be a valid integer between 0 and 20"}'
+scanned 0 auditlog entries, matched 0
+
+=== OPTIONS probes (TST session) ===
+OPTIONS /internal/account/scim -> 405 allow=HEAD, GET, DELETE len=0
+GET     /internal/account/scim -> 200 full=b'{"_provider":"Okta","_providerUrl":"http://system-admin.okta1.com:1802","iconUrl":"","description":""}'
+OPTIONS /internal/account/scim/managed-teams -> 405 allow=DELETE, POST len=0
+GET     /internal/account/scim/managed-teams -> 405 full=b''
+
+=== ORG session full GET (scim client not found shape) ===
+GET /internal/account/scim ORG -> 404 b'{"code":"not_found","message":"scim client not found"}'
+=== done ===
