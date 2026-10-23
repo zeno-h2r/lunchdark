@@ -1,0 +1,51 @@
+=== A: full evidence captures (UNAUTH) ===
+[A1] account 200: _id=675b806fed1489094561e466 name=None org=LaunchDarkly
+[A2] members 200: 2 members
+     - email=team-growth@launchdarkly.com       role=owner                    id=675b806fed1489094561e468
+     - email=team-growth+demo1@launchdarkly.com role=reader                   id=675c915ebdf9a10981341653
+[A3] tokens 200: 24 tokens
+     - name=Sandbox data generator       token=b32a       type=None       api=?
+     - name=None                         token=afd9       type=None       api=?
+     - name=LDCLI access token for i031-approval-probe token=f77e       type=None       api=?
+     - name=LDCLI access token for i027probe token=c260       type=None       api=?
+     - name=LDCLI access token for i027role token=5da1       type=None       api=?
+     - name=LDCLI access token for i027scope token=9963       type=None       api=?
+     - name=LDCLI access token for i027mem token=1415       type=None       api=?
+     - name=LDCLI access token for i068mint token=0e66       type=None       api=?
+     - name=LDCLI access token for i068svcA token=506c       type=None       api=?
+     - name=LDCLI access token for i068svcB token=b653       type=None       api=?
+     - name=LDCLI access token for i068svcC token=8d42       type=None       api=?
+     - name=LDCLI access token for i068svcD token=7adf       type=None       api=?
+     - name=LDCLI access token for i109t3 token=714a       type=None       api=?
+     - name=LDCLI access token for i109t4 token=85a3       type=None       api=?
+     - name=LDCLI access token for i109G token=4917       type=None       api=?
+     - name=LDCLI access token for i109H token=a7b5       type=None       api=?
+     - name=LDCLI access token for i109race token=c5a1       type=None       api=?
+     - name=LDCLI access token for i109xhost token=4637       type=None       api=?
+     - name=LDCLI access token for otok  token=9618       type=None       api=?
+     - name=LDCLI access token for otok  token=2c2f       type=None       api=?
+     - name=LDCLI access token for i109xss <img src=x onerror=alert(document.domain)> token=600a       type=None       api=?
+     - name=LDCLI access token for cors2 token=8ad4       type=None       api=?
+     - name=LDCLI access token for i109proof token=aef3       type=None       api=?
+     - name=LDCLI access token for xhost token=a481       type=None       api=?
+[A4] auditlog 200: 20 entries (limit=20), total=None
+     - 1792708567953 | Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/ | member=None
+     - 1792587611511 | Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/ | member=None
+     - 1792466647845 | Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/ | member=None
+     - 1792441267817 | [Demo User](mailto:team-growth+demo1@launchdarkly.com) reset the acces | member=team-growth+demo1@launchdarkly.com
+     - 1792441257153 | [Demo User](mailto:team-growth+demo1@launchdarkly.com) reset the acces | member=team-growth+demo1@launchdarkly.com
+     - 1792427592438 | [Demo User](mailto:team-growth+demo1@launchdarkly.com) reset the acces | member=team-growth+demo1@launchdarkly.com
+[A5] env/production 200: apiKey=<VALUE:sdk-********-*>... mobileKey=<VALUE:mob-********-*>...
+[A6] internal/list/environments 200: 346 bytes
+[A7] internal/config/authenticated 200: 300000 bytes, head: {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https:/
+
+=== B: unauth WRITE control test (flag create -> verify -> DELETE -> verify 404) ===
+[B1] POST /api/v2/flags/default (unauth) -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createFlag","resource":"proj/default:env/production:flag/superz-r13-unauth-write-poc;superz-r13"},"code":"forbidden"
+[B2] write denied — no artifact created
+
+=== C: pub.observability sampling/ignore probes (UNAUTH, time-boxed) ===
+[C] sampling ORG_ACC   -> 422 {"errors":[{"message":"Cannot query field \"id\" on type \"SamplingConfig\".","locations":[{"line":1,"column":67}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[C] sampling bare      -> 422 {"errors":[{"message":"Cannot query field \"id\" on type \"SamplingConfig\".","locations":[{"line":1,"column":44}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[C] ignore bogus       -> 422 {"errors":[{"message":"Cannot query field \"id\" on type \"Any\".","locations":[{"line":1,"column":21}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"ignore\" must not have a 
+[C] ignore bare        -> 422 {"errors":[{"message":"Cannot query field \"id\" on type \"Any\".","locations":[{"line":1,"column":28}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"ignore\" must not have a 
+=== HUNT2c done ===

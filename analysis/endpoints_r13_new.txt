@@ -1,0 +1,2 @@
+/api/v2/frontend/clientSdkKey/
+/api/v2/projects/{p}/payload-filters{p}

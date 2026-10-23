@@ -144,3 +144,12 @@ internal — the anonymous delivery is the defect.
   finding's strength is the aggregate + the `/internal/*` namespace +
   personnel/incident/customer data that was never intended for public
   delivery.
+
+## R13 — Breadth +1: the same anonymous bootstrap is served on `demo.app.launchdarkly.com`
+
+`GET https://demo.app.launchdarkly.com/internal/config/anonymous` → 200, same
+`clientSideId 5866f3891cd8810a42ce5281` dogfood payload (identical to the
+app-host capture). Additionally, the demo host serves
+`/internal/config/authenticated` **unauthenticated** with a 300+ KB bootstrap
+payload that the app host 401s — see FINDING_004 for the full demo-host
+authentication-bypass finding built on this host.

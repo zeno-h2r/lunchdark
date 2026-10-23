@@ -325,3 +325,27 @@ R11 negative controls (all defended):
 - `/api/v2/announcements/{id}` detail → 405 (list-only route).
 - SAML (`/internal/account/saml`) → legacy "Invalid account ID header" fence for
   tokens; SCIM → 404 "scim client not found" (no client) — no config disclosure.
+
+## R13 — Chain demonstrated: disclosed SDK key → full live flag readout (P1 evidence)
+
+The strongest triage question for this finding is "so what — what does a leaked
+SDK key actually yield?" R13 closes that gap end-to-end:
+
+1. `GET /api/v2/projects/default/environments/test` with the zero-privilege
+   `no_access` token → 200, full `apiKey` (`sdk-...`) + `mobileKey` values.
+2. `GET stream.launchdarkly.com/flags` with that disclosed key → **HTTP 200**,
+   initial SSE `put` payload containing the environment's complete flag state
+   (~19 flags in our test env: keys, on/off, rules, targets, variations,
+   fallthrough, clientSideAvailability — full targeting dump).
+
+Evidence: `recon/r13_hunt5b.txt` + raw stream payload
+`recon/r13_chain_demo.txt` (captured 2026-10-24).
+
+=> The bypass is not "metadata exposure": a no-policies token yields working
+production-environment credentials that immediately exfiltrate live flag
+values and targeting state. This is the concrete P1 impact argument.
+
+Additional R13 note: the same defect class exists in **zero-auth form** on
+`demo.app.launchdarkly.com` (see FINDING_004) — an entire tenant API readable
+with no credential at all, confirming these key values are treated as
+web-deliverable data across hosts.

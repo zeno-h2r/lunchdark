@@ -1,0 +1,7 @@
+=== chain demo step 1: NA reads env detail ===
+[1] HTTP 200 env=test apiKey=True mobileKey=True
+=== step 2: stream /flags with that key (short read, 10s cap) ===
+[2] HTTP HTTP/1.1 200 OK | total 10698 bytes | body 10163 bytes | ~19 flag keys in initial put
+[2] body head: 279d event:put data:{"ld-example-experiment-dashboard-layout":{"key":"ld-example-experiment-dashboard-layout","on":true,"prerequisites":[],"targets":[],"rules":[],"fallthrough":{"variation":0},"offVariation":1,"variations":["classic","streamlined"],"clientSideAvailability":{"usingMobileKey":true,"u
+[3] evidence saved recon/r13_chain_demo.txt (10563 bytes)
+=== HUNT5b done ===

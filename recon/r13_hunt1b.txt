@@ -1,0 +1,24 @@
+[1] GET /private/accounts -> 499 in 0.7s
+    Via: 1.1 varnish
+    Content-Type: application/json
+    Content-Length: 0
+    Date: Fri, 23 Oct 2026 19:04:22 GMT
+    body[:300]: 
+[2] GET /private/accounts/                                      -> 499 (1.9s) 
+[2] GET /private/accounts/1                                     -> 499 (1.0s) 
+[2] GET /private/accounts/6ac28fd11c28fb07516cf361              -> 499 (0.8s) 
+[2] GET /private/accounts/zeno0                                 -> 499 (0.9s) 
+[2] GET /private/accounts?email=zeno0@bugcrowdninja.com         -> 499 (0.8s) 
+[2] GET /private/accounts?limit=1                               -> 499 (1.0s) 
+[2] GET /private/accounts/all                                   -> 499 (0.7s) 
+[2] GET /private/accounts/count                                 -> 499 (1.0s) 
+[2] GET /private/accounts/me                                    -> 499 (1.1s) 
+[2] GET /private/accounts/current                               -> 499 (1.0s) 
+[3] HEAD -> 499 
+[3] OPTIONS -> 200 
+[3] PUT -> 405 
+[3] PATCH -> 405 
+[4] GET +M token -> 499 (0.8s) 
+[4] GET +ORG cookie -> 499 (1.0s) 
+[5] GET +LD-account header -> 499 
+=== HUNT1b done ===

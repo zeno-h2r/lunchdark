@@ -1,0 +1,28 @@
+=== A: FINDING_002 chain demo (zero-priv token -> prod SDK key -> full flag readout) ===
+[A1] NA env detail -> 200 (1555 bytes)
+[A2] NA-disclosed apiKey present: True (env=test)
+[A3] stream error: The read operation timed out
+
+=== B: /api/v2/frontend/* probes ===
+[B UN] /api/v2/frontend/clientSdkKey/confluence     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B UN] /api/v2/frontend/clientSdkKey/jira           404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B UN] /api/v2/frontend/clientSdkKey/default        404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B UN] /api/v2/frontend/experimentValues            404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B NA] /api/v2/frontend/clientSdkKey/confluence     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B NA] /api/v2/frontend/clientSdkKey/jira           404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B NA] /api/v2/frontend/clientSdkKey/default        404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B NA] /api/v2/frontend/experimentValues            404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B TST] /api/v2/frontend/clientSdkKey/confluence     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B TST] /api/v2/frontend/clientSdkKey/jira           404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B TST] /api/v2/frontend/clientSdkKey/default        404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B TST] /api/v2/frontend/experimentValues            404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B M] /api/v2/frontend/clientSdkKey/confluence     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B M] /api/v2/frontend/clientSdkKey/jira           404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B M] /api/v2/frontend/clientSdkKey/default        404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[B M] /api/v2/frontend/experimentValues            404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+
+=== C: webhook leftovers ===
+[C1] providers -> 405 
+[C1] subscriptions -> 405 
+[C2] auditlog q=webhook delivery -> 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/webhooks/6ada8ac28f049f07376083be","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6ada8ac28f049f07376083c0","type":"application/json"},"site":{"href":"/integrations","type":"
+=== HUNT5 done ===

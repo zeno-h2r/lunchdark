@@ -1,0 +1,16 @@
+=== pub.graph: SamplingConfig + IgnoreRule field introspection ===
+[200] SamplingConfig -> {"data":{"__type":{"fields":[{"name":"spans","type":{"name":null,"kind":"LIST","ofType":{"name":null}}},{"name":"logs","type":{"name":null,"kind":"LIST","ofType":{"name":null}}}]}}}
+[200] Ignore -> {"data":{"__type":null}}
+[200] Any -> {"data":{"__type":{"fields":[]}}}
+
+[422] sampling sharedpid   -> {"errors":[{"message":"Field \"sampling\" of type \"SamplingConfig!\" must have a selection of subfields. Did you mean \"sampling { ... }\"?","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[422] sampling orgacc      -> {"errors":[{"message":"Field \"sampling\" of type \"SamplingConfig!\" must have a selection of subfields. Did you mean \"sampling { ... }\"?","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[422] ignore bare2         -> {"errors":[{"message":"Field \"ignore\" argument \"id\" of type \"ID!\" is required, but it was not provided.","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+=== demo host: members/me + /internal/* auth shape (UNAUTH) ===
+[200] /api/v2/members/me                             {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/675c915ebdf9a10981341653","type":"application/json"},"sendMfaEnab
+[200] /internal/account                              {"_id":"675b806fed1489094561e466","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/members","type":"applica
+[404] /api/v2/account/675b806fed1489094561e466         <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[200] /api/v2/auditlog?q=reset                       {"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6a552d32ea51440a8adb6cb3","type":"application/json"},
+[200] /api/v2/segments/default/production            {"items":[{"name":"Beta Users","description":"Users who have signed up for Beta access to the application","tags":["beta"],"creationDate":1736540240869,"lastModifiedDate"
+=== HUNT2d done ===

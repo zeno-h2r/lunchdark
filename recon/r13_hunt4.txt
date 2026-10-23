@@ -1,0 +1,12 @@
+[1] mined 545 raw templates from 559 chunk files
+[1] 507 normalized templates
+[1] known inventory: 516 templates
+[1] 2 NEW templates -> analysis/endpoints_r13_new.txt
+    /api/v2/frontend/clientSdkKey/   (AtlaskitEmbeddedConfluence.js)
+    /api/v2/projects/{p}/payload-filters{p}   (PayloadFiltersEditSettings.js,PayloadFiltersSettings.js)
+
+[2] sweep new concrete (no-id) GET templates across UN/NA/TST/M
+/api/v2/frontend/clientSdkKey/                             | UN:404   <!DOCTYPE html> <html lang="en">   <head>        | NA:404   <!DOCTYPE html> <html lang="en">   <head>        | TST:404   <!DOCTYPE html> <html lang="en">   <head>        | M:404   <!DOCTYPE html> <html lang="en">   <head>       
+
+[3] UN/NA-200 hits: 0
+=== HUNT4 done ===

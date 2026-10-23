@@ -1,0 +1,51 @@
+=== A: demo.app unauth /api/v2/projects full capture ===
+[200] ct=application/json bytes=1665
+    projects returned: 1
+    - key=default                  name=LaunchDarkly                 id=675b806fed1489094561e467
+    top-level keys: ['_links', 'items', 'totalCount']
+
+=== B: demo.app unauth API surface sweep ===
+[200] /api/v2/projects/default                                   ct=JSON   {"_links":{"environments":{"href":"/api/v2/projects/default/environments","type":"application/json"},"flagDefaults":{"href":"/api/v2/projects/default/
+[200] /api/v2/projects/default/environments                      ct=JSON   {"_links":{"parent":{"href":"/api/v2/projects/default","type":"application/json"},"self":{"href":"/api/v2/projects/default/environments?limit=20","typ
+[404] /api/v2/projects/default/environments/test                 ct=JSON   
+[200] /api/v2/projects/default/environments/production           ct=JSON   {"_links":{"analytics":{"href":"https://app.launchdarkly.com/snippet/events/v1/675b806fed1489094561e46a.js","type":"text/html"},"apiKey":{"href":"/api
+[200] /api/v2/flags/default                                      ct=JSON   {"_links":{"self":{"href":"/api/v2/flags/default?limit=20\u0026summary=true","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2
+[404] /api/v2/flags/default/test                                 ct=JSON   
+[404] /api/v2/flags/default/test/zeno-allowed-1                  ct=HTML   
+[200] /api/v2/members                                            ct=JSON   {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/675b806fed1489094561e468","type":"a
+[200] /api/v2/tokens                                             ct=JSON   {"items":[{"_id":"675dca017049fe09535b6495","ownerId":"675b806fed1489094561e466","memberId":"675b806fed1489094561e468","_member":{"_links":{"self":{"h
+[200] /api/v2/webhooks                                           ct=JSON   {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[]}
+[200] /api/v2/auditlog                                           ct=JSON   {"items":[{"_links":{"canonical":{"href":"/api/v2/flags/default/enable-ai-suggestions","type":"application/json"},"parent":{"href":"/api/v2/auditlog",
+[200] /api/v2/account                                            ct=JSON   {"_id":"675b806fed1489094561e466","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/memb
+[200] /api/v2/teams                                              ct=JSON   {"items":[{"description":"","key":"platform-team","name":"Platform Team","_access":{"denied":[{"action":"createTeam","reason":{"effect":"deny"}},{"act
+[200] /api/v2/segments/default                                   ct=JSON   {"links":{"parent":{"href":"/api/v2/segments","type":"application/json"},"segments":[{"href":"/api/v2/segments/default/production","type":"application
+[200] /api/v2/metrics/default                                    ct=JSON   {"items":[{"_id":"6781849028bf9c0954206471","_versionId":"f7d44a2e-1b83-4821-9d2d-9e935a6496c4","_version":1,"key":"api-errors","name":"Api errors","k
+[200] /internal/config/anonymous                                 ct=JSON   {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","d
+[200] /internal/list/environments                                ct=JSON   [{"apiKey":"sdk-c94af27e-6271-4cdc-add9-a5710b51dcab","mobileKey":"mob-08fc98c1-db34-4f9a-914b-71279975f8c8","_links":{"site":{"href":"/default/produc
+[200] /internal/config/authenticated                             ct=JSON   {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","d
+[200] /api/v2/projects?limit=100                                 ct=JSON   {"_links":{"self":{"href":"/api/v2/projects?limit=100","type":"application/json"}},"items":[{"_links":{"environments":{"href":"/api/v2/projects/defaul
+
+=== C: demo.app authed contrast (ORG session on demo host) ===
+[200] ORG /api/v2/projects                         {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links":{"environments":{"href":"/api/v2/projects/default
+[200] ORG /internal/config/anonymous               {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","d
+
+=== D: pub.observability public GraphQL — introspection + benign queries (UNAUTH) ===
+[200] POST / __schema.queryType -> {"data":{"__schema":{"queryType":{"name":"Query"}}}}
+[200] POST / __schema.types -> bytes=1540 {"data":{"__schema":{"types":[{"name":"Any","kind":"SCALAR"},{"name":"AttributeMatchConfig","kind":"OBJECT"},{"name":"BackendErrorObjectInput","kind":"INPUT_OBJECT"},{"name":"Boolean","kind":"SCALAR"}
+[200] __type Query     -> {"data":{"__type":{"fields":[{"name":"ignore","args":[{"name":"id"}]},{"name":"sampling","args":[{"name":"organization_verbose_id"}]}]}}}
+[200] __type Mutation  -> {"data":{"__type":{"fields":[{"name":"initializeSession"},{"name":"identifySession"},{"name":"addSessionProperties"},{"name":"pushPayload"},{"name":"pushPayloadCompressed"},{"name":"pushSessionEvents"},{"name":"pushBackendPayload"},{"name":"pushMetrics"},{"name":"markBackendSetup
+[422] health           -> {"errors":[{"message":"Cannot query field \"health\" on type \"Query\".","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[422] version          -> {"errors":[{"message":"Cannot query field \"version\" on type \"Query\".","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+=== E: product-analytics block-service/data-service deeper (UNAUTH) ===
+[404] /block-service/v1/blocks           ct=application/ {"message":"Not Found"} 
+[404] /block-service/api                 ct=application/ {"message":"Not Found"} 
+[404] /block-service/v1/health           ct=application/ {"message":"Not Found"} 
+[404] /data-service/v1/data              ct=application/ {"message":"Not Found"} 
+[404] /data-service/api                  ct=application/ {"message":"Not Found"} 
+[404] /data-service/v1/health            ct=application/ {"message":"Not Found"} 
+[404] /block-service/healthz             ct=application/ {"message":"Not Found"} 
+[404] /data-service/healthz              ct=application/ {"message":"Not Found"} 
+[404] /block-service/                    ct=application/ {"message":"Not Found"} 
+[404] /data-service/                     ct=application/ {"message":"Not Found"} 
+=== HUNT2b done ===

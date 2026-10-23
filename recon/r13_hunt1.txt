@@ -1,0 +1,77 @@
+=== R13 HUNT1: /private/* unauth ladder (64 paths) ===
+[404] /private                                       ct=HTML       
+[404] /private/                                      ct=HTML       
+[404] /private/config                                ct=HTML       
+[404] /private/config/anonymous                      ct=HTML       
+[404] /private/config/anonymous/                     ct=HTML       
+[404] /private/config/authenticated                  ct=HTML       
+[404] /private/config/bootstrap                      ct=HTML       
+[404] /private/config/flags                          ct=HTML       
+[404] /private/bootstrap                             ct=HTML       
+[404] /private/health                                ct=HTML       
+[404] /private/healthz                               ct=HTML       
+[404] /private/ready                                 ct=HTML       
+[404] /private/status                                ct=HTML       
+[404] /private/version                               ct=HTML       
+[200] /private/metrics                               ct=HTML       
+[404] /private/graphql                               ct=HTML       
+[404] /private/api                                   ct=HTML       
+[404] /private/api/v2                                ct=HTML       
+[404] /private/v1                                    ct=HTML       
+[404] /private/v2                                    ct=HTML       
+[404] /private/me                                    ct=HTML       
+[404] /private/user                                  ct=HTML       
+[404] /private/users                                 ct=HTML       
+[404] /private/session                               ct=HTML       
+[404] /private/sessions                              ct=HTML       
+[404] /private/admin                                 ct=HTML       
+[404] /private/console                               ct=HTML       
+[200] /private/login                                 ct=HTML       
+[404] /private/auth                                  ct=HTML       
+[404] /private/token                                 ct=HTML       
+[404] /private/tokens                                ct=HTML       
+[404] /private/flag                                  ct=HTML       
+[404] /private/flags                                 ct=HTML       
+[404] /private/tools                                 ct=HTML       
+[404] /private/tool                                  ct=HTML       
+[404] /private/jenkins                               ct=HTML       
+[404] /private/builds                                ct=HTML       
+[404] /private/build                                 ct=HTML       
+[404] /private/deploy                                ct=HTML       
+[404] /private/deployments                           ct=HTML       
+[404] /private/incidents                             ct=HTML       
+[404] /private/oncall                                ct=HTML       
+[404] /private/members                               ct=HTML       
+[499] /private/accounts                              ct=JSON       
+[404] /private/internal                              ct=HTML       
+[404] /private/debug                                 ct=HTML       
+[404] /private/jobs                                  ct=HTML       
+[404] /private/queue                                 ct=HTML       
+[404] /private/tasks                                 ct=HTML       
+[404] /private/feature-flags                         ct=HTML       
+[404] /private/launchdarkly                          ct=HTML       
+[404] /private/app                                   ct=HTML       
+[404] /private/home                                  ct=HTML       
+[404] /private/config/anonymous?device=mobile        ct=HTML       
+[404] /private/sitemap                               ct=HTML       
+[404] /private/docs                                  ct=HTML       
+[404] /private/api-docs                              ct=HTML       
+[404] /private/swagger                               ct=HTML       
+[404] /private/openapi.json                          ct=HTML       
+[404] /private/rpc                                   ct=HTML       
+[404] /private/service                               ct=HTML       
+[404] /private/services                              ct=HTML       
+[404] /private/k8s                                   ct=HTML       
+[404] /private/env                                   ct=HTML       
+
+=== non-404 hits: 1 -> authed ladder ===
+[ORG/499] /private/accounts                              ct=JSON       
+[M/499] /private/accounts                              ct=JSON       
+[NA/499] /private/accounts                              ct=JSON       
+[TST/499] /private/accounts                              ct=JSON       
+
+=== method probes on hits (POST empty body, UN + ORG) ===
+[UN/499] POST /private/accounts                          
+[ORG/499] POST /private/accounts                          
+
+=== HUNT1 done ===

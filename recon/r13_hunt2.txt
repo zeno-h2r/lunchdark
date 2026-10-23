@@ -1,0 +1,54 @@
+=== product-analytics-api.app.launchdarkly.com ===
+[400] /                                      ct=text/plain; ch request malformed
+[400] /health                                ct=text/plain; ch request malformed
+[400] /healthz                               ct=text/plain; ch request malformed
+[400] /ready                                 ct=text/plain; ch request malformed
+[400] /version                               ct=text/plain; ch request malformed
+[400] /config/anonymous                      ct=text/plain; ch request malformed
+[400] /block-service                         ct=text/plain; ch request malformed
+[404] /block-service/health                  ct=JSON         {"message":"Not Found"} 
+[400] /data-service                          ct=text/plain; ch request malformed
+[404] /data-service/health                   ct=JSON         {"message":"Not Found"} 
+[400] /api                                   ct=text/plain; ch request malformed
+[400] /docs                                  ct=text/plain; ch request malformed
+[400] /openapi.json                          ct=text/plain; ch request malformed
+[400] /swagger.json                          ct=text/plain; ch request malformed
+[400] /graphql                               ct=text/plain; ch request malformed
+
+=== accelerate.app.launchdarkly.com ===
+[200] /                                      ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /health                                ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /api                                   ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /config/anonymous                      ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /internal/config/anonymous             ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /api/v2/insights                       ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /graphql                               ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /docs                                  ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[200] /openapi.json                          ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+
+=== demo.app.launchdarkly.com ===
+[200] /                                      ct=HTML           <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.6af369089.json"   
+[404] /health                                ct=HTML           <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[404] /config/anonymous                      ct=HTML           <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[200] /internal/config/anonymous             ct=JSON         {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClie
+[200] /api/v2/projects                       ct=JSON         {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links":{"environments":{"href":"/api/v2/projects/default/environme
+
+=== pub.observability.app.launchdarkly.com ===
+[400] /                                      ct=JSON         {"errors":[{"message":"no operation provided","extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[200] /health                                ct=text/plain; ch public-graph is healthy
+[404] /config/anonymous                      ct=text/plain; ch 404 page not found 
+[404] /graphql                               ct=text/plain; ch 404 page not found 
+[404] /api                                   ct=text/plain; ch 404 page not found 
+
+=== otel.observability.app.launchdarkly.com ===
+[404] /                                      ct=text/plain; ch 404 page not found 
+[404] /health                                ct=text/plain; ch 404 page not found 
+[405] /v1/traces                             ct=text/plain   405 method not allowed, supported: [POST]
+[405] /v1/metrics                            ct=text/plain   405 method not allowed, supported: [POST]
+[404] /config/anonymous                      ct=text/plain; ch 404 page not found 
+
+=== app.launchdarkly.com /api/v1 legacy ===
+[404] M GET /api/v1/users          ct=text/html;   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="des
+[404] M GET /api/v1/projects       ct=text/html;   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="des
+[404] M GET /api/v1/environments   ct=text/html;   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="des
+=== HUNT2 done ===
