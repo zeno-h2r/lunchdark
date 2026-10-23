@@ -1,0 +1,18 @@
+[0] NA GET /members/me -> 200 | {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest"
+[0] NA member _id = 6ac28fd11c28fb07516cf363
+
+=== 1: favorites as NA (user-scoped state) ===
+[1a] NA PUT favorite flag -> 404 |   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+[1b] NA GET favorite -> 404 |   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="
+
+=== 2: member PATCH as NA (same-value vacuous first) ===
+[2a] NA PATCH member SAME-VALUE -> 409 | {"message":"You cannot modify your own role"}
+
+=== 3: vacuous flag PATCH as NA (app host) ===
+[3a] M GET flag desc='ssrf-fire-1792707328-1' tags=[]
+[3b] NA PATCH flag SAME-VALUE -> 200 | {"name":"zeno-esc-test","kind":"boolean","description":"ssrf-fire-1792707328-1","key":"zeno-allowed-1","_version":6,"creationDate":1792696789540,"includeInSnippet":true,"clientSide
+
+=== 4: NA self-role escalation attempt (expect deny) ===
+[4] NA PATCH member role=admin -> 409 | {"message":"You cannot modify your own role"}
+
+HUNT3 done. Any 200/201 above = NA state-change; verify persistence via M before claiming.

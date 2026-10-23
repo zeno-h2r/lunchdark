@@ -1,0 +1,43 @@
+=== host: app ===
+/api/v1/projects                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/flags                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/environments             UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/members                  UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/members/me               UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/auditlog                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/tokens                   UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/webhooks                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/segments/default         UN:200-SPA NA:200-SPA M:200-SPA TST-cookie:404
+/api/v1/roles                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/customroles              UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/teams                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/account                  UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/goals/default/test       UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/users/default/test       UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/user_settings/default/test UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/flags/default            UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/internal/projects        UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/features/default         UN:200-SPA NA:200-SPA M:200-SPA TST-cookie:404
+=== host: demo ===
+/api/v1/projects                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/flags                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/environments             UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/members                  UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/members/me               UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/auditlog                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/tokens                   UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/webhooks                 UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/segments/default         UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/roles                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/customroles              UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/teams                    UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/account                  UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/goals/default/test       UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/users/default/test       UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/user_settings/default/test UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/flags/default            UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/internal/projects        UN:404 NA:404 M:404 TST-cookie:404
+/api/v1/features/default         UN:404 NA:404 M:404 TST-cookie:404
+
+=== v1 x v2 differential probes on app (any 200-JSON above gets detail) ===
+(see above rows with '<<<')

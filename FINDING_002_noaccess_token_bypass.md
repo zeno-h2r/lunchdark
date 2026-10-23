@@ -349,3 +349,24 @@ Additional R13 note: the same defect class exists in **zero-auth form** on
 `demo.app.launchdarkly.com` (see FINDING_004) — an entire tenant API readable
 with no credential at all, confirming these key values are treated as
 web-deliverable data across hosts.
+
+## R15 update (2026-10-24) — read-only claim re-verified with sharp negatives
+
+Probed whether the zero-policies token can reach ANY state-changing handler
+(all on our own tenant, all revertible):
+
+| probe | result |
+|---|---|
+| `PATCH /api/v2/flags/default/{flag}` real change (desc -> marker) | **403** policy deny (`updateDescription`, effect: deny) |
+| `PATCH /api/v2/flags/default/{flag}` same-value (vacuous) | **200** but cosmetic — `_version` unchanged (6), no persistence, no audit entry (mirrors demo-host R14 quirk) |
+| `PATCH /api/v2/members/{own-id}` any body incl. role | **409** `"You cannot modify your own role"` — business-rule rejection, i.e. the request REACHES the member-update handler for self |
+| `PATCH /api/v2/members/{foreign-tenant-id}` | **404** `Invalid resource identifier` — account-scoped resolution enforced |
+
+Interpretation: the policy engine denies real flag mutations; member-update
+scoping blocks foreign members at resource resolution and self-role changes at
+business rules. The no_access token remains **effectively read-only on the
+write plane** — the F2 impact case therefore still rests on the R13 read chain
+(no_access -> sdk key -> full live flag readout), which is where the P1
+argument lives.
+
+Evidence: `recon/r15_hunt3.txt`, `recon/r15_hunt3b.txt` (captured 2026-10-24).

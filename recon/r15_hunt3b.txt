@@ -1,0 +1,17 @@
+=== A: vacuous-check for earlier same-value PATCH ===
+[A-after] flag _version=6 desc='ssrf-fire-1792707328-1'
+
+=== B: NA real-change flag PATCH (desc -> marker) ===
+[B1] NA PATCH desc=marker -> 403 | {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateDescription","resource":"proj/default:en
+[B2] verify as M: _version=6 desc='ssrf-fire-1792707328-1'
+[B2] NA flag write PERSISTED = False
+[B3] auditlog -> 200 b'{"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6ad'
+[B4] M PATCH revert desc -> 200
+[B5-reverted] flag _version=6 desc='ssrf-fire-1792707328-1'
+
+=== C: NA PATCH on TST-tenant member (foreign tenant from NA's view) ===
+[C0] TST member _id = 6ac29057ccacd606b1576cb9 fullName=None
+[C1] NA PATCH foreign member SAME-VALUE -> 404 | {"code":"not_found","message":"Invalid resource identifier"}
+[C6] contrast: NA PATCH OWN member name-only -> 409 | {"message":"You cannot modify your own role"}
+
+HUNT3b done.

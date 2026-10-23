@@ -1,0 +1,93 @@
+=== A: UN route census (GET then POST, id=6ac28fd11c28fb07516cf364) ===
+[GET /mobile                           ] 404 | {'Content-Type': 'application/json'} | 
+[POST /mobile                          ] 401 | {'Content-Type': 'application/json'} | {"code":"unauthorized","message":"No valid token found"}
+[GET /mobile/%s                        ] 404 | {'Content-Type': 'application/json'} | 
+[POST /mobile/%s                       ] 404 | {'Content-Type': 'application/json'} | 
+[GET /bulk/%s                          ] 404 | {'Content-Type': 'application/json'} | 
+[POST /bulk/%s                         ] 404 | {'Content-Type': 'application/json'} | 
+[GET /events/bulk/%s                   ] 404 | {'Content-Type': 'application/json'} | 
+[POST /events/bulk/%s                  ] 202 | {'Content-Type': 'application/json'} | 
+[GET /events/diagnostic/%s             ] 404 | {'Content-Type': 'application/json'} | 
+[POST /events/diagnostic/%s            ] 202 | {'Content-Type': 'application/json'} | 
+[GET /diagnostic/%s                    ] 404 | {'Content-Type': 'application/json'} | 
+[POST /diagnostic/%s                   ] 404 | {'Content-Type': 'application/json'} | 
+[GET /eval/%s/user                     ] 404 | {'Content-Type': 'application/json'} | 
+[POST /eval/%s/user                    ] 404 | {'Content-Type': 'application/json'} | 
+[GET /eval/%s/superzuser               ] 404 | {'Content-Type': 'application/json'} | 
+[POST /eval/%s/superzuser              ] 404 | {'Content-Type': 'application/json'} | 
+[GET /all                              ] 404 | {'Content-Type': 'application/json'} | 
+[POST /all                             ] 404 | {'Content-Type': 'application/json'} | 
+[GET /all/%s                           ] 404 | {'Content-Type': 'application/json'} | 
+[POST /all/%s                          ] 404 | {'Content-Type': 'application/json'} | 
+[GET /summary                          ] 404 | {'Content-Type': 'application/json'} | 
+[POST /summary                         ] 404 | {'Content-Type': 'application/json'} | 
+[GET /summary/%s                       ] 404 | {'Content-Type': 'application/json'} | 
+[POST /summary/%s                      ] 404 | {'Content-Type': 'application/json'} | 
+[GET /events                           ] 404 | {'Content-Type': 'application/json'} | 
+[POST /events                          ] 404 | {'Content-Type': 'application/json'} | 
+[GET /events/%s                        ] 404 | {'Content-Type': 'application/json'} | 
+[POST /events/%s                       ] 404 | {'Content-Type': 'application/json'} | 
+[GET /a/%s.gif                         ] 200 | {'Content-Type': 'application/json'} | 
+[POST /a/%s.gif                        ] 404 | {'Content-Type': 'application/json'} | 
+[GET /ping                             ] 404 | {'Content-Type': 'application/json'} | 
+[POST /ping                            ] 404 | {'Content-Type': 'application/json'} | 
+[GET /meval                            ] 404 | {'Content-Type': 'application/json'} | 
+[POST /meval                           ] 404 | {'Content-Type': 'application/json'} | 
+[GET /health                           ] 404 | {'Content-Type': 'application/json'} | 
+[POST /health                          ] 404 | {'Content-Type': 'application/json'} | 
+[GET /healthz                          ] 404 | {'Content-Type': 'application/json'} | 
+[POST /healthz                         ] 404 | {'Content-Type': 'application/json'} | 
+[GET /status                           ] 404 | {'Content-Type': 'application/json'} | 
+[POST /status                          ] 404 | {'Content-Type': 'application/json'} | 
+[GET /debug                            ] 404 | {'Content-Type': 'application/json'} | 
+[POST /debug                           ] 404 | {'Content-Type': 'application/json'} | 
+[GET /                                 ] 499 | {'Content-Type': 'application/json'} | 
+[POST /                                ] 404 | {'Content-Type': 'application/json'} | 
+
+=== B: auth matrix (POST, id=test env _id) ===
+[UN /bulk/%s                           ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-test(valid-ours) /bulk/%s         ] 404 | {'Content-Type': 'application/json'} | 
+[MOB-test(valid-ours) /bulk/%s         ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-invalid /bulk/%s                  ] 404 | {'Content-Type': 'application/json'} | 
+[NA-api-token /bulk/%s                 ] 404 | {'Content-Type': 'application/json'} | 
+[UN /events/bulk/%s                    ] 202 | {'Content-Type': 'application/json'} | 
+[SDK-test(valid-ours) /events/bulk/%s  ] 202 | {'Content-Type': 'application/json'} | 
+[MOB-test(valid-ours) /events/bulk/%s  ] 202 | {'Content-Type': 'application/json'} | 
+[SDK-invalid /events/bulk/%s           ] 202 | {'Content-Type': 'application/json'} | 
+[NA-api-token /events/bulk/%s          ] 202 | {'Content-Type': 'application/json'} | 
+[UN /mobile/%s                         ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-test(valid-ours) /mobile/%s       ] 404 | {'Content-Type': 'application/json'} | 
+[MOB-test(valid-ours) /mobile/%s       ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-invalid /mobile/%s                ] 404 | {'Content-Type': 'application/json'} | 
+[NA-api-token /mobile/%s               ] 404 | {'Content-Type': 'application/json'} | 
+[UN /events/diagnostic/%s              ] 202 | {'Content-Type': 'application/json'} | 
+[SDK-test(valid-ours) /events/diagnostic/%s] 202 | {'Content-Type': 'application/json'} | 
+[MOB-test(valid-ours) /events/diagnostic/%s] 202 | {'Content-Type': 'application/json'} | 
+[SDK-invalid /events/diagnostic/%s     ] 202 | {'Content-Type': 'application/json'} | 
+[NA-api-token /events/diagnostic/%s    ] 202 | {'Content-Type': 'application/json'} | 
+[UN /diagnostic/%s                     ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-test(valid-ours) /diagnostic/%s   ] 404 | {'Content-Type': 'application/json'} | 
+[MOB-test(valid-ours) /diagnostic/%s   ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-invalid /diagnostic/%s            ] 404 | {'Content-Type': 'application/json'} | 
+[NA-api-token /diagnostic/%s           ] 404 | {'Content-Type': 'application/json'} | 
+
+=== C: key<->id pairing (valid SDK-test key fixed; path id varies) ===
+[SDK-test vs real-test-id              ] 202 | {'Content-Type': 'application/json'} | 
+[SDK-test vs real-prod-id              ] 202 | {'Content-Type': 'application/json'} | 
+[SDK-test vs bogus-24hex               ] 404 | {'Content-Type': 'application/json'} | 
+[SDK-test vs garbage                   ] 404 | {'Content-Type': 'application/json'} | 
+
+=== C2: UN existence oracle check (no auth; id varies) ===
+[UN vs real-test-id                    ] 202 | {'Content-Type': 'application/json'} | 
+[UN vs bogus-24hex                     ] 404 | {'Content-Type': 'application/json'} | 
+[UN vs garbage                         ] 404 | {'Content-Type': 'application/json'} | 
+
+=== D: unauth event acceptance (own env id, NO auth) ===
+[UN POST /events/bulk/testid           ] 202 | {'Content-Type': 'application/json'} | 
+[UN POST /mobile/testid                ] 404 | {'Content-Type': 'application/json'} | 
+
+=== E: stream hosts quick probes ===
+[stream/mobile-stream mob-test         ] 404 | {'Content-Type': 'text/plain; charset=utf-8'} | 404 page not found 
+[stream/meval UN                       ] 405 | {'Content-Type': 'text/plain; charset=utf-8'} | Method Not Allowed 
+
+HUNT1 done. NOTE: any 202/200 on B/D = event accepted; verify audit/impact before claiming.

@@ -1,0 +1,14 @@
+markers: un=superz-r15-un-2zniulz1 vd=superz-r15-vd-2zniulz1
+[baseline] GET /api/v2/users/default/test -> 404 | b''
+[send UNAUTH] POST /events/bulk -> 202 | b''
+[send VALID-SDK] POST /events/bulk -> 202 | b''
+[poll 1 30s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+[poll 2 60s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+[poll 3 90s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+[poll 4 120s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+[poll 5 150s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+[poll 6 180s] UN:404 /api/v2/users/default/test | b'' || VD:404 /api/v2/users/default/test | b''
+
+VERDICT LOGIC: VD appears + UN appears  -> unauth ingestion CONFIRMED (new finding)
+               VD appears + UN absent   -> 202 is async drop, auth at ingest (closed)
+               VD absent                -> ingestion/verification path broken, retest

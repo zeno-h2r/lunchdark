@@ -112,3 +112,39 @@ a real session secure_id, then re-run: UNAUTH
 `{ event_chunk_url(secure_id: "<real>", index: 0) }`. If unauth returns
 session/PII data or a signed chunk URL → P1 (unauthenticated cross-tenant
 session replay read). Contact Super Z with the real secure_id to run the test.
+
+## R15 update (2026-10-24) — addSessionFeedback verified (breadth +1)
+
+The "unverified-but-accepted primitive" list from the original report is now one shorter.
+`addSessionFeedback` was introspected and fired unauthenticated against the shared
+observability project, using our own R15 marker session only:
+
+Exact signature (from introspection):
+```
+addSessionFeedback(session_secure_id: String, user_name: String, user_email: String,
+                   verbatim: String, timestamp: Timestamp!) -> String
+```
+(timestamp is required and must be an RFC3339Nano string)
+
+Verified repro (no auth, Origin header only):
+```
+mutation {
+  addSessionFeedback(session_secure_id: "1jdkoe52-szr15-...",
+                     verbatim: "superz-r15-feedback-probe",
+                     user_name: "superz",
+                     user_email: "superz-r15@example.test",
+                     timestamp: "2026-10-24T12:00:00Z") }
+→ 200 {"data":{"addSessionFeedback":"1jdkoe52-szr15-..."}}   (session id echoed back)
+```
+
+Impact delta: a victim tenant's Session Replay/feedback UI can now be seeded not only with
+fake sessions/errors/replay frames (R3/R9/R13 chain) but also with **fake end-user feedback
+messages carrying attacker-chosen user names and email addresses** — e.g. fabricated
+"this feature breaks production" reports visible to the victim's team during triage.
+Severity framing unchanged (P3): still write/injection only, read isolation intact.
+
+Verified unauth mutation set now: initializeSession, pushSessionEvents, pushPayload,
+addSessionFeedback. Introspected-but-not-fired: identifySession(session_secure_id,
+user_identifier, user_object) — same class, shape documented for the triager.
+
+Evidence: `recon/r15_hunt4.txt`, `recon/r15_hunt4b.txt` (captured 2026-10-24).

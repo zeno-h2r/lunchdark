@@ -1,0 +1,8 @@
+[1] introspection -> 200
+  mutation identifySession(session_secure_id:String, user_identifier:String, user_object:Any)
+[2] initializeSession -> 200 | {"data":{"initializeSession":{"secure_id":"1jdkoe52-szr15-22222222-2222-4222-8222-2222222222ff"}}}
+[3] addSessionFeedback v1 -> 422 | {"errors":[{"message":"Unknown argument \"feedback\" on field \"Mutation.addSessionFeedback\".","locations":[{"line":1,"column":12}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"addSessionFeedback\" argument \"verbatim\" of type \"String!\" is required, but it was not provi
+[3-alt] session_secure_id -> 422 | {"errors":[{"message":"Unknown argument \"feedback\" on field \"Mutation.addSessionFeedback\".","locations":[{"line":1,"column":12}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Fiel
+[3-alt] session_secure_id -> 422 | {"errors":[{"message":"Unknown argument \"user_feedback\" on field \"Mutation.addSessionFeedback\". Did you mean \"user_email\"?","locations":[{"line":1,"column":12}],"extensions":{"code":"GRAPHQL_VAL
+
+HUNT4 done: any 200 with data != errors = F1 breadth +1 (feedback injection into shared obs project).

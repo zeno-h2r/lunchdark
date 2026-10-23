@@ -1,0 +1,36 @@
+markers: un=superz-un-8kmfppoh vd=superz-vd-8kmfppoh
+[send UNAUTH] -> 202 | b''
+[send VALID-SDK] -> 202 | b''
+[t0-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t0-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t0-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t0-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t0 sanity] UN seen? False VD seen? False
+[t1-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t1-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t1-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t1-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[poll 1] UN seen=False | VD seen=False
+[t2-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t2-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t2-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t2-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[poll 2] UN seen=False | VD seen=False
+[t3-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t3-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t3-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t3-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[poll 3] UN seen=False | VD seen=False
+[t4-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t4-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t4-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t4-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[poll 4] UN seen=False | VD seen=False
+[t5-UN] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t5-UN] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t5-VD] GET ctx-instance -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[t5-VD] POST ctx-search -> 404 | b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[poll 5] UN seen=False | VD seen=False
+
+VERDICT: VD=yes UN=yes -> CONFIRMED unauth ingestion; VD=yes UN=no -> async drop (closed);
+         VD=no -> verification path/context API blocked or sandbox ingestion off

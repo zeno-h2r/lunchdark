@@ -1,0 +1,4 @@
+INTROSPECT addSessionFeedback(session_secure_id:String, user_name:String, user_email:String, verbatim:String, timestamp:Timestamp)
+[final] addSessionFeedback -> 422 | {"errors":[{"message":"Field \"addSessionFeedback\" argument \"timestamp\" of type \"Timestamp!\" is required, but it was not provided.","locations":[{"line":1,"column":12}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[final2] addSessionFeedback +timestamp -> 200 | {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["addSessionFeedback","timestamp"]}],"data":null}
+[final3] addSessionFeedback RFC3339 -> 200 | {"data":{"addSessionFeedback":"1jdkoe52-szr15-22222222-2222-4222-8222-2222222222ff"}}
