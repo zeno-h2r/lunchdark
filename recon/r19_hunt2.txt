@@ -1,0 +1,31 @@
+common.js -> 200 len=7898282
+--- contexts around 'scim' literals (excluding saga/i18n noise) ---
+  ...piVersion:e}={},{headers:t,signal:n}={}){return(0,a.K)().GET("/internal/account/scim",{params:{},headers:e?(0,s.lF)(t,{"LD-API-Version":e}):t,signal:n})}async function u({apiVersion:e}={},{headers:t,signa...
+  ...berMfa","href"])).catch(s.ov)}function ei(){return s.LV.post("/internal/account/scim/managed-teams").catch(s.ov)}function ea(){return s.LV.delete("/internal/account/scim/managed-teams").catch(s.ov)}functi...
+  ...nal/account/saml").catch(s.ov)}function ed(){return s.LV.get("/internal/account/scim").then(s.gO).then(g).catch(s.ov)}function eh(){return s.LV.delete("/internal/account/scim").catch(s.ov)}function ef(){r...
+(total contexts 3)
+
+=== candidate key endpoints (TST session) ===
+/internal/account/scim/key  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/keys  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/token  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/regenerate  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/rotate  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/credentials  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/team-sync  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/team-sync/key  OPTIONS=404 GET=404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>'
+/internal/account/scim/managed-teams  OPTIONS=405 GET=405 b''
+
+=== trust.launchdarkly.com probes ===
+[UN ] /scim/v2/Users -> 403 b'error code: 1010\n'
+[TST] /scim/v2/Users -> 403 b'error code: 1010\n'
+[UN ] /v2/Users -> 403 b'error code: 1010\n'
+[TST] /v2/Users -> 403 b'error code: 1010\n'
+[UN ] /Users -> 403 b'error code: 1010\n'
+[TST] /Users -> 403 b'error code: 1010\n'
+[UN ] /scim/v2/ServiceProviderConfig -> 403 b'error code: 1010\n'
+[TST] /scim/v2/ServiceProviderConfig -> 403 b'error code: 1010\n'
+[UN ] /oauth2/token -> 403 b'error code: 1010\n'
+[TST] /oauth2/token -> 403 b'error code: 1010\n'
+[UN ] /scim/token -> 403 b'error code: 1010\n'
+[TST] /scim/token -> 403 b'error code: 1010\n'

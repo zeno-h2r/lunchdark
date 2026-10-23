@@ -1,0 +1,13 @@
+=== 1) fresh consent code ===
+POST authorize -> 302 loc=https://zeno0.example/callback?code=MMFHMGE3ZTGTNJFHNC0ZMMY4LWE2NTKTODRHNWY2MWM3NMI1&state=r19state7 code=MMFHMGE3ZTGTNJFH...
+
+=== 2) exchange code ===
+POST token -> 200 b'{"access_token":"NJRLZWU4ZJUTNJUXMY0ZZJG1LTHJNTKTMWQZYJK2MJU1YZU4","expires_in":7200,"refresh_token":"YTI5NWUWNJYTYMEXNY01NGY1LWEXMGQTM2U4NDEXNJQXOWQ2","token_type":"Bearer"}\n'
+scope=None type=Bearer
+
+=== 3) SCIM API with consent-token ===
+GET /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+GET /Groups -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+GET /Schemas -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+GET /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+hunt7 done

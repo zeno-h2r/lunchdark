@@ -1,0 +1,16 @@
+['SCIM'] code ok -> token scope='SCIM' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['Scim'] code ok -> token scope='Scim' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['scim\t'] code ok -> token scope='scim\t' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['scim,read'] code ok -> token scope='scim,read' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['scim;read'] code ok -> token scope='scim;read' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['read'] code ok -> token scope='read' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['admin'] code ok -> token scope='admin' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'
+['bogusscope'] code ok -> token scope='bogusscope' type=Bearer
+    SCIM /Users -> 403 b'{"code":"insufficient_scope","message":"token does not have required scopes"}'

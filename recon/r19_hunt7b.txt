@@ -1,0 +1,18 @@
+GET scope='scim' -> 403 title=Server error loc=
+GET scope='read' -> 200 title=Requesting Access loc=
+GET scope='writer' -> 200 title=Requesting Access loc=
+GET scope='admin' -> 200 title=Requesting Access loc=
+GET scope='reader' -> 200 title=Requesting Access loc=
+GET scope='observability' -> 200 title=Requesting Access loc=
+GET scope='bogusscope' -> 200 title=Requesting Access loc=
+GET scope='SCIM' -> 200 title=Requesting Access loc=
+GET scope='Scim' -> 200 title=Requesting Access loc=
+GET scope=' scim' -> 403 title=Server error loc=
+GET scope='scim ' -> 403 title=Server error loc=
+GET scope='scim	' -> 200 title=Requesting Access loc=
+GET scope='read scim' -> 403 title=Server error loc=
+GET scope='scim,read' -> 200 title=Requesting Access loc=
+GET scope='scim;read' -> 200 title=Requesting Access loc=
+
+=== if a non-scim scope yields a code: exchange and check token scope ===
+scope=read: no code issued

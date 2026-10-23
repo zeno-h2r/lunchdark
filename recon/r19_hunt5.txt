@@ -1,0 +1,13 @@
+client: fc3117e3-8144-4dee-873c-571c9e685007
+GET authorize -> 403 loc=None len=2425
+
+=== HUNT5b: token grants ===
+POST token client_credentials (form) -> 200 b'{"access_token":"NJIZNJZHZJATMTDJMY0ZMWNILWI3NZYTYTK5MDY3ODMYNZCW","expires_in":31536000,"refresh_token":"YTU3Y2Y4MZCTODYZOS01ZDHMLTGYMJMTNMY0ZWZMMWVLMZY0","scope":"scim","token_type":"Bearer"}\n'
+POST token client_credentials (basic) -> 200 b'{"access_token":"Y2I4YJNLMZUTNJY5YI0ZOTIYLTGXMTUTM2MZYZVMZDI2ZJC3","expires_in":31536000,"refresh_token":"OWY5YTU5NZGTMDU1NC01YJRKLWFIYZYTMZVMMDUXNZVJMTC4","scope":"scim","token_type":"Bearer"}\n'
+POST token auth_code bogus -> 401 b'{"error":"invalid_grant","error_description":"The provided authorization grant (e.g., authorization code, resource owner credentials) or refresh token is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client"}\n'
+
+=== authorize variations ===
+GET ...?client_id=fc3117e3-8144-4dee-873c-571c9e685007&redirect_uri=https%3A%2F%2Fzeno0.example%2Fcallback&response_type=code&scope=scim -> 403 title=b'Server error' len=2425
+GET ...?client_id=fc3117e3-8144-4dee-873c-571c9e685007&redirect_uri=https%3A%2F%2Fzeno0.example%2Fcallback&response_type=code -> 200 title=b'Requesting Access' len=4655
+GET ...?client_id=fc3117e3-8144-4dee-873c-571c9e685007 -> 400 title=b'Server error' len=2403
+UN GET authorize -> 200 title=b'Sign in' len=4551

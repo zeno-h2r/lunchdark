@@ -1,0 +1,23 @@
+GET authorize(no scope) -> 200 loc=None len=4699
+  <script defer src="https://static.launchdarkly.com/app/s/ld/runtime.893000110b315702.js"></script>
+  <script defer src="https://static.launchdarkly.com/app/s/ld/initial.vendor.cae8a34c27061054.js"></script>
+  <script defer src="https://static.launchdarkly.com/app/s/ld/bootstrap.9bff69c8c18d00c2.js"></script>
+  /trust/oauth/authorize
+  /trust/oauth/authorize
+
+full HTML saved: recon/r19_consent_page.html (4699 bytes)
+  URL: https://static.launchdarkly.com/app
+  URL: https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.png
+  URL: https://static.launchdarkly.com/app/s/img/favicon-osmo-prod.svg
+  URL: https://static.launchdarkly.com/app/s/ld/
+  URL: https://static.launchdarkly.com/app/s/ld/Sora.var-subset.woff2
+  URL: https://static.launchdarkly.com/app/s/ld/bootstrap.73726682e5bafdf6.css
+  URL: https://static.launchdarkly.com/app/s/ld/bootstrap.9bff69c8c18d00c2.js
+  URL: https://static.launchdarkly.com/app/s/ld/common.228a9dbd609a970d.js
+  URL: https://static.launchdarkly.com/app/s/ld/initial.vendor.cae8a34c27061054.js
+  URL: https://static.launchdarkly.com/app/s/ld/inter.var-subset.woff2
+  URL: https://static.launchdarkly.com/app/s/ld/launchpad.736bcdcfc842b5fa.js
+  URL: https://static.launchdarkly.com/app/s/ld/loadApp.07c37c3e1cc02440.css
+  URL: https://static.launchdarkly.com/app/s/ld/loadApp.fc5f69ebe3c28f84.js
+  URL: https://static.launchdarkly.com/app/s/ld/oauth2Authorize.entry.dcee3503a2a2c5c2.js
+  URL: https://static.launchdarkly.com/app/s/ld/runtime.893000110b315702.js

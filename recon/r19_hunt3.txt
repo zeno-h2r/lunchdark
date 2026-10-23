@@ -1,0 +1,21 @@
+=== trust host with browser UA ===
+[UN ] /scim/v2/Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[TST] /scim/v2/Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[UN ] /v2/Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[TST] /v2/Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[UN ] /Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[TST] /Users -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[UN ] /oauth2/token -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+[TST] /oauth2/token -> 200 b'<!doctype html>\n<html data-version="0be4062001325c5ac8aa3680ca8b0d81d852db5d" da'
+
+=== headers on app /trust/scim/v2/Users (UN + TST) ===
+[UN] -> 401 www-auth=None allow=None server=None
+      body=b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+[TST] -> 401 www-auth=None allow=None server=None
+      body=b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+
+=== authorize route discovery ===
+loadApp -> 200 len=3529501
+  ROUTE-PATH: oauth
+
+=== more token endpoint guesses (form POST) ===

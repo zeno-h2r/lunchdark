@@ -1,0 +1,11 @@
+refresh tokens available: 2
+[refresh .r19_scim_token.json (orig scope=scim)] -> 200 b'{"access_token":"NWJLYMJJMMITZJRMMS0ZNGIZLTHJMWQTNJVHYZQ0NTAXZTDL","expires_in":31536000,"refresh_token":"YTG4M2I3NMMTYMQ0OC01YJIXLWE2YTITMDY3YZC3YJI0MJU0","scope":"scim","token_type":"Bearer"}\n'
+    new scope='scim'
+[refresh .r19_scim_token_authcode.json (orig scope=None)] -> 200 b'{"access_token":"M2UZNMU5OGETZJQ5NS0ZYTM4LTK4NTATNZC1ZWQWMGJJZJHL","expires_in":7200,"refresh_token":"YTI5NWUWNJYTYMEXNY01NGY1LWEXMGQTM2U4NDEXNJQXOWQ2","token_type":"Bearer"}\n'
+    new scope=None
+
+=== fresh consent(admin) -> refresh ===
+consent(admin) token scope='admin'
+refresh -> 200 b'{"access_token":"MJUYMMZKNWUTZJC2OC0ZNTYWLTG4N2MTYJU2NTZLMWZHOWE2","expires_in":7200,"refresh_token":"YJZHMJUXZWUTYJQ3YS01OWE5LTHKZDCTYME3ZJE5Y2E3MJRL","scope":"admin","token_type":"Bearer"}\n'
+refreshed scope='admin'
+done

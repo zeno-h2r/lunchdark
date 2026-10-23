@@ -1,0 +1,12 @@
+=== create zeno-r19 scim client (TST) ===
+POST -> 201 b'{"_links":{"parent":{"href":"/api/v2/oauth/clients","type":"application/json"},"self":{"href":"/api/v2/oauth/clients/fc3117e3-8144-4dee-873c-571c9e685007","type":"application/json"}},"name":"zeno-r19-oauth","description":"R19 SCIM attack simulation, temp client","_accountId":"6ac29057ccacd606b1576cb7","_clientId":"fc3117e3-8144-4dee-873c-571c9e685007","_clientSecret":"80c33246-d149-4eb0-b1a7-1c132'
+saved client _clientId=fc3117e3-8144-4dee-873c-571c9e685007 (secret in scripts/.r19_oauth.json)
+
+=== authorize GET (no-redirect, TST session) ===
+GET /oauth?... -> 404 loc=None ctype=text/html; charset=utf-8
+len=4339
+saved recon/r19_authorize_page.html
+
+=== also probe /oauth/authorize + /oauth2/authorize GET w/ session ===
+GET /oauth/authorize?client_id=fc3117e3-8144-4dee-873c-571c9e685... -> 404 loc=None len=4339 spa=False
+GET /oauth2/authorize?client_id=fc3117e3-8144-4dee-873c-571c9e68... -> 404 loc=None len=4339 spa=False
