@@ -1,0 +1,880 @@
+{
+ "GetNetworkHistogram": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetSessionPayload": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "skip_events": false
+ },
+ "GetEventChunkURL": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "index": 10
+ },
+ "GetEventChunks": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSession": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetWorkspaceAdminsByProjectId": {
+  "project_id": "1jdkoe52"
+ },
+ "GetWorkspaceAdmins": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetSessionInsight": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSessionExports": {
+  "project_id": "1jdkoe52"
+ },
+ "GetSessionComments": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "isSessionPending": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSessionIntervals": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetTimelineIndicatorEvents": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSessionChunkPreviewFrames": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "timestamp_ms": 10
+ },
+ "GetWebSocketEvents": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSessions": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "sort_desc": false,
+  "sort_field": "szr10-probe",
+  "page": 10,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetEventSessions": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "sort_desc": false,
+  "sort_field": "szr10-probe",
+  "page": 10
+ },
+ "GetSessionsHistogram": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "histogram_options": "szr10"
+ },
+ "GetSessionUsersReports": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "timezone": "szr10-probe"
+ },
+ "GetErrorGroups": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "page": 10
+ },
+ "GetErrorGroupsForFlagVariation": {
+  "ld_project_id": "1jdkoe52",
+  "ld_environment_id": "szr10-probe",
+  "flag_key": "default",
+  "flag_variation_value_json": "szr10-probe",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "page": 10
+ },
+ "GetErrorsHistogram": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "histogram_options": "szr10"
+ },
+ "GetWorkspace": {
+  "id": "1jdkoe52"
+ },
+ "GetWorkspaceForInviteLink": {
+  "secret": "szr10-probe"
+ },
+ "GetProjectOrWorkspace": {
+  "project_id": "1jdkoe52",
+  "workspace_id": "1jdkoe52",
+  "is_workspace": false
+ },
+ "GetAdminRole": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetAdminRoleByProject": {
+  "project_id": "1jdkoe52"
+ },
+ "GetProject": {
+  "id": "1jdkoe52"
+ },
+ "GetBillingDetailsForProject": {
+  "project_id": "1jdkoe52"
+ },
+ "GetWorkspaceUsageHistory": {
+  "workspace_id": "1jdkoe52",
+  "product_type": "szr10",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetBillingDetails": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetSubscriptionDetails": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetErrorGroup": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "use_clickhouse": false
+ },
+ "GetErrorObjectForLog": {
+  "log_cursor": "szr10-probe"
+ },
+ "GetErrorObject": {
+  "id": "szr10"
+ },
+ "GetErrorInstance": {
+  "error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "error_object_id": "szr10-probe",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetResources": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetProjectSuggestion": {
+  "query": "szr10-probe"
+ },
+ "GetSavedSegments": {
+  "project_id": "1jdkoe52",
+  "entity_type": "szr10"
+ },
+ "GetClientIntegration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetServerIntegration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetLogsIntegration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetTracesIntegration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetMetricsIntegration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetKeyPerformanceIndicators": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetReferrersCount": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetNewUsersCount": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetAverageSessionLength": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetTopUsers": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetDailySessionsCount": {
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetDailyErrorsCount": {
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetRageClicksForProject": {
+  "project_id": "1jdkoe52",
+  "lookback_days": 10
+ },
+ "GetDailyErrorFrequency": {
+  "project_id": "1jdkoe52",
+  "error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "date_offset": 10
+ },
+ "GetSlackChannelSuggestion": {
+  "project_id": "1jdkoe52"
+ },
+ "GetWorkspaceIsIntegratedWithSlack": {
+  "project_id": "1jdkoe52"
+ },
+ "GetWorkspaceIsIntegratedWithCloudflare": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetJiraIntegrationSettings": {
+  "project_id": "1jdkoe52"
+ },
+ "GetGitHubIntegrationSettings": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetVegaIntegrationStatus": {
+  "project_id": "1jdkoe52"
+ },
+ "GetGitlabIntegrationSettings": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetGitHubIssueLabels": {
+  "workspace_id": "1jdkoe52",
+  "repository": "szr10-probe"
+ },
+ "GetProjectIntegratedWith": {
+  "project_id": "1jdkoe52",
+  "integration_type": "szr10"
+ },
+ "GetIdentifierSuggestions": {
+  "project_id": "1jdkoe52",
+  "query": "szr10-probe"
+ },
+ "GetServiceAlerts": {
+  "project_id": "1jdkoe52"
+ },
+ "GetAlertsPagePayload": {
+  "project_id": "1jdkoe52"
+ },
+ "GetAlert": {
+  "id": "1jdkoe52"
+ },
+ "GetAlertingAlertStateChanges": {
+  "alert_id": "szr10-probe",
+  "start_date": 1727700000,
+  "end_date": 1727700000,
+  "page": 10
+ },
+ "GetLastAlertStateChanges": {
+  "alert_id": "szr10-probe"
+ },
+ "GetLastAlertingStateChange": {
+  "alert_id": "szr10-probe"
+ },
+ "GetAlertingAlertGroupStates": {
+  "alert_id": "szr10-probe",
+  "start_date": 1727700000,
+  "end_date": 1727700000,
+  "page": 10,
+  "count": 10
+ },
+ "GetLastAlertGroupStates": {
+  "alert_id": "szr10-probe"
+ },
+ "GetLastAlertingAlertGroupState": {
+  "alert_id": "szr10-probe"
+ },
+ "GetCustomerPortalURL": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetWebVitals": {
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetSourcemapFiles": {
+  "project_id": "1jdkoe52",
+  "version": "szr10-probe"
+ },
+ "GetSourcemapVersions": {
+  "project_id": "1jdkoe52"
+ },
+ "GetOAuthClientMetadata": {
+  "client_id": "szr10-probe"
+ },
+ "GetSSOLogin": {
+  "domain": "szr10-probe"
+ },
+ "SearchIssues": {
+  "project_id": "1jdkoe52",
+  "query": "szr10-probe",
+  "integration_type": "szr10"
+ },
+ "GetErrorGroupTags": {
+  "error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "use_clickhouse": false,
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetEmailOptOuts": {
+  "token": "szr10-probe",
+  "admin_id": "szr10-probe"
+ },
+ "GetLogs": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "after": "szr10-probe",
+  "before": "szr10-probe",
+  "at": "szr10-probe",
+  "direction": "szr10",
+  "limit": 10,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetLogsHistogram": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetLogsRelatedResources": {
+  "project_id": "1jdkoe52",
+  "log_cursors": "szr10",
+  "trace_ids": "szr10",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetProjectSettings": {
+  "projectId": "szr10-probe"
+ },
+ "GetWorkspacePendingInvites": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetErrorResolutionSuggestion": {
+  "error_object_id": "szr10-probe"
+ },
+ "GetWorkspaceSettings": {
+  "workspace_id": "1jdkoe52"
+ },
+ "GetErrorGroupInstances": {
+  "errorGroupSecureID": "szr10-probe",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "page": 10
+ },
+ "GetErrorObjects": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "page": 10,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetServices": {
+  "project_id": "1jdkoe52",
+  "query": "szr10-probe",
+  "after": "szr10-probe",
+  "before": "szr10-probe"
+ },
+ "GetServiceByName": {
+  "project_id": "1jdkoe52",
+  "name": "szr10-probe"
+ },
+ "GetTrace": {
+  "project_id": "1jdkoe52",
+  "trace_id": "szr10-probe",
+  "timestamp": 1727700000,
+  "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"
+ },
+ "GetTraceConversation": {
+  "project_id": "1jdkoe52",
+  "conversation_id": "szr10-probe",
+  "start_date": 1727700000,
+  "end_date": 1727700000
+ },
+ "GetTraces": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "after": "szr10-probe",
+  "before": "szr10-probe",
+  "at": "szr10-probe",
+  "direction": "szr10",
+  "limit": 10,
+  "omitBody": false,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetTraceSummaries": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "after": "szr10-probe",
+  "limit": 10
+ },
+ "GetConversations": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "after": "szr10-probe",
+  "limit": 10
+ },
+ "GetTracesMetrics": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "column": "szr10-probe",
+  "metric_types": "szr10",
+  "group_by": "szr10",
+  "bucket_by": "szr10-probe",
+  "limit": 10,
+  "limit_aggregator": "szr10",
+  "limit_column": "szr10-probe"
+ },
+ "GetKeys": {
+  "product_type": "szr10",
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "query": "szr10-probe",
+  "type": "szr10",
+  "event": "szr10-probe"
+ },
+ "GetKeyValues": {
+  "product_type": "szr10",
+  "project_id": "1jdkoe52",
+  "key_name": "default",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "query": "szr10-probe",
+  "count": 10,
+  "event": "szr10-probe"
+ },
+ "GetKeyValueSuggestions": {
+  "product_type": "szr10",
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "keys": "szr10"
+ },
+ "GetValueSuggestions": {
+  "product_type": "szr10",
+  "project_id": "1jdkoe52",
+  "key_name": "default",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "query": "szr10-probe",
+  "count": 10,
+  "event": "szr10-probe"
+ },
+ "GetUrlKeyValues": {
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "query": "szr10-probe",
+  "count": 10
+ },
+ "GetMetrics": {
+  "product_type": "szr10",
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "sql": "szr10-probe",
+  "group_by": "szr10",
+  "bucket_by": "szr10-probe",
+  "bucket_count": 10,
+  "bucket_window": 10,
+  "limit": 10,
+  "limit_aggregator": "szr10",
+  "limit_column": "szr10-probe",
+  "prediction_settings": "szr10",
+  "expressions": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "population_function_type": "szr10",
+  "population_query": "szr10-probe",
+  "population_window": 10,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "include_null_or_empty_groups": false
+ },
+ "GetVisualization": {
+  "id": "1jdkoe52"
+ },
+ "GetVisualizations": {
+  "project_id": "1jdkoe52",
+  "input": "szr10-probe",
+  "count": 10,
+  "offset": 10
+ },
+ "GetHeatmapClicks": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetTimestampEventChunkURL": {
+  "secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111",
+  "timestamp": 1727700000
+ },
+ "GetConversationHistory": {
+  "conversation_id": "szr10-probe",
+  "after_turn": 10
+ },
+ "GetClickSessions": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "sort_desc": false,
+  "sort_field": "szr10-probe",
+  "page": 10
+ },
+ "GetAiChatLimitStatus": {
+  "project_id": "1jdkoe52"
+ },
+ "GetFilterRules": {
+  "projectId": "szr10-probe",
+  "productType": "szr10"
+ },
+ "GetQueryFilterRule": {
+  "id": "1jdkoe52",
+  "projectId": "szr10-probe"
+ },
+ "GetServiceMap": {
+  "project_id": "1jdkoe52",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetTraceServiceSummary": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetServiceConnections": {
+  "project_id": "1jdkoe52",
+  "service_name": "szr10-probe",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "environment_ids": "szr10"
+ },
+ "GetAiConversationHistory": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "page": 10,
+  "user_email": "szr10@example.com",
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "tag_key": "default",
+  "tag_value": "szr10-probe",
+  "shared_only": false,
+  "query": "szr10-probe",
+  "origin": "szr10",
+  "agent_kind": "szr10-probe"
+ },
+ "GetAgentArtifact": {
+  "project_id": "1jdkoe52",
+  "type": "szr10-probe",
+  "external_id": "szr10-probe"
+ },
+ "GetProjectArtifacts": {
+  "project_id": "1jdkoe52",
+  "search": "szr10-probe",
+  "type": "szr10-probe",
+  "source": "szr10-probe",
+  "count": 10,
+  "page": 10,
+  "creator": "szr10"
+ },
+ "GetConversationArtifacts": {
+  "project_id": "1jdkoe52",
+  "conversation_id": "szr10-probe",
+  "relationships": "szr10",
+  "limit": 10
+ },
+ "GetFlagCleanups": {
+  "project_id": "1jdkoe52",
+  "count": 10,
+  "page": 10,
+  "date_range": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetVegaProjectConfiguration": {
+  "project_id": "1jdkoe52"
+ },
+ "GetVegaWorkflows": {
+  "project_id": "1jdkoe52"
+ },
+ "GetVegaWorkflow": {
+  "project_id": "1jdkoe52",
+  "id": "1jdkoe52"
+ },
+ "GetVegaWorkflowExecutions": {
+  "project_id": "1jdkoe52",
+  "workflow_id": "szr10-probe",
+  "limit": 10
+ },
+ "GetVegaInferenceModels": {
+  "project_id": "1jdkoe52"
+ },
+ "GetDashboardOptions": {
+  "project_id": "1jdkoe52",
+  "query": "szr10-probe",
+  "limit": 10
+ },
+ "GetGraphOptions": {
+  "project_id": "1jdkoe52",
+  "dashboard_id": "szr10-probe",
+  "query": "szr10-probe",
+  "limit": 10
+ },
+ "GetAlertOptions": {
+  "project_id": "1jdkoe52",
+  "query": "szr10-probe",
+  "limit": 10
+ },
+ "GetPAEvents": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "after": "szr10-probe",
+  "before": "szr10-probe",
+  "at": "szr10-probe",
+  "direction": "szr10",
+  "limit": 10,
+  "query_settings": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  }
+ },
+ "GetPaEventsFunnel": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "funnel_steps": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "group_by": "szr10",
+  "strict_order": false
+ },
+ "GetPaEventsFunnelV2": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "funnel_steps": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "group_by": "szr10",
+  "strict_order": false,
+  "breakdown_by": "szr10",
+  "breakdown_limit": 10
+ },
+ "GetTeamQueryHistory": {
+  "project_id": "1jdkoe52",
+  "query_type": "szr10",
+  "limit": 10
+ },
+ "GetMetricExemplars": {
+  "project_id": "1jdkoe52",
+  "params": {
+   "date_range": {
+    "start_date": "2026-10-01T00:00:00Z",
+    "end_date": "2026-10-24T00:00:00Z"
+   }
+  },
+  "bucket_window": 10,
+  "limit": 10
+ },
+ "ExperimentHypothesisSuggestion": {
+  "project_id": "1jdkoe52",
+  "prompt": "szr10-probe"
+ },
+ "GetServiceSettings": {
+  "service_id": "szr10",
+  "project_id": "1jdkoe52"
+ }
+}

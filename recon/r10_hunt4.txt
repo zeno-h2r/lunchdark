@@ -1,0 +1,149 @@
+==========================================================================
+R10 HUNT 4 — main-app query param injection/fuzz
+==========================================================================
+
+--- BASELINES ---
+[flags-owner M]: 200 {"_links":{"last":{"href":"/api/v2/flags/default?limit=1\u0026offset=13\u0026summary=true","type":"application/json"},"next":{"href":"/api/v2/flags/default?limit=1\u0026offset=1\u0026summary=true","type":"application/json"},"self":{"href":"/api/v2/flags/default?limit=1\u0026summary=true","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/flags/default","type":"application/js
+[flags-noacc NA]: 200 {"_links":{"last":{"href":"/api/v2/flags/default?limit=1\u0026offset=13\u0026summary=true","type":"application/json"},"next":{"href":"/api/v2/flags/default?limit=1\u0026offset=1\u0026summary=true","type":"application/json"},"self":{"href":"/api/v2/flags/default?limit=1\u0026summary=true","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/flags/default","type":"application/js
+[auditlog M]: 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adb3acc700a9a078043a0a3","type":"application/json"},"site":{"href":"/settings/roles","type":"text/html"}},"_id":"6adb3acc700a9a078043a0a3","_accountId":"6ac28fd11c28fb07516cf361","date":1792752332563,"
+
+--- FUZZ flags/default?filter= ---
+filter[quote    ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[squote   ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[or1eq1   ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[sqldrop  ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[nosql    ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[wildcard ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[regexp   ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[paren    ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[semicolon] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[union    ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[backtick ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[percent  ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[newline  ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+filter[unicode  ] 400 total=- {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+
+--- FUZZ sort/limit/offset/expansion ---
+params={'sort': 'name;--', 'limit': '2'} -> 400 {"code":"invalid_request","message":"Unsupported sort field. Must be one of: tags, archived, type, maintainerI
+params={'sort': '(SELECT 1)', 'limit': '2'} -> 400 {"code":"invalid_request","message":"Unsupported sort field. Must be one of: tags, archived, type, maintainerI
+params={'sort': 'name asc, (select 1)', 'limit': '2'} -> 400 {"code":"invalid_request","message":"Unsupported sort field. Must be one of: tags, archived, type, maintainerI
+params={'limit': '2', 'offset': '-1'} -> 400 {"code":"invalid_request","message":"`offset` must be greater than or equal to 0"}
+params={'limit': '2;--'} -> 400 {"code":"invalid_request","message":"`limit` must be an integer"}
+params={'limit': '9999999999999999999999'} -> 400 {"code":"invalid_request","message":"`limit` must be an integer"}
+params={'limit': '2', 'expansion': 'variation;--'} -> 200 {"_links":{"last":{"href":"/api/v2/flags/default?expansion=variation%3B--\u0026limit=2\u0026offset=12\u0026sum
+params={'limit': '2', 'expansion': "evaluation'"} -> 200 {"_links":{"last":{"href":"/api/v2/flags/default?expansion=evaluation%27\u0026limit=2\u0026offset=12\u0026summ
+params={'filter': 'query eq "zeno-allowed"', 'sort': 'creationDate,-;--', 'limit': '3'} -> 400 {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+params={'filter': 'tags: ["$ne","x"]', 'limit': '3'} -> 400 {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+params={'filter': 'query eq `zeno-allowed-1`', 'limit': '3'} -> 400 {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+
+--- FUZZ auditlog ?q= / spec= ---
+q[quote    ] 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"
+q[squote   ] 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"
+q[or1eq1   ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%27+or+%271%27%3D%271","type":
+q[sqldrop  ] 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"
+q[nosql    ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%22%2C%22%24ne%22%3A%22x","typ
+q[wildcard ] 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"
+q[regexp   ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%5Ba-z%5D%2B%29%2B%24","type":
+q[paren    ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%22%29+or+%28%22%22%3D%22","ty
+q[semicolon] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%3B+drop+table+x%3B--","type":
+q[union    ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%27+UNION+SELECT+1--","type":"
+q[backtick ] 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/roles/zeno-noaccess-r8z","type":"application/json"
+q[percent  ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%2525","type":"application/jso
+q[newline  ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=a%0Ab","type":"application/jso
+q[unicode  ] 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=%EF%BC%87+or+%EF%BC%87%EF%BC%9
+spec="' or '1'='1" -> 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resour
+spec='*' -> 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resour
+spec='a\nb' -> 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resour
+spec='ASC;--' -> 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resour
+spec='name; drop' -> 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resour
+
+--- CROSS-TENANT via query params (TST session, ORG keys) ---
+ORG /api/v2/members {'filter': 'email eq "zeno0@zenocrowd.test"', 'limit': '5'} -> 400 {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+TST /api/v2/members {'filter': 'email eq "zeno0@zenocrowd.test"', 'limit': '5'} -> 400 {"code":"invalid_request","message":"Invalid filter. Must be of the form: field:value"}
+ORG /api/v2/auditlog {'limit': '3', 'q': 'member:6ac28fd11c28fb07516cf363'} -> 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=member%3A6ac28fd11c28fb07516cf363","type":"application/json"
+TST /api/v2/auditlog {'limit': '3', 'q': 'member:6ac28fd11c28fb07516cf363'} -> 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=3\u0026q=member%3A6ac28fd11c28fb07516cf363","type":"application/json"
+ORG /internal/account/members {'limit': '5'} -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="des
+TST /internal/account/members {'limit': '5'} -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="des
+
+--- search/query endpoints (R9 unresolved grammar) ---
+M GET /api/v2/search/flags?projectKey -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+M GET /api/v2/flags/search?projectKey -> 404 {"message":"Unknown project key search"}
+M GET /api/v2/search?projectKey -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+ORG GET /internal/search -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+ORG GET /internal/projects/default/search -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+ORG GET /internal/flags/search -> 404 {"message":"Unknown project key search"}
+ORG GET /internal/search/flags -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+ORG GET /api/v2/projects/default/flags/search -> 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta
+DONE

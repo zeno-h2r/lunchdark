@@ -1,0 +1,101 @@
+==========================================================================
+R10 HUNT 8 — no_access SDK/mobile key extraction proof (MASKED)
+==========================================================================
+
+--- A. owner (M) baseline environments ---
+[M] 200 [
+ {
+  "project": "",
+  "env": "test",
+  "name": "Test",
+  "apiKey": "sdk-c6ce7a15-4...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-08e184a6-3...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ },
+ {
+  "project": "",
+  "env": "production",
+  "name": "Production",
+  "apiKey": "sdk-bbf7c59b-0...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-7f6bf6cd-9...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ }
+]
+
+--- B. no_access token environments (default + zxorg) ---
+[NA] default: 200 [
+ {
+  "project": "",
+  "env": "test",
+  "name": "Test",
+  "apiKey": "sdk-c6ce7a15-4...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-08e184a6-3...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ },
+ {
+  "project": "",
+  "env": "production",
+  "name": "Production",
+  "apiKey": "sdk-bbf7c59b-0...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-7f6bf6cd-9...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ }
+]
+[NA] zxorg-proj-7f3a: 200 [
+ {
+  "project": "",
+  "env": "test",
+  "name": "Test",
+  "apiKey": "sdk-a4bbbb2b-7...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-14194779-6...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ },
+ {
+  "project": "",
+  "env": "production",
+  "name": "Production",
+  "apiKey": "sdk-2e4d6c0c-3...len40",
+  "apiKey_real_len": 40,
+  "mobileKey": "mob-ca89a16b-a...len40",
+  "mobileKey_real_len": 40,
+  "clientId": null
+ }
+]
+
+--- C. verify NA keys are REAL: value-match owner vs no_access ---
+[match] env=test NA apiKey == owner apiKey: True (prefix=sdk-c6ce7a15-4...len40)
+[match] env=test NA mobileKey prefix=mob-08e184a6-3...len40 len=40
+[match] env=production NA apiKey == owner apiKey: True (prefix=sdk-bbf7c59b-0...len40)
+[match] env=production NA mobileKey prefix=mob-7f6bf6cd-9...len40 len=40
+
+--- D. no_access reads OTHER token-bearing surfaces ---
+[NA] GET /api/v2/tokens: 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/js
+[NA] GET /api/v2/tokens/service: 404 {"code":"not_found","message":"Token not found"}
+[NA] GET /api/v2/relay-auto-configs: 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkly">
+    <meta name="viewport" content="width=device-width">
+
+[NA] GET /api/v2/account/relay-auto-configs: 200 {"items":[{"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test
+
+--- E. no_access on environments of ORG's OTHER project (zxorg) key match ---
+[match-zxorg] env=test NA == owner: True (prefix=sdk-a4bbbb2b-7...len40)
+[match-zxorg] env=production NA == owner: True (prefix=sdk-2e4d6c0c-3...len40)
+DONE

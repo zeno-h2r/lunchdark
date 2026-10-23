@@ -1,0 +1,356 @@
+==========================================================================
+R10 HUNT 2 — real-op replay auth matrix 16:42:05
+==========================================================================
+[+] unique query ops: 136
+GetNetworkHistogram                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetSessionPayload                        U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "skip_events": false}
+    body: {"errors":[{"message":"record not found","path":["events"]},{"message":"record not found","path":["session_comments"]},{"message":"record not found","path":["rage_clicks"]},{"message":"record not found","path":["errors"]}],"data":null}
+GetEventChunkURL                         U=UNAUTH_GATE|200          O=AUTHED_DENIED|200      T=AUTHED_DENIED|200
+GetEventChunks                           U=DATA_CLEAN|200           O=DATA_CLEAN|200         T=DATA_CLEAN|200 <<<
+    vars: {"secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"data":{"event_chunks":[]}}
+GetSession                               U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+GetWorkspaceAdminsByProjectId            U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["admins","project_id"]}],"data":null}
+GetWorkspaceAdmins                       U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["admins","workspace_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["workspace","id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["workspace_invite_links","wo
+GetSessionInsight                        U=DATA_CLEAN|200           O=DATA_CLEAN|200         T=DATA_CLEAN|200 <<<
+    vars: {"secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"data":{"session_insight":null}}
+GetSessionExports                        U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetSessionComments                       U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["session_comments"]}],"data":null}
+isSessionPending                         U=DATA_CLEAN|200           O=DATA_CLEAN|200         T=DATA_CLEAN|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"data":{"isSessionPending":null}}
+GetSessionIntervals                      U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["session_intervals"]}],"data":null}
+GetTimelineIndicatorEvents               U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["timeline_indicator_events"]}],"data":null}
+GetSessionChunkPreviewFrames             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "timestamp_ms": 10}
+    body: {"errors":[{"message":"record not found","path":["sessionChunkPreviewFrames"]}],"data":null}
+GetWebSocketEvents                       U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["websocket_events"]}],"data":{"websocket_events":null}}
+GetSessions                              U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "sort_desc": false, "sort_field": "szr10-probe", "page": 10, "query_settings": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T0
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetEventSessions                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "sort_desc": false, "sort_field": "szr10-probe", "page": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetSessionsHistogram                     U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "histogram_options": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetSessionUsersReports                   U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "timezone": "szr10-probe"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorGroups                           U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "page": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorGroupsForFlagVariation           U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"ld_project_id": "1jdkoe52", "ld_environment_id": "szr10-probe", "flag_key": "default", "flag_variation_value_json": "szr10-probe", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "page": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorsHistogram                       U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "histogram_options": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetWorkspace                             U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"id": "1jdkoe52"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetWorkspaceForInviteLink                U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"secret": "szr10-probe"}
+    body: {"errors":[{"message":"error querying workspace invite link: record not found","path":["workspace_for_invite_link"]}],"data":null}
+GetProjectOrWorkspace                    U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "workspace_id": "1jdkoe52", "is_workspace": false}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetAdminRole                             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["admin_role","workspace_id"]}],"data":{"admin_role":null}}
+GetAdminRoleByProject                    U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["admin_role_by_project","project_id"]}],"data":{"admin_role_by_project":null}}
+GetProject                               U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"id": "1jdkoe52"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetBillingDetailsForProject              U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetWorkspaceUsageHistory                 U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"workspace_id": "1jdkoe52", "product_type": "szr10", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetBillingDetails                        U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["billingDetails","workspace_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["subscription_details","workspace_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":
+GetSubscriptionDetails                   U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["subscription_details","workspace_id"]}],"data":{"subscription_details":null}}
+GetErrorGroup                            U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "use_clickhouse": false}
+    body: {"errors":[{"message":"error querying error group by secureID: 1jdkoe52-sztest-11111111-2222-4222-8222-111111111111: record not found","path":["error_group"]}],"data":{"error_group":null}}
+GetErrorObjectForLog                     U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"log_cursor": "szr10-probe"}
+    body: {"errors":[{"message":"no error found for log cursor szr10-probe","path":["error_object_for_log"]}],"data":{"error_object_for_log":null}}
+GetErrorObject                           U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"id": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorInstance                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "error_object_id": "szr10-probe", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetResources                             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"record not found","path":["resources"]}],"data":{"resources":null}}
+GetProjectSuggestion                     U=DATA_CLEAN|200           O=DATA_CLEAN|200         T=DATA_CLEAN|200 <<<
+    vars: {"query": "szr10-probe"}
+    body: {"data":{"projectSuggestion":[]}}
+GetSavedSegments                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "entity_type": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetClientIntegration                     U=UNAUTH_GATE|200          O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetServerIntegration                     U=UNAUTH_GATE|200          O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetLogsIntegration                       U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetTracesIntegration                     U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetMetricsIntegration                    U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetKeyPerformanceIndicators              U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["unprocessedSessionsCount","project_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["newUsersCount","project_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":[
+GetReferrersCount                        U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["referrers","project_id"]}],"data":null}
+GetNewUsersCount                         U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["newUsersCount","project_id"]}],"data":{"newUsersCount":null}}
+GetAverageSessionLength                  U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["averageSessionLength","project_id"]}],"data":{"averageSessionLength":null}}
+GetTopUsers                              U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["topUsers","project_id"]}],"data":null}
+GetDailySessionsCount                    U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetDailyErrorsCount                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetRageClicksForProject                  U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "lookback_days": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["rageClicksForProject","project_id"]}],"data":null}
+GetDailyErrorFrequency                   U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "date_offset": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["dailyErrorFrequency","project_id"]}],"data":null}
+GetSlackChannelSuggestion                U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["slack_channel_suggestion","project_id"]}],"data":null}
+GetWorkspaceIsIntegratedWithSlack        U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetWorkspaceIsIntegratedWithCloudflare   U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["is_integrated_with_cloudflare","workspace_id"]}],"data":null}
+GetJiraIntegrationSettings               U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetGitHubIntegrationSettings             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["is_integrated","workspace_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["github_repos","workspace_id"]}],"data":null}
+GetVegaIntegrationStatus                 U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetGitlabIntegrationSettings             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["is_integrated","workspace_id"]},{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["gitlab_projects","workspace_id"]}],"data":null}
+GetGitHubIssueLabels                     U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52", "repository": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["github_issue_labels","workspace_id"]}],"data":null}
+GetProjectIntegratedWith                 U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "integration_type": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetIdentifierSuggestions                 U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetServiceAlerts                         U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetAlertsPagePayload                     U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetAlert                                 U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["alert","id"]}],"data":null}
+GetAlertingAlertStateChanges             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe", "start_date": 1727700000, "end_date": 1727700000, "page": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["alerting_alert_state_changes","alert_id"]}],"data":null}
+GetLastAlertStateChanges                 U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["last_alert_state_changes","alert_id"]}],"data":null}
+GetLastAlertingStateChange               U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["last_alerting_state_change","alert_id"]}],"data":{"last_alerting_state_change":null}}
+GetAlertingAlertGroupStates              U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe", "start_date": 1727700000, "end_date": 1727700000, "page": 10, "count": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["alerting_alert_group_states","alert_id"]}],"data":null}
+GetLastAlertGroupStates                  U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["last_alert_group_states","alert_id"]}],"data":null}
+GetLastAlertingAlertGroupState           U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"alert_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["last_alerting_alert_group_state","alert_id"]}],"data":{"last_alerting_alert_group_state":null}}
+GetCustomerPortalURL                     U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["customer_portal_url","workspace_id"]}],"data":null}
+GetWebVitals                             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"the requested element is null which the schema does not allow","path":["web_vitals"]}],"data":null}
+GetSourcemapFiles                        U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetSourcemapVersions                     U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetOAuthClientMetadata                   U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"client_id": "szr10-probe"}
+    body: {"errors":[{"message":"error querying oauth client: record not found","path":["oauth_client_metadata"]}],"data":{"oauth_client_metadata":null}}
+GetSSOLogin                              U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"domain": "szr10-probe"}
+    body: {"errors":[{"message":"bad request","path":["sso_login"]}],"data":{"sso_login":null}}
+SearchIssues                             U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "query": "szr10-probe", "integration_type": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorGroupTags                        U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"error_group_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "use_clickhouse": false, "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetEmailOptOuts                          U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"token": "szr10-probe", "admin_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["email_opt_outs","admin_id"]}],"data":null}
+GetLogs                                  U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "after": "szr10-probe", "before": "szr10-probe", "at": "szr10-probe", "direction": "szr10", "limit": 10, "query_settings": {"date_range": {"start_date": "2026-10-01T00:00:
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetLogsHistogram                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetLogsRelatedResources                  U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "log_cursors": "szr10", "trace_ids": "szr10", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetProjectSettings                       U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetWorkspacePendingInvites               U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["workspacePendingInvites","workspace_id"]}],"data":null}
+GetErrorResolutionSuggestion             U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"error_object_id": "szr10-probe"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["error_resolution_suggestion","error_object_id"]}],"data":null}
+GetWorkspaceSettings                     U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"workspace_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["workspaceSettings","workspace_id"]}],"data":{"workspaceSettings":null}}
+GetErrorGroupInstances                   U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"errorGroupSecureID": "szr10-probe", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "page": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetErrorObjects                          U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "page": 10, "query_settings": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetServices                              U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetServiceByName                         U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetTrace                                 U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "trace_id": "szr10-probe", "timestamp": 1727700000, "session_secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111"}
+    body: {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["trace","timestamp"]}],"data":{"trace":null}}
+GetTraceConversation                     U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "conversation_id": "szr10-probe", "start_date": 1727700000, "end_date": 1727700000}
+    body: {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["trace_conversation","start_date"]}],"data":{"trace_conversation":null}}
+GetTraces                                U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "after": "szr10-probe", "before": "szr10-probe", "at": "szr10-probe", "direction": "szr10", "limit": 10, "omitBody": false, "query_settings": {"date_range": {"start_date":
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetTraceSummaries                        U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "after": "szr10-probe", "limit": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetConversations                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "after": "szr10-probe", "limit": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetTracesMetrics                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "column": "szr10-probe", "metric_types": "szr10", "group_by": "szr10", "bucket_by": "szr10-probe", "limit": 10, "limit_aggregator": "szr10", "limit_column": "szr10-probe"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetKeys                                  U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"product_type": "szr10", "project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "query": "szr10-probe", "type": "szr10", "event": "szr10-probe"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetKeyValues                             U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"product_type": "szr10", "project_id": "1jdkoe52", "key_name": "default", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "query": "szr10-probe", "count": 10, "event": "szr10-probe"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetKeyValueSuggestions                   U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"product_type": "szr10", "project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "keys": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetValueSuggestions                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"product_type": "szr10", "project_id": "1jdkoe52", "key_name": "default", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "query": "szr10-probe", "count": 10, "event": "szr10-probe"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetUrlKeyValues                          U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "query": "szr10-probe", "count": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetMetrics                               U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"product_type": "szr10", "project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "sql": "szr10-probe", "group_by": "szr10", "bucket_by": "szr10-probe", "bucket_count": 10, "bucket_window": 10, "limit": 10, "limit_aggregator": "
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetVisualization                         U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"1jdkoe52\": invalid syntax","path":["visualization","id"]}],"data":null}
+GetVisualizations                        U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetHeatmapClicks                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetTimestampEventChunkURL                U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"secure_id": "1jdkoe52-sztest-11111111-2222-4222-8222-111111111111", "timestamp": 1727700000}
+    body: {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["timestamp_event_chunk_url","timestamp"]}],"data":null}
+GetConversationHistory                   U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"conversation_id": "szr10-probe", "after_turn": 10}
+    body: {"errors":[{"message":"conversation szr10-probe not found","path":["conversation_history"],"extensions":{"code":"CONVERSATION_NOT_FOUND","retryable":false}}],"data":null}
+GetClickSessions                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "sort_desc": false, "sort_field": "szr10-probe", "page": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetAiChatLimitStatus                     U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetFilterRules                           U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"projectId": "szr10-probe", "productType": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetQueryFilterRule                       U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetServiceMap                            U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetTraceServiceSummary                   U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetServiceConnections                    U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "service_name": "szr10-probe", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "environment_ids": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetAiConversationHistory                 U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "page": 10, "user_email": "szr10@example.com", "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "tag_key": "default", "tag_value": "szr10-probe", "shared_only": false, "query": "szr10-probe", "origin": "
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetAgentArtifact                         U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetProjectArtifacts                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "search": "szr10-probe", "type": "szr10-probe", "source": "szr10-probe", "count": 10, "page": 10, "creator": "szr10"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetConversationArtifacts                 U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetFlagCleanups                          U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "count": 10, "page": 10, "date_range": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetVegaProjectConfiguration              U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetVegaWorkflows                         U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetVegaWorkflow                          U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "id": "1jdkoe52"}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetVegaWorkflowExecutions                U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetVegaInferenceModels                   U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetDashboardOptions                      U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetGraphOptions                          U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"project_id": "1jdkoe52", "dashboard_id": "szr10-probe", "query": "szr10-probe", "limit": 10}
+    body: {"errors":[{"message":"strconv.Atoi: parsing \"szr10-probe\": invalid syntax","path":["graph_options","dashboard_id"]}],"data":null}
+GetAlertOptions                          U=FENCED_LDAUTH|200        O=DATA_CLEAN|200         T=DATA_CLEAN|200
+GetPAEvents                              U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "after": "szr10-probe", "before": "szr10-probe", "at": "szr10-probe", "direction": "szr10", "limit": 10, "query_settings": {"date_range": {"start_date": "2026-10-01T00:00:
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetPaEventsFunnel                        U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "funnel_steps": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "group_by": "szr10", "strict_order": false}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetPaEventsFunnelV2                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "funnel_steps": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "group_by": "szr10", "strict_order": false, "breakdown_by": "sz
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetTeamQueryHistory                      U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "query_type": "szr10", "limit": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+GetMetricExemplars                       U=RESOLVER_REACHED|-1      O=RESOLVER_REACHED|-1    T=RESOLVER_REACHED|-1 <<<
+    vars: {"project_id": "1jdkoe52", "params": {"date_range": {"start_date": "2026-10-01T00:00:00Z", "end_date": "2026-10-24T00:00:00Z"}}, "bucket_window": 10, "limit": 10}
+    body: EXC HTTP Error 422: Unprocessable Entity
+ExperimentHypothesisSuggestion           U=FENCED_LDAUTH|200        O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200
+GetServiceSettings                       U=RESOLVER_REACHED|200     O=RESOLVER_REACHED|200   T=RESOLVER_REACHED|200 <<<
+    vars: {"service_id": "szr10", "project_id": "1jdkoe52"}
+    body: {"errors":[{"message":"strconv.ParseInt: parsing \"szr10\": invalid syntax","path":["serviceSettings","service_id"]}],"data":{"serviceSettings":null}}
+
+===== SUMMARY =====
+[UNAUTH] resolver-reached (105): GetAdminRole, GetAdminRoleByProject, GetAiConversationHistory, GetAlert, GetAlertingAlertGroupStates, GetAlertingAlertStateChanges, GetAverageSessionLength, GetBillingDetails, GetClickSessions, GetConversationHistory, GetConversations, GetCustomerPortalURL, GetDailyErrorFrequency, GetDailyErrorsCount, GetDailySessionsCount, GetEmailOptOuts, GetErrorGroup, GetErrorGroupInstances, GetErrorGroupTags, GetErrorGroups, GetErrorGroupsForFlagVariation, GetErrorInstance, GetErrorObject, GetErrorObjectForLog, GetErrorObjects, GetErrorResolutionSuggestion, GetErrorsHistogram, GetEventChunks, GetEventSessions, GetFilterRules, GetFlagCleanups, GetGitHubIntegrationSettings, GetGitHubIssueLabels, GetGitlabIntegrationSettings, GetGraphOptions, GetHeatmapClicks, GetKeyPerformanceIndicators, GetKeyValueSuggestions, GetKeyValues, GetKeys, GetLastAlertGroupStates, GetLastAlertStateChanges, GetLastAlertingAlertGroupState, GetLastAlertingStateChange, GetLogs, GetLogsHistogram, GetLogsRelatedResources, GetMetricExemplars, GetMetrics, GetNetworkHistogram, GetNewUsersCount, GetOAuthClientMetadata, GetPAEvents, GetPaEventsFunnel, GetPaEventsFunnelV2, GetProject, GetProjectArtifacts, GetProjectIntegratedWith, GetProjectOrWorkspace, GetProjectSuggestion, GetRageClicksForProject, GetReferrersCount, GetResources, GetSSOLogin, GetSavedSegments, GetServiceConnections, GetServiceMap, GetServiceSettings, GetSession, GetSessionChunkPreviewFrames, GetSessionComments, GetSessionInsight, GetSessionIntervals, GetSessionPayload, GetSessionUsersReports, GetSessions, GetSessionsHistogram, GetSlackChannelSuggestion, GetSubscriptionDetails, GetTeamQueryHistory, GetTimelineIndicatorEvents, GetTimestampEventChunkURL, GetTopUsers, GetTrace, GetTraceConversation, GetTraceSummaries, GetTraces, GetTracesMetrics, GetUrlKeyValues, GetValueSuggestions, GetVegaWorkflow, GetVegaWorkflows, GetVisualization, GetWebSocketEvents, GetWebVitals, GetWorkspace, GetWorkspaceAdmins, GetWorkspaceAdminsByProjectId, GetWorkspaceForInviteLink, GetWorkspaceIsIntegratedWithCloudflare, GetWorkspacePendingInvites, GetWorkspaceSettings, GetWorkspaceUsageHistory, SearchIssues, isSessionPending
+[ORG] resolver-reached (135): ExperimentHypothesisSuggestion, GetAdminRole, GetAdminRoleByProject, GetAgentArtifact, GetAiChatLimitStatus, GetAiConversationHistory, GetAlert, GetAlertOptions, GetAlertingAlertGroupStates, GetAlertingAlertStateChanges, GetAlertsPagePayload, GetAverageSessionLength, GetBillingDetails, GetBillingDetailsForProject, GetClickSessions, GetClientIntegration, GetConversationArtifacts, GetConversationHistory, GetConversations, GetCustomerPortalURL, GetDailyErrorFrequency, GetDailyErrorsCount, GetDailySessionsCount, GetDashboardOptions, GetEmailOptOuts, GetErrorGroup, GetErrorGroupInstances, GetErrorGroupTags, GetErrorGroups, GetErrorGroupsForFlagVariation, GetErrorInstance, GetErrorObject, GetErrorObjectForLog, GetErrorObjects, GetErrorResolutionSuggestion, GetErrorsHistogram, GetEventChunks, GetEventSessions, GetFilterRules, GetFlagCleanups, GetGitHubIntegrationSettings, GetGitHubIssueLabels, GetGitlabIntegrationSettings, GetGraphOptions, GetHeatmapClicks, GetIdentifierSuggestions, GetJiraIntegrationSettings, GetKeyPerformanceIndicators, GetKeyValueSuggestions, GetKeyValues, GetKeys, GetLastAlertGroupStates, GetLastAlertStateChanges, GetLastAlertingAlertGroupState, GetLastAlertingStateChange, GetLogs, GetLogsHistogram, GetLogsIntegration, GetLogsRelatedResources, GetMetricExemplars, GetMetrics, GetMetricsIntegration, GetNetworkHistogram, GetNewUsersCount, GetOAuthClientMetadata, GetPAEvents, GetPaEventsFunnel, GetPaEventsFunnelV2, GetProject, GetProjectArtifacts, GetProjectIntegratedWith, GetProjectOrWorkspace, GetProjectSettings, GetProjectSuggestion, GetQueryFilterRule, GetRageClicksForProject, GetReferrersCount, GetResources, GetSSOLogin, GetSavedSegments, GetServerIntegration, GetServiceAlerts, GetServiceByName, GetServiceConnections, GetServiceMap, GetServiceSettings, GetServices, GetSession, GetSessionChunkPreviewFrames, GetSessionComments, GetSessionExports, GetSessionInsight, GetSessionIntervals, GetSessionPayload, GetSessionUsersReports, GetSessions, GetSessionsHistogram, GetSlackChannelSuggestion, GetSourcemapFiles, GetSourcemapVersions, GetSubscriptionDetails, GetTeamQueryHistory, GetTimelineIndicatorEvents, GetTimestampEventChunkURL, GetTopUsers, GetTrace, GetTraceConversation, GetTraceServiceSummary, GetTraceSummaries, GetTraces, GetTracesIntegration, GetTracesMetrics, GetUrlKeyValues, GetValueSuggestions, GetVegaInferenceModels, GetVegaIntegrationStatus, GetVegaProjectConfiguration, GetVegaWorkflow, GetVegaWorkflowExecutions, GetVegaWorkflows, GetVisualization, GetVisualizations, GetWebSocketEvents, GetWebVitals, GetWorkspace, GetWorkspaceAdmins, GetWorkspaceAdminsByProjectId, GetWorkspaceForInviteLink, GetWorkspaceIsIntegratedWithCloudflare, GetWorkspaceIsIntegratedWithSlack, GetWorkspacePendingInvites, GetWorkspaceSettings, GetWorkspaceUsageHistory, SearchIssues, isSessionPending
+[TST] resolver-reached (135): ExperimentHypothesisSuggestion, GetAdminRole, GetAdminRoleByProject, GetAgentArtifact, GetAiChatLimitStatus, GetAiConversationHistory, GetAlert, GetAlertOptions, GetAlertingAlertGroupStates, GetAlertingAlertStateChanges, GetAlertsPagePayload, GetAverageSessionLength, GetBillingDetails, GetBillingDetailsForProject, GetClickSessions, GetClientIntegration, GetConversationArtifacts, GetConversationHistory, GetConversations, GetCustomerPortalURL, GetDailyErrorFrequency, GetDailyErrorsCount, GetDailySessionsCount, GetDashboardOptions, GetEmailOptOuts, GetErrorGroup, GetErrorGroupInstances, GetErrorGroupTags, GetErrorGroups, GetErrorGroupsForFlagVariation, GetErrorInstance, GetErrorObject, GetErrorObjectForLog, GetErrorObjects, GetErrorResolutionSuggestion, GetErrorsHistogram, GetEventChunks, GetEventSessions, GetFilterRules, GetFlagCleanups, GetGitHubIntegrationSettings, GetGitHubIssueLabels, GetGitlabIntegrationSettings, GetGraphOptions, GetHeatmapClicks, GetIdentifierSuggestions, GetJiraIntegrationSettings, GetKeyPerformanceIndicators, GetKeyValueSuggestions, GetKeyValues, GetKeys, GetLastAlertGroupStates, GetLastAlertStateChanges, GetLastAlertingAlertGroupState, GetLastAlertingStateChange, GetLogs, GetLogsHistogram, GetLogsIntegration, GetLogsRelatedResources, GetMetricExemplars, GetMetrics, GetMetricsIntegration, GetNetworkHistogram, GetNewUsersCount, GetOAuthClientMetadata, GetPAEvents, GetPaEventsFunnel, GetPaEventsFunnelV2, GetProject, GetProjectArtifacts, GetProjectIntegratedWith, GetProjectOrWorkspace, GetProjectSettings, GetProjectSuggestion, GetQueryFilterRule, GetRageClicksForProject, GetReferrersCount, GetResources, GetSSOLogin, GetSavedSegments, GetServerIntegration, GetServiceAlerts, GetServiceByName, GetServiceConnections, GetServiceMap, GetServiceSettings, GetServices, GetSession, GetSessionChunkPreviewFrames, GetSessionComments, GetSessionExports, GetSessionInsight, GetSessionIntervals, GetSessionPayload, GetSessionUsersReports, GetSessions, GetSessionsHistogram, GetSlackChannelSuggestion, GetSourcemapFiles, GetSourcemapVersions, GetSubscriptionDetails, GetTeamQueryHistory, GetTimelineIndicatorEvents, GetTimestampEventChunkURL, GetTopUsers, GetTrace, GetTraceConversation, GetTraceServiceSummary, GetTraceSummaries, GetTraces, GetTracesIntegration, GetTracesMetrics, GetUrlKeyValues, GetValueSuggestions, GetVegaInferenceModels, GetVegaIntegrationStatus, GetVegaProjectConfiguration, GetVegaWorkflow, GetVegaWorkflowExecutions, GetVegaWorkflows, GetVisualization, GetVisualizations, GetWebSocketEvents, GetWebVitals, GetWorkspace, GetWorkspaceAdmins, GetWorkspaceAdminsByProjectId, GetWorkspaceForInviteLink, GetWorkspaceIsIntegratedWithCloudflare, GetWorkspaceIsIntegratedWithSlack, GetWorkspacePendingInvites, GetWorkspaceSettings, GetWorkspaceUsageHistory, SearchIssues, isSessionPending
+DONE

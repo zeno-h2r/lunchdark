@@ -1,0 +1,20 @@
+==========================================================================
+R10 HUNT 10 — no_access WRITE test + cleanup
+==========================================================================
+
+--- A. NA creates flag (valid payload) ---
+[NA] POST flag: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createFlag","resource":"proj/default:env/test:flag/szr10-nawrite-test"},"code":"forbidden"}
+
+--- B. NA toggles targeting (write deeper) if created ---
+
+--- C. OWNER control: same create under member token (should 201) ---
+[M] POST flag ctl: 201 {"name":"szr10 ctl","kind":"boolean","description":"R10 no_access write probe - DELETE ME","key":"szr10-nawrite-test-ctl","_version":1,"creationDate":
+
+--- D. CLEANUP: delete all created flags (NA + control) ---
+[M] DELETE szr10-nawrite-test: 404
+[NA] DELETE szr10-nawrite-test: 404
+  verify gone: 404
+[M] DELETE szr10-nawrite-test-ctl: 204
+[NA] DELETE szr10-nawrite-test-ctl: 404
+  verify gone: 404
+DONE

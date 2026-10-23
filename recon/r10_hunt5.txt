@@ -1,0 +1,142 @@
+==========================================================================
+R10 HUNT 5 — new endpoint families identity matrix
+==========================================================================
+
+--- IDENTITY MATRIX (UNAUTH, NA, M, ORG, TST) ---
+/api/v2/account/factory-settings                           U=401  NA=404  M=404  ORG=404  TST=404
+/api/v2/account/factory-settings/repos                     U=401  NA=404  M=404  ORG=404  TST=404
+  > NA /api/v2/account/ip-allowlist: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+  > TST /api/v2/account/ip-allowlist: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+/api/v2/account/ip-allowlist                               U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/announcements: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_id":"ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67","_links":{"parent":{"href":"/api/v2/announcements","type":"application/json"}},"_status":"inactive","endTime":17927028
+  > TST /api/v2/announcements: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_access":{"denied":[],"allowed":[]},"_id":"3b5f5dd9-fd31-456c-a18c-0f0566441aa6","_links":{"parent":{"href":"/api/v2/announcements","type":"application/json"}},"_
+/api/v2/announcements                                      U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/applications: 200 {"_links":{"self":{"href":"/api/v2/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0}
+  > TST /api/v2/applications: 200 {"_links":{"self":{"href":"/api/v2/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0}
+/api/v2/applications                                       U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/integration-capabilities/big-segment-store: 200 {"_links":{"self":{"href":"/api/v2/integration-capabilities/big-segment-store","type":"application/json"}},"items":[]}
+  > TST /api/v2/integration-capabilities/big-segment-store: 200 {"_links":{"self":{"href":"","type":"application/json"},"parent":{"href":"/api/v2/integration-capabilities/big-segment-store","type":"application/json"}},"items":[]}
+/api/v2/integration-capabilities/big-segment-store         U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/integration-capabilities/featureStore: 200 {"_links":{"self":{"href":"/api/v2/integration-capabilities/featureStore","type":"application/json"}},"items":[]}
+  > TST /api/v2/integration-capabilities/featureStore: 200 {"_links":{"self":{"href":"/api/v2/integration-capabilities/featureStore/default/test","type":"application/json"},"parent":{"href":"/api/v2/integration-capabilities/featureStore","type":"application/json"}},"items":[]}
+/api/v2/integration-capabilities/featureStore              U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/integration-capabilities/flag-import: 200 {"_links":{"self":{"href":"/api/v2/integration-capabilities/flag-import","type":"application/json"}},"items":[{"_links":{"self":{"href":"/api/v2/integration-capabilities/flag-import/default/unleash/062f53a8-6b23-4eeb-b733-af2b2c4c294f","type":"application/json
+  > TST /api/v2/integration-capabilities/flag-import: 200 {"_links":{"self":{"href":"/api/v2/integration-capabilities/flag-import","type":"application/json"}},"items":[]}
+/api/v2/integration-capabilities/flag-import               U=401  NA=200  M=200  ORG=200  TST=200
+  > NA /api/v2/templates: 200 {"items":[]}
+  > TST /api/v2/templates: 200 {"items":[]}
+/api/v2/templates                                          U=401  NA=200  M=200  ORG=200  TST=200
+  > UNAUTH /internal/config/anonymous: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClientSideEventsUri":"https://events.ld.catamorphic.com","dogfoodSendEvents":true,"dogfoodContext":{"kin
+  > NA /internal/config/anonymous: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClientSideEventsUri":"https://events.ld.catamorphic.com","dogfoodSendEvents":true,"dogfoodContext":{"kin
+  > TST /internal/config/anonymous: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClientSideEventsUri":"https://events.ld.catamorphic.com","dogfoodSendEvents":true,"dogfoodContext":{"kin
+/internal/config/anonymous                                 U=200  NA=200  M=200  ORG=200  TST=200
+  > TST /internal/config/authenticated: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClientSideEventsUri":"https://events.ld.catamorphic.com","dogfoodSendEvents":true,"dogfoodContext":{"kin
+/internal/config/authenticated                             U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/account/session: 200 {"accountId":"6ac29057ccacd606b1576cb7","environmentId":"6ac29057ccacd606b1576cba"}
+/internal/account/session                                  U=401  NA=401  M=401  ORG=200  TST=200
+/internal/profile/courier-token                            U=401  NA=401  M=401  ORG=404  TST=404
+  > TST /internal/profile/dismissals: 200 {"ai-configs-nth-user-sample-config-v1":true}
+/internal/profile/dismissals                               U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/profile/feature-previews: 200 {}
+/internal/profile/feature-previews                         U=401  NA=401  M=401  ORG=200  TST=200
+  > NA /internal/profile/project-nav-mode: 200 {"projectNavMode":"code"}
+
+  > TST /internal/profile/project-nav-mode: 200 {"projectNavMode":"code"}
+
+/internal/profile/project-nav-mode                         U=401  NA=200  M=200  ORG=200  TST=200
+  > TST /internal/actions: 200 {"account":[{"action":"createAnnouncement","description":"Create an announcement for the account"},{"action":"updateAnnouncement","description":"Update an announcement for the account"},{"action":"deleteAnnouncement","description":"Delete an announcement for t
+/internal/actions                                          U=401  NA=401  M=401  ORG=200  TST=200
+/internal/accesses                                         U=405  NA=405  M=405  ORG=405  TST=405
+/internal/flag-cleanup                                     U=405  NA=405  M=405  ORG=405  TST=405
+/internal/flag-cleanup/eligibility                         U=405  NA=405  M=405  ORG=405  TST=405
+/internal/flag-cleanup/retrieve                            U=405  NA=405  M=405  ORG=405  TST=405
+  > TST /internal/insights/flag-cleanup: 200 {"total":1,"totalTemporary":1,"readyForArchive":0,"readyForCodeRemoval":0}
+/internal/insights/flag-cleanup                            U=401  NA=401  M=401  ORG=200  TST=200
+/internal/insights/flag-usage                              U=401  NA=401  M=401  ORG=400  TST=400
+  > TST /internal/insights/flags-created: 200 {"totalCount":7,"needsAttention":false}
+/internal/insights/flags-created                           U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/insights/member-metrics: 200 {"totalCount":1,"activeCount":1}
+/internal/insights/member-metrics                          U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/insights/release-metrics: 200 {"totalCount":0,"needsAttention":true}
+/internal/insights/release-metrics                         U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/insights/rollout-metrics: 200 {"totalCount":0,"needsAttention":true,"eventCounts":{"automaticRollbacks":{"count":0},"completedRollouts":{"count":0},"manualRollbacks":{"count":0}}}
+/internal/insights/rollout-metrics                         U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/insights/scores: 200 {"overallScore":0,"scores":{"monitor":0,"optimize":0,"release":0}}
+/internal/insights/scores                                  U=401  NA=401  M=401  ORG=200  TST=200
+  > TST /internal/insights/experiment-metrics: 200 {"totalCount":0,"needsAttention":true}
+/internal/insights/experiment-metrics                      U=401  NA=401  M=401  ORG=200  TST=200
+  > NA /internal/ai/evaluator/token-usage/daily: 200 {"usageDate":"2026-10-23","aggregateTokenUsageToday":0,"currentMemberTokensUsedToday":0,"resetsAt":"2026-10-24T00:00:00Z","items":[],"totalCount":0,"_links":{"self":{"href":"/ai/evaluator/token-usage/daily"},"next":null,"prev":null,"first":{"href":"/ai/evaluat
+  > M /internal/ai/evaluator/token-usage/daily: 200 {"usageDate":"2026-10-23","aggregateTokenUsageToday":0,"currentMemberTokensUsedToday":0,"resetsAt":"2026-10-24T00:00:00Z","items":[],"totalCount":0,"_links":{"self":{"href":"/ai/evaluator/token-usage/daily"},"next":null,"prev":null,"first":{"href":"/ai/evaluat
+  > ORG /internal/ai/evaluator/token-usage/daily: 200 {"usageDate":"2026-10-23","aggregateTokenUsageToday":0,"currentMemberTokensUsedToday":0,"resetsAt":"2026-10-24T00:00:00Z","items":[],"totalCount":0,"_links":{"self":{"href":"/ai/evaluator/token-usage/daily"},"next":null,"prev":null,"first":{"href":"/ai/evaluat
+  > TST /internal/ai/evaluator/token-usage/daily: 200 {"usageDate":"2026-10-23","aggregateTokenUsageToday":0,"currentMemberTokensUsedToday":0,"resetsAt":"2026-10-24T00:00:00Z","items":[],"totalCount":0,"_links":{"self":{"href":"/ai/evaluator/token-usage/daily"},"next":null,"prev":null,"first":{"href":"/ai/evaluat
+/internal/ai/evaluator/token-usage/daily                   U=401  NA=200  M=200  ORG=200  TST=200
+  > TST /internal/list/environments: 200 [{"apiKey":"sdk-653665fe-05a1-4d15-bcc4-84b19bfb9490","mobileKey":"mob-80236fb5-6cab-426e-af7f-a9c4bda169ed","_links":{"site":{"href":"/zenovictimproj/vtest/features","type":"text/html"}},"_id":"6ada0cce6f9f4507ca1c771d","key":"vtest","name":"VTest","color":"F
+/internal/list/environments                                U=401  NA=401  M=401  ORG=200  TST=200
+/internal/new-hires                                        U=401  NA=401  M=401  ORG=404  TST=404
+/internal/launchlitely/calculate                           U=405  NA=405  M=405  ORG=405  TST=405
+/internal/welcome-survey                                   U=404  NA=404  M=404  ORG=404  TST=404
+/api/v2/engineering-insights/flag-events                   U=401  NA=403  M=403  ORG=403  TST=403
+/api/v2/frontend/experimentValues                          U=404  NA=404  M=404  ORG=404  TST=404
+
+--- DEEP: config/anonymous (unauth config disclosure?) ---
+[UNAUTH] full body (200): {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https://stream.ld.catamorphic.com","dogfoodClientSideEventsUri":"https://events.ld.catamorphic.com","dogfoodSendEvents":true,"dogfoodContext":{"kind":"multi","session":{"key":"2e82bde5-208f-457d-8dca-a61f2a167db5","anonymous":true},"user":{"key":"2e82bde5-208f-457d-8dca-a61f2a167db5","n
+
+--- DEEP: courier-token (session + TST cross) ---
+[M] courier-token: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG] courier-token: 404 
+[TST] courier-token: 404 
+
+--- DEEP: ip-allowlist owner vs no_access vs TST ---
+[M] ip-allowlist: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+[NA] ip-allowlist: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+[TST] ip-allowlist: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+
+--- DEEP: warehouse destination keypair (member only, own acct) ---
+[M] generate keypair: 404 {"code":"not_found","message":"project is not found"}
+
+--- DEEP: access-summary/preview with cross-org member id ---
+[ORG] TST-member-cross: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[ORG] ORG-member-own: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[TST] ORG-member-from-TST: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[ORG] GET TST-member access-summary: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+
+--- DEEP: /internal/account/session (session listing) ---
+[ORG] account/session: 200 {"accountId":"6ac28fd11c28fb07516cf361","environmentId":"6ac28fd11c28fb07516cf364"}
+[ORG] account/sessions: 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkl
+[TST] account/session: 200 {"accountId":"6ac29057ccacd606b1576cb7","environmentId":"6ac29057ccacd606b1576cba"}
+[TST] account/sessions: 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkl
+[M] account/session: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[M] account/sessions: 404  
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+
+    <meta charset="utf-8">
+    
+    <title>Not found</title>
+    <meta name="description" content="LaunchDarkl
+DONE

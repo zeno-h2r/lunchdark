@@ -1,0 +1,94 @@
+==========================================================================
+R10 HUNT 3 — surgical Int-namespace + DATA_CLEAN verification
+==========================================================================
+
+--- A1: unauth GetProject(id: INT) small enumeration ---
+[proj-int-1] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[proj-int-2] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[proj-int-3] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+
+--- A2: unauth GetWorkspace(id: INT) ---
+[ws-int-1] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[ws-int-2] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[ws-int-3] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+
+--- A3: unauth workspace_admins / admins-by-project (INT) ---
+[wsadmins-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspace_admins"]}],"data":null}
+[wsadminsbyp-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspace_admins_by_project_id"]}],"data":null}
+[wsadmins-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspace_admins"]}],"data":null}
+[wsadminsbyp-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspace_admins_by_project_id"]}],"data":null}
+
+--- A4: unauth billing/subscription/settings/invites/portal (INT) ---
+[billing-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["billingDetails"]}],"data":null}
+[subs-1] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[wssettings-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspaceSettings"]}],"data":{"workspaceSettings":null}}
+[pending-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspacePendingInvites"]}],"data":null}
+[portal-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["customer_portal_url"]}],"data":null}
+[adminrole-1] UNAUTH: 200 {"errors":[{"message":"401 - AuthenticationError","path":["admin_role"]}],"data":{"admin_role":null}}
+[billing-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["billingDetails"]}],"data":null}
+[subs-2] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[wssettings-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspaceSettings"]}],"data":{"workspaceSettings":null}}
+[pending-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["workspacePendingInvites"]}],"data":null}
+[portal-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["customer_portal_url"]}],"data":null}
+[adminrole-2] UNAUTH: 200 {"errors":[{"message":"401 - AuthenticationError","path":["admin_role"]}],"data":{"admin_role":null}}
+
+--- A5: unauth visualization/graph INT ---
+[viz-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["visualization"]}],"data":null}
+[graph-1] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["graph"]}],"data":null}
+[viz-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["visualization"]}],"data":null}
+[graph-2] UNAUTH: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["graph"]}],"data":null}
+
+--- A6: ORG/TST on INT ids (does auth change anything?) ---
+[proj-int-1] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[ws-int-1] ORG: 200 {"errors":[{"message":"403 - AuthorizationError","path":["workspace"]}],"data":{"workspace":null}}
+[proj-int-1] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+
+--- B: session_insight unauth (why DATA_CLEAN?) ---
+[sinsight] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[sinsight2] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+
+--- C: projectSuggestion unauth enumeration ---
+[psugg-prod] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+[psugg-default] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+[psugg-test] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+[psugg-zeno] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+[psugg-web] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+[psugg-api] UNAUTH: 200 {"data":{"projectSuggestion":[]}}
+
+--- D: sso_login unauth domain oracle ---
+[sso-launchdarkly.com] UNAUTH: 200 {"errors":[{"message":"bad request","path":["sso_login"]}],"data":{"sso_login":null}}
+[sso-bugcrowdninja.com] UNAUTH: 200 {"errors":[{"message":"bad request","path":["sso_login"]}],"data":{"sso_login":null}}
+[sso-gmail.com] UNAUTH: 200 {"errors":[{"message":"bad request","path":["sso_login"]}],"data":{"sso_login":null}}
+
+--- E: ORG vs TST bodies on shared-pid queries ---
+[viz] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[viz] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[smver] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[smver] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[psettings] ORG: 200 {"data":{"projectSettings":null}}
+[psettings] TST: 200 {"data":{"projectSettings":null}}
+[billproj] ORG: 200 {"data":{"billingDetailsForProject":null}}
+[billproj] TST: 200 {"data":{"billingDetailsForProject":null}}
+[dashopt] ORG: 200 {"data":{"dashboard_options":[]}}
+[dashopt] TST: 200 {"data":{"dashboard_options":[]}}
+
+--- F: fixed-grammar PII aggregate queries ---
+[topusers] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[newusers] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[referrers] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[aiconv] UNAUTH: 200 {"errors":[{"message":"failed to get project: LDProjectAuth requires LDAccountID in context","path":["aiConversationHistory"]}],"data":null}
+[sessusers] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[usage] UNAUTH: -1 EXC HTTP Error 422: Unprocessable Entity
+[topusers] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[newusers] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[referrers] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[aiconv] ORG: 200 {"errors":[{"message":"authorization check failed: authorization request failed with status 400: {\"code\":\"invalid_request\",\"message\":\"Invalid resource\"}","path":["aiConversationHistory"]}],"data":null}
+[sessusers] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[usage] ORG: -1 EXC HTTP Error 422: Unprocessable Entity
+[topusers] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[newusers] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[referrers] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[aiconv] TST: 200 {"errors":[{"message":"authorization check failed: authorization request failed with status 400: {\"code\":\"invalid_request\",\"message\":\"Invalid resource\"}","path":["aiConversationHistory"]}],"data":null}
+[sessusers] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+[usage] TST: -1 EXC HTTP Error 422: Unprocessable Entity
+DONE

@@ -430,3 +430,26 @@ Stage Summary:
 - R9 net: NO new P1/P2. New FINDING_002 evidence (+10 no_access-readable endpoint families, masked integration keys); FINDING_001 strengthened (shared observabilityProjectID across orgs = tenant ID constant; middleware-only separation; per-field LDProjectAuth skips; internal topology leak).
 - Obs pri-graph = the one surface with P1 potential; blocked only by absence of real session data on test accounts -> operator handoff for the decisive unauth-read test with a real session secure_id.
 - Everything else swept this round: query engine, header fences, SDK hosts, stream boundaries, search injection, GraphQL main-app, PII/user routes — all DEFENDED or dead.
+
+---
+Task ID: R10-NEWSURFACE2
+Agent: Super Z (main)
+Task: "keep work" — R10 round: obs full-field auth matrix (real-op replay), main-app query param injection fuzz, bundle-mined new endpoint families, decisive cross-tenant controls. RESULT: FINDING_002 ESCALATED (SDK/mobile keys).
+
+Work Log:
+- Scripts r10_hunt1-10.py persisted; outputs recon/r10_hunt1-10.txt (+ obs_introspection_r10.json, r10_hunt2_vars.json, analysis/endpoints_r10_new.txt). Sessions + tokens re-verified alive at start (cookies via -H not -b; policy_token3 dead).
+- HUNT1 obs introspection CLOSED unauth -> pivoted to bundle mining.
+- HUNT2 replayed 136 real GraphQL ops (mined from chunks/common.js) x UNAUTH/ORG/TST: 105 ops reach resolver UNAUTH (per-field middleware skip is pervasive) but every data-bearing one returns record-not-found on synthetic ids; workspace/admin/billing family = "LDProjectAuth requires LDAccountID" with correct grammar (int-id namespace strconv errors were pre-middleware artifacts, not skips).
+- HUNT3 surgical: project/workspace/admin_role/billing/subscription/workspaceSettings/pendingInvites/customer_portal_url/visualization/graph all FENCED unauth with valid grammar; projectSuggestion unauth = empty (no enumeration); sso_login unauth = "bad request" no oracle; ORG vs TST bodies on shared-pid queries = consistent-empty (no cross-tenant read demonstrated). aiConversationHistory authed -> downstream authz svc "Invalid resource" (fenced).
+- HUNT4 main-app query param fuzz: flags filter strict grammar (14/14 injection payloads rejected), sort allowlist, limit/offset strict int, auditlog q = substring search own-account-only (TST q with ORG member id -> empty), spec strict parser. ALL DEFENDED.
+- HUNT5 62 new mined endpoints x 5 identities: /internal/config/anonymous UNAUTH 200 = LD dogfood infra (app.ld.catamorphic.com URIs, clientSideId, ~150 internal feature flags incl. new-hires-add-<employee> names, experiment blocklist UUIDs) -> new P3/P5-candidate info disclosure (documented, below reporting threshold per P1/P2/P3 rule); /internal/list/environments returns apiKey+mobileKey to member sessions (matches documented API shape); insights family member-scoped; NA token +2 readable families (ip-allowlist, ai token-usage/daily, integration-capabilities, templates).
+- HUNT6/7 warehouse keypair: TST + ORG "default" project 201 was FALSE POSITIVE (TST owns a "default" project too); bogus projectKey -> 201 = stateless key factory, projectKey presence-checked only. No cross-tenant write, no existence oracle. CLOSED.
+- HUNT7/8/9/10 FINDING_002 ESCALATION (P2 -> P1-boundary): no_access token GET /api/v2/projects/{p}/environments[/test|/production] -> 200 with FULL 40-char apiKey (sdk-...) + mobileKey (mob-...) values, byte-identical to owner (verified all 4 envs x 2 projects, list AND detail routes). R9's "env detail 403" state no longer holds. Plus /api/v2/tokens/{id} leaks 4-char preview ("token":"3488"); breadth +5 families. WRITE still denied (403 effect:deny createFlag; owner control 201). Bypass = strictly read-only full-secret disclosure: member emails + audit + webhook HMAC signing secret + ALL SDK/mobile keys.
+- Cleanup: hunt10 flag control deleted (204, verified 404); keypair probes stateless (no artifacts; ORG destinations list = 2 pre-existing items, ZERO DELETE calls to destinations this session, canaries untouched). No new tokens/roles/ai-configs created.
+- FINDING_002 doc updated (R10 section: SDK/mobile key evidence, byte-identity proof, impact escalation argument, negative controls; Notes superseded-line fixed).
+
+Stage Summary:
+- FINDING_002 now = P2-minimum / P1-arguable: zero-privilege token extracts ALL environment SDK keys + mobile keys (production incl.), webhook signing secret, member PII, token inventory. Recommend immediate Bugcrowd submission of updated FINDING_002 (repro in doc, copy-paste curl).
+- FINDING_001 (P3 obs) unchanged; decisive unauth-read test still requires a real obs session secure_id (operator handoff stands).
+- New P3/P5-candidate documented (not submitted per user's P1/P2/P3 rule): /internal/config/anonymous unauth dogfood config disclosure (employee-named flags, internal infra URIs).
+- R10 closed surfaces: obs full-field matrix (105 unauth resolver-reach, 0 unauth data reads), query-param injection (all defended), keypair factory, access-summary, 62 new endpoints swept.
