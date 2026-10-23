@@ -1,0 +1,22 @@
+marker: superz-r16-otlp-land-n0bx6ycj
+[push] OTLP /v1/logs (UN) -> 200 | {"partialSuccess":{}}
+[push-contrast] bogus project -> 200 | {"partialSuccess":{}}
+[baseline] logs query -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+[poll 1 45s] -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+[poll 2 90s] -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+[poll 3 135s] -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+[poll 4 180s] -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+[poll 5 225s] -> 422 ERR [{"message": "Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.", "locations": [{"line": 1, "column": 75}], "extensions": {"code": "GRAP
+
+HUNT1b done.
+[fixed-q] -> 422 ERR [{"message": "Cannot query field \"total_count\" on type \"LogConnection\".", "locations": [{"line": 1, "column": 240}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 1] -> 422 ERR [{"message": "Cannot query field \"total_count\" on type \"LogConnection\".", "locations": [{"line": 1, "column": 240}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 2] -> 422 ERR [{"message": "Cannot query field \"total_count\" on type \"LogConnection\".", "locations": [{"line": 1, "column": 240}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 3] -> 422 ERR [{"message": "Cannot query field \"total_count\" on type \"LogConnection\".", "locations": [{"line": 1, "column": 240}], "extensions": {"code": "GRAPHQL_VALIDAT
+[final-q broad] -> 422 ERR [{"message": "Field \"logs\" argument \"direction\" of type \"SortDirection!\" is required, but it was not provided.", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDATI
+[final-q marker] -> 422 ERR [{"message": "Field \"logs\" argument \"direction\" of type \"SortDirection!\" is required, but it was not provided.", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDATI
+[poll 1] -> 422 ERR [{"message": "Field \"logs\" argument \"direction\" of type \"SortDirection!\" is required, but it was not provided.", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDATI
+[poll 2] -> 422 ERR [{"message": "Field \"logs\" argument \"direction\" of type \"SortDirection!\" is required, but it was not provided.", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDATI
+[poll 3] -> 422 ERR [{"message": "Field \"logs\" argument \"direction\" of type \"SortDirection!\" is required, but it was not provided.", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDATI
+[q broad DESC] -> 200 ERR [{"message": "LDProjectAuth requires LDAccountID in context", "path": ["logs"]}]
+[q marker DESC] -> 200 ERR [{"message": "LDProjectAuth requires LDAccountID in context", "path": ["logs"]}]

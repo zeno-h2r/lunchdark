@@ -544,3 +544,21 @@ Stage Summary:
 - events host: unauth env-id existence oracle + auth-ignored 202s (P4-candidate, ingestion unverifiable externally — triage note available if user wants to submit as hardening).
 - /api/v1: dead everywhere.
 - Standing recommendation unchanged: submit FINDING_002 + FINDING_004 (same defect class, two hosts, zero-auth variant included). Say "draft submissions" when ready.
+---
+Task ID: R16-OTLP-EDGE
+Agent: Super Z (main)
+Task: "keep work okay" — R16: OTLP landing verification for F1, /sdk/* edge + stream /meval census. RESULT: no new P1/P2; OTLP accepted-200 reconfirmed (landing still unverifiable — read side uniformly LDProjectAuth-gated now); event_chunk_url infra leak (F1 P5) corroborated live; NEW P4-candidate: unauth env-id existence oracle via /sdk/goals on app host (2nd instance of R15 class).
+
+Work Log:
+- scripts/r16_hunt1a,1b,1c,2.py persisted; outputs recon/r16_hunt1a.txt, r16_hunt1b.txt, r16_hunt1c.txt, r16_hunt2.txt.
+- HUNT1a (pri graph auth): full-jar cookie breaks pri host ("invalid or missing LDSO cookie") — ldso-ONLY works. Introspection open unauth (190 query fields) + with ldso. Shapes captured: logs(project_id,params{query,date_range{start_date,end_date}},direction,limit), QueryInput, Log, ErrorObject fields.
+- HUNT1b/c (OTLP landing): UN /v1/logs + /v1/traces -> 200 {"partialSuccess":{}} for real AND bogus highlight.project_id (acceptance semantics as F1). Session-linked error push (highlight.session_secure_id on attacker-initialized session spn8...) accepted. READ-BACK IMPOSSIBLE with our creds: session/errors/logs/session_comments ALL -> "LDProjectAuth requires LDAccountID in context" (UN and ORG-ldso alike); AccountId/LDAccountID/x-account-id/ld-account-id headers all rejected; our tenant has no obs UI (flag-gated 404) and observability.launchdarkly.com does not resolve. R9-era behavior (authed session reached resolver) NOT reproducible -> middleware tightened since R9 OR entitlement-gated context. Landing verification = operator item (account with obs product).
+- event_chunk_url: STILL leaks varnish.ld.catamorphic.com:3081/internal/authorization/access-check/observability/bulk unauth AND with ldso cookie ("LDSO token not found in context" even when authed) — F1 P5 corroborated + new nuance (credential not forwarded to access-check on this field).
+- HUNT2 (SDK edge): /sdk/flags/{id} + /sdk/segments/{id} properly 401 all identities (correct). /sdk/goals/{envId} -> 200 [] UNAUTH on real env _id (test, production, AND demo tenant env), 404 bogus-24hex/garbage = UNAUTH ENV-ID EXISTENCE ORACLE on app host proper; legacy-goals route is auth-exempt while siblings are gated. Data-return unprovable (no goals exist on any testable env; goals creation API removed; experiments 404 on our plan). /meval + /mping + /eval on stream host: 405 all methods/identies — dead.
+- Cleanup: zero artifacts (all GETs; 3 OTLP pushes + 1 forged session = inert R16-marked telemetry in shared obs project, no deletion API; demo host touched via 2 read-only GETs consistent with F4 posture). Canaries untouched; user zeno-* webhooks untouched; no flags/tokens/webhooks created.
+
+Stage Summary:
+- No new P1/P2. Portfolio unchanged: F1 (P3; R16 = OTLP reconfirmed-accepted + P5 corroboration + middleware-delta note), F2 (P2-min/P1-arguable, chain-proven), F3 (P3), F4 (P2 candidate).
+- NEW P4-candidate observation: unauth env-id existence oracle — now TWO instances (events.launchdarkly.com /events/bulk 202-vs-404 [R15] + app.launchdarkly.com /sdk/goals 200-vs-404 [R16], cross-tenant demo confirmation). Pattern-level hardening note; not formalized as a finding (96-bit ids -> enumeration impractical).
+- Read-side obs middlewares tightened since R9 (LDProjectAuth hard gate) — positive security signal worth noting to triagers if F1 is submitted.
+- Standing recommendation unchanged: submit FINDING_002 + FINDING_004. Say "draft submissions" when ready.

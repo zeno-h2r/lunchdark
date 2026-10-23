@@ -1,0 +1,144 @@
+=== A: /sdk/* edge census on app host (id=our test env _id / 'default') ===
+/sdk/eval/%s/superzuser    id=6ac28fd11c28 UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=6ac28fd11c28 SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=6ac28fd11c28 MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=6ac28fd11c28 SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=6ac28fd11c28 NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=default/test UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=default/test SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=default/test MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=default/test SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=default/test NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=test         UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=test         SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=test         MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=test         SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s/superzuser    id=test         NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=6ac28fd11c28 UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=6ac28fd11c28 SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=6ac28fd11c28 MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=6ac28fd11c28 SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=6ac28fd11c28 NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=default/test UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=default/test SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=default/test MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=default/test SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=default/test NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=test         UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=test         SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=test         MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=test         SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/%s               id=test         NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/rules/%s              id=6ac28fd11c28 UN               -> 404 | 404 page not found 
+/sdk/rules/%s              id=6ac28fd11c28 SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=6ac28fd11c28 MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=6ac28fd11c28 SDK-invalid      -> 404 | 404 page not found 
+/sdk/rules/%s              id=6ac28fd11c28 NA-api           -> 404 | 404 page not found 
+/sdk/rules/%s              id=default/test UN               -> 404 | 404 page not found 
+/sdk/rules/%s              id=default/test SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=default/test MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=default/test SDK-invalid      -> 404 | 404 page not found 
+/sdk/rules/%s              id=default/test NA-api           -> 404 | 404 page not found 
+/sdk/rules/%s              id=test         UN               -> 404 | 404 page not found 
+/sdk/rules/%s              id=test         SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=test         MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/%s              id=test         SDK-invalid      -> 404 | 404 page not found 
+/sdk/rules/%s              id=test         NA-api           -> 404 | 404 page not found 
+/sdk/flags/%s              id=6ac28fd11c28 UN               -> 401
+/sdk/flags/%s              id=6ac28fd11c28 SDK-valid-ours   -> 401
+/sdk/flags/%s              id=6ac28fd11c28 MOB-valid-ours   -> 401
+/sdk/flags/%s              id=6ac28fd11c28 SDK-invalid      -> 401
+/sdk/flags/%s              id=6ac28fd11c28 NA-api           -> 401
+/sdk/flags/%s              id=default/test UN               -> 404 | 404 page not found 
+/sdk/flags/%s              id=default/test SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/flags/%s              id=default/test MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/flags/%s              id=default/test SDK-invalid      -> 404 | 404 page not found 
+/sdk/flags/%s              id=default/test NA-api           -> 404 | 404 page not found 
+/sdk/flags/%s              id=test         UN               -> 401
+/sdk/flags/%s              id=test         SDK-valid-ours   -> 401
+/sdk/flags/%s              id=test         MOB-valid-ours   -> 401
+/sdk/flags/%s              id=test         SDK-invalid      -> 401
+/sdk/flags/%s              id=test         NA-api           -> 401
+/sdk/segments/%s           id=6ac28fd11c28 UN               -> 401
+/sdk/segments/%s           id=6ac28fd11c28 SDK-valid-ours   -> 401
+/sdk/segments/%s           id=6ac28fd11c28 MOB-valid-ours   -> 401
+/sdk/segments/%s           id=6ac28fd11c28 SDK-invalid      -> 401
+/sdk/segments/%s           id=6ac28fd11c28 NA-api           -> 401
+/sdk/segments/%s           id=default/test UN               -> 404 | 404 page not found 
+/sdk/segments/%s           id=default/test SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/segments/%s           id=default/test MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/segments/%s           id=default/test SDK-invalid      -> 404 | 404 page not found 
+/sdk/segments/%s           id=default/test NA-api           -> 404 | 404 page not found 
+/sdk/segments/%s           id=test         UN               -> 401
+/sdk/segments/%s           id=test         SDK-valid-ours   -> 401
+/sdk/segments/%s           id=test         MOB-valid-ours   -> 401
+/sdk/segments/%s           id=test         SDK-invalid      -> 401
+/sdk/segments/%s           id=test         NA-api           -> 401
+/sdk/goals/%s              id=6ac28fd11c28 UN               -> 200 | []
+/sdk/goals/%s              id=6ac28fd11c28 SDK-valid-ours   -> 200 | []
+/sdk/goals/%s              id=6ac28fd11c28 MOB-valid-ours   -> 200 | []
+/sdk/goals/%s              id=6ac28fd11c28 SDK-invalid      -> 200 | []
+/sdk/goals/%s              id=6ac28fd11c28 NA-api           -> 200 | []
+/sdk/goals/%s              id=default/test UN               -> 404 | 404 page not found 
+/sdk/goals/%s              id=default/test SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/goals/%s              id=default/test MOB-valid-ours   -> 404 | 404 page not found 
+/sdk/goals/%s              id=default/test SDK-invalid      -> 404 | 404 page not found 
+/sdk/goals/%s              id=default/test NA-api           -> 404 | 404 page not found 
+/sdk/goals/%s              id=test         UN               -> 404
+/sdk/goals/%s              id=test         SDK-valid-ours   -> 404
+/sdk/goals/%s              id=test         MOB-valid-ours   -> 404
+/sdk/goals/%s              id=test         SDK-invalid      -> 404
+/sdk/goals/%s              id=test         NA-api           -> 404
+/sdk/evalx/%s/user         id=6ac28fd11c28 UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=6ac28fd11c28 SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=6ac28fd11c28 MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=6ac28fd11c28 SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=6ac28fd11c28 NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=default/test UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=default/test SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=default/test MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=default/test SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=default/test NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=test         UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=test         SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=test         MOB-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=test         SDK-invalid      -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/evalx/%s/user         id=test         NA-api           -> 404 | {"code":"not_found","message":"Page not found"}
+
+=== B: stream host /meval + /eval POST ===
+POST /meval           UN               -> 405 | Method Not Allowed 
+POST /meval           SDK-valid-ours   -> 405 | Method Not Allowed 
+POST /meval           MOB-valid-ours   -> 405 | Method Not Allowed 
+POST /meval           SDK-invalid      -> 405 | Method Not Allowed 
+POST /meval           NA-api           -> 405 | Method Not Allowed 
+POST /meval/%s        UN               -> 405 | Method Not Allowed 
+POST /meval/%s        SDK-valid-ours   -> 405 | Method Not Allowed 
+POST /meval/%s        MOB-valid-ours   -> 405 | Method Not Allowed 
+POST /meval/%s        SDK-invalid      -> 405 | Method Not Allowed 
+POST /meval/%s        NA-api           -> 405 | Method Not Allowed 
+POST /eval/%s/superzuser UN               -> 404 | 404 page not found 
+POST /eval/%s/superzuser SDK-valid-ours   -> 404 | 404 page not found 
+POST /eval/%s/superzuser MOB-valid-ours   -> 404 | 404 page not found 
+POST /eval/%s/superzuser SDK-invalid      -> 404 | 404 page not found 
+POST /eval/%s/superzuser NA-api           -> 404 | 404 page not found 
+POST /mping           UN               -> 405 | Method Not Allowed 
+POST /mping           SDK-valid-ours   -> 405 | Method Not Allowed 
+POST /mping           MOB-valid-ours   -> 405 | Method Not Allowed 
+POST /mping           SDK-invalid      -> 405 | Method Not Allowed 
+POST /mping           NA-api           -> 405 | Method Not Allowed 
+
+=== C: bogus env id on any 200/403-shape route above (existence oracle check) ===
+/sdk/eval/real/superzuser id= UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/bogus/superzuser id= UN               -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/real/superzuser id= SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/eval/bogus/superzuser id= SDK-valid-ours   -> 404 | {"code":"not_found","message":"Page not found"}
+/sdk/rules/real id= UN               -> 404 | 404 page not found 
+/sdk/rules/bogus id= UN               -> 404 | 404 page not found 
+/sdk/rules/real id= SDK-valid-ours   -> 404 | 404 page not found 
+/sdk/rules/bogus id= SDK-valid-ours   -> 404 | 404 page not found 
+
+HUNT2 done: look for any non-401 data responses under UN/invalid.
+[goals-oracle UN] real-test-id -> 200 | []
+[goals-oracle UN] real-prod-id -> 200 | []
+[goals-oracle UN] bogus-24hex  -> 404 | 
+[goals-oracle UN] garbage      -> 404 | 

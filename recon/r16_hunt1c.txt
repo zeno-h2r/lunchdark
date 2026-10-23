@@ -1,0 +1,28 @@
+session=1jdkoe52-szr16-spn82222-2222-4222-8222-2222222222r56h marker=superz-r16-otlp-err-spn8r56h
+[1] initializeSession -> 200 | {"data":{"initializeSession":{"secure_id":"1jdkoe52-szr16-spn82222-2222-4222-8222-2222222222r56h"}}}
+[2] baseline errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[3] OTLP /v1/logs session-linked ERROR (UN) -> 200 | {"partialSuccess":{}}
+[3b] OTLP /v1/traces (UN) -> 200 | {"partialSuccess":{}}
+[poll 1 40s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 2 80s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 3 120s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 4 160s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 5 200s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+[poll 6 240s] errors(S) -> 422 ERR [{"message": "Unknown argument \"count\" on field \"Query.errors\".", "locations": [{"line": 1, "column": 3}], "extensions": {"code": "GRAPHQL_VALIDAT
+
+HUNT1c done. hit=False
+[errors(S)] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["errors"]}],"data":{"errors":null}}
+[errors_html] -> 422 | {"errors":[{"message":"Cannot query field \"errors_html\" on type \"Query\". Did you mean \"errors_keys\" or \"errors\"?","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[session(S)] -> 422 | {"errors":[{"message":"Cannot query field \"total_length\" on type \"Session\". Did you mean \"active_length\"?","locations":[{"line":1,"column":128}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[session_intervals] -> 422 | {"errors":[{"message":"Cannot query field \"solid_empty_length\" on type \"SessionInterval\".","locations":[{"line":1,"column":98}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[error_objects(gid)] -> 422 | {"errors":[{"message":"Cannot query field \"id\" on type \"ErrorObjectResults\".","locations":[{"line":1,"column":80}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot query field \"event\" on type \"ErrorObjectResults\".","locations":[{"line":1,"column":83}]
+[session(S) fixed] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["session"]}],"data":{"session":null}}
+[session fields full] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["session"]}],"data":{"session":null}}
+[isSessionPending] -> 200 | {"data":{"isSessionPending":null}}
+[session_comments] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["session_comments"]}],"data":null}
+[ORG-ldso session] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["session"]}],"data":{"session":null}}
+[ORG-ldso event_chunk_url] -> 200 | {"errors":[{"message":"authorization check failed: failed to make request: Post \"http://varnish.ld.catamorphic.com:3081/internal/authorization/access-check/observability/bulk\": user not authenticated: LDSO token not found in con
+[ORG-ldso errors] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["errors"]}],"data":{"errors":null}}
+[UN session] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["session"]}],"data":{"session":null}}
+[UN event_chunk_url] -> 200 | {"errors":[{"message":"authorization check failed: failed to make request: Post \"http://varnish.ld.catamorphic.com:3081/internal/authorization/access-check/observability/bulk\": user not authenticated: LDSO token not found in con
+[UN errors] -> 200 | {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["errors"]}],"data":{"errors":null}}

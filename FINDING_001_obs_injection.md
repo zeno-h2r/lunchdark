@@ -148,3 +148,37 @@ addSessionFeedback. Introspected-but-not-fired: identifySession(session_secure_i
 user_identifier, user_object) — same class, shape documented for the triager.
 
 Evidence: `recon/r15_hunt4.txt`, `recon/r15_hunt4b.txt` (captured 2026-10-24).
+
+## R16 update (2026-10-24) — OTLP landing attempt + middleware delta + P5 corroboration
+
+### OTLP ingestion: accepted-200 reconfirmed; landing still unverifiable externally
+- `POST otel.observability.app.ld.catamorphic.com/v1/logs` and `/v1/traces`, unauth, with
+  `highlight.project_id` resource attribute → `200 {"partialSuccess":{}}` for both the real
+  project id and a bogus one (identical acceptance semantics as originally reported).
+- Session-linked error push attempted (resource attr `highlight.session_secure_id` on an
+  attacker-initialized session). Read-back to prove landing is NOT possible from any
+  credential we hold: every read query (`session`, `errors`, `logs`, `sessions`,
+  `session_comments`) now returns `LDProjectAuth requires LDAccountID in context` —
+  uniformly, for unauth AND for our authenticated LDSO session cookies. Header-based
+  account context (`AccountId`, `LDAccountID`, `x-account-id`, `ld-account-id`) all rejected.
+- Delta note for triagers: in R9 (2026-10-23) an authenticated LDSO session resolved the
+  account context and reached resolvers ("record not found" for foreign sessions). The
+  middleware now hard-gates without a resolvable `LDAccountID` — i.e., the read-side
+  middlewares have been tightened since R9 (or context resolution requires an
+  observability entitlement our test accounts lack). Landing verification therefore
+  remains an operator-side item (an account WITH the Observability product enabled).
+
+### P5 corroboration: event_chunk_url internal-infra leak still live
+`event_chunk_url(secure_id, index)` STILL discloses internal infrastructure in its error,
+both unauthenticated AND with our authenticated LDSO cookie:
+```
+authorization check failed: failed to make request: Post
+"http://varnish.ld.catamorphic.com:3081/internal/authorization/access-check/observability/bulk":
+user not authenticated: LDSO token not found in context
+```
+Note the second part: even WITH a valid LDSO cookie the access-check call reports
+"user not authenticated — LDSO token not found in context", i.e. the caller's credential
+is not forwarded into the authorization subsystem for this field at all. Same internal
+host/port/service-path disclosure as originally reported; still P5 class.
+
+Evidence: `recon/r16_hunt1a.txt`, `recon/r16_hunt1b.txt`, `recon/r16_hunt1c.txt` (2026-10-24).
