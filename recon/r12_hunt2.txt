@@ -1,0 +1,110 @@
+allClientSideFlags: 2676 entries
+
+--- L1: dogfoodContext / secureModeContextHash ---
+dogfoodContext: {"kind": "multi", "session": {"key": "55f61c46-5da7-4404-b2de-abdfa751c484", "anonymous": true}, "user": {"key": "55f61c46-5da7-4404-b2de-abdfa751c484", "name": "", "dogfoodCanary": false, "anonymous": true}}
+secureModeContextHash: 5f4deee5b33958b18db14b203e40d8acab85de2292bdc0c028d12b6713f45e33
+clientSideId: 5866f3891cd8810a42ce5281
+
+--- L2: value type census ---
+   2180  bool
+    248  int
+    140  str
+     35  list
+     10  float
+      5  dict()
+      5  dict(enabled)
+      4  dict(domains)
+      3  dict(firstTierEnd,lastTierEnd,tierSize)
+      2  NoneType
+      2  dict(unit,value)
+      1  dict(_ldMeta,instructions,model,provider)
+      1  dict(codeReferences,contextKindTargeted,conte)
+      1  dict(ai-configs,event-explorer,experiments,gu)
+      1  dict(column1,column2)
+      1  dict(accounts)
+      1  dict(enableClientConnectionsChart,enableClien)
+      1  dict(3331)
+      1  dict(maxDescriptionLength,maxKeyLength,maxNam)
+      1  dict(exp_2026_add_flag_to_code_v3,exp_2026_cr)
+      1  dict(destinations,environments)
+      1  dict(enabled,text)
+      1  dict(description,headline,useAlert)
+      1  dict(limits,regions,tier)
+      1  dict(all,routes)
+      1  dict(targetingModifiedDate)
+      1  dict(project-id,runner-frequency,session-secu)
+      1  dict(confidenceOptions,defaultConfidence,defa)
+      1  dict(aiExecutionsTab,clientSideMAUTab,dataExp)
+      1  dict(LCP)
+      1  dict(notifyDaysFromExpiry)
+      1  dict(ai-api-key-access,ai-app-stage,ai-assist)
+      1  dict(1941,3144,3247,3331)
+      1  dict(enableMonitoringTabUpdates,enableSummary)
+      1  dict(clientstream1,clientstream2)
+      1  dict(supported_metrics)
+      1  dict(full_api_deprecation_enabled,write_api_d)
+      1  dict(cadenceMinutes,windowMinutes)
+      1  dict(description,followUpMessage,seedUserMess)
+      1  dict(description,variations)
+      1  dict(charts,cohorts,userActivity)
+      1  dict(badges,banner,diff,highlights)
+      1  dict(snowflake-native-experimentation)
+      1  dict(hardLimit,softLimit,variationLimit)
+      1  dict(bigquery-experimentation,databricks-expe)
+      1  dict(freeQuantity,overagePriceInCents,showOve)
+      1  dict(api,showApiSwitch,showDiagnostics)
+      1  dict(isPaidEntitlement,usageGatedTrial)
+      1  dict(resources)
+      1  dict(availability,rules,schemaVersion)
+      1  dict(integrationKeys)
+      1  dict(datasets,judges,models,skills,snippets,t)
+      1  dict(Enable-flag-prerequisites,EnableGetEvalC)
+
+--- L3: new-hires flag census (employee names) ---
+new-hires flags: 55
+unique new-hires-add-<name> patterns: 54
+  sample: new-hires-add- aac***(redacted)
+  sample: new-hires-add- abe***(redacted)
+  sample: new-hires-add- aho***(redacted)
+  sample: new-hires-add- akl***(redacted)
+  sample: new-hires-add- amo***(redacted)
+  sample: new-hires-add- ato***(redacted)
+  sample: new-hires-add- bsi***(redacted)
+  sample: new-hires-add- cet***(redacted)
+
+--- L4: secret-pattern scan over ALL string values (recursive) ---
+  long-hex-40: 1
+     $.secureModeContextHash 5f4deee5b33958b18db14b20...
+  b64-40: 2
+     $.secureModeContextHash 5f4deee5b33958b18db14b20...
+     $.docsAlgoliaApiKey NTMzNjYyNmU1YjNiZjEwYzhk...
+
+--- L5: interesting flag VALUES (allowlists/internal/security) ---
+  accepted-redirect-hosts = ["accelerate.app.launchdarkly.com"]
+  access-token-expiry-notification-configuration = {"notifyDaysFromExpiry": [30, 7, 1]}
+  access-token-list-max-limit = 1000
+  ae-factory-dogfood-test = true
+  ae-factory-dogfood-test-2 = true
+  allow-legacy-continuation-tokens = true
+  authorization-view-2026 = true
+  billing-refactor-plan-registry-wiring-accessors = false
+  cap-service-token-by-personal-token-role = true
+  capture-last-successful-sso-at = true
+  core-processor-send-contexts-to-context-recorder-kinesis = true
+  create-traces-in-association-operator = false
+  debugger-full-fidelity-events-duration-in-minutes = 10
+  debugger-heartbeat-interval-millis = 5000
+  debugger-inactivity-modal-duration-in-milliseconds = 600000
+  debugger-send-v4-events = false
+  device-authorization-member-scoped-flags = true
+  enable-access-token-expiry-admin-notification = true
+  enable-access-token-expiry-notifications = true
+  enable-access-token-expiry-notifications-setting = true
+  enable-access-tokens = true
+  enable-access-tokens-ux-improvements = false
+  enable-account-usage-for-non-admins = true
+  enable-agent-optimization-token-cap = false
+  enable-api-version-tokens-filter = false
+  enable-approvals-fetch-service-tokens-by-id = true
+  enable-audit-log-secret-redaction = false
+  enable-auth-settings-ux-improvements = true

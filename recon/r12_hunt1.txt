@@ -1,0 +1,101 @@
+=== R12 HUNT1 — FINDING_003 anonymous config deep-dive ===
+
+--- K1: unauth full capture ---
+[UN GET /internal/config/anonymous]: 200 len=324387
+
+top-level keys: ['accelerateBaseUri', 'allClientSideFlags', 'assetBase', 'assetPath', 'backendVersion', 'baseUri', 'canduClientToken', 'clientSideId', 'courierBrandId', 'courierClientKey', 'datadogEnvironment', 'datadogRUMApplicationId', 'datadogRUMClientToken', 'datadogSite', 'disallowSignups', 'docsAlgoliaApiKey', 'docsAlgoliaAppId', 'documentationUri', 'dogfoodBaseUri', 'dogfoodClientSideEventsUri', 'dogfoodContext', 'dogfoodEventsCapacity', 'dogfoodSendEvents', 'dogfoodStreamUri', 'enableFullstoryFlagVarsIntegration', 'enableJavascriptSdk', 'enableObservabilityTrackIntegration', 'euCssStylesEnabled', 'federalCssStylesEnabled', 'fernAlgoliaApiKey', 'fernAlgoliaAppId', 'frontendDatadogFlagRumTracking', 'frontendVersion', 'githubOauthClientId', 'googleCaptchaSiteKey', 'googleOauthClientId', 'intercomFinAppAppId', 'intercomFinAppUserIdentityHash', 'isManagedInstance', 'isSandbox', 'minPasswordLength', 'newRelicRUMAccountId', 'newRelicRUMAgentId', 'newRelicRUMApplicationId', 'newRelicRUMBeacon', 'newRelicRUMLicenseKey', 'newRelicRUMTrustKey', 'observabilityOtelUrl', 'observabilityPrivateGraphUrl', 'observabilityProjectID', 'observabilityPublicGraphUrl', 'passwordMinCharsPerClass', 'passwordMinClasses', 'productAnalyticsBlockServiceUrl', 'productAnalyticsDataServiceUrl', 'sandboxBaseUri', 'sandboxVisitorAccountID', 'sandboxVisitorBaseUri', 'sandboxVisitorMemberID', 'secureModeContextHash', 'segmentWriteKey', 'slackAppHost', 'slackAppId', 'stripePublishableKey', 'suppressProductAnalyticsEnabled', 'uberfunnelTrackingId', 'useMockOAuthValidators']
+  accelerateBaseUri (str): https://accelerate.app.launchdarkly.com
+  allClientSideFlags (dict, 2676 keys): ['$flagsState', '$valid', 'Enable-flag-prerequisites', 'EnableGetEvalCounts', 'EnableMetricEventActivityTab', 'ExperimentationMultipleExperimentsWithSameFlag', 'Reintegrate-bayesian-traffic-estimation', 'Testing-jira-forge-integration-1', 'ab.testing', 'ac-bulk-update-access-check', 'accelerate-enable-fe-stack-trace-on-error-page', 'accelerate-hit-gonfalon-direct', 'accelerate-relative-path-prefix', 'accepted-redirect-hosts', 'access-check-pending-is-loading', 'access-log-enabled', 'access-summaries-other-resources', 'access-token-expiry-notification-configuration', 'access-token-list-max-limit', 'account-limits-ai-executions']
+  assetBase (str): https://static.launchdarkly.com/app
+  assetPath (str): s
+  backendVersion (str): a75874afd
+  baseUri (str): https://app.launchdarkly.com
+  canduClientToken (str): eNVJI0zMwm
+  clientSideId (str): 5866f3891cd8810a42ce5281
+  courierBrandId (str): 
+  courierClientKey (str): 
+  datadogEnvironment (str): production
+  datadogRUMApplicationId (str): e4f3ffea-ef25-4fff-b6c3-0c9db3380038
+  datadogRUMClientToken (str): pub0a56c57f256ac77b8fbc94e54c2577d8
+  datadogSite (str): datadoghq.com
+  disallowSignups (bool): False
+  docsAlgoliaApiKey (str): NTMzNjYyNmU1YjNiZjEwYzhkODRiNTJjMzI4Y2JhYTliZTZmNWZkMDM5MTJiMjI3MWEzNjY5NzE3NDhlZDEyOGZpbHRlcnM9ZG9tYWluJTNBbGF1bmNoZGFya2x5LmNvbSUyMEFORCUy
+  docsAlgoliaAppId (str): P6VYURBGG0
+  documentationUri (str): https://launchdarkly.com/docs
+  dogfoodBaseUri (str): https://app.ld.catamorphic.com
+  dogfoodClientSideEventsUri (str): https://events.ld.catamorphic.com
+  dogfoodContext (dict, 3 keys): ['kind', 'session', 'user']
+  dogfoodEventsCapacity (int): 1000
+  dogfoodSendEvents (bool): True
+  dogfoodStreamUri (str): https://stream.ld.catamorphic.com
+  enableFullstoryFlagVarsIntegration (bool): True
+  enableJavascriptSdk (bool): False
+  enableObservabilityTrackIntegration (bool): True
+  euCssStylesEnabled (bool): False
+  federalCssStylesEnabled (bool): False
+  fernAlgoliaApiKey (str): a29cd1acecf422ccbfea18a88fcc68c8
+  fernAlgoliaAppId (str): ABA2Y8TN5Q
+  frontendDatadogFlagRumTracking (bool): True
+  frontendVersion (str): 6af369089
+  githubOauthClientId (str): Iv23liYrVNRkiyt0YvFX
+  googleCaptchaSiteKey (str): 6LeYsGwUAAAAAMmARXM1TNAZkaDzDPjdyVYRf4ma
+  googleOauthClientId (str): 1069747104247-1klj08vd2b2hlha38p7qm1b6hke3s238.apps.googleusercontent.com
+  intercomFinAppAppId (str): cx2t6sbq
+  intercomFinAppUserIdentityHash (str): 
+  isManagedInstance (bool): False
+  isSandbox (bool): False
+  minPasswordLength (int): 8
+  newRelicRUMAccountId (str): 7968969
+  newRelicRUMAgentId (str): 1134713701
+  newRelicRUMApplicationId (str): 1134713701
+  newRelicRUMBeacon (str): bam.nr-data.net
+  newRelicRUMLicenseKey (str): NRJS-d73f91ccc3af1cb25ea
+  newRelicRUMTrustKey (str): 7968969
+  observabilityOtelUrl (str): https://otel.observability.app.ld.catamorphic.com
+  observabilityPrivateGraphUrl (str): https://pri.observability.app.launchdarkly.com
+  observabilityProjectID (str): 1jdkoe52
+  observabilityPublicGraphUrl (str): https://pub.observability.app.ld.catamorphic.com
+  passwordMinCharsPerClass (int): 1
+  passwordMinClasses (int): 3
+  productAnalyticsBlockServiceUrl (str): https://product-analytics-api.app.launchdarkly.com/block-service
+  productAnalyticsDataServiceUrl (str): https://product-analytics-api.app.launchdarkly.com/data-service
+  sandboxBaseUri (str): https://demo.app.launchdarkly.com
+  sandboxVisitorAccountID (str): 
+  sandboxVisitorBaseUri (str): 
+  sandboxVisitorMemberID (str): 
+  secureModeContextHash (str): 5f4deee5b33958b18db14b203e40d8acab85de2292bdc0c028d12b6713f45e33
+  segmentWriteKey (str): ymzs8XDH3LKn1oBcYpSlt4a9Y4egAz9g
+  slackAppHost (str): https://slack.launchdarkly.com
+  slackAppId (str): AKEEF9DTM
+  stripePublishableKey (str): pk_live_XXVbrGakvDAVdmm1DsXBNP9H
+  suppressProductAnalyticsEnabled (bool): True
+  uberfunnelTrackingId (str): UA-44750782-8
+  useMockOAuthValidators (bool): False
+
+--- K2: sensitive-pattern scan ---
+pattern counts: {'catamorphic': 6, 'clientSideId': 1, 'new-hires': 110, 'employee': 2, 'secret': 2, 'token': 101, 'apikey': 2, 'sdk-key': 38, 'sdkKey': 0, 'internal': 8, 'prod': 45, 'experiment': 372, 'aws': 13, 'arn:': 0}
+
+new-hires flag entries (0):
+
+catamorphic URIs (6):
+   $.dogfoodBaseUri = https://app.ld.catamorphic.com
+   $.dogfoodStreamUri = https://stream.ld.catamorphic.com
+   $.dogfoodClientSideEventsUri = https://events.ld.catamorphic.com
+   $.allClientSideFlags.observability-destination-suffix = observability.app.ld.catamorphic.com
+   $.observabilityPublicGraphUrl = https://pub.observability.app.ld.catamorphic.com
+   $.observabilityOtelUrl = https://otel.observability.app.ld.catamorphic.com
+
+large lists (>20): [('$.allClientSideFlags.ga-channel-search-engine-list.domains', 130), ('$.allClientSideFlags.playground-allowed-regions', 34), ('$.allClientSideFlags.ga-channel-video-sites-list.domains', 47)]
+
+--- K3: sibling/config endpoints unauth ---
+[UN GET /internal/config/authenticated]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[UN GET /internal/config/anonymous?device=mobile]: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri
+[UN GET /internal/config]: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[UN GET /internal/config/bootstrap]: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[UN GET /internal/config/features]: 200   <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"    
+[UN GET /internal/config/flags]: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[UN GET /internal/config/anonymous/v2]: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+[UN GET /internal/config/anonymous/]: 200 {"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri
+[UN GET /api/v2/config/anonymous]: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>
+
+--- K4: authed contrast (is it the SAME payload or user-specific?) ---

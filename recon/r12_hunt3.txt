@@ -1,0 +1,507 @@
+--- M1: dict/list-valued flags (full values) ---
+
+  [accepted-redirect-hosts]
+    ["accelerate.app.launchdarkly.com"]
+
+  [access-summaries-other-resources]
+    []
+
+  [access-token-expiry-notification-configuration]
+    {"notifyDaysFromExpiry": [30, 7, 1]}
+
+  [account-limits-tiers-ai-executions]
+    {"firstTierEnd": 0, "lastTierEnd": 0, "tierSize": 1}
+
+  [account-limits-tiers-ai-runs]
+    {"lastTierEnd": 0, "tierSize": 1, "firstTierEnd": 0}
+
+  [account-limits-tiers-experimentation-keys]
+    {"firstTierEnd": 0, "lastTierEnd": 10000000, "tierSize": 100000}
+
+  [accounts-excluded-from-overage-emails]
+    {"accounts": ["5bfdc6a223d2f65d48b8fd10"]}
+
+  [agent-control-setup-config]
+    {"variations": [], "description": ""}
+
+  [agent-control-starter-chatbot-config]
+    {"followUpMessage": "Okay, I\u2019d like a refund for the duplicate charge.", "seedUserMessage": "I was charged twice for my subscription this month. Can you help?", "variations": [{"instructions": "You are a friendly, concise customer support agent for a SaaS company. Always be empathetic, offer a solution, and end with a follow-up question.", "modelKey": "Anthropic.claude-haiku-4-5-20251001", "name": "Friendly Support Bot", "parameters": {"max_tokens": 200, "temperature": 0.7}, "sampleResponse": "I'm really sorry to hear you were double-charged! That must be frustrating. Let me help you resolve this right away.\n\nHere's what I can do:\n- I'll flag your account for our billing team to review the duplicate charge immediately\n- You should see a refund for the extra charge within 3-5 business days\n- I'll also add a note to prevent this from happening again\n\nTo get this started, could you please provide your account email address or customer ID so I can look up your account details?"}, {"name": "Formal Support Bot", "parameters": {"max_tokens": 400, "temperature": 0.2}, "sampleResponse": "I understand you've been charged twice for your subscription this month. I apologize for thi...(truncated)
+
+  [ai-config-usage-gate-trials]
+    {"variationLimit": 0, "hardLimit": 0, "softLimit": 0}
+
+  [ai-evaluator-sqs-loggable-fields]
+    ["account_id", "project_id", "project_key", "dataset_id", "evaluation_id", "run_id"]
+
+  [ai-library-page-sizes]
+    {"snippets": 50, "tools": 50, "datasets": 50, "judges": 50, "models": 25, "skills": 50}
+
+  [allowed-post-approval-requests-global-flag-instruction-kinds]
+    ["addVariation", "removeVariation", "updateDefaultVariation", "updateVariation"]
+
+  [allowed-workflow-builder-instructions]
+    ["turnFlagOn", "turnFlagOff", "addRule", "updateFallthroughVariationOrRollout", "updateRuleVariationOrRollout", "addUserTargets", "addTargets"]
+
+  [app-restart-banner-data]
+    {"enabled": true, "text": "Related to this incident: To ensure flag updates reach all applications, restart any LaunchDarkly SDKs or Relay Proxy instances that were running from 9 - 11 am PT on July 10th."}
+
+  [beast-mode]
+    {"all": true, "routes": []}
+
+  [cached-query-endpoints]
+    []
+
+  [clickhouse-ingest-setting-overrides]
+    ["min_insert_block_size_rows=12582540", "min_insert_block_size_bytes=322083532", "max_insert_block_size_rows=12582540", "min_insert_block_size_rows_for_materialized_views=12582540", "min_insert_block_size_bytes_for_materialized_views=322083532", "materialized_views_squash_parallel_inserts=1", "enable_filesystem_cache_on_write_operations=false"]
+
+  [common-varnish-purge-targets]
+    []
+
+  [configurable-destinations]
+    []
+
+  [context-kind-validation]
+    {"maxKeyLength": 256, "maxNameLength": 256, "maxPerProject": 150, "maxDescriptionLength": 1000}
+
+  [critical-audit-log-entries]
+    []
+
+  [custom-assignment-sources-probe-threshold-overrides]
+    {}
+
+  [customer-usage]
+    {"enableClientTab": false, "enableServerConnectionsChart": false, "enableServerTab": false, "enableServerMAUChart": false, "enableUsageTabs": false, "enableClientConnectionsChart": false, "enableExperimentsTab": false, "enableCustomerUsage": false, "enableEventsTab": false, "enableClientMAUChart": false}
+
+  [default-release-configuration]
+    {"enabled": false}
+
+  [deprecated-flag-filters]
+    {"codeReferences": false, "contextKindTargeted": false, "contextKindsEvaluated": false, "followerId": false, "hasDataExport": false, "hasExperiment": false, "status": true, "targeting": false}
+
+  [deprecated-sort-options]
+    {"targetingModifiedDate": false}
+
+  [devin-test-json-scrollbar]
+    {}
+
+  [emau-self-serve-pricing-facade]
+    {"showOveragePrice": false, "freeQuantity": 100000, "overagePriceInCents": 0}
+
+  [enable-audience-phases-p3]
+    {"enableMonitoringTabUpdates": true, "enableSummaryCardUpdates": true}
+
+  [enable-dynamic-access-check-for-resource-actions]
+    {"resources": [{"type": "destination", "actions": ["createDestination"]}]}
+
+  [enable-full-page-ui-for-integrations-list]
+    {"snowflake-native-experimentation": "snowflake-experimentation"}
+
+  [enable-release-policies-deprecation]
+    {"full_api_deprecation_enabled": false, "write_api_deprecation_enabled": false}
+
+  [enable-shortcuts-for-new-routes]
+    {"ai-configs": true, "event-explorer": true, "experiments": true, "guarded-rollouts": true, "holdouts": true, "metrics": true, "monitor-dashboards": true, "multi-arm-bandits": true}
+
+  [enable-specific-overage-alerts]
+    ["MonthlyActiveUsers", "EventsReceived", "EventsPublished"]
+
+  [enable-targeting-change-visualization]
+    {"highlights": false, "badges": false, "banner": false, "diff": false}
+
+  [enabled-metric-analysis-config-fields]
+    ["unitAggregationType", "eventDefault", "analysisType"]
+
+  [experiment-hypothesis-assist-settings]
+    {"api": "fast", "showApiSwitch": false, "showDiagnostics": false}
+
+  [experiment-metric-compatibility-rules]
+    {"schemaVersion": 1, "availability": {"platform": ["federal-hosted"]}, "rules": {"dua-not-shipped": {"priority": 10, "status": {"type": "unsupported", "reason": "Decoupled analysis unit in progress across all platforms; not yet shipped anywhere"}, "userMessage": "Decoupled analysis unit isn't available yet.", "docNote": "LAUNC-2510", "match": {"dua": true}}, "mcc-bayesian-na": {"userMessage": "Multiple comparison correction only applies to Frequentist experiments.", "match": {"methodology": "bayesian", "mcc": true}, "priority": 10, "status": {"type": "not-applicable"}}, "percentile-bayesian-legacy": {"match": {"methodology": "bayesian", "metricKind": "percentile"}, "priority": 10, "status": {"reason": "Legacy quantile implementation broken for Bayesian; same Airflow pipeline as Hosted", "type": "legacy"}, "userMessage": "Percentile metrics are not supported for Bayesian experiments yet."}, "power-analysis-not-built": {"userMessage": "In-app power analysis isn't available yet.", "docNote": "LAUNC-2486", "match": {"powerAnalysis": true}, "priority": 10, "status": {"reason": "Q3 2026 target, not yet built", "type": "unsupported"}}, "data-slicing-time-series": {"status": {"type": "unsu...(truncated)
+
+  [experiment-scheduler-iteration-blocklist]
+    ["45f90f81-195d-4e6a-af24-5a125d4d54b4", "1f6aeabb-6358-43a2-8e60-423583b6aa58", "75f9a15a-c410-4d40-bebc-099bd86a7187", "59138cf1-6a5d-4111-aa52-41a32a653938", "cc677214-5700-4589-8925-70524c36dfa9", "ea6932e5-0667-455d-b742-2ea87c8dcaac", "930ad989-af74-4901-87a3-20e0c0e01a88", "8a7b809b-7110-4f62-8d5a-02cfd176fc3e", "5a0b6e49-962f-4c57-9981-b28f4d9aea75", "ad9b73db-569e-4b98-a6c7-dfd09f42a1f5", "0476f9e1-4e53-4782-b42b-5d5a16f97418", "a99333dc-d52f-426f-8f6c-55d02fe3c840", "da68e12b-d888-4033-ae77-92d9dd080c56", "5abae268-9f4a-4d94-a98f-776c8e48476e", "9451e51f-a6de-4e33-a424-6914fdd4eeeb", "67691e75-0c2f-43d4-805a-51ebe3ee5c99", "4247b8d5-ea04-47f7-9e90-7bbd5dac84e5"]
+
+  [experiment-scheduler-per-metric-iterations]
+    ["acb69b64-a3e6-496e-b7d0-e7fd2cf6030a", "cce7201e-6b9d-46f7-b223-63ca5b7f87f8"]
+
+  [experiment-tracking-registry]
+    {"exp_2026_create_flag_menu_primary": {"flagKey": "create-flag-menu-primary-click", "type": "bool", "context": "account"}, "exp_2026_cross_product_expansion_arms": {"flagKey": "cross-product-expansion-arms", "type": "string", "context": "account"}, "exp_2026_foundation_cost_calculator": {"flagKey": "enable-foundation-cost-calculator", "type": "bool", "context": "account"}, "exp_2026_one_click_install_sdk": {"type": "bool", "context": "account", "flagKey": "one-click-install-sdk"}, "exp_2026_sample_app_offer_all_trialists": {"context": "account", "flagKey": "enable-sample-app-offer-all-trialists", "type": "bool"}, "exp_2026_add_flag_to_code_v3": {"type": "bool", "context": "account", "flagKey": "release-add-flag-to-code-v3"}}
+
+  [experimentation-alert-banner]
+    {"enabled": false}
+
+  [factory-auth-exempt-authors]
+    []
+
+  [factory-github-app-assignments]
+    {}
+
+  [fdcore-concurrency-obj-source-s3]
+    {"enabled": false}
+
+  [ga-channel-ai-sites-list]
+    {"domains": ["chatgpt.com", "chat.openai.com", "openai.com", "gemini.google.com", "bard.google.com", "copilot.microsoft.com", "deepseek.com", "grok.com", "x.ai", "perplexity.ai", "www.perplexity.ai", "claude.ai", "meta.ai", "you.com", "poe.com"]}
+
+  [ga-channel-search-engine-list]
+    {"domains": ["360.cn", "alice", "aol", "ar.search.yahoo.com", "ask", "at.search.yahoo.com", "au.search.yahoo.com", "auone", "avg", "babylon", "baidu", "biglobe", "biglobe.co.jp", "biglobe.ne.jp", "bing", "br.search.yahoo.com", "ca.search.yahoo.com", "centrum.cz", "ch.search.yahoo.com", "cl.search.yahoo.com", "cn.bing.com", "cnn", "co.search.yahoo.com", "comcast", "conduit", "daum", "daum.net", "de.search.yahoo.com", "dk.search.yahoo.com", "dogpile", "dogpile.com", "duckduckgo", "ecosia.org", "email.seznam.cz", "eniro", "es.search.yahoo.com", "espanol.search.yahoo.com", "exalead.com", "excite.com", "fi.search.yahoo.com", "firmy.cz", "fr.search.yahoo.com", "globo", "go.mail.ru", "google", "google-play", "hk.search.yahoo.com", "id.search.yahoo.com", "in.search.yahoo.com", "incredimail", "it.search.yahoo.com", "kvasir", "lens.google.com", "lite.qwant.com", "lycos", "m.baidu.com", "m.naver.com", "m.search.naver.com", "m.sogou.com", "mail.rambler.ru", "mail.yandex.ru", "malaysia.search.yahoo.com", "msn", "msn.com", "mx.search.yahoo.com", "najdi", "naver", "naver.com", "news.google.com", "nl.search.yahoo.com", "no.search.yahoo.com", "ntp.msn.com", "nz.search.yahoo.com", "onet", "onet.pl",...(truncated)
+
+  [ga-channel-social-sites-list]
+    {"domains": []}
+
+  [ga-channel-video-sites-list]
+    {"domains": ["blog.twitch.tv", "crackle", "crackle.com", "curiositystream", "curiositystream.com", "d.tube", "dailymotion", "dailymotion.com", "dashboard.twitch.tv", "disneyplus", "disneyplus.com", "fast.wistia.net", "help.hulu.com", "help.netflix.com", "hulu", "hulu.com", "id.twitch.tv", "iq.com", "iqiyi", "iqiyi.com", "jobs.netflix.com", "justin.tv", "m.twitch.tv", "m.youtube.com", "music.youtube.com", "netflix", "netflix.com", "player.twitch.tv", "player.vimeo.com", "ted", "ted.com", "twitch", "twitch.tv", "utreon", "utreon.com", "veoh", "veoh.com", "viadeo.journaldunet.com", "video.ibm.com", "vimeo", "vimeo.com", "wistia", "wistia.com", "youku", "youku.com", "youtube", "youtube.com"]}
+
+  [ga-config]
+    {"clientstream2": {"endpoints": {"us-east-1": {"weight": [128, 128, 128, 128, 128]}, "ap-southeast-1": {"weight": [128, 128]}, "eu-west-1": {"weight": [128, 128]}}, "record": {"weight": 50}}, "clientstream1": {"record": {"weight": 50}, "endpoints": {"eu-west-1": {"weight": [128, 128]}, "us-east-1": {"weight": [128, 128, 128, 128, 128]}, "ap-southeast-1": {"weight": [128, 128]}}}}
+
+  [gpt-proxy-services]
+    ["honeycomb", "datadog", "launchdarkly"]
+
+  [guardian-alert-banner]
+    {"enabled": false}
+
+  [incentive-feedback-variant]
+    {}
+
+  [integration-approvals-poll-after-approval-accounts]
+    ["5d25ea5f23d2f65d48fa0c9c"]
+
+  [integration-config-side-panel-kinds]
+    ["redshift"]
+
+  [integrations-using-new-integration-configuration-form]
+    ["custom-approvals"]
+
+  [marketo-form-submission-config]
+    {"3247": [{"label": "Email", "type": "string", "key": "email"}, {"key": "firstName", "label": "First name", "type": "string"}, {"type": "string", "key": "lastName", "label": "Last name"}, {"type": "string", "key": "company", "label": "Company"}, {"key": "title", "label": "Job title", "type": "string"}, {"optional": true, "type": "string", "key": "phone", "label": "Phone number"}, {"type": "string", "key": "programID", "label": "Program ID", "optional": true}], "3331": [{"key": "email", "label": "Email", "type": "string"}, {"key": "firstName", "label": "First name", "type": "string"}, {"key": "lastName", "label": "Last name", "type": "string"}, {"label": "Company", "type": "string", "key": "company"}, {"label": "Job title", "type": "string", "key": "title"}], "1941": [{"optional": true, "type": "string", "key": "requestedfeature", "label": "Requested feature"}, {"label": "Product interest", "optional": true, "type": "string", "key": "Website_Dr_Button__c"}, {"type": "string", "key": "planType", "label": "Plan type", "optional": true}, {"type": "string", "key": "subscriptionState", "label": "Subscription state", "optional": true}], "3144": [{"key": "email", "label": "Email", "type": ...(truncated)
+
+  [metric-banner-variations-mab]
+    {"useAlert": false, "description": "Get real-time visibility into errors, performance and web vitals that measure how fast and smooth your app feels to users.", "headline": "Telemetry insights are currently unavailable. Initialize the plugin to unlock the full experience."}
+
+  [metric-kinds-supported-on-pa]
+    {"supported_metrics": ["custom"]}
+
+  [native-experimentation-form-wrapper]
+    ["bigquery-experimentation", "snowflake-experimentation", "databricks-experimentation", "redshift-experimentation", "clickhouse-experimentation"]
+
+  [new-full-page-integration-form]
+    {"integrationKeys": []}
+
+  [nr-ld-harness-json]
+    {"tier": "gold", "limits": {"rps": 100}, "regions": ["us-east-1", "eu-west-1"]}
+
+  [oauth-mcp-additional-resources]
+    []
+
+  [observability-team-test-data-runner-configuration]
+    {"session-secure-id": "nt47kP7ayHbRc7OvC6uabspcl4vt", "project-id": ["10111570", "10120040"], "runner-frequency": "1"}
+
+  [observability-vega-blocked-request-types]
+    ["FlagTargeting"]
+
+  [pa-charts-default-date-filter]
+    {"unit": "day", "value": 30}
+
+  [pa-feature-matrix]
+    {"cohorts": {"firstTimeFilter": "hidden", "staticCohort": {"downloadCohort": "hidden", "uploadCohort": "hidden"}}, "userActivity": "hidden", "charts": {"trends": {"events": {"calculation": {"aggregateProperties": ["median", "percentile"], "frequencyPerUser": ["median", "percentile"]}}}, "retention": {"visualization": {"cohortFromChart": "hidden"}}}}
+
+  [pa-flows-chart-max-date-range]
+    {"unit": "day", "value": "14"}
+
+  [pa-warehouse-with-data-export]
+    ["snowflake-v2"]
+
+  [percentile-configuration-options]
+    {"confidenceOptions": [], "defaultConfidence": 90, "defaultPercentile": 90, "enabled": false, "percentileOptions": []}
+
+  [plan-usage-tabs-override]
+    {"observabilityErrorsTab": [], "aiExecutionsTab": ["diagnosticEnabled"], "observabilityTracesTab": [], "experimentationKeysTab": [], "clientSideMAUTab": [], "dataExportTab": [], "experimentationMAUTab": [], "serviceConnectionsTab": [], "observabilityMetricsTab": ["planDisabled", "diagnosticDisabled"], "experimentationEventsTab": [], "observabilitySessionsTab": [], "observabilityLogsTab": [], "vegaAITab": ["diagnosticEnabled"]}
+
+  [playground-allowed-regions]
+    ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "af-south-1", "ap-east-1", "ap-south-2", "ap-southeast-3", "ap-southeast-5", "ap-southeast-4", "ap-south-1", "ap-southeast-6", "ap-northeast-3", "ap-northeast-2", "ap-southeast-1", "ap-southeast-2", "ap-east-2", "ap-southeast-7", "ap-northeast-1", "ca-central-1", "ca-west-1", "eu-central-1", "eu-west-1", "eu-west-2", "eu-south-1", "eu-west-3", "eu-south-2", "eu-north-1", "eu-central-2", "il-central-1", "mx-central-1", "me-south-1", "me-central-1", "sa-east-1"]
+
+  [playground-default-system-messages]
+    {"column1": "You are a helpful assistant.", "column2": "You are an expert assistant."}
+
+  [playground-trial-available-models]
+    ["Anthropic.claude-sonnet-4-6", "Anthropic.claude-haiku-4-5-20251001"]
+
+  [pql-signup-junk-country-list]
+    ["EG", "ID", "VN", "PK", "BD", "NP", "MA", "NG", "DZ", "KE"]
+
+  [pql-signup-junk-special-characters]
+    ["<", ">", "&", ";", "#", "\"", "{{", "${", "javascript:"]
+
+  [release-guardian-usage-limits]
+    {"usageGatedTrial": {"hardLimit": 0, "softLimit": 0}, "isPaidEntitlement": true}
+
+  [release-unified-form-submit]
+    {"3331": true}
+
+  [show-expanded-evaluation-run-criteria-status-badges]
+    ["run-summary-page"]
+
+  [slack-approval-alert-grouping]
+    {"enabled": false}
+
+  [supported-hosted-winsorization]
+    []
+
+  [supported-products-for-ld-hosted-ratio-and-dua]
+    []
+
+  [supported-warehouse-experimentation-manifests]
+    ["snowflake-experimentation", "databricks-experimentation", "redshift-experimentation", "bigquery-experimentation"]
+
+  [supported-warehouses-for-ratio-and-dua]
+    ["snowflake"]
+
+  [track-web-vitals]
+    ["LCP"]
+
+  [tui-agentcontrol-targeting]
+    {"instructions": "You are a helpful coding assistant who speaks who speaks like a pirate. ", "model": {"parameters": {}, "name": "claude-sonnet-4-6"}, "provider": {"name": "Anthropic"}, "_ldMeta": {"variationKey": "haiku-4-5", "version": 4, "versionKey": "haiku-4-5", "enabled": true, "mode": "agent", "modelKey": "Anthropic.claude-sonnet-4-6", "modelVersion": 1}}
+
+  [ux-insights-research-source]
+    {}
+
+  [varnish-purge-targets]
+    []
+
+  [warehouse-data-export-skip-list-config]
+    {"environments": {"65f05135afc660101ea7528d": "ab-betmgm-az prod", "59e4bfdd6292ac0ac9174386": "carried over from the disabled_data_export_environments Airflow Variable", "64adaa9de07d2313a51bff56": "ramp", "65f05135afc660101ea7528c": "ab-betmgm-az test"}, "destinations": {"30e0b9fe-01ce-4941-9f3a-ff65423ed5b7": "ab-betmgm-az, Entain Test env Magic Link", "7f4f4a74-dea6-42f6-a81a-5ab34ef800aa": "SSRF probe (SEC-8991): Victim Corp, 62.169.16.105.sslip.io", "cd4899d5-5a7a-4a2b-8c8f-2a0948e3c608": "SSRF probe (SEC-8991): kex_analytics, 62.169.16.105.nip.io", "71724677-3581-40d9-8d5e-f05c12f5ac37": "mindbody", "2b76e068-cfa4-406f-9043-8e183a33e3f1": "SSRF probe (SEC-8991): texooooo, 127.0.0.1", "61f60f4a-67c1-42e6-be22-c90979c3f6f0": "SSRF probe (SEC-8991): bb_s_account, workers.dev mock", "f35b06d5-dc7a-46aa-9de2-0a4fa7d8864f": "SSRF probe (SEC-8991): kex_analytics, 62.169.16.105.nip.io", "9e3767e2-f8b9-4f6e-9438-e8e0afe07b01": "hackerone, Snowflake decommissioned, no success since 2025-09-20", "332d080b-b7d1-4158-afd6-fa847c751b40": "ab-betmgm-az, Entain Production env Magic Link", "3e427d92-fd3e-4935-bcb8-e191bd219947": "launchdarkly_support_latest_features, no success since 2026-02...(truncated)
+
+  [web-app-new-relic-error-groups]
+    [{"match": "Loading CSS chunk", "group": "Loading CSS chunk failed"}, {"group": "Loading chunk failed", "match": "Loading chunk"}, {"group": "Browser extension", "match": "reading 'M_ID'"}, {"match": "chrome-extension://", "group": "Browser extension"}, {"group": "Browser extension", "match": "moz-extension://"}, {"group": "Google Sign-In", "match": "accounts.google.com/gsi/client"}, {"group": "Google Sign-In", "match": "GSI_LOGGER"}, {"match": "Failed to fetch", "group": "Network request failed"}, {"group": "Network request aborted", "match": "Fetch is aborted"}, {"group": "Network request aborted", "match": "signal is aborted without reason"}, {"match": "The user aborted a request", "group": "Network request aborted"}, {"match": "AbortError", "group": "Network request aborted"}, {"group": "CSP violation", "match": "csp_violation"}, {"match": "Failed to execute 'insertBefore' on 'Node'", "group": "DOM mutation by third party"}, {"match": "Failed to execute 'removeChild' on 'Node'", "group": "DOM mutation by third party"}, {"match": "ResizeObserver loop", "group": "ResizeObserver loop"}, {"match": "Script error", "group": "Script error (cross-origin)"}, {"group": "Network request f...(truncated)
+
+  [web-app-performance-metrics-thresholds]
+    {"LCP": 2500}
+
+  [welcome-survey-rotating-question-bank]
+    {"ai-assistant-task": {"questionText": "If an AI assistant could do one thing for you right now, which would you use?", "showWhenFirstAction": ["ai"], "inputType": "single-select", "options": ["Write the SDK code in my repo", "Generate the exact snippet for my stack", "Explain what to do", "Nothing"]}, "evaluation-criteria": {"inputType": "single-select", "options": ["Integrations and SDK coverage", "Ease of use", "Pricing and packaging", "Specific capabilities", "Still deciding"], "questionText": "What are you primarily evaluating LaunchDarkly on?"}, "ai-eval-tools": {"questionText": "Are you using any tools for AI evals or observability today?", "showWhenFirstAction": ["ai"], "inputType": "single-select", "options": ["None", "Braintrust", "LangSmith", "LangFuse", "Arize", "Datadog LLM Obs", "Something else"]}, "session-goal": {"questionText": "In your own words, what are you hoping to do in your session today?", "inputType": "free-text"}, "ai-install-interest": {"inputType": "single-select", "options": ["Yes", "No, I'd rather do it manually", "I'm not planning to install"], "questionText": "Want help installing LaunchDarkly from an AI agent in your editor?"}, "time-horizon": {"op...(truncated)
+
+  [winsorization-frontend-config]
+    {"bigquery-experimentation": true, "databricks-experimentation": true, "redshift-experimentation": true, "snowflake-experimentation": true}
+
+  [wne-reload-ramp-up]
+    {"cadenceMinutes": 15, "windowMinutes": 1440}
+
+--- M2: float/int flags with notable names (limits/tiers) ---
+  Reintegrate-bayesian-traffic-estimation = True
+  accelerate-enable-fe-stack-trace-on-error-page = False
+  accelerate-hit-gonfalon-direct = False
+  access-token-list-max-limit = 1000
+  account-limits-ai-executions = -2
+  account-limits-ai-runs = -2
+  agent-graph-max-edges = 50
+  agent-graph-max-handoff-size-kb = 4
+  agent-skills-bulk-update-max-concurrency = 5
+  agent-skills-bulk-update-max-error-rate = 0.5
+  agent-skills-bulk-update-max-targets = 50
+  agent-skills-max-markdown-kb = 50
+  ai-config-metrics-max-range-days = 0
+  ai-configs-model-bulk-update-max-concurrency = 5
+  ai-configs-model-bulk-update-max-error-rate = 0.5
+  ai-configs-model-bulk-update-max-targets = 50
+  ai-evaluator-dataset-max-file-size-bytes = 67108864
+  ai-evaluator-dataset-max-row-count = 10000
+  ai-evaluator-llm-max-retries = 3
+  ai-evaluator-llm-rate-limit-base-delay-seconds = 10
+  ai-evaluator-llm-rate-limit-max-retries = 8
+  ai-tools-bulk-update-max-concurrency = 10
+  ai-tools-bulk-update-max-error-rate = 0.5
+  ai-tools-bulk-update-max-targets = 50
+  approvals-notification-list-max-limit = 100
+  audience-phases-maximum-phase-limit = 10
+  audience-phases-maximum-phase-step-limit = 10
+  audit-log-account-history-limit = -1
+  backfill-missing-self-serve-subscription-limits = True
+  big-segments-import-max-records = 1000000
+  billing-refactor-plan-limit-types = False
+  billing-refactor-plan-tiers = False
+  billing-refactor-plan-tiers-shadow = False
+  billing-refactor-subscription-limit-details = False
+  cap-service-token-by-personal-token-role = True
+  capture-idp-entity-id = True
+  capture-last-successful-sso-at = True
+  chex-attribute-cardinality-max-unique-values = 1000
+  coderefs-max-request-body-bytes = 1000000
+  composer-max-active-tasks-per-account = 500
+  composer-max-nesting-depth = 5
+  composer-max-template-definition-bytes = 102400
+  composer-max-template-inputs = 10
+  composer-max-template-tasks = 50
+  composer-max-templates-per-account = 100
+  composer-max-workflow-size = 50
+  contact-us-seat-limit = -1
+  context-attribute-names-limit = 100
+  context-attribute-values-limit = 10
+  custom-role-migration-max-batch-size = 50
+  domain-match-accounts-max-limit = 0
+  dry-run-mode-open-seats-notifications = False
+  dynamo-db-max-item-size = 400000
+  enable-agent-optimization-token-cap = False
+  enable-ai-executions-limit = False
+  enable-ai-runs-limit = True
+  enable-auto-releasing-capability = False
+  enable-auto-seat-provisioning = True
+  enable-automated-flag-cleanup-unlimited = False
+  enable-captcha = True
+  enable-coderefs-field-limits = True
+  enable-context-picker-target-suggestion-cap = True
+  enable-dcr-request-size-limits = True
+  enable-emau-limit-and-usage = True
+  enable-enterprise-seat-expansions = True
+  enable-experimentation-keys-limit = True
+  enable-flag-key-filter-in-accelerate = False
+  enable-flag-statuses-limit = False
+  enable-legacy-limit-normalization = False
+  enable-link-to-accelerate = False
+  enable-metric-selector-autogenerated-categories = True
+  enable-observability-collector-ratelimiter = True
+  enable-open-seats-notifications = False
+  enable-open-seats-snackbar-notification = False
+  enable-rate-limited-route-error-retry = False
+  enable-sc-limit-and-usage = True
+  enable-self-serve-experimentation-keys-limit = False
+  enable-snowflake-wne-separate-login-name = True
+  enable-special-rates-plan-feature = False
+  enable-vega-ai-limit = True
+  enforce-seat-limits = False
+  evals-token-limits-max-per-member = 10000000
+  event-warehouse-api-max-memory-usage-gib = 96
+  event-warehouse-context-storage-limit-test = False
+  ew-app-processor.capture-unknown-application-flags = True
+  experiment-attribute-limit = 20
+  experiment-hunter-url-capture = False
+  experiment-iteration-metric-limit = 20
+  experiment-results-worker-retry-limit = 0
+  experiment-scheduler-enqueue-max-delay-seconds = 240
+  exposures-csv-export-max-limit = 10000
+  fdcore-ping-jitter-max-secs = 0
+  fdcore-redis-write-token-cap = 10
+  feedback-ai-grouper-feedback-truncation-limit = 500
+  feedback-ai-grouper-max-feedback-items = 200
+  feedback-event-aggregator-counts-towards-max-attempts = True
+  feedback-notification-maximum-variation-value-length = 30
+  feedback-report-aggregated-limit = 25
+  feedback-report-max-batch-size = 50
+  feedback-report-message-truncation-limit = 140
+  feedback-truncated-items-limit = 5
+  flag-evaluation-ui-refresh-rate = -1
+  flag-lifecycle-archive-modal-critical-environments-fetch-limit = 10
+  flag-list-limit-guardrail = False
+  flag-max-size-bytes = 400000
+  flag-request-max-body-bytes = 4194304
+  flag-sample-worker-escape-threshold-wait-time-minutes = 120
+  flag-statuses-environment-key-limit = 10
+  flag-statuses-flag-key-limit = 100
+  flags-query-environment-key-limit = 10
+  flags-query-flag-key-limit = 100
+  funnel-group-metric-limit = 11
+  generate-rule-ai = False
+  generate-rule-description = False
+  generate-screenshots-on-ingest = False
+  get-flags-maximum-count = 50
+  goaltender-http-fallback-max-body-bytes = -1
+  guarded-releases-max-audience-cardinality = 2000000
+  hide-o11y-max-ingest-per-minute = True
+  incoming-webhook-subscription-input-limits = False
+  integration-approvals-max-poll-after-approval-days = 90
+  internal-environment-query-limit = 50
+  limit-historical-guarded-releases-to-90-days = False
+  max-adaptive-triggers-per-alert = 50
+  max-adaptive-triggers-per-resource = 50
+  max-rollback-days = 30
+  max-sdk-key-associations-per-view = 250
+  max-sdk-keys-per-environment = 5
+  max-sdk-keys-with-filtered-payload-per-account = 500
+  max-shadow-requests-per-ai-config = 50
+  max-views-per-filtered-payload = 10
+  maximum-allowed-monitored-rollout-duration-ms = 2592000000
+  maximum-allowed-rollout-stage-duration = -1
+  maximum-environment-release-plans-per-environment = -1
+  maximum-holdout-amount = 99
+  maximum-number-of-roles-in-the-member-role-filter = 20
+  metric-breakdown-max-columns = 3
+  migrate-code-editor-5 = True
+  migrate-context-kind-form = True
+  migrate-contexts-epic-to-react-query = True
+  migrate-contexts-list-to-rac-table = False
+  migrate-to-agentcontrol = False
+  native-big-segment-import-max-file-size = 40
+  nats-max-message-size = 8000000
+  notification-subscription-limit-per-flag = 10
+  o11y-collector-tenant-byte-limit = 10995116277760
+  o11y-ingest-quota-check-redis-cache = True
+  o11y-otel-clickhouse-trace-max-insert-threads = 4
+  oauth-rate-limit-cimd-member-fetch = 10
+  observability-agent-judge-sample-rate = 1
+  observability-factory-judge-sample-rate = 0
+  observability-guardian-trial-2024-vega-quota = False
+  observability-metrics-quota-enforcement = False
+  observability-preview-sample-rate = 0
+  observability-sessions-max-bytes-before-external-group-by = False
+  observability-vega-quota-enforcement = True
+  observability-write-buffer-max-buffer-size-kb = 100000
+  offline-eval-admin-token-limits = False
+  open-seats-notification-day = 15
+  open-seats-notification-limit = 11
+  orb-client-max-retries = 2
+  otel-span-sample-rate = 1000
+  playground-side-by-side-comparison-limit = 3
+  playground-trial-daily-token-limit = 10000
+  proj-ratio-metrics-last-seen-max = True
+  release-list-api-max-limit = 100
+  releases-default-query-limit = 20
+  remove-segment-limit-for-targeting-dropdown = False
+  rollout-worker-clickhouse-max-memory-usage-gib = 96
+  saved-dashboard-limit = 20
+  scim-max-request-body-bytes = 1048576
+  segment-key-limit = 20
+  segment-max-size-bytes = 400000
+  separate-flag-status-from-flag-configuration = False
+  separate-read-transaction-in-create-measured-rollout-code = False
+  single-transaction-environment-creation-max-flags = 1001
+  snippets-bulk-update-max-concurrency = 10
+  snippets-bulk-update-max-error-rate = 0.5
+  snippets-bulk-update-max-targets = 50
+  standard-metric-group-metric-limit = 20
+  stratified-sampling-max-upload-size-mb = 50
+  target-batch-limit = 1500
+  token-auth-analytics-sample-rate = 1
+  tolerate-unbounded-segment-metadata-errors = False
+  use-heuristics-to-select-query-strategy = False
+  use-window-array-flows-strategy = False
+  views-max-resources-to-link-incrementally = 20
+  web-app-data-dog-rum-application-premium-sample-rate = 1
+  web-app-data-dog-rum-application-sample-rate = 100
+  wne-metric-breakdown-column-limit = 10
+  wtr-metric-breakdown-max-values = 1000
+
+--- M3: full new-hires roster (raw, internal file) ---
+wrote 55 new-hires flags -> recon/r12_newhires_flags.txt
+
+--- M4: other person-name-shaped flags (name leakage beyond new-hires?) ---
+JML-shaped flags: 73
+   new-hires-add-aacharya
+   new-hires-add-jmcelroy
+   new-hires-add-rabdrashitov
+   new-hires-add-kong
+   new-hires-add-example-user
+   new-hires-add-ssthanikam
+   new-hires-add-jliu
+   new-hires-add-zverrilli
+   new-hires-add-hamed
+   new-hires-add-cstuart
+
+--- M5: internal-tooling / staff-shaped flags ---
+  ae-factory-dogfood-test = true
+  ae-factory-dogfood-test-2 = true
+  enable-dogfood-context-compression = false
+  enable-internal-authorization-endpoint = true
+  internal-environment-query-limit = 50
+  pql-signup-employee-count = false
+  project-switcher-internal-get-endpoint = false
+  release-internal-get-applications-by-project = false
+
+DONE

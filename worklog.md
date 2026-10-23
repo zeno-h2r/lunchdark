@@ -471,3 +471,20 @@ Stage Summary:
 - NO new P1/P2. FINDING_002 R11 section appended: classic webhooks family no_access-readable INCLUDING full HMAC signing secret on sign-enabled webhooks (2nd signing-secret vector; X-LD-Signature forgeable) + breadth (announcements, adaptive-triggers, usage family x8, cleanup/lifecycle/experimentation settings, accountId reflection).
 - Defended/closed this round: agent-control path-id, relay reset, bulk authz oracle (no existence/cross enumeration), invoice PDF, announcements detail, saml/scim, payload-filters (plan-gate), member/team access-summary (plan-gate).
 - Settings tree systematically covered: account-level (projects/general/plan-usage/billing/diag-usage/token-limits/members/teams/roles/integrations/relay/applications/tokens/security/sdk-keys) + project-level (envs/flags/vega/releases/lifecycle/approvals/views/context-kinds/observability).
+---
+Task ID: R12-FINDING003
+Agent: Super Z (main)
+Task: "keep work on finding 003" — formalize + escalate the /internal/config/anonymous disclosure as FINDING_003. RESULT: FINDING_003 doc written; severity P3-arguable/P4-likely.
+
+Work Log:
+- No prior FINDING_003 existed; R10's documented P3/P5-candidate (/internal/config/anonymous) adopted as FINDING_003.
+- r12_hunt1: unauth full capture 324,387 bytes (recon/r12_config_anonymous_full.json). Top-level: clientSideId 5866f3891cd8810a42ce5281, dogfoodBaseUri/stream/events .ld.catamorphic.com, observabilityProjectID 1jdkoe52 (corroborates FINDING_001), secureModeContextHash, dogfoodContext, telemetry keys (segment/datadog/newrelic/algolia/stripe pk_live), allClientSideFlags = 2,676 flags of LD's own prod app account. Siblings: /internal/config/anonymous/ + ?device=mobile 200 (identical/similar), config/authenticated 401, config/bootstrap|flags|v2 404, config/features = SPA HTML fallback.
+- r12_hunt2: value census (2180 bool / 248 int / 140 str / 35 list / ~50 dict). Secret-pattern scan over ALL strings: NO JWTs, no sdk-/mob-/api- keys, no cloud/GitHub/Slack tokens (negative control). dogfoodContext = anonymous session per request. accepted-redirect-hosts = ["accelerate.app.launchdarkly.com"].
+- r12_hunt3: dict-valued flags dumped. Key disclosures: new-hires-add-<username> roster (55 flags, 54 unique; 73 JML-shaped total, raw list recon/r12_newhires_flags.txt); app-restart-banner-data = LIVE incident text (restart SDKs 9-11am PT July 10th); enable-audit-log-secret-redaction=false; enable-internal-authorization-endpoint=true; accounts-excluded-from-overage-emails = real customer account id 5bfdc6a223d2f65d48b8fd10; clickhouse-ingest-setting-overrides (prod tuning); agent-control-starter-chatbot-config (AI system instructions + Anthropic model ids + params); experiment-metric-compatibility-rules (internal tickets LAUNC-2510/2486, "Q3 2026 target" roadmap); experiment-tracking-registry exp_2026_* mappings; experiment-scheduler-iteration-blocklist (17 UUIDs); internal rate-limit/quotas census (M2).
+- FINDING_003_anonymous_config_disclosure.md written: full data-class breakdown, repro curl, negative controls, impact, remediation, honest P3-vs-P4 severity argument.
+- Cleanup: zero artifacts created this round (GET-only on all endpoints). Canaries untouched.
+
+Stage Summary:
+- FINDING_003 = unauthenticated 324KB disclosure of LD's internal production flag state: employee roster, incident comms, security-posture toggles, privileged customer account id, infra tuning, AI prompts, roadmap. P3-arguable/P4-likely.
+- Portfolio now: FINDING_001 (P3 obs), FINDING_002 (P2-min/P1-arguable, escalated x2), FINDING_003 (this round). All repro-ready.
+- Open P1 lead unchanged: obs real-session secure_id handoff test (operator-side).
