@@ -1,0 +1,52 @@
+=== A: baseline (demo tenant, no creds) ===
+[A] GET /api/v2/projects -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[A] GET /api/v2/members/me -> 200 | {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/675c915ebdf9a10
+
+=== B: header-based account override (NO session) ===
+[B x-launchdarkly-account=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-launchdarkly-account=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B LD-Account=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B LD-Account=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-Account-Id=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-Account-Id=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-account-id=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-account-id=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-launchdarkly-accountid=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-launchdarkly-accountid=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-LD-Account=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-LD-Account=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B Account-Id=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B Account-Id=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-tenant-id=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-tenant-id=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-launchdarkly-org=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B x-launchdarkly-org=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-Organization-Id=ORG] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[B X-Organization-Id=TST] /api/v2/projects             -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+
+=== C: Authorization tokens on demo host ===
+[C M(ORG)] /api/v2/projects             -> 200 | items=['zxorg-proj-7f3a', 'default'] ids=['6ada5a65831a640734b339de', '6ac28fd11c28fb07516cf362'] names=['IDOR Distinguisher', 'zenocrowd']
+[C M(ORG)] /api/v2/members/me           -> 200 | {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/
+[C M(ORG)] /api/v2/flags/default        -> 200 | {"_links":{"self":{"href":"/api/v2/flags/default?limit=20\u0026summary=true","type":"appli
+[C NA(ORG)] /api/v2/projects             -> 200 | items=['zxorg-proj-7f3a', 'default'] ids=['6ada5a65831a640734b339de', '6ac28fd11c28fb07516cf362'] names=['IDOR Distinguisher', 'zenocrowd']
+[C NA(ORG)] /api/v2/members/me           -> 200 | {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/
+[C NA(ORG)] /api/v2/flags/default        -> 200 | {"_links":{"self":{"href":"/api/v2/flags/default?limit=20\u0026summary=true","type":"appli
+
+=== D: query-param account override ===
+[D ?accountId] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[D ?account] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[D ?account_id] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[D ?org] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[D ?tenant] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[D ?aid] -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+
+=== E: session cookies on demo host (does ORG session resolve ORG tenant there?) ===
+[E ORG] /api/v2/projects -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[E TST] /api/v2/projects -> 200 | items=['default'] ids=['675b806fed1489094561e467'] names=['LaunchDarkly']
+[E ORG] /api/v2/members/me -> 200 | {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/675c915ebdf9a10981341653","type":"application
+
+=== F: path-based account routes on demo host ===
+[F] /api/v2/accounts/{ORG_ACC}                     -> 404 |   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not fou
+[F] /internal/accounts/{ORG_ACC}                   -> 403 | {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[F] /api/v2/projects/{ORG_ACC}/environments        -> 404 | {"message":"Unknown project key 6ac28fd11c28fb07516cf361"}
+=== HUNT1 done ===

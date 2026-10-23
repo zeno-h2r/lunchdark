@@ -1,0 +1,44 @@
+=== A: unauth detail routes on demo tenant ===
+[A] /api/v2/tokens/675dca017049fe09535b6495                    -> 200 {"_id":"675dca017049fe09535b6495","ownerId":"675b806fed1489094561e466","memberId":"675b806fed1489094561e468","_member":{
+[A] /api/v2/members/675c915ebdf9a10981341653                   -> 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/675c915ebdf9a10
+[A] /api/v2/auditlog/6a552d32ea51440a8adb6cb3                  -> 200 {"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6a552d32ea514
+[A] /api/v2/teams/platform-team                                -> 200 {"description":"","key":"platform-team","name":"Platform Team","_access":{"denied":[{"action":"createTeam","reason":{"ef
+[A] /api/v2/flags/default/enable-ai-suggestions                -> 200 {"name":"Enable AI Suggestions","kind":"boolean","description":"AI assisted search for powerful, more relevant results."
+[A] /api/v2/flags/default/enable-ai-suggestions/experiments    -> 404 
+[A] /api/v2/flags/default/enable-ai-suggestions/environments/production -> 404 
+[A] /api/v2/segments/default/production/Beta%20Users           -> 404 
+[A] /api/v2/metrics/default/api-errors                         -> 200 {"_id":"6781849028bf9c0954206471","_versionId":"f7d44a2e-1b83-4821-9d2d-9e935a6496c4","_version":1,"key":"api-errors","n
+[A] /api/v2/projects/default/environments/production/triggers  -> 404 
+[A] /internal/account/invoices                                 -> 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] /internal/members                                          -> 404 
+[A] /internal/roles                                            -> 404 
+[A] /internal/relay-auto-config                                -> 404 
+[A] /api/v2/code-references/repositories                       -> 404 
+[A] /api/v2/integrations                                       -> 200 {"_links":{"appdynamics":{"href":"/api/v2/integrations/appdynamics","type":"application/json"},"chronosphere":{"href":"/
+[A] /api/v2/flag-defaults/default                              -> 404 
+[A] /api/v2/environments/default/production                    -> 404 
+
+=== B: policy differential NA token: app host vs demo host (same routes) ===
+[B] /internal/account/invoices                     APP=401  DEMO=200    <<< DIFFERENTIAL  app:{"code":"unauthorized","message":"Invalid account ID header" demo:{"_links":{"self":{"href":"/internal/account/invoices","type
+[B] /internal/members                              APP=404  DEMO=404  
+[B] /internal/roles                                APP=404  DEMO=404  
+[B] /api/v2/members                                APP=200  DEMO=200  
+[B] /api/v2/tokens                                 APP=200  DEMO=200  
+[B] /api/v2/auditlog                               APP=200  DEMO=200  
+[B] /api/v2/projects/default/environments          APP=200  DEMO=200  
+[B] /internal/list/environments                    APP=401  DEMO=200    <<< DIFFERENTIAL  app:{"code":"unauthorized","message":"Invalid account ID header" demo:[{"apiKey":"sdk-c94af27e-6271-4cdc-add9-a5710b51dcab","mobil
+[B] /internal/account                              APP=401  DEMO=200    <<< DIFFERENTIAL  app:{"code":"unauthorized","message":"Invalid account ID header" demo:{"_id":"675b806fed1489094561e466","_links":{"invoices":{"hre
+[B] /api/v2/webhooks                               APP=200  DEMO=200  
+[B] /api/v2/code-references/repositories           APP=404  DEMO=404  
+[B] /internal/config/authenticated                 APP=401  DEMO=200    <<< DIFFERENTIAL  app:{"code":"unauthorized","message":"Invalid account ID header" demo:{"clientSideId":"5866f3891cd8810a42ce5281","dogfoodBaseUri":
+[B] /api/v2/teams                                  APP=200  DEMO=200  
+
+=== C: which tenant does the NA token see on DEMO host for account-scoped routes? ===
+[C] /api/v2/projects             DEMO+NA -> 200 | {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}
+[C] /api/v2/members              DEMO+NA -> 200 | emails=['zeno0+org@bugcrowdninja.com', 'zeno0+second@bugcrowdninja.com']
+[C] /internal/account            DEMO+NA -> 200 | _id=675b806fed1489094561e466
+
+=== D: invalid token fallback behavior on demo host ===
+[D] invalid api- token -> 200 | {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[{"_links"
+[D] Bearer garbage -> 401 | {"code":"invalid_token","message":"invalid access token"}
+=== HUNT2 done ===

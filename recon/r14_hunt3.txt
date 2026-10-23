@@ -1,0 +1,41 @@
+=== A: demo-host unauth WRITE matrix (all no-op or self-cleaning) ===
+[A1] POST /api/v2/tokens (unauth) -> 403 {"code":"forbidden","message":"Sandbox does not allow this operation"}
+[A2] PATCH flag description (no-op) -> 200 {"name":"Enable AI Suggestions","kind":"boolean","description":"AI assisted search for powerful, more relevant results.","key":"enable-ai-suggestions"
+[A3] POST /api/v2/members (invite) -> 403 {"code":"forbidden","message":"Sandbox does not allow this operation"}
+[A4] POST /api/v2/webhooks -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createWebhook","resource":"webhook/6adbb708b60325073b8d6441"},"code":"forbid
+[A5] POST segments -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createSegment","resource":"proj/default:env/pr
+
+=== B: subdomain sweep of app.launchdarkly.com ===
+[B] staging.app.launchdarkly.com               -> -1 
+[B] qa.app.launchdarkly.com                    -> -1 
+[B] uat.app.launchdarkly.com                   -> -1 
+[B] dev.app.launchdarkly.com                   -> -1 
+[B] preview.app.launchdarkly.com               -> -1 
+[B] beta.app.launchdarkly.com                  -> -1 
+[B] next.app.launchdarkly.com                  -> -1 
+[B] canary.app.launchdarkly.com                -> -1 
+[B] internal.app.launchdarkly.com              -> -1 
+[B] admin.app.launchdarkly.com                 -> -1 
+[B] api.app.launchdarkly.com                   -> -1 
+[B] sandbox.app.launchdarkly.com               -> -1 
+[B] training.app.launchdarkly.com              -> -1 
+[B] learn.app.launchdarkly.com                 -> -1 
+[B] university.app.launchdarkly.com            -> -1 
+[B] edu.app.launchdarkly.com                   -> -1 
+[B] academy.app.launchdarkly.com               -> -1 
+[B] trial.app.launchdarkly.com                 -> -1 
+[B] try.app.launchdarkly.com                   -> -1 
+[B] prod.app.launchdarkly.com                  -> -1 
+[B] www.app.launchdarkly.com                   -> -1 
+[B] static.app.launchdarkly.com                -> -1 
+[B] cdn.app.launchdarkly.com                   -> -1 
+[B] docs.app.launchdarkly.com                  -> -1 
+[B] status.app.launchdarkly.com                -> -1 
+[B] jira.app.launchdarkly.com                  -> -1 
+[B] confluence.app.launchdarkly.com            -> -1 
+
+=== C: EU instance probe (cross-region tenant existence) ===
+[C] M token on app.eu.launchdarkly.com /api/v2/projects -> 401 {"code":"unauthorized","message":"Invalid key"}
+[C] EU /internal/config/anonymous -> 200 {"clientSideId":"65e7caafee6f47109282a6f7","dogfoodBaseUri":"https://app.ld.catamorphic.com","dogfoodStreamUri":"https:/
+[C] EU /api/v2/members/me -> 401 {"code":"unauthorized","message":"Invalid key"}
+=== HUNT3 done ===

@@ -508,3 +508,21 @@ Stage Summary:
 - FINDING_002 chain demo complete: no_access token -> prod SDK key -> full live flag readout. P1 impact argument closed end-to-end. Recommend submitting FINDING_002 + FINDING_004 together (same defect class, two hosts, zero-auth variant included).
 - /private/* (brief's P1-candidate class): fenced/dead from customer identities. pub.observability public GraphQL: config-only + ingest (known FINDING_001 territory). Chunk mining exhausted (2 templates, both dead).
 - Portfolio: F1 (P3 obs) + F2 (P2-min/P1-arguable, chain-proven) + F3 (P3) + F4 (P2 candidate). All repro-ready.
+---
+Task ID: R14-DEMOHARDEN
+Agent: Super Z (main)
+Task: "start work R 14" — demo-host account-selector abuse, breadth census + fence differential, unauth write matrix, subdomain sweep, EU probe, AI-config XSS render check. RESULT: FINDING_004 hardened (no P1 escalation; breadth/fence evidence added); XSS vector closed.
+
+Work Log:
+- scripts/r14_hunt1,2,3,3b,4a.py persisted; outputs recon/r14_hunt*.txt + r14_aicfg_detail.json.
+- HUNT1 (account-selector abuse): demo host unauth baseline = demo tenant. 10 selector headers x ORG/TST ids + 6 query params + path routes + ORG/TST session cookies -> ALL ignored (demo tenant pinned; sessions not honored at all). Valid api- tokens (M/NA) resolve real ORG tenant on demo host (same privileges as app host). /internal/accounts/{ORG_ACC} -> 403. NO cross-tenant vector.
+- HUNT2 (breadth + fence differential): unauth detail routes 200: tokens/{id}, members/{id}, auditlog/{id}, teams/{key}, flags detail, metrics/{key}, integrations, invoices(items:[]). LEGACY FENCE DIFFERENTIAL: /internal/* with NA token = 401 "Invalid account ID header" on app host vs 200 on demo host (demo-tenant data; no cross-tenant). /api/v2/* identical both hosts. Invalid api- token -> silent demo-tenant fallback 200 (app host: 401); Bearer garbage -> 401.
+- HUNT3 (write matrix): token mint + invite -> 403 "Sandbox does not allow this operation"; webhook/segment -> 403 policy deny; real-change flag PATCH -> 403 updateDescription deny; same-value PATCH -> vacuous 200 (no persistence/audit); DELETE nonexistent flag -> 404 (inconclusive). Subdomain sweep 27 candidates -> only demo/accelerate/product-analytics-api/observability resolve. EU instance: separate identity realm (M token 401 Invalid key; config/anonymous 200 = F3 class on EU, out-of-scope-ish note).
+- HUNT3b (flag-write PoC): marker PATCH 403 + auditlog attribution check (mutation entries member=None from sandbox generator, not ours). REVERT verified; final state = original (description+tags unchanged). No persistent unauth write -> FINDING_004 stays read-plane P2.
+- HUNT4 (AI-config XSS render check, R8 operator item closed): created AI config superz-r14-xss + variation with <img onerror=window.__superzXss=...> payload (201 x2, stored raw). agent-browser (org session; NOTE: cookies set must be POSITIONAL 'cookies set ldso $VAL' on current page domain — flag-form silently no-ops) -> variation viewer loaded, config detail loaded, playground loads (entitlement not UI-blocking): payload NEVER in DOM (escaped-or-absent everywhere); playground RUN gated by ai-configs entitlement=disabled. No execution vector reachable -> XSS closed negative. Artifact DELETED (204, 404 verified). Browser session closed.
+- Cleanup: AI config deleted (204->404); demo-host writes all denied/vacuous (zero state change, revert verified); no tokens/webhooks/segments created this round; canaries untouched.
+
+Stage Summary:
+- FINDING_004 hardened: +10 unauth detail routes, legacy /internal/* token fence NOT enforced on demo host, invalid-token silent-fallback semantics; write path confirmed fenced (sandbox guard + policy engine). Account-selector abuse = fully negative (headers/params/cookies/path all pinned). No P1 escalation available on demo host.
+- R8 operator handoff (AI variation XSS render) closed: no reachable render surface executes stored message content (viewer=code editor, detail=no render, playground=entitlement-gated run).
+- Portfolio unchanged: F1 (P3), F2 (P2-min/P1-arguable, chain-proven), F3 (P3), F4 (P2 candidate, hardened). All repro-ready; recommend submitting F2+F4.

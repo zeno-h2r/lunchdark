@@ -1,0 +1,4 @@
+[create config] 201 {"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/projects/default/ai-configs/superz-r14-xss","type":"application
+[create variation] 201 {"_id":"94ea681b-bf5f-4288-850b-42bd08095f4a","_links":{"parent":{"href":"/api/v2/projects/default/ai-configs/superz-r14-xss","type":"application/json"}},"_publishedAt":1792784302032,"createdAt":1792784302032,"key":"xssvar","messages":[{"content":"\u003cimg sr
+[readback config] 200 | payload-raw=False
+=== HUNT4a done ===

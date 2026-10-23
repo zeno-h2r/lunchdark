@@ -1,0 +1,16 @@
+[0] baseline GET flag -> 200 | description='AI assisted search for powerful, more relevant results.' on(prod)=True
+[1] UNAUTH PATCH description -> 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateDescriptio
+[2] verify GET -> 200 | description='AI assisted search for powerful, more relevant results.' | PERSISTED=False
+[3] UNAUTH PATCH tags add -> 403
+[3] tags now: ['guarded-rollout']
+[4] DELETE nonexistent flag -> 404 
+[5] UNAUTH PATCH env/on same-value -> 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="des
+[6] audit: 1792708567953 | member=None | title=Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/default/production/f
+[6] audit: 1792587611511 | member=None | title=Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/default/production/f
+[6] audit: 1792466647845 | member=None | title=Updated the flag [Enable AI Suggestions](https://app.launchdarkly.com/default/production/f
+[6] audit: 1792441267817 | member=team-growth+demo1@launchdarkly.com | title=[Demo User](mailto:team-growth+demo1@launchdarkly.com) reset the access token [LDCLI acces
+[6] audit: 1792441257153 | member=team-growth+demo1@launchdarkly.com | title=[Demo User](mailto:team-growth+demo1@launchdarkly.com) reset the access token [LDCLI acces
+[7] revert description -> 200
+[7] remove tag -> 403
+[8] final state: description='AI assisted search for powerful, more relevant results.' tags=['guarded-rollout'] | REVERT_OK=True
+=== HUNT3b done ===

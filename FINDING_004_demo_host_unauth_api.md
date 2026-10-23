@@ -137,3 +137,49 @@ which demonstrates the tenant is still treated as access-controlled.
   + audit log. Demo-intent may be argued by triage, but the tokens/members/
   auditlog/config-authenticated classes are clearly outside any demo-mode
   intent (write path denies anonymous users — access control was expected).
+
+## R14 — Breadth, fence differential, and write-path hardening (evidence update)
+
+### Breadth +10 (all unauthenticated, demo tenant)
+Detail routes also readable: `GET /api/v2/tokens/{id}`, `/api/v2/members/{id}`,
+`/api/v2/auditlog/{id}`, `/api/v2/teams/{key}`, `/api/v2/flags/default/{flag}`
+(full flag incl. environments), `/api/v2/metrics/default/{key}`,
+`/api/v2/integrations` (config link map), `/internal/account/invoices`
+(`items:[]`), teams detail with `_access` policy state.
+
+### The `/internal/*` legacy token fence is not enforced on the demo host
+On `app.launchdarkly.com`, token-authenticated calls to account-scoped
+`/internal/*` routes are rejected with `401 "Invalid account ID header"`.
+The same calls with the same tokens on the demo host return `200`:
+`/internal/account/invoices`, `/internal/list/environments` (full key values),
+`/internal/account`, `/internal/config/authenticated`. The data served is the
+DEMO tenant's (no cross-tenant leak), but the differential proves the demo
+deployment skips an authentication control the main app enforces.
+
+### Invalid-token fallback
+`Authorization: api-<40 random hex>` on the demo host → `200` (silent fallback
+to the anonymous demo identity) instead of `401`; `Bearer garbage` → 401. On
+the app host both → 401. Auth failures should not upgrade to a working identity.
+
+### Account-selector abuse: fully tested, negative
+10 candidate tenant-selector headers (`x-launchdarkly-account`, `LD-Account`,
+`X-Account-Id`, …) x 2 real tenant IDs, 6 query-param variants, path-based
+account routes, and ORG/TST session cookies: ALL ignored — the demo host pins
+the demo tenant. Valid `api-` tokens resolve their real tenant with identical
+privileges to the app host (verified: NA token → ORG project list). No
+cross-tenant read vector exists on the demo host.
+
+### Write path: fenced (read-only bypass confirmed)
+- `POST /api/v2/tokens` (token minting) → 403 `Sandbox does not allow this operation`
+- `POST /api/v2/members` (invite) → 403 `Sandbox does not allow this operation`
+- `POST /api/v2/webhooks`, `POST segments` → 403 policy deny
+- Real-change `PATCH /description` / `/tags` → 403 `updateDescription` deny
+- Same-value no-op PATCH → vacuous 200 (no persistence, no audit entry)
+- `DELETE` nonexistent flag → 404 (fence vs resolution inconclusive)
+The sandbox guard + policy engine block mutation; the defect is the read plane.
+
+### Environment census
+Subdomain sweep (27 candidates) — only `demo`, `accelerate`,
+`product-analytics-api`, `pub/otel.observability` resolve under
+`*.app.launchdarkly.com`. EU instance (`app.eu.launchdarkly.com`) is a
+separate identity realm (our tokens → 401 `Invalid key`).
