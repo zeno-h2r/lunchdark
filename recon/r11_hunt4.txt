@@ -1,0 +1,52 @@
+=== R11 HUNT4 — authz oracle + baselines ===
+
+--- H1: TST own-org webhooks baseline (member-session read by design?) ---
+[TST GET own webhooks]: 200 {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[]}
+
+--- H2: bulk access-check action-name probe (M token) ---
+[action=*]: 200 [{"action":"*","allowed":true,"resource":"proj/default"}]
+
+[action=view]: 200 [{"action":"view","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=read]: 200 [{"action":"read","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=list]: 200 [{"action":"list","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=update]: 200 [{"action":"update","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=create]: 200 [{"action":"create","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=delete]: 200 [{"action":"delete","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=admin]: 200 [{"action":"admin","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=updateFlagSettings]: 200 [{"action":"updateFlagSettings","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=viewFlagSettings]: 200 [{"action":"viewFlagSettings","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=updateMember]: 200 [{"action":"updateMember","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=viewMembers]: 200 [{"action":"viewMembers","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=updateAccountSettings]: 200 [{"action":"updateAccountSettings","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=viewAuditLog]: 200 [{"action":"viewAuditLog","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=getViewers]: 200 [{"action":"getViewers","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+[action=manageTokens]: 200 [{"action":"manageTokens","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+valid actions: ['*']
+
+--- H3: cross-org existence oracle (if any valid action) ---
+[M own proj/default]: 200 [{"action":"*","allowed":true,"resource":"proj/default"}]
+
+[M bogus proj/doesnotexist999]: 400 {"code":"invalid_request","message":"Invalid resource"}
+[M foreign acc/6ac29057ccacd606b1576cb7]: 200 [{"action":"*","allowed":false,"reason":"Invalid resource","resource":"acc/6ac29057ccacd606b1576cb7"}]
+
+[NA own proj/default]: 200 [{"action":"*","allowed":false,"reason":"Access denied","resource":"proj/default"}]
+
+[NA foreign acc/6ac29057ccacd606b1576cb7]: 200 [{"action":"*","allowed":false,"reason":"Invalid resource","resource":"acc/6ac29057ccacd606b1576cb7"}]
+
+
+DONE

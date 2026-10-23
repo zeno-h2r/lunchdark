@@ -1,0 +1,46 @@
+=== R11 HUNT5 — oracle control matrix (action=*) ===
+
+--- I1: resource type support map (M token, own resources) ---
+[M acc/6ac28fd11c28fb07516cf361]: 200 allowed=False reason=Invalid resource
+[M acct/6ac28fd11c28fb07516cf361]: 200 allowed=False reason=Invalid resource
+[M account/6ac28fd11c28fb07516cf361]: 200 allowed=False reason=Invalid resource
+[M mem/6ac28fd11c28fb07516cf363]: 200 allowed=False reason=Invalid resource
+[M member/6ac28fd11c28fb07516cf363]: 200 allowed=True reason=None
+[M proj/default]: 200 allowed=True reason=None
+[M project/default]: 200 allowed=False reason=Invalid resource
+[M env/default/test]: 200 allowed=False reason=Invalid resource
+[M flag/default/test/zeno-allowed-1]: 200 allowed=False reason=Invalid resource
+[M webhook/6ada0e0ff68b4507c663d7d5]: 200 allowed=True reason=None
+[M relay-proxy-config/6ac3b42d7c3e1a06f53cf211]: 200 allowed=True reason=None
+
+--- I2: acc type controls (M) ---
+[M acc/OWN]: 200 allowed=False reason=Invalid resource
+[M acc/FOREIGN]: 200 allowed=False reason=Invalid resource
+[M acc/RAND]: 200 allowed=False reason=Invalid resource
+[M acc/garbage]: 200 allowed=False reason=Invalid resource
+
+--- I3: mem type controls (M) ---
+[M mem/OWN]: 200 allowed=False reason=Invalid resource
+[M mem/FOREIGN]: 200 allowed=False reason=Invalid resource
+[M mem/RAND]: 200 allowed=False reason=Invalid resource
+
+--- I4: proj type controls (M) ---
+[M proj/OWN default]: 200 allowed=True reason=None
+[M proj/RAND]: 400 {"code":"invalid_request","message":"Invalid resource"}
+[M proj/garbage]: 400 {"code":"invalid_request","message":"Invalid resource"}
+
+--- I5: NA token (no_access) same matrix — existence enumeration? ---
+[NA acc/6ac28fd11c28fb07516cf361]: 200 allowed=False reason=Invalid resource
+[NA acc/6ac29057ccacd606b1576cb7]: 200 allowed=False reason=Invalid resource
+[NA acc/0000000000000000000000aa]: 200 allowed=False reason=Invalid resource
+[NA mem/6ac28fd11c28fb07516cf363]: 200 allowed=False reason=Invalid resource
+[NA mem/6ac29057ccacd606b1576cb9]: 200 allowed=False reason=Invalid resource
+[NA mem/0000000000000000000000aa]: 200 allowed=False reason=Invalid resource
+[NA proj/default]: 200 allowed=False reason=Access denied
+[NA proj/0000000000000000000000aa]: 400 {"code":"invalid_request","message":"Invalid resource"}
+
+--- I6: TST identity on ORG resources (reverse direction) ---
+[TST proj/default]: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being requir
+[TST acc/ORG]: 400 {"code":"invalid_request","message":"Error: Header parameter 'Authorization' is missing, Reason: The header parameter 'Authorization' is defined as being required, however it's missing from the requests, Line: 1, Column: 156"}
+
+DONE

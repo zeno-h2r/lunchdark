@@ -453,3 +453,21 @@ Stage Summary:
 - FINDING_001 (P3 obs) unchanged; decisive unauth-read test still requires a real obs session secure_id (operator handoff stands).
 - New P3/P5-candidate documented (not submitted per user's P1/P2/P3 rule): /internal/config/anonymous unauth dogfood config disclosure (employee-named flags, internal infra URIs).
 - R10 closed surfaces: obs full-field matrix (105 unauth resolver-reach, 0 unauth data reads), query-param injection (all defended), keypair factory, access-summary, 62 new endpoints swept.
+---
+Task ID: R11-SETTINGS
+Agent: Super Z (main)
+Task: "keep work" — R11 round: user-directed /settings tree (24 URLs), live-browser endpoint discovery + bypass/IDOR sweep. RESULT: FINDING_002 escalated again (classic webhooks signing secret); all other settings surfaces defended.
+
+Work Log:
+- agent-browser CLI (session org) + ORG `ldso` cookie injected (initial 401 was a self-inflicted `cut -d= -f2` truncation — ldso contains embedded '='; fixed with -f2-). Captured XHR on all 24 settings URLs (recon/r11_net_*.txt, netfull for 6 pages incl. /internal/*).
+- Parsed to 31 unique live templates (recon/r11_endpoints_live.txt/json); mined 158 settings chunks -> 34 templates not in prior inventories (analysis/endpoints_r11_settings.txt).
+- r11_hunt1: adaptive-triggers/payload-filters/lifecycle/cleanup/experimentation settings x NA/UN/TST; saml/scim/session/ip-allowlist; agent-control cross-org; oauth2 apps; announcements; access-check bulk; invoice detail+PDF; relay reset; member/team access-summary; webhooks detail; pending-requests kinds; usage family. NA reads lifecycle/automated-cleanup/experimentation settings 200; NA PUT 403 (policy surfaces action names); TST PUT own 200 (expected).
+- r11_hunt2: agent-control = identity-resolved (path id IGNORED for sessions AND tokens: TST on ORG path -> TST data; NA on TST path -> ORG data) DEFENDED. Announcements detail 405 (list-only). Webhooks family = NA-readable (new). Relay reset 415 CT (retry hunt3). Bulk authz wants Authorization header + top-level ARRAY.
+- r11_hunt3: relay reset: TST 404 / NA 403 (resetRelayAutoConfiguration) / UN 401 — defended; leftover ORG relay config 'zeno testss' DELETED (204, 404 verified — R9 cleanup now complete). Bulk grammar cracked: [{action,resource}] array, action "*" valid. SIGN-ENABLED WEBHOOK TEST: ORG create sign:true -> 201 secret 044295...f1344; NA GET detail -> 200 FULL SECRET byte-identical; NA PATCH 403 (updateOn); TST cross-org 404; artifact DELETED (204, 404 verified).
+- r11_hunt4/5/6: bulk authz oracle controls — supported types proj/, member/, webhook/, relay-proxy-config/; allowed=true for OWN, FOREIGN, RANDOM and even DELETED ids (no existence resolution, no cross-org oracle; member/ + webhook/ + relay/ all policy-only). Only proj/{key} 400-vs-deny existence signal (in-org, negligible — NA already reads project list). TST own webhooks list 200 (member-readable by design). TST cookie cannot call bulk (Authorization required).
+- Cleanup: zero artifacts remain (webhook deleted, relay leftover deleted, no other writes). Canaries untouched. NA/M/TST/ORG identities all verified alive at start.
+
+Stage Summary:
+- NO new P1/P2. FINDING_002 R11 section appended: classic webhooks family no_access-readable INCLUDING full HMAC signing secret on sign-enabled webhooks (2nd signing-secret vector; X-LD-Signature forgeable) + breadth (announcements, adaptive-triggers, usage family x8, cleanup/lifecycle/experimentation settings, accountId reflection).
+- Defended/closed this round: agent-control path-id, relay reset, bulk authz oracle (no existence/cross enumeration), invoice PDF, announcements detail, saml/scim, payload-filters (plan-gate), member/team access-summary (plan-gate).
+- Settings tree systematically covered: account-level (projects/general/plan-usage/billing/diag-usage/token-limits/members/teams/roles/integrations/relay/applications/tokens/security/sdk-keys) + project-level (envs/flags/vega/releases/lifecycle/approvals/views/context-kinds/observability).

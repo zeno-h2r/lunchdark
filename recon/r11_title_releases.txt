@@ -1,0 +1,2 @@
+Account settings
+https://app.launchdarkly.com/projects/default/settings/releases?env=test&selected-env=test

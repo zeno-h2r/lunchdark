@@ -1,0 +1,23 @@
+=== R11 HUNT6 — final oracle controls ===
+
+[J1: member/ prefix controls]
+[M member/OWN]: 200 allowed=True reason=None
+[M member/FOREIGN]: 200 allowed=True reason=None
+[M member/RAND]: 200 allowed=True reason=None
+[NA member/OWN]: 200 allowed=False reason=Access denied
+[NA member/FOREIGN]: 200 allowed=False reason=Access denied
+[NA member/RAND]: 200 allowed=False reason=Access denied
+
+[J2: webhook/ id controls]
+[M webhook/OWN]: 200 allowed=True reason=None
+[M webhook/RAND]: 200 allowed=True reason=None
+[NA webhook/OWN]: 200 allowed=False reason=Access denied
+[NA webhook/RAND]: 200 allowed=False reason=Access denied
+
+[J3: relay-proxy-config controls (id deleted this round -> should be invalid now)]
+[M relay/DELETED-id]: 200 allowed=True reason=None
+[NA relay/DELETED-id]: 200 allowed=False reason=Access denied
+
+[J4: TST-tokenless note] bulk requires Authorization header -> cookie-only sessions cannot use it (TST probe above 400).
+
+DONE

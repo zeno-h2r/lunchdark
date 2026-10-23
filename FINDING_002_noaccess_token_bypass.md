@@ -273,3 +273,55 @@ no existence oracle); `access-summary/preview` uniformly plan-gated 403;
 `engineering-insights/flag-events` uniform 403; main-app query-param grammar
 (filter `field:value` parser, sort allowlist, strict int limit/offset) rejected
 every injection shape (14 payloads × filter/sort/limit/spec).
+
+---
+
+## R11 escalation — classic webhooks family: signing secret fully disclosed (2026-10-24)
+
+Live-browser recon of the entire `/settings` tree (24 pages, XHR capture) surfaced the
+classic webhooks family as an additional no_access-readable surface, escalated with a
+signing-secret test:
+
+1. `GET /api/v2/webhooks` under the no_access token → **200** with the full webhook
+   inventory (names, URLs, tags, enabled state) — same-org; cross-org (TST session)
+   correctly 404.
+2. **Decisive test**: created a webhook with `sign: true` in the ORG account via the
+   owner session (LD generated signing secret `0442950278484bb1ab510eba4b7f1344`).
+   `GET /api/v2/webhooks/{id}` under the **no_access** token → **200 with the full
+   32-hex HMAC signing `secret` field byte-identical to the owner response.** This is a
+   second, independent signing-secret leak vector alongside the integration-destination
+   secret (above) — the classic webhooks family is used by most native integrations
+   (Slack, PagerDuty, custom consumers verify `X-LD-Signature`).
+3. Write remains denied: `PATCH /api/v2/webhooks/{id}` (no_access) → `403
+   {"action":"updateOn","resource":"webhook/{id}"}`. Strictly read-only.
+4. Artifact hygiene: the sign-enabled test webhook was deleted immediately after the
+   test (204, verified 404).
+
+Additional R11 no_access-readable families (GET 200, breadth):
+`/api/v2/announcements` + `/internal/announcements`,
+`/api/v2/projects/default/{lifecycle-settings,automated-cleanup-settings(+`/upcoming`),
+experimentation-settings}`, `/api/v2/projects/{p}/environments/{e}/adaptive-triggers`
+(correct grammar: `resourceKind=flag&resourceKey=...`),
+`/api/v2/usage/{clientside-contexts,serverside-contexts,streams/client,streams/server,
+total-contexts,vega-ai,warehouse-export,data-export-source-capabilities}` (the last
+also reflects the numeric `accountId`).
+
+R11 negative controls (all defended):
+- `PUT /internal/accounts/{id}/agent-control/settings`: route resolves the account from
+  the session/token identity — the path id is **ignored** (TST session on ORG path
+  returned TST's own data; NA token on TST path returned ORG's own data). No cross-org.
+- `POST /api/v2/account/relay-auto-configs/{id}/reset`: no_access → 403 policy
+  (`resetRelayAutoConfiguration`); cross-org session → 404. Owner-only.
+- `POST /internal/authorization/access-check/gonfalon/bulk` (needs `Authorization`
+  header; body = JSON array of `{action, resource}`): supported resource types
+  `proj/`, `member/`, `webhook/`, `relay-proxy-config/`. With `action:"*"` the
+  resolver returns `allowed=true` for own, foreign, **and random/deleted** ids
+  (member/webhook/relay) — no existence resolution, no cross-org oracle. The only
+  signal is `proj/{key}`: existing key → 200 `Access denied` (no_access) vs
+  nonexistent → 400 `Invalid resource` — a narrow in-org project-key existence
+  signal, negligible because the token already reads the project list.
+- Invoice detail + PDF route (`/internal/account/invoices/{id}[/
+  LaunchDarkly_Invoice_{id}.pdf]`) → 404 even for the owner.
+- `/api/v2/announcements/{id}` detail → 405 (list-only route).
+- SAML (`/internal/account/saml`) → legacy "Invalid account ID header" fence for
+  tokens; SCIM → 404 "scim client not found" (no client) — no config disclosure.

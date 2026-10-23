@@ -1,0 +1,45 @@
+=== R11 HUNT3 — decisive follow-ups ===
+
+--- G1: relay reset retry (TST/NA/UN) ---
+[TST POST relay reset]: 404 {"code":"not_found","message":"RelayAutoConfig not found"}
+[NA POST relay reset]: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"resetRelayAutoConfiguration","resource":"relay-proxy-config/6ac3b42d7c3e1a06f53cf211"},"code":"forbidden"}
+[UN POST relay reset]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[ORG verify relay intact]: 200 {"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}
+
+--- G2: access-check bulk ARRAY grammar ---
+[M bulk []]: 200 []
+
+[M bulk [{}]]: 400 {"code":"invalid_request","message":"/items/required missing properties 'resource', 'action'."}
+[M bulk [{"action": "viewMember", "resource": "mem/6ac28fd11c28fb07516cf363"}]]: 200 [{"action":"viewMember","allowed":false,"reason":"Invalid action name","resource":"mem/6ac28fd11c28fb07516cf363"}]
+
+[M bulk [{"action": "viewMember", "resourceId": "6ac28fd11c28fb07516cf363"}]]: 400 {"code":"invalid_request","message":"/items/required missing property 'resource'."}
+[M bulk [{"action": "view", "resource": "proj/default"}]]: 200 [{"action":"view","allowed":false,"reason":"Invalid action name","resource":"proj/default"}]
+
+
+--- G3: adaptive-triggers enum + chain ---
+[NA api chain resourceKind=flag&resourceKey=zeno-allowed-1]: 200 {"items":[],"totalCount":0}
+
+
+--- G4: sign-enabled webhook secret disclosure test (artifact) ---
+[ORG create webhook sign=true]: 201 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adb9adc2a02590734aad9b4","type":"application/json"}},"_id":"6adb9adc2a02590734aad9b4","name":"superz-r11-sign-secret-test","url":"https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=superz-r11-secret-test","secret":"0442950278484bb1ab510eba4b7f1344","on":true,"tags":["superz-r11"],
+  created id: 6adb9adc2a02590734aad9b4 | secret in CREATE response: True
+[ORG GET own detail (secret visible to owner?)]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adb9adc2a02590734aad9b4","type":"application/json"}},"_id":"6adb9adc2a02590734aad9b4","name":"superz-r11-sign-secret-test","url":"https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=superz-r11-secret-test","secret":"0442950278484bb1ab510eba4b7f1344","on":true,"tags":["superz-r11"],"_access":{"denied":[],"allowed":[]}}
+[NA GET detail]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adb9adc2a02590734aad9b4","type":"application/json"}},"_id":"6adb9adc2a02590734aad9b4","name":"superz-r11-sign-secret-test","url":"https://webhook.site/9ed8f3c2-fcda-4e20-b554-3c02c62321a3?src=superz-r11-secret-test","secret":"0442950278484bb1ab510eba4b7f1344","on":true,"tags":["superz-r11"]}
+[TST GET detail (cross-org)]: 404 
+[NA PATCH webhook on:true->false]: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateOn","resource":"webhook/6adb9adc2a02590734aad9b4;superz-r11"},"code":"forbidden"}
+[TST PATCH webhook (cross-org write)]: 404 
+[ORG verify on state]: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adb9adc2a025
+[ORG DELETE artifact]: 204 
+[ORG verify 404]: 404 
+
+--- G5: announcements + misc NA breadth ---
+[NA GET announcements]: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_id":"ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67","_links":{"parent":{"href":"/api/v2/announcements","type":
+[NA GET internal/announcements]: 200 {"_links":{"self":{"href":"/internal/announcements","type":"application/json"}},"items":[{"_id":"ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67","_links":{"parent":{"href":"/internal/announcements","type":"appl
+[NA GET internal/account/saml w/ CT]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[TST GET internal/account (session)]: 200 {"_id":"6ac29057ccacd606b1576cb7","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/members","type
+
+--- G6: leftover relay config cleanup (created 'zeno testss' by our ORG member in earlier round) ---
+[ORG DELETE relay leftover]: 204 
+[ORG verify relay 404]: 404 {"code":"not_found","message":"configuration not found"}
+
+DONE

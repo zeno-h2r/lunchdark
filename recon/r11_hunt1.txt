@@ -1,0 +1,126 @@
+=== R11 HUNT1 — settings tree attack matrix ===
+
+--- PHASE 0: liveness ---
+[M]: 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com","_pen
+[NA]: 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363/mfa/request","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com","_pen
+[ORG]: 200 {"projectContext":{"id":"6ac28fd11c28fb07516cf362","key":"default"},"environmentContext":{"environments":[{"id":"6ac28fd11c28fb07516cf364","key":"test"}],"selectedEnvironment":{"id":"6ac28fd11c28fb07516cf364","key":"test"}}}
+[TST]: 200 {"projectContext":{"id":"6ac29057ccacd606b1576cb8","key":"default"},"environmentContext":{"environments":[{"id":"6ac29057ccacd606b1576cba","key":"test"}],"selectedEnvironment":{"id":"6ac29057ccacd606b1576cba","key":"test"}}}
+
+--- PHASE A1: new project-settings families x NA/UN (access bypass read) ---
+[NA GET /api/v2/projects/default/environments/test/adaptive-triggers]: (400, '{"code":"invalid_request","message":"Query parameter \'resourceKind\' is missing."}')
+[TST GET /api/v2/projects/default/environments/test/adaptive-triggers]: (400, '{"code":"invalid_request","message":"Query parameter \'resourceKind\' is missing."}')
+[NA GET /internal/projects/default/adaptive-triggers]: (400, '{"code":"invalid_request","message":"Query parameter \'sourceType\' is missing."}')
+[TST GET /internal/projects/default/adaptive-triggers]: (400, '{"code":"invalid_request","message":"Query parameter \'sourceType\' is missing."}')
+[NA GET /internal/projects/default/adaptive-triggers/counts]: (405, '')
+[TST GET /internal/projects/default/adaptive-triggers/counts]: (405, '')
+[NA GET /api/v2/projects/default/payload-filters]: (403, '{"message":"Plan does not allow this operation"}')
+[TST GET /api/v2/projects/default/payload-filters]: (403, '{"message":"Plan does not allow this operation"}')
+[NA GET /api/v2/projects/default/lifecycle-settings]: (200, '{"_links":{"parent":{"href":"/api/v2/projects/default","type":"project"},"self":{"href":"/api/v2/projects/default/lifecycle-settings","type":"lifecycle-settings"}},"_projectId":"6ac28fd11c28fb07516cf362","_projectKey":"default","_version":0,"checkIsPrer
+[TST GET /api/v2/projects/default/lifecycle-settings]: (200, '{"_links":{"parent":{"href":"/api/v2/projects/default","type":"project"},"self":{"href":"/api/v2/projects/default/lifecycle-settings","type":"lifecycle-settings"}},"_projectId":"6ac29057ccacd606b1576cb8","_projectKey":"default","_version":0,"checkIsPrer
+[NA GET /api/v2/projects/default/automated-cleanup-settings]: (200, '{"customContext":"","flagStates":["readyToArchive"],"maxJobsPerRun":10,"repositories":[],"retryAttempted":false,"schedule":"disabled"}\n')
+[TST GET /api/v2/projects/default/automated-cleanup-settings]: (200, '{"customContext":"","flagStates":["readyToArchive"],"maxJobsPerRun":10,"repositories":[],"retryAttempted":false,"schedule":"disabled"}\n')
+[NA GET /api/v2/projects/default/automated-cleanup-settings/upcoming]: (200, '{"enabled":false,"flagKeys":[]}\n')
+[TST GET /api/v2/projects/default/automated-cleanup-settings/upcoming]: (200, '{"enabled":false,"flagKeys":[]}\n')
+[NA GET /api/v2/projects/default/experimentation-settings]: (200, '{"_projectId":"6ac28fd11c28fb07516cf362","_projectKey":"default","randomizationUnits":[{"randomizationUnit":"ld-example-device","default":false,"_hidden":false,"_displayName":"LD Example Context: Device"},{"randomizationUnit":"ld-example-organization","
+[TST GET /api/v2/projects/default/experimentation-settings]: (200, '{"_projectId":"6ac29057ccacd606b1576cb8","_projectKey":"default","randomizationUnits":[{"randomizationUnit":"ld-example-device","default":false,"_hidden":false,"_displayName":"LD Example Context: Device"},{"randomizationUnit":"ld-example-organization","
+[UN GET /api/v2/projects/default/environments/test/adaptive-triggers]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[UN GET /internal/projects/default/adaptive-triggers]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[UN GET /internal/projects/default/adaptive-triggers/counts]: (405, '')
+[UN GET /api/v2/projects/default/payload-filters]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+
+--- PHASE A2: NA write-bypass no-op PUT (lifecycle-settings / automated-cleanup) ---
+[ORG GET /api/v2/projects/default/lifecycle-settings]: 200 {"_links":{"parent":{"href":"/api/v2/projects/default","type":"project"},"self":{"href":"/api/v2/projects/default/lifecycle-settings","type":"lifecycle-settings"}},"_projectId":"6ac28fd11c28fb07516cf3
+[ORG GET /api/v2/projects/default/automated-cleanup-settings]: 200 {"customContext":"","flagStates":["readyToArchive"],"maxJobsPerRun":10,"repositories":[],"retryAttempted":false,"schedule":"disabled"}
+
+[NA PUT /api/v2/projects/default/automated-cleanup-settings no-op]: (403, '{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateLifecycleSettings","resource":"proj/default"},"code":"forbidden"}')
+[TST PUT /api/v2/projects/default/automated-cleanup-settings no-op]: (200, '{"_version":1,"configuredByMemberId":"6ac29057ccacd606b1576cb9","customContext":"","flagStates":["readyToArchive"],"maxJobsPerRun":10,"repositories":[],"retryAttempted":false,"schedule":"disabled","updatedAt":1792776539047}\n')
+
+--- PHASE B1: account security settings (saml/scim/session/ip-allowlist) x identities ---
+[NA GET /internal/account/saml]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[TST GET /internal/account/saml]: (404, '')
+[NA GET /internal/account/scim]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[TST GET /internal/account/scim]: (404, '{"code":"not_found","message":"scim client not found"}')
+[NA GET /internal/account/session]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[TST GET /internal/account/session]: (200, '{"accountId":"6ac29057ccacd606b1576cb7","environmentId":"6ac29057ccacd606b1576cba"}')
+[NA GET /api/v2/account/ip-allowlist]: (200, '{"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}\n')
+[TST GET /api/v2/account/ip-allowlist]: (200, '{"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}\n')
+[UN GET /internal/account/scim]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[UN GET /internal/account/session]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[UN GET /api/v2/account/ip-allowlist]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+
+--- PHASE B2: ip-allowlist item cross-org read ---
+[ORG ip-allowlist list]: 200 {"_links":{"self":{"href":"/api/v2/account/ip-allowlist","type":"application/json"}},"apiTokenAllowlistEnabled":false,"entries":[],"sessionAllowlistEnabled":false,"totalCount":0}
+
+no ip-allowlist item id resolved
+
+--- PHASE B3: agent-control settings cross-org (TST on ORG_ACC) ---
+[ORG GET own agent-control]: 200 {"accountId":"6ac28fd11c28fb07516cf361","dailyTokenLimit":0,"enabled":false}
+
+[TST GET ORG agent-control]: (200, '{"accountId":"6ac29057ccacd606b1576cb7","dailyTokenLimit":0,"enabled":false}\n')
+[NA GET ORG agent-control]: (200, '{"accountId":"6ac28fd11c28fb07516cf361","dailyTokenLimit":0,"enabled":false}\n')
+[UN GET ORG agent-control]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[TST PUT ORG agent-control no-op]: (200, '{"accountId":"6ac29057ccacd606b1576cb7","dailyTokenLimit":0,"enabled":false}\n')
+[NA PUT ORG agent-control no-op]: (403, '{"code":"forbidden","message":"Access to the requested resource was denied"}')
+[TST GET own(TST_ACC) agent-control]: (200, '{"accountId":"6ac29057ccacd606b1576cb7","dailyTokenLimit":0,"enabled":false}\n')
+
+--- PHASE B4: oauth2 applications detail ---
+[ORG GET oauth2 apps]: 200 {"_links":{"self":{"href":"/internal/account/oauth2/applications?limit=20","type":"application/json"}},"items":[],"totalCount":0}
+[TST GET oauth2 apps]: 200 {"_links":{"self":{"href":"/internal/account/oauth2/applications?limit=20","type":"application/json"}},"items":[],"totalCount":0}
+[NA GET oauth2 apps]: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+
+--- PHASE C1: announcements cross-org ---
+[ORG announcements]: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_access":{"denied":[],"allowed":[]},"_id":"ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67","_links":{"parent":{"href":"/api/v2/announcements","type":"application/json"}},"_status":"inactive","endTime":17927028000
+ann ids: []
+
+--- PHASE C2: access-check bulk oracle probe ---
+[ORG POST bulk shape]: {} -> (400, '{"code":"invalid_request","message":"Error: Header parameter \'Authorization\' is missing, Reason: The header parameter \'Authorization\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 156"}')
+[ORG POST bulk shape]: {'requests': []} -> (400, '{"code":"invalid_request","message":"Error: Header parameter \'Authorization\' is missing, Reason: The header parameter \'Authorization\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 156"}')
+[ORG POST bulk shape]: {'items': []} -> (400, '{"code":"invalid_request","message":"Error: Header parameter \'Authorization\' is missing, Reason: The header parameter \'Authorization\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 156"}')
+[ORG POST bulk shape]: {'checks': []} -> (400, '{"code":"invalid_request","message":"Error: Header parameter \'Authorization\' is missing, Reason: The header parameter \'Authorization\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 156"}')
+[ORG POST bulk shape]: {'requests': [{'resourceId': '6ac28fd11c28fb07516cf363', 'action': 'viewMember'}]} -> (400, '{"code":"invalid_request","message":"Error: Header parameter \'Authorization\' is missing, Reason: The header parameter \'Authorization\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 156"}')
+
+--- PHASE C3: invoice detail + PDF cross-org ---
+[TST GET invoice jjocYhwQ9i3ynjK5]: (404, '{"message":"Unknown invoice ID"}')
+[NA GET invoice jjocYhwQ9i3ynjK5]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+[TST GET own invoice 2fhVtrJn8rTSQgh6]: (404, '{"message":"Unknown invoice ID"}')
+[TST GET ORG invoice PDF]: (404, 'application/json', 0)
+[NA GET ORG invoice PDF]: (401, 'application/json', 0)
+[UN GET ORG invoice PDF]: (401, 'application/json', 0)
+[ORG GET own invoice PDF (baseline)]: (404, 'application/json', 0)
+[TST GET own invoice PDF (baseline)]: (404, 'application/json', 0)
+
+--- PHASE C4: relay-auto-config reset cross-org write attempt ---
+[ORG relay-auto-configs]: 200 {"items":[{"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"_access":{"denied":[],"
+rac id: None
+
+--- PHASE C5: member/team access-summary cross-org ---
+[TST GET ORG member access-summary]: (403, '{"code":"forbidden","message":"Plan does not allow this operation"}')
+[NA GET ORG member access-summary]: (403, '{"code":"forbidden","message":"Plan does not allow this operation"}')
+[UN GET ORG member access-summary]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+ORG team keys: []
+
+--- PHASE C6: webhooks detail (GET ONLY - never modify) ---
+[ORG webhooks list]: 200 {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada0e0ff68b4507c663d7d5","type":"application/json"}},"_id":"6ada0e0ff6
+
+--- PHASE C7: pending-requests kinds + usage family NA/UN ---
+[TST GET pending-requests/join-organization]: (200, '{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/join-organization?limit=20","type":"application/json"}}}')
+[TST GET pending-requests/invite]: (400, '{"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/invite?limit=20","type":"application/json"}}}')
+[TST GET pending-requests/leave]: (400, '{"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/leave?limit=20","type":"application/json"}}}')
+[TST GET pending-requests/member]: (400, '{"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/member?limit=20","type":"application/json"}}}')
+[NA GET /api/v2/usage/clientside-contexts]: (200, '{"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/clientside-contexts","type":"application/json"}},"metadata":[{}],"totalEvaluations":null,"series":[{"0":0,"time":1790812800000},{"0":0,"time":1790899200
+[NA GET /api/v2/usage/serverside-contexts]: (200, '{"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/serverside-contexts","type":"application/json"}},"metadata":[{}],"totalEvaluations":null,"series":[{"0":0,"time":1790812800000},{"0":0,"time":1790899200
+[NA GET /api/v2/usage/streams/client]: (200, '{"_links":{"parent":{"href":"/api/v2/usage/streams","type":"application/json"},"self":{"href":"/api/v2/usage/streams/client","type":"application/json"},"subseries":[{"href":"/api/v2/usage/streams/client/bysdkversion","type":"application/json"}]},"metada
+[NA GET /api/v2/usage/total-contexts]: (200, '{"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/total-contexts","type":"application/json"}},"metadata":[{}],"totalEvaluations":null,"series":[{"0":0,"time":1790812800000},{"0":0,"time":1790899200000},
+[NA GET /api/v2/usage/vega-ai]: (200, '{"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/vega-ai","type":"application/json"}},"metadata":[],"totalEvaluations":null,"series":[]}')
+[NA GET /api/v2/usage/warehouse-export]: (200, '{"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/warehouse-export","type":"application/json"}},"metadata":[],"totalEvaluations":null,"series":[],"dataThrough":"2026-10-23T16:00:00Z","delayed":false}')
+[NA GET /api/v2/usage/data-export-source-capabilities]: (200, '{"accountId":"6ac28fd11c28fb07516cf361","streaming":{"available":false,"configured":false,"configuredDestinationCount":0,"enabled":false,"enabledDestinationCount":0,"pendingDestinationCount":0,"source":"streaming","state":"not_configured"},"warehouse":{
+[UN GET usage/total-contexts]: (401, '{"code":"unauthorized","message":"Invalid account ID header"}')
+
+--- PHASE D: misc grammar probes (time-boxed) ---
+[NA POST schema/preview]: (403, '{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateVariationJsonSchema","resource":"proj/default:env/test:flag/zeno-allowed-1"},"code":"forbidden"}')
+[ORG POST schema/preview]: (200, '{"valid":true}')
+[TST GET templates/policy-templates]: (405, '')
+[TST GET templates/starter-kit]: (405, '')
+[TST GET templates/default]: (405, '')
+
+DONE
