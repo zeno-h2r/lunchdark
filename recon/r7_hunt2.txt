@@ -1,0 +1,40 @@
+========================================================================
+R7 HUNT 2 — 00:29:51
+========================================================================
+
+PHASE A: auditlog spec full error text
+------------------------------------------------------------------------
+[A] spec='member.email:[invalid': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"member.email:[invalid\". Please refer to documentation for formatting conventions."}
+
+[A] spec='x': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"x\". Please refer to documentation for formatting conventions."}
+
+[A] spec='flag:': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"flag:\". Please refer to documentation for formatting conventions."}
+
+[A] spec='proj/{p}': 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=2\u0026spec=proj%2F%7Bp%7D","type":"application/json"}}}
+
+[A] spec='flag/{f}:env/{e}': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"flag/{f}:env/{e}\". Please refer to documentation for formatting conventions."}
+
+[A] spec='member/6ac28fd11c28fb07516cf363': 200 {"items":[],"_links":{"self":{"href":"/api/v2/auditlog?limit=2\u0026spec=member%2F6ac28fd11c28fb07516cf363","type":"application/json"}}}
+
+[A] spec='proj/default:env/test:flag/zeno-allowed-1': 200 {"items":[{"_links":{"canonical":{"href":"/api/v2/flags/default/zeno-allowed-1","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adaa371c42bd107404ede8a","type":"application/json"},"site":{"href":"/default/test/features/zeno-allowed-1","type":"text/html"}},"_id":"6adaa371c42bd107404ede8a","_accountId":"6ac28fd11c28fb07516cf361","date":1792713585157,"acc
+
+[A] spec='::': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"::\". Please refer to documentation for formatting conventions."}
+
+[A] spec='a:b:c:d:e:f:g': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"a:b:c:d:e:f:g\". Please refer to documentation for formatting conventions."}
+
+[A] spec='flag/*': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"flag/*\". Please refer to documentation for formatting conventions."}
+
+[A] spec='%2e%2e/': 400 {"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifier \"%2e%2e/\". Please refer to documentation for formatting conventions."}
+
+
+PHASE B: jira issue-create with jiraProjectKey
+------------------------------------------------------------------------
+[B1] jiraProjectKey=ZENO: 400 {"code":"invalid_request","message":"\"issueType\" is required"}
+[B2] jira config GET: 200 {"_links":{"self":{"href":"/api/v2/integrations/jira","type":"application/json"}},"items":[],"key":"jira"}
+
+PHASE C: big-segment import multipart CSV
+------------------------------------------------------------------------
+[C0] bigseg: 201
+[C1] multipart import: 415 {"code":"invalid_request","message":"Content-Type must conform to one of 'multipart/form-data', 'text/csv', 'application/json'"}
+[X] delete: 204
+DONE

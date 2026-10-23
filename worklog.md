@@ -356,3 +356,26 @@ Stage Summary:
 - FINDING_002 impact upgraded: webhook signing-secret disclosure via zero-privilege token (forge signed LD events). Cross-org check confirms intra-account scope (P2 holds).
 - IDOR remainder closed: scheduled-changes/contexts/AR/legacy/insights all fenced or empty.
 - Reportable inventory: FINDING_001 (P3 obs injection), FINDING_002 (P2, now incl. secret disclosure). Ready to draft reports.
+
+---
+Task ID: R7-IDOR-LEAK
+Agent: Super Z (main)
+Task: "keep hunt idor, info leak" — R7 round: oauth2 authorize, big-segment imports, templates, engineering-insights, auditlog spec injection, jira, usage, final contexts
+
+Work Log:
+- scripts/r7_hunt1-2.py persisted; outputs recon/r7_hunt1.txt, r7_hunt2.txt (regenerated from persisted scripts after a local git-state mishap; results identical)
+- oauth2 authorize/token endpoints (/oauth2/authorize, /oauth2/token): 404 HTML — no live public route at guessed paths; app create route not in SPA (support-provisioned). DEAD.
+- big-segment imports (/api/v2/segments/{p}/{e}/{s}/imports): 415 CT validator lists multipart/form-data+text/csv+application/json as allowed but REJECTS multipart (exact-match CT checker bug, P5 quirk); cross-org path errors pre-authz (parse order) — no oracle; path is segment-scoped like scheduled-changes (fenced). DEAD for IDOR.
+- /api/v2/templates: empty on both orgs (global service, no data). DEAD.
+- engineering-insights/flag-events: uniform 403 plan-gate both orgs — no oracle. DEAD.
+- auditlog spec param: malformed specs -> STATIC parser error (no grammar/internals leak); valid spec=proj/{p}:env/{e}:flag/{k} works own-org; q/sort/filter parameters clean (all injection payloads 200). DEAD.
+- jira issue-create: stepwise schema (jiraProjectKey -> issueType required); no Jira config (items:[]) — endpoint live but unusable. DEAD.
+- usage family under no_access: clientside-contexts + total-contexts ALSO 200 (bypass list +2); evaluations/teams/tokens subpaths 404.
+- auditlog ENTRY cross-org under no_access: [TST] entry id -> 404 (owner baseline 200) — account scoping of the bypass confirmed at entry level.
+- contexts/search: 0 items in test AND production envs -> instance-level cross-org untestable. CLOSED.
+- Cleanup: r7 token/role + segments deleted by scripts on each run. Canaries untouched.
+
+Stage Summary:
+- R7 net: ZERO new findings; every remaining IDOR/info-leak surface fenced, plan-gated uniformly, empty, or parameterized. usage bypass list +2 (P5 additions to FINDING_002 evidence).
+- IDOR/info-leak space exhausted to diminishing returns after R1/R3/R5/R6/R7 sweeps: object resolvers org-fenced, policy engine correct, no_access bypass (FINDING_002) = the one real defect incl. webhook signing secret disclosure.
+- Recommendation: submit FINDING_002 (P2) + FINDING_001 (P3); next axes if user wants: XSS/AI-output rendering, auth/session (C5/C6/C7), manual Burp collaboration.

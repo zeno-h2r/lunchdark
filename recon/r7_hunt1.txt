@@ -1,0 +1,67 @@
+========================================================================
+R7 HUNT 1 — 00:29:09
+========================================================================
+
+PHASE A: oauth2 authorize endpoint (unauth probes)
+------------------------------------------------------------------------
+[A] bogus client_id: 404 loc=- body=' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="des'
+[A] bogus client + evil redirect: 404 loc=- body=' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="des'
+[A] empty client: 404 loc=- body=' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="des'
+[A] token bogus grant: 404 ' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" '
+[A] token client_credentials: 404 ' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" '
+
+PHASE B: big-segment imports
+------------------------------------------------------------------------
+[B0] bigseg: 201
+[B] import empty json: 415 {"code":"invalid_request","message":"Content-Type must conform to one of 'multipart/form-data', 'text/csv', 'application/json'"}
+[B] import with file ref: 415 {"code":"invalid_request","message":"Content-Type must conform to one of 'multipart/form-data', 'text/csv', 'application/json'"}
+[B] import csv raw: 400 {"code":"invalid_request","message":"Content type not supported"}
+[B] TST -> ORG import path: 400 {"code":"invalid_request","message":"Content type not supported"}
+
+PHASE C: /api/v2/templates org-scoped vs global
+------------------------------------------------------------------------
+[C1] ORG templates: 200 {"items":[]}
+[C2] TST templates: 200
+[C2] TST keys: [] | overlap with ORG: set()
+
+PHASE D: engineering-insights flag-events
+------------------------------------------------------------------------
+[D] ORG flag-events: 403 {"message":"Plan does not allow this operation"}
+[D] TST flag-events: 403 {"message":"Plan does not allow this operation"}
+[D] TST -> ORG distinguisher project: 403 {"message":"Plan does not allow this operation"}
+
+PHASE E: auditlog search param injection
+------------------------------------------------------------------------
+[E] q sqli          : 200
+[E] q nosql         : 200
+[E] q regex         : 200
+[E] q regex2        : 200
+[E] spec weird      : EXC ERR={"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifi
+[E] spec deep       : EXC ERR={"code":"invalid_request","message":"`spec` must be a valid resource specifier: Error parsing resource specifi
+[E] sort injection  : 200
+[E] filter param    : 200
+
+PHASE F: jira issue-create
+------------------------------------------------------------------------
+[F] jira issue-create: 400 {"code":"invalid_request","message":"\"jiraProjectKey\" is required"}
+
+PHASE G: usage subpaths under no_access
+------------------------------------------------------------------------
+[G0] no_access token: OK
+[G] /api/v2/usage/evaluations: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[G] /api/v2/usage/teams: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[G] /api/v2/usage/tokens: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[G] /api/v2/usage/flag-events: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[G] /api/v2/usage/experiments: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <m
+[G] /api/v2/usage/clientside-contexts: 200 {"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/clientside-contexts","type":"application/json"}},"metadata":[],"total
+[G] /api/v2/usage/total-contexts: 200 {"_links":{"parent":{"href":"/api/v2/usage","type":"application/json"},"self":{"href":"/api/v2/usage/total-contexts","type":"application/json"}},"metadata":[],"totalEvalu
+[H] no_access -> TST audit id 6adaa3cfd998e3077cb64d98: 404 
+[H] TST owner baseline: 200 {"_links":{"canonical":{"href":"/api/v2/webhooks/6adaa3b1c4160e074652232c","type":"application/json"},"parent":{"href":"
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+[X] import-seg delete: 204
+
+DONE
