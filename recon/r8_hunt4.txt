@@ -1,0 +1,7 @@
+R8 HUNT 4 — 00:53:43
+[messages]: 400 {"code":"invalid_request","message":"AI config \"zeno-completion-probe\" is not configured"}
+[parts]: 400 {"code":"invalid_request","message":"AI config \"zeno-completion-probe\" is not configured"}
+[text field]: 400 {"code":"invalid_request","message":"AI config \"zeno-completion-probe\" is not configured"}
+[content field]: 400 {"code":"invalid_request","message":"AI config \"zeno-completion-probe\" is not configured"}
+[input+model]: 400 {"code":"invalid_request","message":"AI config \"zeno-completion-probe\" is not configured"}
+DONE

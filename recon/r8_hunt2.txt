@@ -1,0 +1,65 @@
+========================================================================
+R8 HUNT 2 — 00:50:51
+========================================================================
+
+PHASE A: D5 plans/{planType}/limits
+------------------------------------------------------------------------
+[A] limits foundation: 404 
+[A] limits enterprise: 404 
+[A] limits trial: 404 
+[A] limits free: 404 
+
+PHASE B: D2 trial-extension eligibility
+------------------------------------------------------------------------
+[B] eligibility empty: 405 
+[B] eligibility TST: 405 
+
+PHASE C: D1 cooloff-retrial / extension (INVALID bodies only)
+------------------------------------------------------------------------
+[C] cooloff-retrial empty: 422 {"code":"unprocessable_entity","message":"cooloff_not_elapsed"}
+[C] cooloff-extension empty: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[C] cooloff-retrial invalid: 422 {"code":"unprocessable_entity","message":"cooloff_not_elapsed"}
+
+PHASE D: D3 campaign codes (bogus code only)
+------------------------------------------------------------------------
+[D] campaigns empty: 405 
+[D] campaigns bogus code: 405 
+[D] campaigns GET: 405 
+
+PHASE E: D4 entitlements
+------------------------------------------------------------------------
+[E] entitlements ai-configs: 400 {"code":"invalid_request","message":"Query parameter 'projectKey' is missing."}
+[E] entitlements release-guardian: 200 {"state":"enabled","usageGatedTrials":{"hardLimit":-1,"softLimit":-1,"usage":0,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}} 
+[E] entitlements insights: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[E] entitlements warehouse-connect: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[E] TST ai-configs: 400 {"code":"invalid_request","message":"Query parameter 'projectKey' is missing."}
+
+PHASE F: E3 flag-templates SSTI
+------------------------------------------------------------------------
+[F] list: 200 {"items":[{"name":"Release","key":"release","description":"A temporary flag that initially serves false to all targets, then progressively rolls out true to targets until it reaches 100%","_clientSideAvailability":{"usingMobileKey":false,"usingEnvironmentId":false},"variationType":"boolean","variati
+[F] create: 405 
+[F] fetch back: 405 
+[F] render marks: rendered_49=False payloads_echoed=0
+[F] TST -> ORG template: 405 
+
+PHASE G: E1 AI completion grammar + XSS storage
+------------------------------------------------------------------------
+[G] completion []: 400 {"code":"invalid_request","message":"/required missing property 'input'."}
+[G] ai-config create: 201 {"_access":{"denied":[],"allowed":[]},"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/projects/default/ai-configs/zeno-aixss-r8","type":"application/json"}},"_maintainer":{"_id":"6ac28fd11c28fb07516cf363","email":"zeno0+org@bugcrowd
+[G] variation XSS: 201 {"_id":"d7ebd5af-d9ba-4fb4-a19f-98d7b273715a","_links":{"parent":{"href":"/api/v2/projects/default/ai-configs/zeno-aixss-r8","type":"application/json"}},"_publishedAt":1792716671402,"createdAt":1792716671402,"key":"v2","messages":[{"content
+
+PHASE H: E2 observability internal query endpoints
+------------------------------------------------------------------------
+[H] POST /internal/projects/default/observability/queries: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[H] GET  /internal/projects/default/observability/queries: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[H] POST /internal/projects/default/observability/dashboards: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[H] GET  /internal/projects/default/observability/dashboards: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[H] POST /api/v2/projects/default/observability/query: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[H] GET  /api/v2/projects/default/observability/query: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+
+CLEANUP
+------------------------------------------------------------------------
+[X] template delete: EXC
+[X] ai-config delete (best effort): 204
+
+DONE

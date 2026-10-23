@@ -1,0 +1,7 @@
+R8 HUNT 5 — 00:54:16
+[create] 201 {"_access":{"denied":[],"allowed":[]},"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/projects/default/ai-configs/zeno-aic-r8b","type":"application/json"}},"_maintainer":{"_id":"6ac28fd11c28fb07516cf363","email":"zeno0+org@bugcrowdninja.com","firstName":"zeno","kind":"member","lastName":"test","role":"owner"},"createdAt":1792716856467,"description":"
+[ORG completion]: 400 {"code":"invalid_request","message":"AI config \"zeno-aic-r8b\" is not configured"}
+[TST->ORG completion]: 400 {"code":"invalid_request","message":"AI config \"zeno-aic-r8b\" is not configured"}
+[detail state]: 200 {"_access":{"denied":[],"allowed":[]},"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/projects/default/ai-configs/zeno-aic-r8b","typ
+[cleanup]: 204
+DONE

@@ -1,0 +1,80 @@
+========================================================================
+R8 HUNT 1 — 00:49:17
+========================================================================
+
+PHASE 0: cookie liveness + member emails
+------------------------------------------------------------------------
+[0] ORG session: EXC
+[0] TST session: EXC
+[0] emails: {'ORG': [('6ac28fd11c28fb07516cf363', 'zeno0+org@bugcrowdninja.com'), ('6ada14122e3d84072f7dcf53', 'zeno0+second@bugcrowdninja.com')], 'TST': [('6ac29057ccacd606b1576cb9', 'zeno0+tester@bugcrowdninja.com')]}
+
+PHASE A: C1 GET /internal/accounts/{email}
+------------------------------------------------------------------------
+[A] TST self email: 403 {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[A] UNAUTH own email: 403 {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[A] UNAUTH bogus email: 403 {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[A] TST -> ORG email: 403 {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[A] ORG -> TST email: 403 {"code":"forbidden","message":"You do not have permission to perform this operation"}
+[A] list+email param: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[A] POST lookup: 405 
+
+PHASE B: C2 unauthenticated organization-verifications
+------------------------------------------------------------------------
+[B] UNAUTH list: 405 
+[B] account ids: {'ORG': '6ac28fd11c28fb07516cf361', 'TST': '6ac29057ccacd606b1576cb7'}
+[B] UNAUTH verif ORG acc id as path: 404 {"message":"token not found"}
+[B] TST verif ORG acc id as path: 404 {"message":"token not found"}
+[B] UNAUTH verif TST acc id as path: 404 {"message":"token not found"}
+[B] TST verif TST acc id as path: 404 {"message":"token not found"}
+[B] UNAUTH verif bogus: 404 {"message":"token not found"}
+[B] TST verif bogus: 404 {"message":"token not found"}
+
+PHASE C: C3 /internal/device/{deviceCode}
+------------------------------------------------------------------------
+[C] GET bogus code: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[C] POST bogus code: 405 
+[C] POST verify: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[C] POST /internal/device: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+
+PHASE D: C4 session escalate
+------------------------------------------------------------------------
+[D] escalate empty: 401 {"code":"unauthorized","message":"Invalid password"}
+[D] GET /settings/escalate: 200   <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.25ea6de89.json"       data-bundle="accountSettings">   <he
+[D] escalate badpw: 401 {"code":"unauthorized","message":"Invalid password"}
+
+PHASE E: C5 invite-token surfaces (validation shape only)
+------------------------------------------------------------------------
+[E] UNAUTH bogus signup token: 401   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Server error</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="i
+[E] suggest-invites GET: 405 
+[E] suggest-invites POST: 400 {"code":"invalid_request","message":"No emails provided"}
+[E] POST /internal/invites invalid email: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon
+[E] GET /internal/invites: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+PHASE F: C6 pending-requests + join
+------------------------------------------------------------------------
+[F] pending-requests/invite: 400 {"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/invite?limit=20","type":"application/json"}}}
+[F] pending-requests/join: 400 {"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/join?limit=20","type":"application/json"}}}
+[F] pending-requests/member: 400 {"message":"invalid request kind"}{"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/account/pending-requests/member?limit=20","type":"application/json"}}}
+[F] UNAUTH join invalid: 400 {"code":"invalid_request","message":"Invalid Email"}
+
+PHASE G: C7 choose-organization shape (no passwords)
+------------------------------------------------------------------------
+[G] GET page: EXC len=0
+[G] POST choose-org own email: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[G] POST choose-org bogus email: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xm
+[G] GET orgs by email: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+PHASE H: B1 leftovers — domain-verifications + followers
+------------------------------------------------------------------------
+[H] ORG dv list: 200 {"_access":{"denied":[],"allowed":[]},"items":[{"_access":{"denied":[],"allowed":[]},"domainVerificationID":"2c12190a-67d3-4b5e-b2d2-e627bed9935b","domain":"bugcrowdninja.com","isVerified":false,"_links":{"self":{"href":"/internal/account/domain-verifications"
+[H] dv ids: [None, None]
+[H] TST dv list: 200 {"_access":{"denied":[],"allowed":[]},"items":[],"_links":{"self":{"href":"/internal/account/domain-verifications?limit=10","type":"application/json"}},"totalCo
+[H] TST -> ORG dv None: 405 
+[H] TST -> ORG dv None: 405 
+[H] followers GET baseline: 200 {"followers":[{"memberId":"6ac28fd11c28fb07516cf363"}],"totalCount":1} 
+[H] PUT follower TST-member-on-ORG-flag: 404 {"code":"not_found","message":"Member not found"}
+[H] followers after PUT: 200 {"followers":[{"memberId":"6ac28fd11c28fb07516cf363"}],"totalCount":1} 
+[H] DELETE follower (revert): 404 {"code":"not_found","message":"Member not found"}
+[H] followers after DELETE: 200 {"followers":[{"memberId":"6ac28fd11c28fb07516cf363"}],"totalCount":1} 
+
+DONE

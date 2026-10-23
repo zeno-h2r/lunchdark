@@ -1,0 +1,43 @@
+========================================================================
+R8 HUNT 3 — 00:52:51
+========================================================================
+
+PHASE A: domain-verifications cross-org (READ only)
+------------------------------------------------------------------------
+[A] ORG owner baseline: 405 
+[A] TST -> ORG DV id: 405 
+[A] UNAUTH -> ORG DV id: 405 
+
+PHASE B: suggest-invites enumeration oracle
+------------------------------------------------------------------------
+[B] invalid email: 204 
+[B] well-formed bogus: 204 
+[B] cross-org real email: 204 
+[B] self email: 204 
+
+PHASE C: AI completion grammar + cross-org
+------------------------------------------------------------------------
+[C] input probe: 400 {"code":"invalid_request","message":"/properties/input/type got string, want object."}
+[C] entitlement w/ projectKey: 200 {"state":"disabled","usageGatedTrials":{"hardLimit":0,"softLimit":0,"usage":3,"usageRemaining":0,"usageRemainingHardLimit":0,"usageRemainingSoftLimit":0}} 
+[C0] ORG test ai-config: FAIL
+
+PHASE D: device endpoint authenticated shape
+------------------------------------------------------------------------
+[D] ORG GET bogus code: 400 {"code":"invalid_request","message":"bad device code"}
+[D] ORG PUT bogus deny: 400 {"code":"invalid_request","message":"bad device code"}
+
+PHASE E: choose-organization page + signup retry
+------------------------------------------------------------------------
+[E] GET page: 404 len=4339
+[E] signup token retry: 401   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Server error</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width
+
+PHASE F: flag-templates keyed creation
+------------------------------------------------------------------------
+[F] PUT /zeno-ssti-r8b: 405 
+[F] POST /zeno-ssti-r8b: 405 
+
+CLEANUP
+------------------------------------------------------------------------
+[X] template delete (best effort): EXC
+
+DONE

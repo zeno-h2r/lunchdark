@@ -379,3 +379,32 @@ Stage Summary:
 - R7 net: ZERO new findings; every remaining IDOR/info-leak surface fenced, plan-gated uniformly, empty, or parameterized. usage bypass list +2 (P5 additions to FINDING_002 evidence).
 - IDOR/info-leak space exhausted to diminishing returns after R1/R3/R5/R6/R7 sweeps: object resolvers org-fenced, policy engine correct, no_access bypass (FINDING_002) = the one real defect incl. webhook signing secret disclosure.
 - Recommendation: submit FINDING_002 (P2) + FINDING_001 (P3); next axes if user wants: XSS/AI-output rendering, auth/session (C5/C6/C7), manual Burp collaboration.
+
+---
+Task ID: R8-AUTH-BILLING-INJ
+Agent: Super Z (main)
+Task: "keep hunting" — R8 round: C-line auth/session surfaces, D-line billing/entitlements, E-line injection (SSTI + AI XSS + completion), B-line leftovers (domain-verifications, followers)
+
+Work Log:
+- scripts/r8_hunt1-5.py persisted; outputs recon/r8_hunt1-5.txt
+- C1 GET /internal/accounts/{email}: uniform 403 forbidden for member sessions AND unauth (real + bogus email identical) -> no enumeration oracle. Variants (list+param 404, POST lookup 405). DEAD.
+- C2 /internal/unauthenticated-members/organization-verifications/{id}: uniform 404 {"message":"token not found"} for ORG/TST/bogus ids (path is verification TOKEN not account id; list 405). No oracle. DEAD.
+- C3 /internal/device/{deviceCode} (ConfirmAuth.js flow: GET returns userCode, PUT {decision:allow|deny,userCode}): unauth -> 401 "Invalid account ID header" (legacy header fence); authenticated ORG session + bogus code -> clean 400 "bad device code". Device codes high-entropy, single-guess no oracle. DEAD.
+- C4 /internal/account/session/escalate: password step-up ENFORCED (empty body and bad password both -> uniform 401 "Invalid password"; no user oracle). /settings/escalate is SPA route. DEAD.
+- C5 suggest-invites POST {emails:[...]}: uniform 204 NO BODY for invalid/bogus/cross-org-real/self emails -> zero enumeration oracle. /internal/account/signup/{bogus}/pending-invites -> sloppy 401 HTML "Server error" page (P5 error handling). Invite create route 404 (not /internal/invites). DEAD.
+- C6 pending-requests/{kind}: "invalid request kind" for invite/join/member (kind enum restricted; SPA uses {kind} template only); UNAUTH /internal/account/join -> 400 "Invalid Email" (validation only, no org disclosure probed further). DEAD.
+- C7 choose-organization: server GET /choose-organization 404 (SPA-only route /choose-organization/:email/:selectedOrganization/enter-password per loadApp.js); no server-side POST route found at guessed paths. Needs operator credentials in Burp. CLOSED for terminal.
+- D-line billing: plans/{type}/limits 404 (all planTypes); trial-extension/eligibility 405; cooloff-retrial 422 "cooloff_not_elapsed" (state machine enforced, account not in cooloff; no internals leaked); cooloff-extension 404; campaigns 405 all verbs. /internal/entitlements/ai-configs?projectKey=default -> {"state":"disabled","usage":3,...} (state+usage counters disclosed; P5 note: usage counted while disabled). DEAD otherwise.
+- E3 SSTI flag-templates: list 200 (system templates release/kill-switch...), create 405 on collection AND keyed PUT/POST /{key} -> templates read-only via API, no user-supplied server-side rendering path. CLOSED.
+- E1 AI-output XSS groundwork: AI-config variations API stores <img onerror> / javascript: payloads RAW (expected for JSON API; 201 created, cleanup 204). UI render verification -> OPERATOR item (playground/variation viewer in browser).
+- E1/E2 AI completion /internal/ai-configs/{k}/completion: grammar mined -> input must be OBJECT (messages|parts|text all pass shape), then "AI config ... is not configured" gate (config must be env-enabled); entitlement ai-configs state=disabled -> plan-gated; cross-org TST->ORG completion = uniform 400 (no oracle). TIME-BOX CLOSED.
+- E2 observability internal query routes (/internal/projects/{p}/observability/*, /api/v2/.../observability/query): 404 dead. DEAD.
+- B1 followers: PUT/DELETE /internal/resources/.../followers/{memberId} with CROSS-ORG member id -> 404 "Member not found" (member resolver org-scoped; own-org follower present baseline). FENCED.
+- B1 domain-verifications: list 200 org-scoped (ORG has 1 record domain bugcrowdninja.com isVerified:false, id field = domainVerificationID UUID); GET by id 405 (no detail route). No cross-org path. DEAD.
+- Cleanup: all test artifacts deleted (ai-configs 204, no template created, no tokens/roles this round). Canaries untouched.
+
+Stage Summary:
+- R8 net: ZERO new reportable findings. Entire C-line auth surface (email lookup, device flow, escalate, invites, choose-org) correctly fenced/step-up/uniform-error. D-line billing state machine enforced. SSTI + AI completion + observability routes closed. Followers + domain-verifications org-fenced.
+- P5 inventory additions: signup-token 401 HTML "Server error" page; entitlements/ai-configs discloses state+usage counters; (prior) device "Invalid account ID header" fence wording.
+- Cumulative reportable after R5-R8: FINDING_002 (P2 no_access read bypass + webhook signing secret disclosure) + FINDING_001 (P3 obs cross-tenant injection). All other swept surfaces: defended.
+- Operator/Burp handoff items: (1) E1 AI-output XSS render check in UI (payloads stored raw via API); (2) C7 choose-org password flow with real credentials; (3) D1 cooloff-retrial state machine if a trial cancellation is ever performed on a test account.
