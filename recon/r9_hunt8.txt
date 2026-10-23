@@ -1,0 +1,39 @@
+========================================================================
+R9 HUNT 8 — 10:44:50
+========================================================================
+[0] no_access token: OK
+
+PHASE A: project subroute sweep (fixed extraction)
+------------------------------------------------------------------------
+[A] 9 candidate paths
+[A] /api/v2/projects/default/context-kinds
+     M=200 N=403 T=200 >>> CROSS_ORG_200
+     N body: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[A] BYPASS: []
+[A] CROSSHIT: ['/api/v2/projects/default/context-kinds']
+
+PHASE B: search with projectKey
+------------------------------------------------------------------------
+[B] /api/v2/flags/search plain: 404 {"message":"Unknown project key search"}
+[B] /api/v2/flags/search nosql: 404 {"message":"Unknown project key search"}
+[B] /api/v2/flags/search sqli: 404 {"message":"Unknown project key search"}
+[B] /api/v2/flags/search regex: 404 {"message":"Unknown project key search"}
+[B] /api/v2/flags/search whereinj: 404 {"message":"Unknown project key search"}
+[B] /api/v2/metrics/search plain: 404 {"message":"Unknown project key search"}
+[B] /api/v2/metrics/search nosql: 404 {"message":"Unknown project key search"}
+[B] /api/v2/metrics/search sqli: 404 {"message":"Unknown project key search"}
+[B] /api/v2/metrics/search regex: 404 {"message":"Unknown project key search"}
+[B] /api/v2/metrics/search whereinj: 404 {"message":"Unknown project key search"}
+
+PHASE C: contexts retest (after /bulk identify seed)
+------------------------------------------------------------------------
+[C] ORG contexts search: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com
+[C] no_access contexts search: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[C] TST contexts search (own env): 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+
+DONE

@@ -1,0 +1,37 @@
+========================================================================
+R9 HUNT 10 — 10:59:26
+========================================================================
+
+PHASE A: sessions(project_id) — shared workspace test
+------------------------------------------------------------------------
+[A] ORG sessions: 400 {"errors":[{"message":"Field \"QueryInput.query\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"QueryInput.date_range\" of required type \"DateRangeRequiredInput!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot
+[A] TST sessions: 400 {"errors":[{"message":"Field \"QueryInput.query\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"QueryInput.date_range\" of required type \"DateRangeRequiredInput!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot
+[A] UNAUTH sessions: 400 {"errors":[{"message":"Field \"QueryInput.query\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"QueryInput.date_range\" of required type \"DateRangeRequiredInput!\" was not provided.","locations":[{"line":1,"column":54}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot
+[A] !!! ORG AND TST RECEIVE IDENTICAL SESSION DATA — SHARED WORKSPACE, FILTERING BROKEN?
+[A] !!! UNAUTH SESSION LIST — P1
+
+PHASE B: ld_environments with ORG-only project key
+------------------------------------------------------------------------
+[B] TST ld_environments(zxorg-proj-7f3a): 200 {"errors":[{"message":"failed to fetch environments from Gonfalon: gonfalon API returned status 404: {\"message\":\"Unknown project key zxorg-proj-7f3a\"}","path":["ld_environments"]}],"data":null}
+[B] UNAUTH ld_environments(zxorg-proj-7f3a): 200 {"errors":[{"message":"failed to fetch environments from Gonfalon: failed to retrieve token for gonfalon API: ldso_token_missing: not authenticated with LDSO","path":["ld_environments"]}],"data":null}
+[B] ORG ld_environments(zxorg-proj-7f3a): 200 {"data":{"ld_environments":[{"key":"production"},{"key":"test"}]}}
+
+PHASE C: ld_flag with ORG-only key space
+------------------------------------------------------------------------
+[C] TST ld_flag: 200 {"errors":[{"message":"failed to fetch flag from Gonfalon: flag lookup returned 404, but project \"zxorg-proj-7f3a\" is not accessible in this account; not treating the flag as missing: gonfalon API returned status 404: {\"message\":\"Unknown project key zxorg
+[C] UNAUTH ld_flag: 200 {"errors":[{"message":"failed to fetch flag from Gonfalon: failed to retrieve token for gonfalon API: ldso_token_missing: not authenticated with LDSO","path":["ld_flag"]}],"data":{"ld_flag":null}}
+[C] TST ld_flag_evaluations: 400 {"errors":[{"message":"Field \"ld_flag_evaluations\" of type \"LDFlagEvaluations!\" must have a selection of subfields. Did you mean \"ld_flag_evaluations { ... }\"?","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+PHASE D: admins/billing with literals
+------------------------------------------------------------------------
+[D] TST admins: 400 {"errors":[{"message":"Cannot query field \"admin_id\" on type \"WorkspaceAdminRole\". Did you mean \"admin\"?","locations":[{"line":1,"column":60}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[D] TST billing: 400 {"errors":[{"message":"Cannot query field \"name\" on type \"Plan\".","locations":[{"line":1,"column":61}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[D] TST error_groups: 400 {"errors":[{"message":"Field \"QueryInput.query\" of required type \"String!\" was not provided.","locations":[{"line":1,"column":58}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"QueryInput.date_range\" of required type \"DateRangeRequiredInput!\" was not provided.","locat
+
+PHASE E: fresh forged session (ORG org) -> read back TST/unauth
+------------------------------------------------------------------------
+[E] forge initializeSession: 200 '{"data":{"initializeSession":{"secure_id":"1jdkoe52-sztest-22222222-2222-4222-8222-92753174"}}}'
+[E] TST read session: 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+[E] UNAUTH read session: 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+
+DONE

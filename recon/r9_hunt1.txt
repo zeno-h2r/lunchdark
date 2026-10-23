@@ -1,0 +1,82 @@
+========================================================================
+R9 HUNT 1 — 10:31:18
+========================================================================
+
+PHASE A: no_access token + baseline
+------------------------------------------------------------------------
+[A] no_access token: OK
+[A] webhook secret baseline: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adb37794bc08c076427f627","type":
+
+PHASE B: code-refs repositories (PAT field)
+------------------------------------------------------------------------
+[B] ORG repo list: 200 {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+[B] no_access repo list: 200 {"_links":{"self":{"href":"/api/v2/code-refs/repositories","type":"application/json"}},"items":[]}
+[B] repo create: 200 {"name":"zeno-coderefs-r9","commitUrlTemplate":"https://github.com/zeno/r/commit/{sha}","type":"github","defaultBranch":"main","enabled":true,"version":0,"_links":{"branches":[],"self":{"href":"/api/v2/code-refs/repositories/zeno-coderefs-r9","type":"application/json"}},"_access":{"denied":[],"allowed":[]}}
+[B] no_access repo detail: 200 {"name":"zeno-coderefs-r9","commitUrlTemplate":"https://github.com/zeno/r/commit/{sha}","type":"github","defaultBranch":"main","enabled":true,"version":1,"_links":{"branches":[],"self":{"href":"/api/v2/code-refs/repositories/zeno-coderefs-r9","type":"application/json"}}}
+[B] secretscan detail: []
+[B] secretscan list: []
+
+PHASE C: integrations family sweep
+------------------------------------------------------------------------
+[C] ORG integrations/datadog: 200
+[C] no_access integrations/datadog: 200
+[C] ORG integrations/newrelic: EXC
+[C] no_access integrations/newrelic: EXC
+[C] ORG integrations/splunk: 200
+[C] no_access integrations/splunk: 200
+[C] ORG integrations/elastic: 200
+[C] no_access integrations/elastic: 200
+[C] ORG integrations/dynatrace: 200
+[C] no_access integrations/dynatrace: 200
+[C] ORG integrations/msteams: 200
+[C] no_access integrations/msteams: 200
+[C] ORG integrations/grafana: 200
+[C] no_access integrations/grafana: 200
+[C] datadog create: 201 {"_links":{"parent":{"href":"/api/v2/integrations/datadog","type":"application/json"},"self":{"href":"/api/v2/integrations/datadog/6adb378d4bc08c076427f655","type":"application/json"}},"_id":"6adb378d4bc08c076427f655","kind":"datadog","name":"zeno-dd-r9","config":{"apiKey":"zen**************123","hi
+[C] no_access datadog list: 200 {"_links":{"self":{"href":"/api/v2/integrations/datadog","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/integrations/datadog","type":"application/json"},"self":{"href":"/api/v2/integrations/datadog/6adb378d4bc08c076427f655","type":"application/json"}},"_id":"6adb378d4bc08c
+[C] secretscan datadog: ['/items[0]/config/apiKey=zen**************123', '/items[0]/apiKey=zen**************123']
+[C] no_access datadog detail: 200 {"_links":{"parent":{"href":"/api/v2/integrations/datadog","type":"application/json"},"self":{"href":"/api/v2/integrations/datadog/6adb378d4bc08c076427f655","type":"application/json"}},"_id":"6adb378d4bc08c076427f655","kind":"datadog","name":"zeno-dd-r9","config":{"apiKey":"zen**************123","hi
+[C] secretscan dd detail: ['/config/apiKey=zen**************123', '/apiKey=zen**************123']
+[C] no_access /internal/integrations: 200   <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/
+[C] no_access /internal/account/integrations: EXC 
+
+PHASE D: relay-auto-configs detail + environments sub
+------------------------------------------------------------------------
+[D] relay list count: 1
+[D] relay keys in list item: ['_id', '_creator', '_access', 'name', 'policy', 'displayKey', 'creationDate', 'lastModified']
+[D] no_access relay detail: 200 {"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastN
+[D] secretscan relay detail: []
+[D] no_access relay/environments: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[D] secretscan relay/environments: []
+[D] no_access relay/environments?limit=5: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[D] secretscan relay/environments?limit=5: []
+[D] no_access relay/policies: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[D] secretscan relay/policies: []
+[D] no_access relay/usage: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width"> 
+[D] secretscan relay/usage: []
+[D] relay create: 201 keys=['_id', '_creator', '_access', 'name', 'policy', 'fullKey', 'displayKey', 'creationDate', 'lastModified']
+[D] no_access NEW relay detail: 200 {"_id":"6adb3797c7453c0734318d4a","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.
+[D] secretscan NEW relay: []
+
+PHASE E: members / sessions / token detail under no_access
+------------------------------------------------------------------------
+[E] no_access /api/v2/members: 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"
+[E] no_access /api/v2/members?limit=5: 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest":{"href":"
+[E] no_access /internal/account/sessions: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[E] no_access /internal/sessions: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[E] no_access /internal/account/active-sessions: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[E] no_access token self-detail: 200 {"_id":"6adb37785149800747b42e9c","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb075
+
+PHASE F: data-export destinations under no_access
+------------------------------------------------------------------------
+[F] no_access destinations list: 200
+
+CLEANUP
+------------------------------------------------------------------------
+[X] datadog delete: 204
+[X] repo delete: 204
+[X] relay delete: 204
+[X] token delete: 204
+[X] role delete: 204
+
+DONE

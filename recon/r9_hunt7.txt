@@ -1,0 +1,49 @@
+========================================================================
+R9 HUNT 7 — 10:43:40
+========================================================================
+[0] no_access token: OK
+
+PHASE A/B: project subroute sweep
+------------------------------------------------------------------------
+[A] 0 resolvable project-subroute GET paths
+
+[B] SUMMARY bypass(no_access 200): []
+[B] SUMMARY crosshit(TST 200): []
+
+PHASE C: search body injection
+------------------------------------------------------------------------
+[C] /api/v2/flags/search plain: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search nosql: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search sqli: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search regex: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search filterinj: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search sortinj: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/flags/search expand: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search plain: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search nosql: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search sqli: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search regex: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search filterinj: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search sortinj: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/metrics/search expand: EXC ERR={"message":"Unknown project key search"}
+[C] /api/v2/segments/search plain: EXC ERR=
+[C] /api/v2/segments/search nosql: EXC ERR=
+[C] /api/v2/segments/search sqli: EXC ERR=
+[C] /api/v2/segments/search regex: EXC ERR=
+[C] /api/v2/segments/search filterinj: EXC ERR=
+[C] /api/v2/segments/search sortinj: EXC ERR=
+[C] /api/v2/segments/search expand: EXC ERR=
+
+PHASE D: events host /bulk probe
+------------------------------------------------------------------------
+[D] POST /bulk: 202 ''
+[D] POST /events/bulk: 404 ''
+[D] POST /summary/x: 404 ''
+
+CLEANUP
+------------------------------------------------------------------------
+[X] seg delete: 404
+[X] token delete: 204
+[X] role delete: 204
+
+DONE

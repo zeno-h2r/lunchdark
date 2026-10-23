@@ -1,0 +1,37 @@
+========================================================================
+R9 HUNT 9 — 10:57:59
+========================================================================
+[0] ORG_PID=1jdkoe52 TST_PID=1jdkoe52 FORGED=1jdkoe52-sztest-22222222-2222-4222-8222-222222222222
+
+PHASE A: unauth probes
+------------------------------------------------------------------------
+[A] unauth projects: 200 {"errors":[{"message":"LDProjectAuth does not support GetProjects","path":["projects"]}],"data":{"projects":null}}
+[A] unauth sessions(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"StringID!\".","locations":[{"line":1,"column":42}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Expected value of type \"QueryInput!\", found \"{}\".
+[A] unauth session(forged ORG secure_id): 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+
+PHASE B: ORG baseline
+------------------------------------------------------------------------
+[B] ORG projects: 200 {"errors":[{"message":"LDProjectAuth does not support GetProjects","path":["projects"]}],"data":{"projects":null}}
+[B] ORG sessions(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"StringID!\".","locations":[{"line":1,"column":42}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Expected value of type \"QueryInput!\", found \"{}\".","locations":[{"line":1,"column":65}],"
+[B] ORG admins(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"ID!\".","locations":[{"line":1,"column":64}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot query field 
+
+PHASE C: TST cookie + ORG ids (CROSS-TENANT READ)
+------------------------------------------------------------------------
+[C] projects (control): 200 {"errors":[{"message":"LDProjectAuth does not support GetProjects","path":["projects"]}],"data":{"projects":null}}
+[C] sessions(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"StringID!\".","locations":[{"line":1,"column":42}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Expected value of type \"QueryInput!\", found \"{}\".","locations":[{"line":1,"column":65}],"extensions":{"code":
+[C] session(forged ORG sid): 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+[C] error_groups(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"StringID!\".","locations":[{"line":1,"column":46}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Expected value of type \"QueryInput!\", found \"{}\".","locations":[{"line":1,"column":69}],"extensions":{"code":
+[C] admins(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"ID!\".","locations":[{"line":1,"column":64}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot query field \"email\" on type \"WorkspaceAdminRole\".","locations":[{"line":1,"column":70}],"extensions":{"code"
+[C] billing(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"StringID!\".","locations":[{"line":1,"column":58}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"plan\" of type \"Plan!\" must have a selection of subfields. Did you mean \"plan { ... }\"?","locations":
+[C] topUsers(ORG pid): 400 {"errors":[{"message":"Variable \"$p\" of type \"String!\" used in position expecting type \"ID!\".","locations":[{"line":1,"column":42}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Cannot query field \"users\" on type \"TopUsersPayload\".","locations":[{"line":1,"column":66}],"extensions":{"code":"G
+[C] ld_environments(ORG projKey): 200 {"data":{"ld_environments":[{"key":"production"},{"key":"test"}]}}
+
+PHASE D: TST + real ORG session ids (if listed)
+------------------------------------------------------------------------
+[D] no ORG session ids available (sessions query returned none)
+
+PHASE E: ld_flag cross LD-project
+------------------------------------------------------------------------
+[E] TST ld_flag(ORG-default key space): 400 {"errors":[{"message":"Cannot query field \"on\" on type \"LDFlag\".","locations":[{"line":1,"column":79}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+DONE

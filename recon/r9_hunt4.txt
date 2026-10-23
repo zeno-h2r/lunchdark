@@ -1,0 +1,116 @@
+========================================================================
+R9 HUNT 4 — 10:38:44
+========================================================================
+[0] no_access: OK envId=6ac28fd11c...
+
+PHASE A: secret endpoints under no_access
+------------------------------------------------------------------------
+[A] no_access env detail: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[A] env detail secretscan: []
+[A] no_access sdk-keys: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[A] no_access env detail by uuid: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/defaul
+
+PHASE B: untested families — member vs no_access
+------------------------------------------------------------------------
+[B] /api/v2/announcements
+     member: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_access":{"denied":[],"allowed":[]},"_id":"ab1c4a7d-
+     no_access: 200 {"_links":{"self":{"href":"/api/v2/announcements?limit=10","type":"application/json"}},"items":[{"_id":"ab1c4a7d-fb1d-4e90-a5cc-f48fa10c7e67","_links"
+[B] /api/v2/applications
+     member: 200 {"_links":{"self":{"href":"/api/v2/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0}
+     no_access: 200 {"_links":{"self":{"href":"/api/v2/applications?limit=10","type":"application/json"}},"items":[],"totalCount":0}
+[B] /api/v2/approval-requests
+     member: 200 {"items":[{"_id":"6ada9379831a640734b4ffda","_version":0,"creationDate":1792709497939,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516c
+     no_access: 200 {"items":[],"totalCount":0,"_links":{"self":{"href":"/api/v2/approval-requests","type":"application/json"}}}
+[B] /api/v2/flag-links
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[B] /api/v2/flag-statuses
+     member: 200 {"links":{"self":{"href":"/api/v2/flag-statuses","type":"application/json"},"statuses":[{"href":"/api/v2/flag-statuses/zxorg-proj-7f3a","type":"applic
+     no_access: 200 {"links":{"self":{"href":"/api/v2/flag-statuses","type":"application/json"},"statuses":[{"href":"/api/v2/flag-statuses/zxorg-proj-7f3a","type":"applic
+[B] /api/v2/integration-capabilities
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[B] /api/v2/integration-capabilities/configurations
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[B] /api/v2/integration-configurations
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[B] /api/v2/integration-manifests
+     member: 200 {"_links":{"adfs":{"href":"/api/v2/integration-manifests/adfs","type":"application/json"},"aiconfig-test-run":{"href":"/api/v2/integration-manifests/a
+     no_access: 200 {"_links":{"adfs":{"href":"/api/v2/integration-manifests/adfs","type":"application/json"},"aiconfig-test-run":{"href":"/api/v2/integration-manifests/a
+[B] !! no_access secretscan /api/v2/integration-manifests: ['secret', 'apikey', 'token', 'apikey', 'password', 'card']
+[B] /api/v2/shortcuts
+     member: 405 
+     no_access: 405 
+[B] /api/v2/tags
+     member: 200 {"_links":{"self":{"href":"/api/v2/tags","type":"application/json"}},"items":["imported-from-unleash","ld-example","ld-sample-config","oast-trigger-1"
+     no_access: 200 {"_links":{"self":{"href":"/api/v2/tags","type":"application/json"}},"items":["imported-from-unleash","ld-example","ld-sample-config","oast-trigger-1"
+[B] /api/v2/tracking
+     member: 405 
+     no_access: 405 
+[B] /api/v2/versions
+     member: 200 {"validVersions":[20240415],"latestVersion":20240415,"currentVersion":20240415,"beta":true}
+     no_access: 200 {"validVersions":[20240415],"latestVersion":20240415,"currentVersion":20240415,"beta":true}
+[B] /internal/accesses
+     member: 405 
+     no_access: 405 
+[B] /internal/account/card
+     member: 404 
+     no_access: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] /internal/account/invoices
+     member: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+     no_access: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] /internal/account/accrued-invoices
+     member: 200 {"items":[{"amount":0,"createdAt":1792339219,"discount":null,"id":"2fhVtrJn8rTSQgh6","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"b
+     no_access: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] /internal/incoming-webhook-subscriptions
+     member: 405 
+     no_access: 405 
+[B] /internal/flag-cleanup
+     member: 405 
+     no_access: 405 
+[B] /internal/role-presets-bundle
+     member: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+     no_access: 403 {"code":"forbidden","message":"Plan does not allow this operation"}
+[B] /internal/notification-service/channels
+     member: 200 {"channels":[]} 
+     no_access: 500 {"code":"internal_service_error","message":"Internal server error in route handler"}
+[B] /internal/profile/notification-preferences
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[B] /internal/new-hires
+     member: 404 
+     no_access: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] /internal/metric-data-sources
+     member: 200 {"items":null,"_links":{"self":{"href":"/internal/metric-data-sources","type":"application/json"}},"totalCount":0}
+     no_access: 200 {"items":null,"_links":{"self":{"href":"/internal/metric-data-sources","type":"application/json"}},"totalCount":0}
+[B] /internal/warehouse-integrations-health
+     member: 200 {"items":[]}
+     no_access: 200 {"items":[]}
+[B] /internal/config
+     member: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+     no_access: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+
+PHASE C: GraphQL probes
+------------------------------------------------------------------------
+[C] POST /api/graphql: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[C] POST /obs/graphql: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[C] POST /internal/graphql: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[C] POST /api/v2/graphql: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+[C] POST /graphql: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkl
+
+PHASE D: seed context -> users read under no_access
+------------------------------------------------------------------------
+[D] client-side identify seed: 202 ''
+[D] no_access user detail: 404 
+[D] member user detail baseline: 404 
+[D] member users list baseline: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+[D] no_access users list: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+
+DONE

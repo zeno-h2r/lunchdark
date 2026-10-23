@@ -1,0 +1,142 @@
+========================================================================
+R9 HUNT 3 — 10:34:49
+========================================================================
+
+PHASE A: fetch keys
+------------------------------------------------------------------------
+[A] clientId: ... mobileKey: OK
+[A] sdkKey: MISSING
+
+PHASE B: events host debug/status sweep
+------------------------------------------------------------------------
+[B] GET /: EXC srv=- body=
+[B] /health: 404 
+[B] /healthz: 404 
+[B] /status: 404 
+[B] /version: 404 
+[B] /metrics: 404 
+[B] /debug/vars: 404 
+[B] /debug/pprof/: 404 
+[B] /debug/pprof/heap: 404 
+[B] /swagger.json: 404 
+[B] /openapi.json: 404 
+[B] /api-docs: 404 
+[B] /info: 404 
+
+PHASE C: POST /events/bulk with SDK key
+------------------------------------------------------------------------
+[C] bulk invalid key: EXC body=''
+[C] bulk no auth: EXC body=''
+
+PHASE D: events client-side shapes
+------------------------------------------------------------------------
+[D] GET /events/bulk: EXC
+[D] /events/schema: 404 
+[D] /schema: 404 
+[D] /events/diagnostic: 404 
+
+PHASE E: stream /flags privilege boundary
+------------------------------------------------------------------------
+[E] /flags mobile key (expect 401): EXC body=''
+[E] /flags no auth: EXC body=''
+[E] GET /: EXC srv=-
+[E] /health: 404 404 page not found 
+[E] /healthz: 404 404 page not found 
+[E] /status: 404 404 page not found 
+[E] /version: 404 404 page not found 
+[E] /metrics: 404 404 page not found 
+[E] /debug/vars: 404 404 page not found 
+[E] /debug/pprof/: 404 404 page not found 
+
+PHASE F: legacy eval + mobile endpoints
+------------------------------------------------------------------------
+[F] /meval/{user} mobile key: EXC ct=- body='{"code":"invalid_request","message":"invalid transformer input"}'
+========================================================================
+R9 HUNT 3b — 10:36:10
+========================================================================
+
+PHASE A: env detail key fields
+------------------------------------------------------------------------
+[A] env keys: ['_access', '_followed', '_id', '_links', 'apiKey', 'approvalSettings', 'color', 'confirmChanges', 'critical', 'defaultTrackEvents', 'defaultTtl', 'key', 'mobileKey', 'name', 'requireComments', 'resourceApprovalSettings', 'secureMode', 'tags']
+[A] clientId=False mobileKey=True apiKey(sdk)=True
+[A] FINAL sdkKey=True clientId=False mobileKey=True
+
+PHASE B: events host sweep (EXC=hang)
+------------------------------------------------------------------------
+[B] GET /: HANG srv=- ''
+[B] /health: HANG ''
+[B] /status: HANG ''
+[B] /version: HANG ''
+[B] /metrics: HANG ''
+[B] /debug/vars: HANG ''
+[B] /debug/pprof/: HANG ''
+
+PHASE C: POST /events/bulk (sdk key)
+------------------------------------------------------------------------
+[C] bulk sdk key: HANG ''
+[C] bulk raw: HANG ''
+[C] bulk invalid key: HANG ''
+[C] bulk no auth: HANG ''
+
+PHASE D: events client-side shapes
+------------------------------------------------------------------------
+[D] GET /summary: HANG ''
+
+PHASE E: stream /flags privilege boundary
+------------------------------------------------------------------------
+[E] /flags SDK key: 200 SSE 'event:put\ndata:{"ld-example-experiment-dashboard-layout":{"key":"ld-example-experiment-dashboard-layout","on":true,"prerequisites":[],"targets":[],"ru'
+[E] /flags MOBILE key (expect 401): 401 ''
+[E] /flags no auth: 401 ''
+[E] GET /: HANG srv=-
+
+PHASE F: legacy eval endpoints
+------------------------------------------------------------------------
+[F] /meval/{b64} mobile key: 200 SSE 'event:put\ndata:{"ld-example-release-new-search":{"version":55,"flagVersion":2,"value":true,"variation":0,"trackEvents":false},"ld-example-ops-maintenance-banner":{"version":55,"flagVersion":5,"value":"none","variation":0,"trackEvents":false,"prerequisites":["l'
+[F] /meval/{raw} mobile key: HANG '{"code":"invalid_request","message":"invalid transformer input"}'
+[F] /mping mobile key: 200 SSE-TIMEOUT/HANG
+[F] /ping sdk key: 404 '404 page not found\n'
+[F] /all sdk key: 200 SSE 'event:put\ndata:{"path":"/","data":{"segments":{"ld-example-beta-users":{"key":"ld-example-beta-users'
+[F] /all CLIENT ID: 401 ''
+[F] /meval sdk key: HANG ''
+
+DONE
+========================================================================
+R9 HUNT 3c — 10:37:11
+========================================================================
+[0] env _id as client-side ID: 6ac28fd11c...
+
+PHASE A: env _id on stream endpoints
+------------------------------------------------------------------------
+[A] /flags env-id (expect 401): 401 ''
+[A] /all env-id (expect 401): 401 ''
+[A] /mping env-id (expect 200 client ping): 401 ''
+[A] /eval/{user}/{env-id}: 404 ''
+[A] /eval/{b64}/{env-id}: 404 ''
+[A] /meval/{user}/{env-id}: 404 '404 page not found\n'
+[A] /meval/{user}/{env-id} + SDK key hdr: 404 '404 page not found\n'
+
+PHASE B: events host retry
+------------------------------------------------------------------------
+========================================================================
+R9 HUNT 3c — 10:37:28
+========================================================================
+[0] env _id as client-side ID: 6ac28fd11c...
+
+PHASE A: env _id on stream endpoints
+------------------------------------------------------------------------
+[A] /flags env-id (expect 401): 401 ''
+[A] /all env-id (expect 401): 401 ''
+[A] /mping env-id (expect 200 client ping): 401 ''
+[A] /eval/{user}/{env-id}: 404 ''
+[A] /eval/{b64}/{env-id}: 404 ''
+[A] /meval/{user}/{env-id}: 404 '404 page not found\n'
+[A] /meval/{user}/{env-id} + SDK key hdr: 404 '404 page not found\n'
+
+PHASE B: events host retry
+------------------------------------------------------------------------
+[B] bulk sdk key: 404 ''
+[B] GET /: 499 ''
+[B] GET /healthz: 404 ''
+[B] bulk/{cid} no auth: 415 '{"code":"invalid_request","message":"Content-Type must be application/json"}'
+
+DONE

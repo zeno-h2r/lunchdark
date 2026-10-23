@@ -1,0 +1,48 @@
+========================================================================
+R9 HUNT 5 — 10:41:12
+========================================================================
+
+PHASE A: header-name discovery (TST session baseline = 200 without header)
+------------------------------------------------------------------------
+[A] LD-Account=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] LD-Account-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] LD-AccountId=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] Account-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] X-Account-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] Account=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] LD-Organization-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] X-Organization-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] Organization-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] LD-Org-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] Tenant-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[A] X-Tenant-Id=6ac29057..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+
+PHASE B: unauth + header (fence must hold)
+------------------------------------------------------------------------
+[B] unauth LD-Account: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] unauth LD-Account-Id: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] unauth LD-AccountId: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] unauth Account-Id: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] unauth X-Account-Id: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+[B] unauth Account: 401 {"code":"unauthorized","message":"Invalid account ID header"}
+
+PHASE C: CROSS-ORG header injection (read-only)
+------------------------------------------------------------------------
+[C] TST + LD-Account=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST + LD-Account-Id=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST + LD-AccountId=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST + Account-Id=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST + X-Account-Id=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST + Account=6ac28fd1..: 200 {"_links":{"self":{"href":"/internal/account/invoices","type":"application/json"}},"items":[]}
+[C] TST GET /internal/account/6ac28fd11c28fb07516cf361/invoices: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[C] TST GET /internal/accounts/6ac28fd11c28fb07516cf361/invoices: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="L
+[C] TST GET /internal/account/invoices/6ac28fd11c28fb07516cf361: 404 {"message":"Unknown invoice ID"}
+
+PHASE D: no_access token + header combos
+------------------------------------------------------------------------
+[D] no_access token: FAIL
+
+CLEANUP
+------------------------------------------------------------------------
+
+DONE

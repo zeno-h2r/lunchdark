@@ -170,3 +170,41 @@ data. This is an intra-account least-privilege failure (P2), not cross-org (P1).
   correctly enforced — this is NOT a cross-org issue; it is intra-account
   least-privilege enforcement failing on account-level endpoints.
 - No SDK keys, mobile keys, or flag data are exposed by this bypass.
+
+## R9 update (2026-10-23) — integrations + destinations: new no_access-readable families
+
+Re-verified with a fresh `no_access` token (R9 methodology: role with
+`basePermissions: no_access` + dangling-flag policy, API token minted from it):
+
+| Endpoint (GET) | no_access | Notes |
+|---|---|---|
+| /api/v2/integrations/datadog | 200 | `config.apiKey` returned **masked** `zen**************123` (first/last 3 chars) |
+| /api/v2/integrations/{splunk,elastic,dynatrace,msteams,grafana} | 200 | config lists readable |
+| /api/v2/integration-manifests | 200 | full manifest schema set |
+| /api/v2/destinations | 200 | member-session GET of this route TIMED OUT server-side in R6 — the zero-priv token gets a fast 200 |
+| /api/v2/flag-statuses | 200 | org project-key listing |
+| /api/v2/tags, /api/v2/versions | 200 | |
+| /internal/metric-data-sources | 200 | |
+| /internal/warehouse-integrations-health | 200 | |
+| /api/v2/approval-requests | 200 | items policy-filtered to empty (member session sees items) |
+
+New impact notes:
+- Integration API keys are returned masked to ANY caller (including the
+  zero-privilege token) — partial disclosure only (P5), unlike the webhook
+  signing secret which is returned in full (P2 driver).
+- `code-refs/repositories` create accepts a `pat` field but never stores or
+  returns it (checked create + detail under no_access) — no PAT leak.
+- relay-auto-config `fullKey` appears ONLY in the creation response (owner);
+  detail GET under no_access exposes `displayKey` + full policy documents but
+  not the relay key (re-confirmed R9).
+- Correctly DENIED under no_access: the entire generic query engine
+  (`POST /api/v2/chart/data`, `/api/v2/list/data` — uniform 403 viewProject for
+  every domain incl. observability.traces / context.* / sdk.* / metrics.*),
+  env detail with `apiKey`/`mobileKey` (403), `sdk-keys` route (403),
+  `/internal/account/{invoices,accrued-invoices,card,new-hires}` (legacy fence
+  rejects API tokens with "Invalid account ID header").
+- Legacy account-header fence differential (R9): 12 candidate header names
+  (`LD-Account`, `Account-Id`, `X-Tenant-Id`, …) injected with a FOREIGN
+  account id changed nothing — TST session + ORG header returned TST's own
+  invoice data, and headers are ignored entirely (account always resolves from
+  the session). No cross-org billing read. DEFENDED.

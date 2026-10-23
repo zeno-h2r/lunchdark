@@ -1,0 +1,35 @@
+========================================================================
+R9 HUNT 11 — 11:00:31
+========================================================================
+[1] initializeSession: 200 {"data":{"initializeSession":{"secure_id":"1jdkoe52-sztest-11111111-2222-4222-8222-001792753231"}}}
+[2a] pushSessionEvents: 200 {"data":{"pushSessionEvents":null}}
+[2b] pushPayload: 400 {"errors":[{"message":"Expected Name, found \u003cInvalid\u003e","locations":[{"line":1,"column":134}],"extensions":{"code":"GRAPHQL_PARSE_FAILED"}}],"data":nul
+
+PHASE 3: read-back matrix
+------------------------------------------------------------------------
+[3] UNAUTH session: 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+[3] UNAUTH isSessionPending: 400 {"errors":[{"message":"Unknown argument \"secure_id\" on field \"Query.isSessionPending\".","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"isSessionPending\" argument \"session_sec
+[3] UNAUTH events: 400 {"errors":[{"message":"Cannot query field \"event_type\" on type \"Any\".","locations":[{"line":1,"column":87}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"events\" must not have a selection since type \"Any\" has
+[3] UNAUTH event_chunks: 400 {"errors":[{"message":"Cannot query field \"id\" on type \"EventChunk\".","locations":[{"line":1,"column":85}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[3] UNAUTH event_chunk_url: 200 {"errors":[{"message":"authorization check failed: failed to make request: Post \"http://varnish-internal.prod.launchdarkly.com:3081/internal/authorization/access-check/observability/bulk\": user not authenticated: LDSO token not found in c
+[3] UNAUTH session_insight: 400 {"errors":[{"message":"Cannot query field \"insights\" on type \"SessionInsight\". Did you mean \"insight\"?","locations":[{"line":1,"column":88}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[3] TST  session: 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+[3] TST  isSessionPending: 400 {"errors":[{"message":"Unknown argument \"secure_id\" on field \"Query.isSessionPending\".","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"isSessionPending\" argument \"session_sec
+[3] TST  events: 400 {"errors":[{"message":"Cannot query field \"event_type\" on type \"Any\".","locations":[{"line":1,"column":87}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"events\" must not have a selection since type \"Any\" has
+[3] TST  event_chunks: 400 {"errors":[{"message":"Cannot query field \"id\" on type \"EventChunk\".","locations":[{"line":1,"column":85}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[3] TST  event_chunk_url: 200 {"errors":[{"message":"access denied for action 'viewSession'","path":["event_chunk_url"],"extensions":{"action":"viewSession","code":"forbidden"}}],"data":null}
+[3] TST  session_insight: 400 {"errors":[{"message":"Cannot query field \"insights\" on type \"SessionInsight\". Did you mean \"insight\"?","locations":[{"line":1,"column":88}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[3] ORG  session: 200 {"errors":[{"message":"record not found","path":["session"]}],"data":{"session":null}}
+[3] ORG  isSessionPending: 400 {"errors":[{"message":"Unknown argument \"secure_id\" on field \"Query.isSessionPending\".","locations":[{"line":1,"column":3}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"isSessionPending\" argument \"session_sec
+[3] ORG  events: 400 {"errors":[{"message":"Cannot query field \"event_type\" on type \"Any\".","locations":[{"line":1,"column":87}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"events\" must not have a selection since type \"Any\" has
+[3] ORG  event_chunks: 400 {"errors":[{"message":"Cannot query field \"id\" on type \"EventChunk\".","locations":[{"line":1,"column":85}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[3] ORG  event_chunk_url: 200 {"errors":[{"message":"access denied for action 'viewSession'","path":["event_chunk_url"],"extensions":{"action":"viewSession","code":"forbidden"}}],"data":null}
+[3] ORG  session_insight: 400 {"errors":[{"message":"Cannot query field \"insights\" on type \"SessionInsight\". Did you mean \"insight\"?","locations":[{"line":1,"column":88}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+PHASE 4: sessions(project_id) fixed types — ORG vs TST vs UNAUTH
+------------------------------------------------------------------------
+[4] ORG  sessions: 400 {"errors":[{"message":"Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"DateRangeRequiredInput.end_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{
+[4] TST  sessions: 400 {"errors":[{"message":"Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"DateRangeRequiredInput.end_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{
+[4] UNAUTH sessions: 400 {"errors":[{"message":"Field \"DateRangeRequiredInput.start_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{"message":"Field \"DateRangeRequiredInput.end_date\" of required type \"Timestamp!\" was not provided.","locations":[{"line":1,"column":78}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}},{
+
+DONE

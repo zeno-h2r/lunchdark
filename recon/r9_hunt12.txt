@@ -1,0 +1,28 @@
+========================================================================
+R9 HUNT 12 — 11:01:30
+========================================================================
+[A] ORG  sessions: 400 {"errors":[{"message":"Cannot query field \"secure_id\" on type \"SessionResults\".","locations":[{"line":1,"column":146}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[A] TST  sessions: 400 {"errors":[{"message":"Cannot query field \"secure_id\" on type \"SessionResults\".","locations":[{"line":1,"column":146}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[A] UNAUTH sessions: 400 {"errors":[{"message":"Cannot query field \"secure_id\" on type \"SessionResults\".","locations":[{"line":1,"column":146}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+[B] real ORG session id: None
+[C] ORG error_groups: 400 {"errors":[{"message":"Cannot query field \"secure_id\" on type \"ErrorResults\".","locations":[{"line":1,"column":133}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}],"data":null}
+
+DONE
+
+R9 HUNT 12b — 11:01:47
+[I] SessionResults: ['sessions', 'totalCount', 'totalLength', 'totalActiveLength']
+[I] ErrorResults: ['error_groups', 'totalCount']
+[I] Session: ['id', 'secure_id', 'client_id', 'project_id', 'ld_project_slug', 'fingerprint', 'os_name', 'os_version', 'browser_name', 'browser_version', 'ip', 'city', 'state', 'country', 'postal', 'environment', 'environment_id', 'service_name', 'app_version', 'client_version', 'firstload_version', 'client_config', 'language', 'identifier', 'identified']
+[I] ErrorGroup: ['created_at', 'updated_at', 'id', 'secure_id', 'project_id', 'type', 'event', 'structured_stack_trace', 'metadata_log', 'mapped_stack_trace', 'stack_trace', 'state', 'snoozed_until', 'environments', 'error_frequency', 'error_metrics', 'is_public', 'first_occurrence', 'last_occurrence', 'viewed', 'serviceName', 'jira_issue_links']
+[A] ORG  sessions: 200 {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["sessions","params","date_range","start_date"]}],"data":null}
+[A] TST  sessions: 200 {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["sessions","params","date_range","start_date"]}],"data":null}
+[A] UNAUTH sessions: 200 {"errors":[{"message":"time should be RFC3339Nano formatted string","path":["sessions","params","date_range","start_date"]}],"data":null}
+[B] real session id: None
+DONE
+
+R9 HUNT 12c — 11:02:07
+[A] ORG  sessions: 200 {"data":{"sessions":{"sessions":[]}}}
+[A] TST  sessions: 200 {"data":{"sessions":{"sessions":[]}}}
+[A] UNAUTH sessions: 200 {"errors":[{"message":"LDProjectAuth requires LDAccountID in context","path":["sessions"]}],"data":null}
+[B] real session id: None
+DONE

@@ -1,0 +1,46 @@
+========================================================================
+R9 HUNT 6 — 10:42:19
+========================================================================
+
+PHASE A: owner baselines
+------------------------------------------------------------------------
+[A] ORG accrued-invoices: 200 {"items":[{"amount":0,"createdAt":1792339219,"discount":null,"id":"2fhVtrJn8rTSQgh6","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":null,"freeQuantity":5000,"lineId":"6cFULDuVTA8b4ZJL","limitType":"Sessions","overageQuantity":0,"packageQuantity":0,"periodEnd":1793491200,"periodStart":1792339219,"perUnitAmount":0,"primaryContextKind":null,"productId":"iGMdbrEUtPCW9tB5","productName":"Session Replays","productType":"usage_price","subtotal":0,"usageQuantity":0,"partiallyInvoicedAmount":null},{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":null,"freeQuantity":5000,"lineId":"cEjKc7LBEy5stgF3","limitType":"AIRuns","overa
+[A] TST accrued-invoices (no hdr): 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":null,"freeQuantity":5000,"lineId":"Ucmak6PudwQGjK4B","limitType":"Sessions","overageQuantity":0,"packag
+[A] differential strings: ORG-has-data=True TST-empty=False
+
+PHASE B: TST + header=ORG_ACC on accrued-invoices (differential)
+------------------------------------------------------------------------
+[B] LD-Account: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] LD-Account-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] LD-AccountId: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] Account-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] X-Account-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] Account: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] LD-Organization-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] X-Organization-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] Organization-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] LD-Org-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] Tenant-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+[B] X-Tenant-Id: 200 {"items":[{"amount":0,"createdAt":1792339218,"discount":null,"id":"jjocYhwQ9i3ynjK5","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+
+PHASE C: invoice detail IDOR (TST -> ORG invoice id)
+------------------------------------------------------------------------
+[C] ORG owner invoice 2fhVtrJn8rTSQgh6: 404 {"message":"Unknown invoice ID"}
+[C] TST cross invoice 2fhVtrJn8rTSQgh6: 404 {"message":"Unknown invoice ID"}
+[C] TST cross invoice 2fhVtrJn8rTSQgh6 + LD-Account: 404 {"message":"Unknown invoice ID"}
+
+PHASE D: card/new-hires differential
+------------------------------------------------------------------------
+[D] ORG /internal/account/card: 404 
+[D] TST /internal/account/card (no hdr): 404 
+[D] TST /internal/account/card + LD-Account=ORG: 404 
+[D] ORG /internal/new-hires: 404 
+[D] TST /internal/new-hires (no hdr): 404 
+[D] TST /internal/new-hires + LD-Account=ORG: 404 
+
+PHASE E: control — ORG session + TST-mismatch sanity
+------------------------------------------------------------------------
+[E] ORG + bogus LD-Account: 200 {"items":[{"amount":0,"createdAt":1792339219,"discount":null,"id":"2fhVtrJn8rTSQgh6","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":null,"freeQuantity":5000,"lineId":"6cFULDuVTA8b4ZJL",
+[E] ORG + own LD-Account: 200 {"items":[{"amount":0,"createdAt":1792339219,"discount":null,"id":"2fhVtrJn8rTSQgh6","invoiceDate":1793491200,"isCurrent":true,"lines":[{"amount":0,"billedQuantity":0,"commitQuantity":0,"discount":nul
+
+DONE

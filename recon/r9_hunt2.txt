@@ -1,0 +1,55 @@
+========================================================================
+R9 HUNT 2 — 10:33:15
+========================================================================
+[0] no_access token: OK
+
+PHASE A: query engine baseline
+------------------------------------------------------------------------
+[A] member chart/data metrics.event_counts: 400 {"code":"invalid_request","message":"validation failed","errors":[{"attribute":"select[0]","reason":"unknown expression field:'count' expression:''"}]}
+[A] no_access chart/data metrics.event_counts: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[A] no_access list/data metrics.event_counts: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+
+PHASE B: metrics.* domains under no_access
+------------------------------------------------------------------------
+[B] chart metrics.context_kind_counts: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[B] chart metrics.events_last_seen: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[B] chart metrics.integration_event_counts: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[B] chart metrics.context_count: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[B] chart metrics.member_activity: EXC
+
+PHASE C: observability.traces under no_access
+------------------------------------------------------------------------
+[C] no_access list observability.traces: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[C] no_access chart observability.traces: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+
+PHASE D: context.* domains under no_access
+------------------------------------------------------------------------
+[D] no_access list context.associations: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D] no_access list context.details: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[D] no_access chart context.associations+group: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+
+PHASE E: sdk.* + ai_config domains under no_access
+------------------------------------------------------------------------
+[E] chart sdk.flag_evaluation: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[E] chart sdk.custom_event: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[E] chart sdk.event_batch: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[E] chart ai_config.metric_v2: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+[E] chart experimentation.audience: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/default"},"code":"forbidden"}
+
+PHASE F: cross-org fence under no_access
+------------------------------------------------------------------------
+[F] no_access chart foreign projectKey: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/zxorg-proj-7f3a"},"code":"forbidden"}
+[F] no_access list foreign projectKey: 403 {"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"viewProject","resource":"proj/zxorg-proj-7f3a"},"code":"forbidden"}
+
+PHASE G: write verbs / route sanity
+------------------------------------------------------------------------
+[G] GET chart/data: EXC
+[G] DELETE chart/data: EXC
+[G] POST chart/export: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="w
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+
+DONE
