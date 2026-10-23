@@ -1,0 +1,55 @@
+demo env id fetch: 200 -> 675b806fed1489094561e46a
+=== HUNT1a clientstream.launchdarkly.com census ===
+UN  / -> 404 404 page not found 
+UN  /status -> 404 404 page not found 
+UN  /health -> 404 404 page not found 
+UN  /healthz -> 404 404 page not found 
+UN  /ping -> 404 404 page not found 
+UN  /ping/6ac28fd11c28fb07516cf364 -> 0 The read operation timed out
+UN  /eval/6ac28fd11c28fb07516cf364 -> 405 Method Not Allowed 
+UN  /eval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 400 {"message":"Invalid evaluation context"}
+UN  /eval/6ac28fd11c28fb07516cf364/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9 -> 0 The read operation timed out
+UN  /meval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 404 404 page not found 
+UN  /mping/6ac28fd11c28fb07516cf364 -> 404 404 page not found 
+UN  /sdk/flags -> 404 404 page not found 
+UN  /sdk/goals/6ac28fd11c28fb07516cf364 -> 404 404 page not found 
+UN  /sdk/schema -> 404 404 page not found 
+--- clientstream cross-env /eval (unauth, by-design-public surface) ---
+UN /eval user/own-test -> 400 {"message":"Invalid evaluation context"}
+UN /eval user/demo -> 400 {"message":"Invalid evaluation context"}
+UN /eval user/dogfood -> 400 {"message":"Invalid evaluation context"}
+--- clientstream with sessions/tokens (should be irrelevant) ---
+ORG-cookie /eval own -> 400 {"message":"Invalid evaluation context"}
+ORG-cookie /sdk/goals demo -> 404 404 page not found 
+=== HUNT1b sdk.launchdarkly.com census ===
+UN  / -> 404 
+UN  /status -> 404 
+UN  /health -> 404 
+UN  /sdk/flags -> 401 
+UN  /sdk/schema -> 404 404 page not found 
+UN  /sdk/goals/6ac28fd11c28fb07516cf364 -> 200 []
+UN  /sdk/goals/675b806fed1489094561e46a -> 200 []
+UN  /meval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 404 
+UN  /mping -> 404 
+UN  /eval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 404 
+UN  /sdk/segments/x -> 401 
+UN  /sdk/flags/x -> 401 
+--- sdk host auth matrix (own keys) ---
+own-sdk-test /sdk/flags -> 200 {"ld-example-experiment-dashboard-layout":{"key":"ld-example-experiment-dashboard-layout","on":true,"prerequisites":[],"targets":[],"contextTargets":[],"rules":[],"fallthrough":{"variation":0},"offVariation":1,"variation
+own-sdk-test /sdk/schema -> 404 404 page not found 
+own-sdk-test /sdk/goals/6ac28fd11c28fb07516cf364 -> 200 []
+own-sdk-test /sdk/goals/675b806fed1489094561e46a -> 200 []
+own-sdk-test /meval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 404 
+own-mob /sdk/flags -> 401 
+own-mob /sdk/schema -> 404 404 page not found 
+own-mob /sdk/goals/6ac28fd11c28fb07516cf364 -> 200 []
+own-mob /sdk/goals/675b806fed1489094561e46a -> 200 []
+own-mob /meval/eyJrZXkiOiAiemVuby1yMTctdXNlciJ9/6ac28fd11c28fb07516cf364 -> 404 
+PAIR own-sdk-key + demo-env /sdk/goals -> 200 []
+PAIR own-sdk-key + dogfood-env /sdk/goals -> 404 
+CONTROL stream /flags own-sdk -> 0 (len=28)
+stream /meval own-mob -> 404 404 page not found 
+=== HUNT1c app host /sdk/* recheck (R16 oracle confirm) ===
+UN app /sdk/goals/6ac28fd11c28fb07516cf364 -> 200 []
+UN app /sdk/goals/675b806fed1489094561e46a -> 200 []
+UN app /sdk/goals/5866f3891cd8810a42ce5281 -> 404 

@@ -370,3 +370,41 @@ write plane** — the F2 impact case therefore still rests on the R13 read chain
 argument lives.
 
 Evidence: `recon/r15_hunt3.txt`, `recon/r15_hunt3b.txt` (captured 2026-10-24).
+
+## R17 update (2026-10-24) — breadth +8 project-scoped families; segment routes now readable (drift vs R6 control); redeploy chunk-diff clean
+
+Re-verification after the SPA redeploy (manifest e3ebfdb78 -> b80e72ad) plus a
+systematic probe of every newly mined endpoint template under the same
+zero-privilege token:
+
+**New no_access-readable families (GET 200 with real JSON data):**
+
+| Endpoint | Leaks |
+|---|---|
+| `/api/v2/projects/{p}/layers` | experiment layers inventory (keys/names/descriptions) |
+| `/api/v2/projects/{p}/metric-groups` | metric groups |
+| `/api/v2/projects/{p}/randomization-settings` | randomization units + clickhouse/warehouse experiment config |
+| `/api/v2/projects/{p}/views` | view inventory |
+| `/api/v2/projects/{p}/context-kinds` | context kind definitions |
+| `/api/v2/projects/{p}/environments/{e}/context-attributes` | context attribute names + weights (incl. `/email`, `/name` targeting metadata) |
+| `/api/v2/segments/{p}/{e}` + `/api/v2/segments/{p}` | segment definitions incl. descriptions/user counts |
+| `/api/v2/projects/{p}/ai-tools` | AI tool inventory |
+
+**Drift note (honest):** the original R6 control table recorded
+`GET /api/v2/segments/default -> 403` under a no_access token. R17 re-test
+returns **200** (same token class, fresh token) — the segment-reading surface
+has WIDENED since the original report, or the R6 test hit a different route
+shape. Either way the current state is: segments ARE readable. Layers were
+verified cross-org-safe (TST session on the unique-keyed ORG project
+`zxorg-proj-7f3a` -> 404 `Unknown project key`; org scoping enforced at
+resource resolution as documented since R1).
+
+**SPA redeploy chunk re-diff:** full re-mine of the new build (975 chunks,
+numeric webpack ids) -> 375 templates -> after placeholder normalization only
+ONE genuinely new route exists: `/api/v2/projects/{p}/ai-configs/{configKey}/sandbox`
+(new AI-config sandbox surface; GET/POST -> 405 for every identity — verb
+unknown, no response body, no data plane reachable). No new authz-relevant
+surface in the redeploy.
+
+Evidence: `recon/r17_hunt0.txt` .. `recon/r17_hunt5.txt`,
+`analysis/endpoints_r17_mined_all.txt` (captured 2026-10-24).

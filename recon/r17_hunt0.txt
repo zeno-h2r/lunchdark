@@ -1,0 +1,13 @@
+=== R17 HUNT0 identity liveness ===
+token M: 200 ? / ? / 6ac28fd11c28fb07516cf363
+token NA: 200 ? / ? / 6ac28fd11c28fb07516cf363
+token T3: 401 ? / ? / ?
+token TF: 200 ? / ? / 6ac28fd11c28fb07516cf363
+session ORG: 200 ? / ?
+session TST: 200 ? / ?
+=== own-tenant env creds (ORG owner session) ===
+default/test: envId=6ac28fd11c28fb07516cf364 apiKey=sdk-c6ce... mob=mob-08e1...
+default/production: envId=6ac28fd11c28fb07516cf365 apiKey=sdk-bbf7... mob=mob-7f6b...
+zxorg-proj-7f3a/test: envId=6ada5a65831a640734b339dc apiKey=sdk-a4bb... mob=mob-1419...
+zxorg-proj-7f3a/production: envId=6ada5a65831a640734b339dd apiKey=sdk-2e4d... mob=mob-ca89...
+saved 4 envs -> scripts/.r17_envcreds.json (gitignored dir)

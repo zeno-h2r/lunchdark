@@ -1,0 +1,12 @@
+=== HUNT2a accelerate.app.launchdarkly.com unauth API probe (F4-class) ===
+UN /api/v2/projects -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /internal/list/environments -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /api/v2/members -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /api/v2/tokens -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /internal/config/anonymous -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /internal/config/authenticated -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /api/v2/account -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+UN /health -> 200 '  <!DOCTYPE html> <html lang="en"       data-static-asset-path="https://static.launchdarkly.com/app/s/ld/"       data-manifest-name="manifest.b80e72ad'
+=== HUNT2b frontend version check (chunk re-diff decision) ===
+https://app.launchdarkly.com -> 200 fe=? be=? chunks=['https://static.launchdarkly.com/app/s/ld/runtime.96b713382a8b2799.js', 'https://static.launchdarkly.com/app/s/ld/initial.vendor.cae8a34c27061054.js', 'https://static.launchdarkly.com/app/s/ld/bootstrap.9bff69c8c18d00c2.js']
+https://demo.app.launchdarkly.com -> 200 fe=? be=? chunks=['https://static.launchdarkly.com/app/s/ld/runtime.96b713382a8b2799.js', 'https://static.launchdarkly.com/app/s/ld/initial.vendor.cae8a34c27061054.js', 'https://static.launchdarkly.com/app/s/ld/bootstrap.9bff69c8c18d00c2.js']

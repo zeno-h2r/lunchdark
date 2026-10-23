@@ -1,0 +1,6 @@
+TRUE-NEW templates after normalization: 2
+  NEW /api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox
+  NEW /api/v2/{x}
+=== probes: UN / NA / M (GET) ===
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox -> UN:405 NA:405 M:405
+/api/v2/{x} -> UN:404 NA:404 M:404

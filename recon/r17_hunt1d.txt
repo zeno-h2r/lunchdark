@@ -1,0 +1,8 @@
+1. add clientSideAvailability -> 200
+1. verify = {} version=6
+2. waiting 45s for edge propagation ...
+2. CONTROL secureMode=OFF UN /eval own (28s wait) -> 0 b'The read operation timed out'
+2. POSITIVE CONTROL STILL FAILED -> secureMode handler test INCONCLUSIVE (no data plane)
+6. remove clientSideAvailability -> 400
+6. FINAL flag: csa={} version=6 desc='ssrf-fire-1792707328-1' on=False
+6. FINAL env secureMode = False (original False)

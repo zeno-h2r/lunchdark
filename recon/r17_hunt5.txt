@@ -1,0 +1,19 @@
+=== NA readability re-verification (F2 breadth candidates) ===
+NA /api/v2/projects/default/layers -> 200 '{"items":[{"key":"zeno-victim-layer","name":"zeno victim layer","description":"TOP-SECRET-'
+NA /api/v2/projects/default/metric-groups -> 200 '{"items":[],"_links":{"parent":{"href":"/api/v2/projects/default","type":"application/json'
+NA /api/v2/projects/default/randomization-settings -> 200 '{"_projectId":"6ac28fd11c28fb07516cf362","_projectKey":"default","randomizationUnits":[{"r'
+NA /api/v2/projects/default/views -> 200 '{"_links":{"self":{"href":"/api/v2/projects/default/views?limit=20","type":"application/js'
+NA /api/v2/projects/default/context-kinds -> 200 '{"items":[{"key":"ld-example-device","name":"LD Example Context: Device","description":"Th'
+NA /api/v2/projects/default/environments/test/context-attributes -> 200 '{"items":[{"kind":"user","names":[{"name":"/email","weight":1},{"name":"/name","weight":1}'
+NA /api/v2/segments/default/test -> 200 '{"items":[{"name":"LD Example Segment: Beta Users","description":"This example segment gro'
+NA /api/v2/projects/default/ai-tools -> 200 '{"_links":{"self":{"href":"/api/v2/projects/default/ai-tools?limit=10","type":"application'
+TST-session cross-org /projects/default/layers -> 200 (isolation control)
+NA POST layers (control) -> 415 '{"code":"invalid_request","message":"Content-Type must conform to \'application/json\'"}'
+=== ai-configs sandbox route characterization (POST, expect deny/validation error) ===
+M POST sandbox {} -> 405 ''
+M POST sandbox {"input":{"text":"ping"}} -> 405 ''
+NA POST sandbox -> 405 ''
+TST -> ORG unique project layers: 404 b'{"message":"Unknown project key zxorg-proj-7f3a"}'
+TST -> ORG unique project segments env-scoped: 404 b'{"message":"Unknown project key zxorg-proj-7f3a"}'
+NA /segments/default (project route, F2-era 403): 200 b'{"links":{"parent":{"href":"/api/v2/segments","type":"applic'
+NA /segments/zxorg-proj-7f3a/test (env route): 200 b'{"items":[],"_links":{"parent":{"href":"/api/v2/segments/zxo'

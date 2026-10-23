@@ -1,0 +1,23 @@
+=== HUNT1b-1 /eval shape + order matrix (first-byte reads) ===
+/eval[user/env,legacy] own -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,legacy] own -> 0 b'The read operation timed out'
+/eval[user/env,ctx] own -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,ctx] own -> 0 b'The read operation timed out'
+/eval[user/env,legacy] demo -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,legacy] demo -> 200 b'event:put\ndata:{"sample-feature":{"version":14721,"flagVersion":2,"value":false,"variation":1,"trackEvents":false},"q4-increase-average-total-incart-p'
+/eval[user/env,ctx] demo -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,ctx] demo -> 200 b'event:put\ndata:{"enable-oauth-login-flow":{"version":14721,"flagVersion":2668,"value":true,"variation":0,"trackEvents":false},"enable-new-brand-ia":{"'
+/eval[user/env,legacy] dogfood -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,legacy] dogfood -> 401 b''
+/eval[user/env,ctx] dogfood -> 400 b'{"message":"Invalid evaluation context"}'
+/eval[env/user,ctx] dogfood -> 401 b''
+=== HUNT1b-2 secureMode toggle (OWN env only) ===
+env test baseline secureMode=False (status 200)
+PATCH secureMode=true -> 400 b'{"message":"Invalid json-patch document"}'
+verify secureMode now = False
+SECUREMODE-ON UN eval user/env own -> 400 b'{"message":"Invalid evaluation context"}'
+SECUREMODE-ON UN eval env/user own -> 0 b'The read operation timed out'
+SECUREMODE-ON UN eval env/user own +bogus-h -> 0 b'The read operation timed out'
+SECUREMODE-ON stream /flags own-sdk control -> 200 b'event:put\ndata:{"ld-example-experiment-dashboard-layout":{"key":"ld-example-experiment-dashboard-layout","on":true,"prer'
+REVERT PATCH secureMode=false -> 400
+REVERT-VERIFY secureMode = False (must equal baseline False)

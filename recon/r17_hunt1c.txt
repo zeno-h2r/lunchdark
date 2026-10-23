@@ -1,0 +1,14 @@
+1. ORIGINAL zeno-allowed-1/test clientSideAvailability = {}
+1. ORIGINAL env secureMode = False
+2. PATCH flag clientSideAvailability(add) -> 200 b'{"name":"zeno-esc-test","kind":"boolean","description":"ssrf-fire-1792707328-1","key":"zeno-allowed-'
+3. CONTROL secureMode=OFF UN /eval own -> 0 b'The read operation timed out'
+4. PATCH env secureMode=true -> 200 b'{"_links":{"analytics":{"href":"https://app.launchdarkly.com/snippet/events/v1/6ac28fd11c28fb07516cf'
+4. verify secureMode = True
+5a. SECUREMODE=ON UN /eval no-hash -> 0 b'The read operation timed out'
+5b. SECUREMODE=ON UN /eval bogus-h -> 0 b'The read operation timed out'
+5c. SECUREMODE=ON UN /eval garbage-user -> 404 b'404 page not found\n'
+6a. REVERT secureMode -> 200
+6a. VERIFY secureMode = False (original False)
+6b. REVERT flag clientSideAvailability(remove) -> 400
+6b. VERIFY flag clientSideAvailability = {} (original {})
+6c. flag _version/desc = 6 / ssrf-fire-1792707328-1
