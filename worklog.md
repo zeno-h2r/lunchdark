@@ -334,3 +334,25 @@ Stage Summary:
 - Net R5: segment-export IDOR = DEFENDED (presigned S3, no cross-org oracle); no_access bypass = READ-ONLY + endpoint list expanded (strengthens FINDING_002 to ~11 endpoint families incl. policy documents + relay configs); entitlements/release-guardian = first /internal bypass (P5 content); experiments/eval-runs cross-org fenced; flag-import plan-gate angle closed.
 - Reportable inventory unchanged: FINDING_001 (P3 obs cross-tenant injection) + FINDING_002 (P2 no_access read bypass, now stronger). Nothing new reportable this round.
 - Next queue: patch/verify FINDING_002 repro with expanded endpoint table and submit P2; optionally FINDING_001 as P3; new-round ideas: OAuth2 apps redirect_uri validation (C8), SSO/SAML flows (T7), contexts instance access (T8), auditlog search filter injection (T9).
+
+---
+Task ID: R6-IDOR-LEAK
+Agent: Super Z (main)
+Task: "keep hunt idor, info leak" — R6 round: webhook secret vs no_access, cross-org scoping of the bypass, scheduled-changes/contexts/OAuth2/insights/legacy IDOR remainder
+
+Work Log:
+- scripts/r6_hunt1-2.py persisted; outputs recon/r6_hunt1.txt, r6_hunt2.txt
+- *** WEBHOOK SIGNING SECRET LEAK: GET /api/v2/webhooks/{id} under no_access token returns "secret" field (HMAC-SHA256 webhook signing key) + target URL. Verified twice with fresh tokens. List view omits it, detail GET leaks it. Reader role also sees secret (LD models reader=view-all) -> framing: zero-privilege token discloses signing secret -> forged X-LD-Signature events against customer endpoints (CI/CD hooks). Added to FINDING_002 as impact upgrade. ***
+- CROSS-ORG SCOPING OF BYPASS RE-VERIFIED: ORG no_access token -> TST member/webhook ids 404; auditlog/tokens/roles/relay/account 200s contain ONLY own-org data (account resolved from token). Bypass strictly intra-account -> stays P2, not P1.
+- scheduled-changes: create 201 (executionDate+instructions+comment), cross-org [TST] GET/DELETE -> 404 "flag not found" (fenced, clean 200/404 contrast)
+- contexts/search: 0 items in test env (no instance data -> instance cross-org untestable, time-boxed)
+- OAuth2 apps: GET list 200 (empty); POST create 405 (route shape unresolved, time-boxed)
+- insights member-metrics: memberId param IGNORED (uniform aggregate response own-org; TST->ORG memberId same shape) -> no cross-member leak
+- automated-releases list endpoint 404 (no data); legacy API shapes (/api/flags, /api/v1, /api/evaluate) all dead 404 HTML
+- AR detail: no comments embedded; [TST] cross-org AR fetch 404 fenced
+- Cleanup: r6 noaccess/reader/org-tok-for-id tokens + role + both test webhooks deleted. Canaries untouched.
+
+Stage Summary:
+- FINDING_002 impact upgraded: webhook signing-secret disclosure via zero-privilege token (forge signed LD events). Cross-org check confirms intra-account scope (P2 holds).
+- IDOR remainder closed: scheduled-changes/contexts/AR/legacy/insights all fenced or empty.
+- Reportable inventory: FINDING_001 (P3 obs injection), FINDING_002 (P2, now incl. secret disclosure). Ready to draft reports.

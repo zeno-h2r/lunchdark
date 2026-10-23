@@ -1,0 +1,43 @@
+========================================================================
+R6 HUNT 2 — no_access cross-org scoping — 00:00:45
+========================================================================
+[0] ORG no_access token: OK
+[0] org_wh=6adaa3b0db707e0735880977 tst_wh=6adaa3b1c4160e074652232c org_token_id=6adaa3b39c08f70730b203a2
+
+PHASE X: no_access token -> other org's resources (P1 test)
+------------------------------------------------------------------------
+[X] TST member detail     : 404 {"code":"not_found","message":"Invalid resource identifier"}
+[X] TST member teams      : 405 
+[X] TST webhook detail    : 404 
+[X] TST auditlog          : 200 {"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adaa3b39c08f70730b203a3","type":"application/json"},"site":{"h
+[X] TST tokens list       : 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/members/6ac28fd1
+[X] TST projects list     : 200 {"_links":{"self":{"href":"/api/v2/projects?limit=20","type":"application/json"}},"items":[],"totalCount":0}
+[X] TST roles list        : 200 {"_links":{"self":{"href":"/api/v2/roles?limit=1000000","type":"application/json"}},"items":[{"_id":"6ac3b53a62ca700732fdb893","_links":{"parent":{"href":"/api/v2/roles","type":"ap
+[X] TST relay config      : 200 {"items":[{"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf
+[X] TST account detail    : 200 {"_id":"6ac28fd11c28fb07516cf361","_links":{"invoices":{"href":"/internal/account/invoices","type":"application/json"},"members":{"href":"/api/v2/members","type":"application/json"
+[X] ORG own-token reset (sanity, should be 403): 415 {"code":"invalid_request","message":"Content-Type must conform to 'application/json'"}
+
+PHASE Y: other secret-bearing objects under no_access
+------------------------------------------------------------------------
+[Y] webhook detail (secret?)  : 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adaa3b0db707e0735880977","type":"application/json"}},"_id":"6a | secret="44dd62dafded4ec4a6ea7f74dc0712f4","on":false,"tags":[]}
+[Y] relay auto-config detail  : 200 {"_id":"6ac3b42d7c3e1a06f53cf211","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf
+[Y] members list fields       : 200 {"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"s
+[Y] member detail own         : 200 {"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnab
+[Y] tokens list fields        : 200 {"items":[{"_id":"6ad9fbdd910326079dc637cf","ownerId":"6ac28fd11c28fb07516cf361","memberId":"6ac28fd11c28fb07516cf363","_member":{"_links":{"self":{"href":"/api/v2/member
+[Y] auditlog entry            : 200 {"items":[{"_links":{"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adaa3b39c08f70730b203a3","type":"application/json"},
+
+PHASE Z: reader-role token webhook secret (by-design baseline)
+------------------------------------------------------------------------
+[Z] reader GET webhook: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adaa3b0db707e0735880977","type":"application/json"}},"_id":"6adaa3b0db707e0735880977","name"
+[Z] reader -> TST member (cross-org): 404 {"code":"not_found","message":"Invalid resource identifier"}
+
+CLEANUP
+------------------------------------------------------------------------
+[X] zeno-noaccess-r6b delete: 204
+[X] zeno-reader-r6 delete: 204
+[X] zeno-org-tok-for-id delete: 204
+[X] role delete: 204
+[X] org webhook delete: 204
+[X] tst webhook delete: 204
+
+DONE

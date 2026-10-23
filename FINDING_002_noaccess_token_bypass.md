@@ -135,6 +135,35 @@ least-privilege failure only).
 S3 files behind segment exports are properly presigned (SigV4, 10-min expiry);
 bucket listing denied. Segment exports are org-fenced (uniform 500, no oracle).
 
+
+## R6 update (2026-10-23) — WEBHOOK SIGNING SECRET disclosure (impact upgrade)
+
+`GET /api/v2/webhooks/{id}` under the zero-privilege token returns the webhook's
+HMAC signing secret in the `secret` field (re-verified twice with fresh
+no_access tokens):
+
+```json
+{"_id":"6adaa3b0db707e0735880977","name":"zeno-sign-wh-b",
+ "url":"https://example.com/zx-b","secret":"44dd62dafded4ec4a6ea7f74dc0712f4","on":false}
+```
+
+The same response leaks the webhook target URL. LaunchDarkly signs deliveries
+with `X-LD-Signature: sha256=HMAC-SHA256(secret, body)` — a zero-privilege
+token holder can therefore **forge validly-signed LaunchDarkly webhook events**
+against any endpoint configured in the account (CI/CD auto-deploy hooks,
+incident tooling, chat bots that verify LD signatures).
+
+Baseline comparison: the built-in `reader` role also sees the secret (LD models
+reader as "view everything"), which makes the correct framing: **a token whose
+effective permissions are explicitly NOTHING still discloses a signing secret
+and the full account recon surface**. List view (`GET /api/v2/webhooks`) does
+not include the secret — only the detail GET does.
+
+Cross-org scoping check (re-verified R6): the no_access token's account-level
+reads are account-scoped — cross-org member/webhook IDs return 404; auditlog /
+tokens / roles / relay / account responses contain only the token's own org
+data. This is an intra-account least-privilege failure (P2), not cross-org (P1).
+
 ## Notes
 
 - Sessions/cookies, project-scoped resources, and all write paths tested were

