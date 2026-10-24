@@ -1,0 +1,1 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[33615],{472937(s,a,r){var c=r(982529);r.d(a,{MetricsSearch:()=>c.E})}}]);

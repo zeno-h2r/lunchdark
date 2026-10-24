@@ -1,0 +1,15 @@
+setup: mc+cfg+var -> 201
+aicfg keys: ['_links', '_maintainer', 'createdAt', 'dependencies', 'description', 'key', 'mode', 'name', 'tags', 'updatedAt', 'variations', 'version']
+aicfg state: {"_maintainer": {"_id": "6ac28fd11c28fb07516cf363", "email": "zeno0+org@bugcrowdninja.com", "firstName": "zeno", "kind": "member", "lastName": "test", "role": "owner"}, "createdAt": 1792845777668, "dependencies": [], "description": "", "key": "zeno-r21-aicfg", "mode": "completion", "name": "zeno-r21 aicfg", "tags": ["zeno-r21"], "updatedAt": 1792845777668, "variations": [{"_id": "fa501eab-6b71-44e6-81cf-8bffd9fb7b81", "_links": {"parent": {"href": "/api/v2/projects/default/ai-configs/zeno-r21-ai
+targeting test env: {"_environmentName": "Test", "_version": 5, "contextTargets": [], "enabled": true, "fallthrough": {"variation": 1}, "lastModified": 1792845779338, "offVariation": 0, "rules": [], "targets": [], "trackEvents": false, "trackEventsFallthrough": false}
+semantic targeting PATCH -> 400 b'{"code":"invalid_request","message":"/required missing properties \'environmentKey\', \'instructions\'."}'
+semantic targeting PATCH v2 -> 400 b'{"code":"invalid_request","message":"/required missing properties \'environmentKey\', \'instructions\'."}'
+completion[mc-in-body] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+completion[env-query] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+completion[env-in-body] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+completion[enable-first] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+cleanup done

@@ -1,0 +1,16 @@
+mc -> 200 b'{"global":false,"id":"zeno-r21-model","isRestricted":false,"key":"zeno-r21-mc","name":"zeno-r21 mc","params":{"apiKey":"zeno-r21-dummy","baseUrl":"https://webhook.site/b05dc8a1-3df'
+aicfg -> 201
+var -> 201
+variations=['zeno-r21-var'] myIdx=0
+targeting instructions PATCH -> 400 b'{"code":"invalid_request","message":"instruction kind \'updateFallthroughVariation\' unsupported"}'
+aiconfig-test-run config -> 201 id=999c561b-3c6f-4312-9721-04e2a00ab015
+completion[a] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+completion[b] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    hits: 0
+
+=== CLEANUP ===
+aicfg DEL -> 204
+mc DEL -> 204
+testrun DEL -> 204
+collector DEL

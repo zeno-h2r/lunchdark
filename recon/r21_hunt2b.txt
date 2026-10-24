@@ -1,0 +1,18 @@
+collector -> 201 4ec6b472-2356-4837-8b05-57f2aaca9d5f
+model-config -> 200 b'{"global":false,"id":"zeno-r21-model","isRestricted":false,"key":"zeno-r21-mc","name":"zeno-r21 mc","params":{"baseUrl":"https://webhook.site/4ec6b472-2356-4837-8b05-57f2aaca9d5f","model":"gpt-4o-mini'
+ai-config -> 201
+variation -> 201 b'{"_id":"71f775e6-9de7-4cba-91ce-b7188f6f999f","_links":{"parent":{"href":"/api/v2/projects/default/ai-configs/zeno-r21-aicfg","type":"application/json"}},"_publishedAt":1792845715670,"createdAt":1792845715670,"key":"zeno-r21-var","messages":[{"conten'
+variations n=1 varIndex=0
+PATCH targeting -> 400 b'{"code":"invalid_request","message":"/type got array, want object."}'
+PUT targeting -> 405 b''
+completion[r1] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    collector hits: 0
+completion[r2] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+    collector hits: 0
+mc->imds patch -> 200 b'{"global":false,"id":"zeno-r21-model","isRestricted":false,"key":"zeno-r21-mc","name":"zeno-r21 mc","params":{"baseUrl":"http://169.254.169.254/latest'
+completion[imds] -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r21-aicfg\\" is not configured"}'
+
+=== CLEANUP ===
+aicfg DEL -> 204
+mc DEL -> 204
+collector DEL -> 204

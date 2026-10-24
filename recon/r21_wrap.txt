@@ -1,0 +1,11 @@
+env approvalSettings: serviceKind=launchdarkly cfgId=None required=False serviceConfig={}
+integrations custom-approvals: total=0 zeno=0
+integrations aiconfig-test-run: total=0 zeno=0
+integrations vercel-native: total=0 zeno=0
+integrations launchdarkly-developer-toolbar: total=0 zeno=0
+integrations pagerduty-guardian-edition: total=0 zeno=0
+flags zeno-r21 residue: []
+model-configs zeno-r21 residue: []
+ai-configs zeno-r21 residue: []
+approval-requests: 0
+canary destinations visible: 2 kinds=['s3', 'clickhouse']

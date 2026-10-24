@@ -1,0 +1,1137 @@
+=== R21 route census: 560 raw, 544 generalized ===
+
+### SSRF-RELEVANT GENERALIZED ROUTES (with raw variants + files) ###
+
+/api/v2/account/relay-auto-configs  (1 variants, 11 files)
+    raw: /api/v2/account/relay-auto-configs
+         src: EnvironmentKeys.778a4b3c3d5ae64f.js,OrganizationRelayProxies.c830f722025fcd83.js,OrganizationRelayProxiesEdit.2cae9111a55633a7.js,OrganizationRelayProxiesNew.5bd2d350f86a3fcf.js
+
+/api/v2/account/relay-auto-configs/{v}  (2 variants, 3 files)
+    raw: /api/v2/account/relay-auto-configs/${e}
+         src: OrganizationRelayProxies.c830f722025fcd83.js,OrganizationRelayProxiesEdit.2cae9111a55633a7.js,OrganizationRelayProxiesNew.5bd2d350f86a3fcf.js
+    raw: /api/v2/account/relay-auto-configs/${r}
+         src: OrganizationRelayProxies.c830f722025fcd83.js,OrganizationRelayProxiesEdit.2cae9111a55633a7.js,OrganizationRelayProxiesNew.5bd2d350f86a3fcf.js
+
+/api/v2/account/relay-auto-configs/{v}/reset  (1 variants, 3 files)
+    raw: /api/v2/account/relay-auto-configs/${r}/reset
+         src: OrganizationRelayProxies.c830f722025fcd83.js,OrganizationRelayProxiesEdit.2cae9111a55633a7.js,OrganizationRelayProxiesNew.5bd2d350f86a3fcf.js
+
+/api/v2/approval-requests  (1 variants, 1 files)
+    raw: /api/v2/approval-requests
+         src: common.95cadf88452d8760.js
+
+/api/v2/approval-requests/projects/{projectKey}/settings  (1 variants, 1 files)
+    raw: /api/v2/approval-requests/projects/{projectKey}/settings
+         src: common.95cadf88452d8760.js
+
+/api/v2/approval-requests/{v}  (2 variants, 1 files)
+    raw: /api/v2/approval-requests/${e}
+         src: common.95cadf88452d8760.js
+    raw: /api/v2/approval-requests/{id}
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js,common.95cadf88452d8760.js
+
+/api/v2/approval-requests/{v}/apply  (2 variants, 1 files)
+    raw: /api/v2/approval-requests/${t}/apply
+         src: common.95cadf88452d8760.js
+    raw: /api/v2/approval-requests/{id}/apply
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/approval-requests/{v}/reviews  (2 variants, 1 files)
+    raw: /api/v2/approval-requests/${n}/reviews
+         src: common.95cadf88452d8760.js
+    raw: /api/v2/approval-requests/{id}/reviews
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/destinations  (1 variants, 1 files)
+    raw: /api/v2/destinations
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/generate-warehouse-destination-key-pair  (1 variants, 1 files)
+    raw: /api/v2/destinations/generate-warehouse-destination-key-pair
+         src: IntegrationsDestinationsNew.f15bd670d354b509.js
+
+/api/v2/destinations/projects/{projKey}/environments/{envKey}/test-warehouse-destination-connection  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/{projKey}/environments/{envKey}/test-warehouse-destination-connection
+         src: IntegrationsDestinationsNew.f15bd670d354b509.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/bigquery/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/bigquery/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/clickhouse/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/clickhouse/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/clickhouse/setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/clickhouse/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/databricks/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/databricks/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/redshift/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/redshift/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/redshift/setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/redshift/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/s3/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/s3/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/s3/setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/s3/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/snowflake-v2/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/snowflake-v2/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/snowflake-v2/setup  (1 variants, 1 files)
+    raw: /api/v2/destinations/projects/${e}/environments/${t}/kinds/snowflake-v2/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/{projectKey}/{environmentKey}  (1 variants, 1 files)
+    raw: /api/v2/destinations/{projectKey}/{environmentKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/{projectKey}/{environmentKey}/{v}  (1 variants, 1 files)
+    raw: /api/v2/destinations/{projectKey}/{environmentKey}/{id}
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/{projectKey}/{environmentKey}/{v}/test-event  (1 variants, 1 files)
+    raw: /api/v2/destinations/{projectKey}/{environmentKey}/{id}/test-event
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/{v}/{v}  (1 variants, 1 files)
+    raw: /api/v2/destinations/${t}/${n}
+         src: common.95cadf88452d8760.js
+
+/api/v2/destinations/{v}/{v}/{v}  (1 variants, 2 files)
+    raw: /api/v2/destinations/${r}/${o}/${t}
+         src: IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/flags/{projKey}/{flagKey}/schema/preview  (1 variants, 1 files)
+    raw: /api/v2/flags/{projKey}/{flagKey}/schema/preview
+         src: FlagVariationSettings.5727d0ae47baf9d6.js
+
+/api/v2/flags/{v}/{v}/triggers/{v}  (2 variants, 1 files)
+    raw: /api/v2/flags/${e.projKey}/${e.flagKey}/triggers/${e.envKey}
+         src: common.95cadf88452d8760.js
+    raw: /api/v2/flags/${r}/${n}/triggers/${t}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-capabilities/big-segment-store  (1 variants, 5 files)
+    raw: /api/v2/integration-capabilities/big-segment-store
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionErrors.b86dbcc8a43166ca.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}  (1 variants, 2 files)
+    raw: /api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}
+         src: IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}/{integrationId}  (1 variants, 5 files)
+    raw: /api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}/{integrationId}
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionErrors.b86dbcc8a43166ca.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/featureStore  (1 variants, 3 files)
+    raw: /api/v2/integration-capabilities/featureStore
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/flag-import  (1 variants, 4 files)
+    raw: /api/v2/integration-capabilities/flag-import
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionErrors.b86dbcc8a43166ca.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}  (1 variants, 1 files)
+    raw: /api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}
+         src: IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}  (1 variants, 4 files)
+    raw: /api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionErrors.b86dbcc8a43166ca.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}/trigger  (1 variants, 2 files)
+    raw: /api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}/trigger
+         src: IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js,IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js
+
+/api/v2/integration-configurations/keys/clickhouse-experimentation/setup  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/keys/clickhouse-experimentation/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-configurations/keys/redshift-experimentation/setup  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/keys/redshift-experimentation/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-configurations/keys/snowflake-experimentation/setup  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/keys/snowflake-experimentation/setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-configurations/keys/{integrationKey}  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/keys/{integrationKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-configurations/{integrationConfigurationId}  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/{integrationConfigurationId}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-configurations/{v}/complete-setup  (1 variants, 1 files)
+    raw: /api/v2/integration-configurations/${e}/complete-setup
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-manifests  (1 variants, 1 files)
+    raw: /api/v2/integration-manifests
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-manifests/{integrationKey}  (1 variants, 1 files)
+    raw: /api/v2/integration-manifests/{integrationKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-manifests/{integrationKey}/dynamic-options/{dynamicEnumKey}  (1 variants, 1 files)
+    raw: /api/v2/integration-manifests/{integrationKey}/dynamic-options/{dynamicEnumKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-manifests/{v}  (1 variants, 1 files)
+    raw: /api/v2/integration-manifests/${e}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integration-manifests/{v}/dynamic-options/{v}  (2 variants, 2 files)
+    raw: /api/v2/integration-manifests/${e}/dynamic-options/${n}
+         src: FlagTargetingReviewModal.145c240164200345.js
+    raw: /api/v2/integration-manifests/${e}/dynamic-options/${t}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integrations  (1 variants, 1 files)
+    raw: /api/v2/integrations
+         src: common.95cadf88452d8760.js
+
+/api/v2/integrations/jira/issue-create  (1 variants, 1 files)
+    raw: /api/v2/integrations/jira/issue-create
+         src: UxInsights.81f5ad53667bc5ae.js
+
+/api/v2/integrations/slack  (1 variants, 1 files)
+    raw: /api/v2/integrations/slack
+         src: common.95cadf88452d8760.js
+
+/api/v2/integrations/slack/{v}  (1 variants, 1 files)
+    raw: /api/v2/integrations/slack/{id}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integrations/{integrationKey}  (1 variants, 1 files)
+    raw: /api/v2/integrations/{integrationKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/integrations/{integrationKey}/{v}  (1 variants, 1 files)
+    raw: /api/v2/integrations/{integrationKey}/{id}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/model-configs  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/model-configs
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/model-configs/restricted  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/model-configs/restricted
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/versions  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/versions
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/prompt-snippets
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/references  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/references
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/versions  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/versions
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/quick-stats  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/quick-stats
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/skills  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/skills
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/references  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/references
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/versions  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/versions
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/describe  (1 variants, 2 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/describe
+         src: AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics  (1 variants, 2 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics
+         src: AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-variation  (1 variants, 2 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-variation
+         src: AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-version  (1 variants, 2 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-version
+         src: AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/targeting  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/targeting
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers/{triggerID}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers/{triggerID}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/variations
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations/{variationKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-configs/{configKey}/variations/{variationKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-tools  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-tools
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-tools/{toolKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}/references  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-tools/{toolKey}/references
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}/versions  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/ai-tools/{toolKey}/versions
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers  (1 variants, 6 files)
+    raw: /api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}  (1 variants, 6 files)
+    raw: /api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/disable  (1 variants, 6 files)
+    raw: /api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/disable
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/enable  (1 variants, 6 files)
+    raw: /api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/enable
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests  (1 variants, 3 files)
+    raw: /api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests
+         src: FlagTargetingReviewModal.145c240164200345.js,FlagTargetingRewrite.ab98886660c3dfac.js,RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}/apply  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}/apply
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}/reviews  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}/reviews
+         src: RewritePendingChangesDrawer.24652b62a87f54e6.js
+
+/api/v2/projects/{projectKey}/view-associations/{resourceType}/{resourceKey}  (1 variants, 1 files)
+    raw: /api/v2/projects/{projectKey}/view-associations/{resourceType}/{resourceKey}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests  (1 variants, 1 files)
+    raw: /api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests-flag-copy  (1 variants, 1 files)
+    raw: /api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests-flag-copy
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}  (2 variants, 1 files)
+    raw: /api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${r}
+         src: common.95cadf88452d8760.js
+    raw: /api/v2/projects/${e}/flags/${t}/environments/${n}/approval-requests/${r}
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}/apply  (1 variants, 1 files)
+    raw: /api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${a}/apply
+         src: common.95cadf88452d8760.js
+
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}/reviews  (1 variants, 1 files)
+    raw: /api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${s}/reviews
+         src: common.95cadf88452d8760.js
+
+/api/v2/segments/{v}/{v}/{v}/exports  (1 variants, 1 files)
+    raw: /api/v2/segments/${e}/${t}/${n}/exports
+         src: common.95cadf88452d8760.js
+
+/api/v2/segments/{v}/{v}/{v}/exports/{v}  (1 variants, 1 files)
+    raw: /api/v2/segments/${e}/${t}/${n}/exports/${r}
+         src: common.95cadf88452d8760.js
+
+/api/v2/segments/{v}/{v}/{v}/imports  (1 variants, 1 files)
+    raw: /api/v2/segments/${e}/${t}/${n}/imports
+         src: common.95cadf88452d8760.js
+
+/api/v2/usage/ai-runs  (1 variants, 1 files)
+    raw: /api/v2/usage/ai-runs
+         src: common.95cadf88452d8760.js
+
+/api/v2/usage/data-export-events  (1 variants, 1 files)
+    raw: /api/v2/usage/data-export-events
+         src: common.95cadf88452d8760.js
+
+/api/v2/usage/data-export-source-capabilities  (1 variants, 1 files)
+    raw: /api/v2/usage/data-export-source-capabilities
+         src: common.95cadf88452d8760.js
+
+/api/v2/usage/service-connections  (1 variants, 1 files)
+    raw: /api/v2/usage/service-connections
+         src: common.95cadf88452d8760.js
+
+/api/v2/usage/warehouse-export  (1 variants, 1 files)
+    raw: /api/v2/usage/warehouse-export
+         src: common.95cadf88452d8760.js
+
+/api/v2/webhooks  (1 variants, 9 files)
+    raw: /api/v2/webhooks
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsWebhookEdit.0c590f10f952f4a7.js,IntegrationsWebhookNew.24e95117e60ad563.js,OrganizationRoles.bd57e15d60fd198b.js
+
+/api/v2/webhooks/{v}  (1 variants, 1 files)
+    raw: /api/v2/webhooks/{id}
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsWebhookEdit.0c590f10f952f4a7.js,IntegrationsWebhookNew.24e95117e60ad563.js,OrganizationRoles.bd57e15d60fd198b.js
+
+/internal/account/saml  (1 variants, 1 files)
+    raw: /internal/account/saml
+         src: common.95cadf88452d8760.js
+
+/internal/account/saml-app-details  (1 variants, 1 files)
+    raw: /internal/account/saml-app-details
+         src: common.95cadf88452d8760.js
+
+/internal/account/saml/encryption-certificates  (1 variants, 2 files)
+    raw: /internal/account/saml/encryption-certificates
+         src: OrganizationSAMLConfig.6397b109977567c1.js,SSODomainVerification.e0e973ce7ec4fdf5.js
+
+/internal/account/signup/facilitated-trial/{v}/validate  (1 variants, 1 files)
+    raw: /internal/account/signup/facilitated-trial/${e}/validate
+         src: common.95cadf88452d8760.js
+
+/internal/ai-configs/{configKey}/completion  (1 variants, 1 files)
+    raw: /internal/ai-configs/{configKey}/completion
+         src: common.95cadf88452d8760.js
+
+/internal/entitlements/ai-configs  (1 variants, 1 files)
+    raw: /internal/entitlements/ai-configs
+         src: common.95cadf88452d8760.js
+
+/internal/incoming-webhook-subscriptions/providers/{v}  (1 variants, 2 files)
+    raw: /internal/incoming-webhook-subscriptions/providers/${e}
+         src: Integrations.5e7c1abd438d3db4.js,IntegrationsSentry.20dc5002062e4196.js
+
+/internal/incoming-webhook-subscriptions/providers/{v}/projects  (2 variants, 2 files)
+    raw: /internal/incoming-webhook-subscriptions/providers/${n}/projects
+         src: IntegrationsSentry.20dc5002062e4196.js
+    raw: /internal/incoming-webhook-subscriptions/providers/${t}/projects
+         src: Integrations.5e7c1abd438d3db4.js
+
+/internal/incoming-webhook-subscriptions/{v}  (1 variants, 1 files)
+    raw: /internal/incoming-webhook-subscriptions/${e.subscriptionId}
+         src: IntegrationsSentry.20dc5002062e4196.js
+
+/internal/integrations/{v}/capabilities/approval/map-members  (1 variants, 1 files)
+    raw: /internal/integrations/${e}/capabilities/approval/map-members
+         src: common.95cadf88452d8760.js
+
+/internal/members/access-summary/preview  (1 variants, 9 files)
+    raw: /internal/members/access-summary/preview
+         src: AcceptInvitation.f40a6e7084e4b2d4.js,ChooseOrganizationContainer.0a5ae3312cead801.js,ChooseOrganizationPasswordFormContainer.5d46a5a4ab391166.js,CreateOrJoinContainer.74bdadbeac01baf5.js
+
+/internal/notification-service/channels${a.toString  (1 variants, 1 files)
+    raw: /internal/notification-service/channels${a.toString
+         src: FlagMonitoring.690ebf96bd3f1655.js
+
+/internal/notification-service/channels${n.toString  (1 variants, 5 files)
+    raw: /internal/notification-service/channels${n.toString
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,FlagUserFeedback.e03e311e44f67354.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/internal/notification-service/sync-channels  (1 variants, 6 files)
+    raw: /internal/notification-service/sync-channels
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagMonitoring.690ebf96bd3f1655.js,FlagTargetingRewrite.ab98886660c3dfac.js,FlagUserFeedback.e03e311e44f67354.js
+
+/internal/profile/feature-previews  (1 variants, 1 files)
+    raw: /internal/profile/feature-previews
+         src: FeaturePreviews.f65d437692ed04e9.js
+
+/internal/profile/feature-previews/{featurePreviewKey}  (1 variants, 1 files)
+    raw: /internal/profile/feature-previews/{featurePreviewKey}
+         src: FeaturePreviews.f65d437692ed04e9.js
+
+/internal/projects/{projKey}/datasets/{datasetId}/preview  (1 variants, 1 files)
+    raw: /internal/projects/{projKey}/datasets/{datasetId}/preview
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projKey}/datasets/{datasetId}/upload-url  (1 variants, 1 files)
+    raw: /internal/projects/{projKey}/datasets/{datasetId}/upload-url
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projKey}/lifecycle-cleanup-preview  (1 variants, 7 files)
+    raw: /internal/projects/{projKey}/lifecycle-cleanup-preview
+         src: FlagArchiveModal.4b69da6b73392809.js,FlagEntityHome.fe21bc6be6ec0497.js,FlagSettingsIndex.30511eeb1fd1fd40.js,FlagsDashboard.57d7e47703adb393.js
+
+/internal/projects/{projKey}/warehouse-native-integrations/{integrationConfigurationId}/metric-data-source-preview  (1 variants, 9 files)
+    raw: /internal/projects/{projKey}/warehouse-native-integrations/{integrationConfigurationId}/metric-data-source-preview
+         src: DataSourcesAssignmentsCreate.bad43ad44bcb13b5.js,DataSourcesAssignmentsDetails.10cbbeb74127c945.js,DataSourcesAssignmentsDetailsConfiguration.5bda330913af56c9.js,DataSourcesAttributesCreate.af9ba9eb84be0ce5.js
+
+/internal/projects/{projectKey}/adaptive-triggers  (1 variants, 6 files)
+    raw: /internal/projects/{projectKey}/adaptive-triggers
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/internal/projects/{projectKey}/adaptive-triggers/counts  (1 variants, 6 files)
+    raw: /internal/projects/{projectKey}/adaptive-triggers/counts
+         src: AiConfigFlagTargetingRewrite.183dc39456414ce9.js,FlagTargetingRewrite.ab98886660c3dfac.js,ObservabilityAlerts.ab9fb6eb0b272761.js,ObservabilityAlertsEdit.feca66b4ed5de7b1.js
+
+/internal/projects/{projectKey}/ai-config-insights  (1 variants, 4 files)
+    raw: /internal/projects/{projectKey}/ai-config-insights
+         src: AiConfigDetails.544ccdd2c8a67787.js,AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoring.a7abee69bc475033.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/internal/projects/{projectKey}/ai-configs/ai-tools/{toolKey}/bulk-version-update  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/ai-tools/{toolKey}/bulk-version-update
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/bulk-version-update  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/bulk-version-update
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/references  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/references
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/bulk-version-update  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/bulk-version-update
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/skills/{skillKey}/bulk-version-update  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/skills/{skillKey}/bulk-version-update
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/{configKey}  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/{configKey}
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/{configKey}/references  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/{configKey}/references
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-configs/{configKey}/variationsBulk  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/ai-configs/{configKey}/variationsBulk
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/ai-monitoring-diagnostics  (1 variants, 4 files)
+    raw: /internal/projects/{projectKey}/ai-monitoring-diagnostics
+         src: AiConfigDetails.544ccdd2c8a67787.js,AiConfigMonitoring.68250bbfb0e8bdf4.js,AiMonitoring.a7abee69bc475033.js,AiMonitoringTrends.9383d1db320b4d3c.js
+
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/integration/status  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/integration/status
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/environments/{environmentKey}/warehouse-native-integrations/{integrationConfigurationId}/health  (1 variants, 1 files)
+    raw: /internal/projects/{projectKey}/environments/{environmentKey}/warehouse-native-integrations/{integrationConfigurationId}/health
+         src: common.95cadf88452d8760.js
+
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/get_latest_groups  (1 variants, 2 files)
+    raw: /internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/get_latest_groups
+         src: FlagMonitoring.690ebf96bd3f1655.js,FlagUserFeedback.e03e311e44f67354.js
+
+/internal/projects/{projectKey}/monitor/events/{eventKey}/metadata  (1 variants, 6 files)
+    raw: /internal/projects/{projectKey}/monitor/events/{eventKey}/metadata
+         src: FlagAudience.c86812178809090e.js,FlagMonitoring.690ebf96bd3f1655.js,FlagUserFeedback.e03e311e44f67354.js,FlagsDashboard.57d7e47703adb393.js
+
+/internal/warehouse-integrations-health  (1 variants, 1 files)
+    raw: /internal/warehouse-integrations-health
+         src: common.95cadf88452d8760.js
+
+### ROUTES NOT IN endpoints_full.txt (candidate hidden) ###
+/api/feature-flags/get-feature-flag   raw-ex: ['/api/feature-flags/get-feature-flag']
+/api/fern-docs/search/v2/key   raw-ex: ['/api/fern-docs/search/v2/key']
+/api/segments/get-segment   raw-ex: ['/api/segments/get-segment']
+/api/status   raw-ex: ['/api/status']
+/api/v2/account/factory-settings   raw-ex: ['/api/v2/account/factory-settings']
+/api/v2/account/factory-settings/repos   raw-ex: ['/api/v2/account/factory-settings/repos']
+/api/v2/account/factory-settings/repos/{v}   raw-ex: ['/api/v2/account/factory-settings/repos/${e.githubRepoId}']
+/api/v2/account/ip-allowlist   raw-ex: ['/api/v2/account/ip-allowlist']
+/api/v2/account/ip-allowlist/{v}   raw-ex: ['/api/v2/account/ip-allowlist/{id}']
+/api/v2/account/pending-requests/{v}   raw-ex: ['/api/v2/account/pending-requests/{kind}']
+/api/v2/account/relay-auto-configs   raw-ex: ['/api/v2/account/relay-auto-configs']
+/api/v2/account/relay-auto-configs/{v}   raw-ex: ['/api/v2/account/relay-auto-configs/${e}', '/api/v2/account/relay-auto-configs/${r}']
+/api/v2/account/relay-auto-configs/{v}/reset   raw-ex: ['/api/v2/account/relay-auto-configs/${r}/reset']
+/api/v2/announcements   raw-ex: ['/api/v2/announcements']
+/api/v2/announcements/{announcementId}   raw-ex: ['/api/v2/announcements/{announcementId}']
+/api/v2/applications   raw-ex: ['/api/v2/applications']
+/api/v2/applications/{applicationKey}   raw-ex: ['/api/v2/applications/{applicationKey}']
+/api/v2/applications/{applicationKey}/version-adoption   raw-ex: ['/api/v2/applications/{applicationKey}/version-adoption']
+/api/v2/applications/{applicationKey}/versions   raw-ex: ['/api/v2/applications/{applicationKey}/versions']
+/api/v2/applications/{applicationKey}/versions/{versionKey}   raw-ex: ['/api/v2/applications/{applicationKey}/versions/{versionKey}']
+/api/v2/approval-requests   raw-ex: ['/api/v2/approval-requests']
+/api/v2/approval-requests/projects/{projectKey}/settings   raw-ex: ['/api/v2/approval-requests/projects/{projectKey}/settings']
+/api/v2/approval-requests/{v}   raw-ex: ['/api/v2/approval-requests/${e}', '/api/v2/approval-requests/{id}']
+/api/v2/approval-requests/{v}/apply   raw-ex: ['/api/v2/approval-requests/${t}/apply', '/api/v2/approval-requests/{id}/apply']
+/api/v2/approval-requests/{v}/reviews   raw-ex: ['/api/v2/approval-requests/${n}/reviews', '/api/v2/approval-requests/{id}/reviews']
+/api/v2/auditlog   raw-ex: ['/api/v2/auditlog']
+/api/v2/auditlog/counts   raw-ex: ['/api/v2/auditlog/counts']
+/api/v2/auditlog/{v}   raw-ex: ['/api/v2/auditlog/${e}', '/api/v2/auditlog/{id}']
+/api/v2/chart/data   raw-ex: ['/api/v2/chart/data']
+/api/v2/chart/data/analysis   raw-ex: ['/api/v2/chart/data/analysis']
+/api/v2/chart/data/analysis/{analysisId}   raw-ex: ['/api/v2/chart/data/analysis/{analysisId}']
+/api/v2/chart/schema/suggestion   raw-ex: ['/api/v2/chart/schema/suggestion']
+/api/v2/code-refs/extinctions   raw-ex: ['/api/v2/code-refs/extinctions']
+/api/v2/code-refs/repositories   raw-ex: ['/api/v2/code-refs/repositories']
+/api/v2/code-refs/repositories/{v}   raw-ex: ['/api/v2/code-refs/repositories/{repo}']
+/api/v2/code-refs/repositories/{v}/branches/{v}   raw-ex: ['/api/v2/code-refs/repositories/{repo}/branches/{branch}']
+/api/v2/code-refs/statistics/{projectKey}   raw-ex: ['/api/v2/code-refs/statistics/{projectKey}']
+/api/v2/code-refs/statistics/{v}${t   raw-ex: ['/api/v2/code-refs/statistics/${e}${t']
+/api/v2/destinations   raw-ex: ['/api/v2/destinations']
+/api/v2/destinations/generate-warehouse-destination-key-pair   raw-ex: ['/api/v2/destinations/generate-warehouse-destination-key-pair']
+/api/v2/destinations/projects/{projKey}/environments/{envKey}/test-warehouse-destination-connection   raw-ex: ['/api/v2/destinations/projects/{projKey}/environments/{envKey}/test-warehouse-destination-connection']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/bigquery/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/bigquery/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/clickhouse/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/clickhouse/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/clickhouse/setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/clickhouse/setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/databricks/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/databricks/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/redshift/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/redshift/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/redshift/setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/redshift/setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/s3/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/s3/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/s3/setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/s3/setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/snowflake-v2/complete-setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/snowflake-v2/complete-setup']
+/api/v2/destinations/projects/{v}/environments/{v}/kinds/snowflake-v2/setup   raw-ex: ['/api/v2/destinations/projects/${e}/environments/${t}/kinds/snowflake-v2/setup']
+/api/v2/destinations/{projectKey}/{environmentKey}   raw-ex: ['/api/v2/destinations/{projectKey}/{environmentKey}']
+/api/v2/destinations/{projectKey}/{environmentKey}/{v}   raw-ex: ['/api/v2/destinations/{projectKey}/{environmentKey}/{id}']
+/api/v2/destinations/{projectKey}/{environmentKey}/{v}/test-event   raw-ex: ['/api/v2/destinations/{projectKey}/{environmentKey}/{id}/test-event']
+/api/v2/destinations/{v}/{v}   raw-ex: ['/api/v2/destinations/${t}/${n}']
+/api/v2/destinations/{v}/{v}/{v}   raw-ex: ['/api/v2/destinations/${r}/${o}/${t}']
+/api/v2/engineering-insights/flag-events   raw-ex: ['/api/v2/engineering-insights/flag-events']
+/api/v2/flag-links/projects/{projectKey}/flags/{featureFlagKey}   raw-ex: ['/api/v2/flag-links/projects/{projectKey}/flags/{featureFlagKey}']
+/api/v2/flag-links/projects/{projectKey}/flags/{featureFlagKey}/{v}   raw-ex: ['/api/v2/flag-links/projects/{projectKey}/flags/{featureFlagKey}/{id}']
+/api/v2/flag-links/projects/{v}/flags/{v}   raw-ex: ['/api/v2/flag-links/projects/${e}/flags/${a}']
+/api/v2/flag-status/{projectKey}/{featureFlagKey}   raw-ex: ['/api/v2/flag-status/{projectKey}/{featureFlagKey}']
+/api/v2/flag-statuses/{projectKey}/{environmentKey}   raw-ex: ['/api/v2/flag-statuses/{projectKey}/{environmentKey}']
+/api/v2/flag-statuses/{projectKey}/{environmentKey}/{featureFlagKey}   raw-ex: ['/api/v2/flag-statuses/{projectKey}/{environmentKey}/{featureFlagKey}']
+/api/v2/flag-statuses/{v}/{v}   raw-ex: ['/api/v2/flag-statuses/${e}/${t}']
+/api/v2/flags/{projKey}/{flagKey}/schema/preview   raw-ex: ['/api/v2/flags/{projKey}/{flagKey}/schema/preview']
+/api/v2/flags/{projectKey}   raw-ex: ['/api/v2/flags/{projectKey}']
+/api/v2/flags/{projectKey}/{environmentKey}/{featureFlagKey}/dependent-flags   raw-ex: ['/api/v2/flags/{projectKey}/{environmentKey}/{featureFlagKey}/dependent-flags']
+/api/v2/flags/{projectKey}/{featureFlagKey}   raw-ex: ['/api/v2/flags/{projectKey}/{featureFlagKey}']
+/api/v2/flags/{projectKey}/{featureFlagKey}/dependent-flags   raw-ex: ['/api/v2/flags/{projectKey}/{featureFlagKey}/dependent-flags']
+/api/v2/flags/{projectKey}/{featureFlagKey}/expiring-targets/{environmentKey}   raw-ex: ['/api/v2/flags/{projectKey}/{featureFlagKey}/expiring-targets/{environmentKey}']
+/api/v2/flags/{projectKey}/{featureFlagKey}/expiring-user-targets/{environmentKey}   raw-ex: ['/api/v2/flags/{projectKey}/{featureFlagKey}/expiring-user-targets/{environmentKey}']
+/api/v2/flags/{projectKey}/{flagKey}/release   raw-ex: ['/api/v2/flags/{projectKey}/{flagKey}/release']
+/api/v2/flags/{v}/{v}   raw-ex: ['/api/v2/flags/${e}/${t}']
+/api/v2/flags/{v}/{v}/copy   raw-ex: ['/api/v2/flags/${t}/${e}/copy']
+/api/v2/flags/{v}/{v}/dependent-flags   raw-ex: ['/api/v2/flags/${e}/${t}/dependent-flags']
+/api/v2/flags/{v}/{v}/expiring-targets/{v}   raw-ex: ['/api/v2/flags/${e}/${n}/expiring-targets/${t}']
+/api/v2/flags/{v}/{v}/triggers/{v}   raw-ex: ['/api/v2/flags/${e.projKey}/${e.flagKey}/triggers/${e.envKey}', '/api/v2/flags/${r}/${n}/triggers/${t}']
+/api/v2/frontend/clientSdkKey   raw-ex: ['/api/v2/frontend/clientSdkKey']
+/api/v2/frontend/experimentValues   raw-ex: ['/api/v2/frontend/experimentValues']
+/api/v2/integration-capabilities/big-segment-store   raw-ex: ['/api/v2/integration-capabilities/big-segment-store']
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}   raw-ex: ['/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}']
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}/{integrationId}   raw-ex: ['/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}/{integrationId}']
+/api/v2/integration-capabilities/featureStore   raw-ex: ['/api/v2/integration-capabilities/featureStore']
+/api/v2/integration-capabilities/flag-import   raw-ex: ['/api/v2/integration-capabilities/flag-import']
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}   raw-ex: ['/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}']
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}   raw-ex: ['/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}']
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}/trigger   raw-ex: ['/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}/trigger']
+/api/v2/integration-configurations/keys/clickhouse-experimentation/setup   raw-ex: ['/api/v2/integration-configurations/keys/clickhouse-experimentation/setup']
+/api/v2/integration-configurations/keys/redshift-experimentation/setup   raw-ex: ['/api/v2/integration-configurations/keys/redshift-experimentation/setup']
+/api/v2/integration-configurations/keys/snowflake-experimentation/setup   raw-ex: ['/api/v2/integration-configurations/keys/snowflake-experimentation/setup']
+/api/v2/integration-configurations/keys/{integrationKey}   raw-ex: ['/api/v2/integration-configurations/keys/{integrationKey}']
+/api/v2/integration-configurations/{integrationConfigurationId}   raw-ex: ['/api/v2/integration-configurations/{integrationConfigurationId}']
+/api/v2/integration-configurations/{v}/complete-setup   raw-ex: ['/api/v2/integration-configurations/${e}/complete-setup']
+/api/v2/integration-manifests   raw-ex: ['/api/v2/integration-manifests']
+/api/v2/integration-manifests/{integrationKey}   raw-ex: ['/api/v2/integration-manifests/{integrationKey}']
+/api/v2/integration-manifests/{integrationKey}/dynamic-options/{dynamicEnumKey}   raw-ex: ['/api/v2/integration-manifests/{integrationKey}/dynamic-options/{dynamicEnumKey}']
+/api/v2/integration-manifests/{v}   raw-ex: ['/api/v2/integration-manifests/${e}']
+/api/v2/integration-manifests/{v}/dynamic-options/{v}   raw-ex: ['/api/v2/integration-manifests/${e}/dynamic-options/${n}', '/api/v2/integration-manifests/${e}/dynamic-options/${t}']
+/api/v2/integrations   raw-ex: ['/api/v2/integrations']
+/api/v2/integrations/jira/issue-create   raw-ex: ['/api/v2/integrations/jira/issue-create']
+/api/v2/integrations/slack   raw-ex: ['/api/v2/integrations/slack']
+/api/v2/integrations/slack/{v}   raw-ex: ['/api/v2/integrations/slack/{id}']
+/api/v2/integrations/{integrationKey}   raw-ex: ['/api/v2/integrations/{integrationKey}']
+/api/v2/integrations/{integrationKey}/{v}   raw-ex: ['/api/v2/integrations/{integrationKey}/{id}']
+/api/v2/list/data   raw-ex: ['/api/v2/list/data']
+/api/v2/members   raw-ex: ['/api/v2/members']
+/api/v2/members/{v}   raw-ex: ['/api/v2/members/{id}']
+/api/v2/members/{v}/avatar   raw-ex: ['/api/v2/members/${r}/avatar']
+/api/v2/members/{v}/teams   raw-ex: ['/api/v2/members/${e}/teams']
+/api/v2/metrics/{projectKey}   raw-ex: ['/api/v2/metrics/{projectKey}']
+/api/v2/metrics/{projectKey}/{metricKey}   raw-ex: ['/api/v2/metrics/{projectKey}/{metricKey}']
+/api/v2/projects   raw-ex: ['/api/v2/projects']
+/api/v2/projects/${encodeURIComponent   raw-ex: ['/api/v2/projects/${encodeURIComponent']
+/api/v2/projects/{projKey}/automated-cleanup-settings   raw-ex: ['/api/v2/projects/{projKey}/automated-cleanup-settings']
+/api/v2/projects/{projKey}/automated-cleanup-settings/upcoming   raw-ex: ['/api/v2/projects/{projKey}/automated-cleanup-settings/upcoming']
+/api/v2/projects/{projKey}/lifecycle-settings   raw-ex: ['/api/v2/projects/{projKey}/lifecycle-settings']
+/api/v2/projects/{projectKey}   raw-ex: ['/api/v2/projects/{projectKey}']
+/api/v2/projects/{projectKey}/agent-graphs   raw-ex: ['/api/v2/projects/{projectKey}/agent-graphs']
+/api/v2/projects/{projectKey}/agent-graphs/{graphKey}   raw-ex: ['/api/v2/projects/{projectKey}/agent-graphs/{graphKey}']
+/api/v2/projects/{projectKey}/agent-optimizations   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/all-results   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/all-results']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/results   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/results']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/results/{resultId}   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/results/{resultId}']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/runs   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/runs']
+/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/runs/{runId}/results   raw-ex: ['/api/v2/projects/{projectKey}/agent-optimizations/{optimizationKey}/runs/{runId}/results']
+/api/v2/projects/{projectKey}/ai-configs   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs']
+/api/v2/projects/{projectKey}/ai-configs/model-configs   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/model-configs']
+/api/v2/projects/{projectKey}/ai-configs/model-configs/restricted   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/model-configs/restricted']
+/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}']
+/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/versions   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/versions']
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/prompt-snippets']
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}']
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/references   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/references']
+/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/versions   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/versions']
+/api/v2/projects/{projectKey}/ai-configs/quick-stats   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/quick-stats']
+/api/v2/projects/{projectKey}/ai-configs/skills   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/skills']
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}']
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/references   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/references']
+/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/versions   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/skills/{skillKey}/versions']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/describe   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/describe']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-variation   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-variation']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-version   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/metrics-by-version']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/sandbox']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/targeting   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/targeting']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers/{triggerID}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/triggers/{triggerID}']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations']
+/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations/{variationKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-configs/{configKey}/variations/{variationKey}']
+/api/v2/projects/{projectKey}/ai-tools   raw-ex: ['/api/v2/projects/{projectKey}/ai-tools']
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}   raw-ex: ['/api/v2/projects/{projectKey}/ai-tools/{toolKey}']
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}/references   raw-ex: ['/api/v2/projects/{projectKey}/ai-tools/{toolKey}/references']
+/api/v2/projects/{projectKey}/ai-tools/{toolKey}/versions   raw-ex: ['/api/v2/projects/{projectKey}/ai-tools/{toolKey}/versions']
+/api/v2/projects/{projectKey}/automated-rollout-configs   raw-ex: ['/api/v2/projects/{projectKey}/automated-rollout-configs']
+/api/v2/projects/{projectKey}/context-kinds   raw-ex: ['/api/v2/projects/{projectKey}/context-kinds']
+/api/v2/projects/{projectKey}/context-kinds/{v}   raw-ex: ['/api/v2/projects/{projectKey}/context-kinds/{key}']
+/api/v2/projects/{projectKey}/environments   raw-ex: ['/api/v2/projects/{projectKey}/environments']
+/api/v2/projects/{projectKey}/environments/{environmentKey}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/disable   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/disable']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/enable   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/adaptive-triggers/{triggerID}/enable']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/context-attributes   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/context-attributes']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/context-attributes/{attributeName}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/context-attributes/{attributeName}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/context-instances/search   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/context-instances/search']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/context-instances/{v}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/context-instances/{id}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/contexts/search   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/contexts/search']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/contexts/{v}/{v}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/contexts/{kind}/{key}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/attributes/{v}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/attributes/{attribute}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/results/quantile   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/results/quantile']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/results/timeseries   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/results/timeseries']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/flags/evaluate   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/flags/evaluate']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/flags/{flagKey}/evaluate   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/flags/{flagKey}/evaluate']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/followers   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/followers']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts/id/{holdoutId}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts/id/{holdoutId}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts/{holdoutKey}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/holdouts/{holdoutKey}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/release-plans   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/release-plans']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/release-plans/{releasePlanKey}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/release-plans/{releasePlanKey}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys/{sdkKeyKey}   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys/{sdkKeyKey}']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys/{sdkKeyKey}/views   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/sdk-keys/{sdkKeyKey}/views']
+/api/v2/projects/{projectKey}/environments/{environmentKey}/segments/evaluate   raw-ex: ['/api/v2/projects/{projectKey}/environments/{environmentKey}/segments/evaluate']
+/api/v2/projects/{projectKey}/experimentation-settings   raw-ex: ['/api/v2/projects/{projectKey}/experimentation-settings']
+/api/v2/projects/{projectKey}/experiments   raw-ex: ['/api/v2/projects/{projectKey}/experiments']
+/api/v2/projects/{projectKey}/flag-defaults   raw-ex: ['/api/v2/projects/{projectKey}/flag-defaults']
+/api/v2/projects/{projectKey}/flag-statuses/queries   raw-ex: ['/api/v2/projects/{projectKey}/flag-statuses/queries']
+/api/v2/projects/{projectKey}/flag-statuses/query   raw-ex: ['/api/v2/projects/{projectKey}/flag-statuses/query']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}/apply   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}/apply']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{v}/reviews   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/approval-requests/{id}/reviews']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/followers   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/followers']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/scheduled-changes   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/scheduled-changes']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/scheduled-changes/{v}   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/scheduled-changes/{id}']
+/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/workflows/{workflowId}   raw-ex: ['/api/v2/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/workflows/{workflowId}']
+/api/v2/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/migration-safety-issues   raw-ex: ['/api/v2/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/migration-safety-issues']
+/api/v2/projects/{projectKey}/flags/{flagKey}/release   raw-ex: ['/api/v2/projects/{projectKey}/flags/{flagKey}/release']
+/api/v2/projects/{projectKey}/flags/{flagKey}/release/phases/{phaseId}   raw-ex: ['/api/v2/projects/{projectKey}/flags/{flagKey}/release/phases/{phaseId}']
+/api/v2/projects/{projectKey}/layers   raw-ex: ['/api/v2/projects/{projectKey}/layers']
+/api/v2/projects/{projectKey}/layers/{layerKey}   raw-ex: ['/api/v2/projects/{projectKey}/layers/{layerKey}']
+/api/v2/projects/{projectKey}/metric-groups   raw-ex: ['/api/v2/projects/{projectKey}/metric-groups']
+/api/v2/projects/{projectKey}/metric-groups/{metricGroupKey}   raw-ex: ['/api/v2/projects/{projectKey}/metric-groups/{metricGroupKey}']
+/api/v2/projects/{projectKey}/payload-filters   raw-ex: ['/api/v2/projects/{projectKey}/payload-filters']
+/api/v2/projects/{projectKey}/payload-filters/{payloadFilterKey}   raw-ex: ['/api/v2/projects/{projectKey}/payload-filters/{payloadFilterKey}']
+/api/v2/projects/{projectKey}/randomization-settings   raw-ex: ['/api/v2/projects/{projectKey}/randomization-settings']
+/api/v2/projects/{projectKey}/release-pipelines   raw-ex: ['/api/v2/projects/{projectKey}/release-pipelines']
+/api/v2/projects/{projectKey}/release-pipelines/{pipelineKey}   raw-ex: ['/api/v2/projects/{projectKey}/release-pipelines/{pipelineKey}']
+/api/v2/projects/{projectKey}/release-pipelines/{pipelineKey}/releases   raw-ex: ['/api/v2/projects/{projectKey}/release-pipelines/{pipelineKey}/releases']
+/api/v2/projects/{projectKey}/release-plans   raw-ex: ['/api/v2/projects/{projectKey}/release-plans']
+/api/v2/projects/{projectKey}/release-policies   raw-ex: ['/api/v2/projects/{projectKey}/release-policies']
+/api/v2/projects/{projectKey}/release-policies/order   raw-ex: ['/api/v2/projects/{projectKey}/release-policies/order']
+/api/v2/projects/{projectKey}/release-policies/{policyKey}   raw-ex: ['/api/v2/projects/{projectKey}/release-policies/{policyKey}']
+/api/v2/projects/{projectKey}/sdk-keys   raw-ex: ['/api/v2/projects/{projectKey}/sdk-keys']
+/api/v2/projects/{projectKey}/shortcuts   raw-ex: ['/api/v2/projects/{projectKey}/shortcuts']
+/api/v2/projects/{projectKey}/shortcuts/{shortcutKey}   raw-ex: ['/api/v2/projects/{projectKey}/shortcuts/{shortcutKey}']
+/api/v2/projects/{projectKey}/view-associations/{resourceType}/{resourceKey}   raw-ex: ['/api/v2/projects/{projectKey}/view-associations/{resourceType}/{resourceKey}']
+/api/v2/projects/{projectKey}/views   raw-ex: ['/api/v2/projects/{projectKey}/views']
+/api/v2/projects/{projectKey}/views/{viewKey}   raw-ex: ['/api/v2/projects/{projectKey}/views/{viewKey}']
+/api/v2/projects/{projectKey}/views/{viewKey}/application   raw-ex: ['/api/v2/projects/{projectKey}/views/{viewKey}/application']
+/api/v2/projects/{projectKey}/views/{viewKey}/application/flags   raw-ex: ['/api/v2/projects/{projectKey}/views/{viewKey}/application/flags']
+/api/v2/projects/{projectKey}/views/{viewKey}/link/{resourceType}   raw-ex: ['/api/v2/projects/{projectKey}/views/{viewKey}/link/{resourceType}']
+/api/v2/projects/{projectKey}/views/{viewKey}/linked/{resourceType}   raw-ex: ['/api/v2/projects/{projectKey}/views/{viewKey}/linked/{resourceType}']
+/api/v2/projects/{v}/context-kinds   raw-ex: ['/api/v2/projects/${e}/context-kinds']
+/api/v2/projects/{v}/context-kinds/{v}   raw-ex: ['/api/v2/projects/${e}/context-kinds/${t}']
+/api/v2/projects/{v}/environments${a.toBackendQueryString   raw-ex: ['/api/v2/projects/${e}/environments${a.toBackendQueryString']
+/api/v2/projects/{v}/environments${t.toBackendQueryString   raw-ex: ['/api/v2/projects/${e}/environments${t.toBackendQueryString']
+/api/v2/projects/{v}/environments/{v}/context-attributes/${encodeURIComponent   raw-ex: ['/api/v2/projects/${e}/environments/${t}/context-attributes/${encodeURIComponent']
+/api/v2/projects/{v}/environments/{v}/contexts/search   raw-ex: ['/api/v2/projects/${e}/environments/${t}/contexts/search']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests-flag-copy   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests-flag-copy']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${r}', '/api/v2/projects/${e}/flags/${t}/environments/${n}/approval-requests/${r}']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}/apply   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${a}/apply']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/approval-requests/{v}/reviews   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/approval-requests/${s}/reviews']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/scheduled-changes   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/scheduled-changes']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/scheduled-changes/{v}   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/scheduled-changes/${i}', '/api/v2/projects/${e}/flags/${n}/environments/${t}/scheduled-changes/${r}']
+/api/v2/projects/{v}/flags/{v}/environments/{v}/workflows   raw-ex: ['/api/v2/projects/${e}/flags/${n}/environments/${t}/workflows', '/api/v2/projects/${e}/flags/${t}/environments/${n}/workflows']
+/api/v2/projects/{v}/payload-filters   raw-ex: ['/api/v2/projects/${t}/payload-filters']
+/api/v2/projects/{v}/payload-filters/{v}   raw-ex: ['/api/v2/projects/${e}/payload-filters/${t}', '/api/v2/projects/${i}/payload-filters/${l}']
+/api/v2/projects/{v}/payload-filters{v}   raw-ex: ['/api/v2/projects/${e}/payload-filters${n}']
+/api/v2/roles   raw-ex: ['/api/v2/roles']
+/api/v2/roles/{customRoleKey}   raw-ex: ['/api/v2/roles/{customRoleKey}']
+/api/v2/segments/{projectKey}/{environmentKey}   raw-ex: ['/api/v2/segments/{projectKey}/{environmentKey}']
+/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}   raw-ex: ['/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}']
+/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}/scheduled-changes   raw-ex: ['/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}/scheduled-changes']
+/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}/scheduled-changes/{v}   raw-ex: ['/api/v2/segments/{projectKey}/{environmentKey}/{segmentKey}/scheduled-changes/{id}']
+/api/v2/segments/{projectKey}/{segmentKey}/expiring-targets/{environmentKey}   raw-ex: ['/api/v2/segments/{projectKey}/{segmentKey}/expiring-targets/{environmentKey}']
+/api/v2/segments/{projectKey}/{segmentKey}/expiring-user-targets/{environmentKey}   raw-ex: ['/api/v2/segments/{projectKey}/{segmentKey}/expiring-user-targets/{environmentKey}']
+/api/v2/segments/{v}/{v}   raw-ex: ['/api/v2/segments/${e}/${t}']
+/api/v2/segments/{v}/{v}/expiring-targets/{v}   raw-ex: ['/api/v2/segments/${e}/${n}/expiring-targets/${t}']
+/api/v2/segments/{v}/{v}/{v}   raw-ex: ['/api/v2/segments/${e}/${t}/${n}']
+/api/v2/segments/{v}/{v}/{v}/exports   raw-ex: ['/api/v2/segments/${e}/${t}/${n}/exports']
+/api/v2/segments/{v}/{v}/{v}/exports/{v}   raw-ex: ['/api/v2/segments/${e}/${t}/${n}/exports/${r}']
+/api/v2/segments/{v}/{v}/{v}/imports   raw-ex: ['/api/v2/segments/${e}/${t}/${n}/imports']
+/api/v2/segments/{v}/{v}/{v}/users   raw-ex: ['/api/v2/segments/${e}/${t}/${n}/users']
+/api/v2/shortcuts   raw-ex: ['/api/v2/shortcuts']
+/api/v2/tags   raw-ex: ['/api/v2/tags']
+/api/v2/teams   raw-ex: ['/api/v2/teams']
+/api/v2/teams/{teamKey}   raw-ex: ['/api/v2/teams/{teamKey}']
+/api/v2/teams/{teamKey}/roles   raw-ex: ['/api/v2/teams/{teamKey}/roles']
+/api/v2/templates   raw-ex: ['/api/v2/templates']
+/api/v2/templates/{templateKey}   raw-ex: ['/api/v2/templates/{templateKey}']
+/api/v2/tokens   raw-ex: ['/api/v2/tokens']
+/api/v2/tokens/{v}   raw-ex: ['/api/v2/tokens/{id}']
+/api/v2/tokens/{v}/reset   raw-ex: ['/api/v2/tokens/{id}/reset']
+/api/v2/tracking   raw-ex: ['/api/v2/tracking']
+/api/v2/usage/ai-runs   raw-ex: ['/api/v2/usage/ai-runs']
+/api/v2/usage/clientside-contexts   raw-ex: ['/api/v2/usage/clientside-contexts']
+/api/v2/usage/clientside-mau   raw-ex: ['/api/v2/usage/clientside-mau']
+/api/v2/usage/data-export-events   raw-ex: ['/api/v2/usage/data-export-events']
+/api/v2/usage/data-export-source-capabilities   raw-ex: ['/api/v2/usage/data-export-source-capabilities']
+/api/v2/usage/evaluations/{projectKey}/{environmentKey}/{featureFlagKey}   raw-ex: ['/api/v2/usage/evaluations/{projectKey}/{environmentKey}/{featureFlagKey}']
+/api/v2/usage/experimentation-events   raw-ex: ['/api/v2/usage/experimentation-events']
+/api/v2/usage/experimentation-keys   raw-ex: ['/api/v2/usage/experimentation-keys']
+/api/v2/usage/observability/errors   raw-ex: ['/api/v2/usage/observability/errors']
+/api/v2/usage/observability/logs   raw-ex: ['/api/v2/usage/observability/logs']
+/api/v2/usage/observability/metrics   raw-ex: ['/api/v2/usage/observability/metrics']
+/api/v2/usage/observability/sessions   raw-ex: ['/api/v2/usage/observability/sessions']
+/api/v2/usage/observability/traces   raw-ex: ['/api/v2/usage/observability/traces']
+/api/v2/usage/sdk-versions/details   raw-ex: ['/api/v2/usage/sdk-versions/details']
+/api/v2/usage/serverside-contexts   raw-ex: ['/api/v2/usage/serverside-contexts']
+/api/v2/usage/service-connections   raw-ex: ['/api/v2/usage/service-connections']
+/api/v2/usage/streams/{v}   raw-ex: ['/api/v2/usage/streams/{source}']
+/api/v2/usage/streams/{v}/bysdkversion   raw-ex: ['/api/v2/usage/streams/{source}/bysdkversion']
+/api/v2/usage/total-contexts   raw-ex: ['/api/v2/usage/total-contexts']
+/api/v2/usage/total-mau   raw-ex: ['/api/v2/usage/total-mau']
+/api/v2/usage/vega-ai   raw-ex: ['/api/v2/usage/vega-ai']
+/api/v2/usage/warehouse-export   raw-ex: ['/api/v2/usage/warehouse-export']
+/api/v2/versions   raw-ex: ['/api/v2/versions']
+/api/v2/webhooks   raw-ex: ['/api/v2/webhooks']
+/api/v2/webhooks/{v}   raw-ex: ['/api/v2/webhooks/{id}']
+/api/v2/{v}/{v}/{v}/expiring-targets/{v}   raw-ex: ['/api/v2/${e}/${t}/${r}/expiring-targets/${n}']
+/internal/accesses   raw-ex: ['/internal/accesses']
+/internal/account   raw-ex: ['/internal/account']
+/internal/account/accrued-invoices   raw-ex: ['/internal/account/accrued-invoices']
+/internal/account/card   raw-ex: ['/internal/account/card']
+/internal/account/domain-verifications   raw-ex: ['/internal/account/domain-verifications']
+/internal/account/domain-verifications/{v}   raw-ex: ['/internal/account/domain-verifications/{id}']
+/internal/account/invoices   raw-ex: ['/internal/account/invoices']
+/internal/account/invoices/stripe/${encodeURIComponent   raw-ex: ['/internal/account/invoices/stripe/${encodeURIComponent']
+/internal/account/invoices/{v}   raw-ex: ['/internal/account/invoices/{id}']
+/internal/account/invoices/{v}/LaunchDarkly_Invoice_{v}.pdf   raw-ex: ['/internal/account/invoices/{id}/LaunchDarkly_Invoice_{id}.pdf']
+/internal/account/join   raw-ex: ['/internal/account/join']
+/internal/account/login   raw-ex: ['/internal/account/login']
+/internal/account/login2   raw-ex: ['/internal/account/login2']
+/internal/account/oauth2/applications   raw-ex: ['/internal/account/oauth2/applications']
+/internal/account/oauth2/applications/{v}   raw-ex: ['/internal/account/oauth2/applications/{id}']
+/internal/account/owner   raw-ex: ['/internal/account/owner']
+/internal/account/resend-verification   raw-ex: ['/internal/account/resend-verification']
+/internal/account/revoke-sessions   raw-ex: ['/internal/account/revoke-sessions']
+/internal/account/saml   raw-ex: ['/internal/account/saml']
+/internal/account/saml-app-details   raw-ex: ['/internal/account/saml-app-details']
+/internal/account/saml/encryption-certificates   raw-ex: ['/internal/account/saml/encryption-certificates']
+/internal/account/scim   raw-ex: ['/internal/account/scim']
+/internal/account/scim/managed-teams   raw-ex: ['/internal/account/scim/managed-teams']
+/internal/account/session   raw-ex: ['/internal/account/session']
+/internal/account/session/escalate   raw-ex: ['/internal/account/session/escalate']
+/internal/account/session/mfa   raw-ex: ['/internal/account/session/mfa']
+/internal/account/session/mfa-recovery   raw-ex: ['/internal/account/session/mfa-recovery']
+/internal/account/signup/complete   raw-ex: ['/internal/account/signup/complete']
+/internal/account/signup/complete/{v}   raw-ex: ['/internal/account/signup/complete/${e}', '/internal/account/signup/complete/${t}']
+/internal/account/signup/facilitated-trial/{v}   raw-ex: ['/internal/account/signup/facilitated-trial/${t}']
+/internal/account/signup/facilitated-trial/{v}/validate   raw-ex: ['/internal/account/signup/facilitated-trial/${e}/validate']
+/internal/account/signup/pending-invites   raw-ex: ['/internal/account/signup/pending-invites']
+/internal/account/signup/{v}/pending-invites   raw-ex: ['/internal/account/signup/{token}/pending-invites']
+/internal/account/signupv2   raw-ex: ['/internal/account/signupv2']
+/internal/account/subscription   raw-ex: ['/internal/account/subscription']
+/internal/account/suggest-invites   raw-ex: ['/internal/account/suggest-invites']
+/internal/account/verify-code   raw-ex: ['/internal/account/verify-code']
+/internal/account/welcome-survey   raw-ex: ['/internal/account/welcome-survey']
+/internal/accounts/{v}   raw-ex: ['/internal/accounts/{email}']
+/internal/accounts/{v}/agent-control/settings   raw-ex: ['/internal/accounts/{id}/agent-control/settings']
+/internal/actions   raw-ex: ['/internal/actions']
+/internal/ai-configs/{configKey}/completion   raw-ex: ['/internal/ai-configs/{configKey}/completion']
+/internal/ai/evaluations/providers   raw-ex: ['/internal/ai/evaluations/providers']
+/internal/ai/evaluator/token-usage/daily   raw-ex: ['/internal/ai/evaluator/token-usage/daily']
+/internal/announcements   raw-ex: ['/internal/announcements']
+/internal/announcements/{announcementId}   raw-ex: ['/internal/announcements/{announcementId}']
+/internal/applications/{applicationKey}/versions   raw-ex: ['/internal/applications/{applicationKey}/versions']
+/internal/authorization/access-check/{v}/bulk   raw-ex: ['/internal/authorization/access-check/{service}/bulk']
+/internal/billing/subscription/plans   raw-ex: ['/internal/billing/subscription/plans']
+/internal/billingv2/account/subscription   raw-ex: ['/internal/billingv2/account/subscription']
+/internal/billingv2/account/subscription/campaigns   raw-ex: ['/internal/billingv2/account/subscription/campaigns']
+/internal/billingv2/account/subscription/cooloff-retrial   raw-ex: ['/internal/billingv2/account/subscription/cooloff-retrial']
+/internal/billingv2/account/subscription/cooloff-retrial-extension   raw-ex: ['/internal/billingv2/account/subscription/cooloff-retrial-extension']
+/internal/billingv2/account/subscription/opportunity/enterprise-seats   raw-ex: ['/internal/billingv2/account/subscription/opportunity/enterprise-seats']
+/internal/billingv2/account/subscription/trial-extension   raw-ex: ['/internal/billingv2/account/subscription/trial-extension']
+/internal/billingv2/account/subscription/trial-extension/eligibility   raw-ex: ['/internal/billingv2/account/subscription/trial-extension/eligibility']
+/internal/billingv2/account/subscription/usage   raw-ex: ['/internal/billingv2/account/subscription/usage']
+/internal/billingv2/account/subscription/usage-status   raw-ex: ['/internal/billingv2/account/subscription/usage-status']
+/internal/billingv2/card-added   raw-ex: ['/internal/billingv2/card-added']
+/internal/billingv2/card-setup-intent   raw-ex: ['/internal/billingv2/card-setup-intent']
+/internal/billingv2/plans   raw-ex: ['/internal/billingv2/plans']
+/internal/billingv2/plans/{planType}/limits   raw-ex: ['/internal/billingv2/plans/{planType}/limits']
+/internal/billingv2/plans/{v}/limits   raw-ex: ['/internal/billingv2/plans/${t}/limits']
+/internal/comments   raw-ex: ['/internal/comments']
+/internal/comments/{v}   raw-ex: ['/internal/comments/{id}']
+/internal/contact-us   raw-ex: ['/internal/contact-us']
+/internal/contact-us/forms/{formId}/public-submit   raw-ex: ['/internal/contact-us/forms/{formId}/public-submit']
+/internal/contact-us/forms/{formId}/submit   raw-ex: ['/internal/contact-us/forms/{formId}/submit']
+/internal/device/{deviceCode}   raw-ex: ['/internal/device/{deviceCode}']
+/internal/entitlements/ai-configs   raw-ex: ['/internal/entitlements/ai-configs']
+/internal/entitlements/release-guardian   raw-ex: ['/internal/entitlements/release-guardian']
+/internal/flag-cleanup   raw-ex: ['/internal/flag-cleanup']
+/internal/flag-cleanup/eligibility   raw-ex: ['/internal/flag-cleanup/eligibility']
+/internal/flag-cleanup/retrieve   raw-ex: ['/internal/flag-cleanup/retrieve']
+/internal/flags/{projectKey}   raw-ex: ['/internal/flags/{projectKey}']
+/internal/forgot   raw-ex: ['/internal/forgot']
+/internal/incoming-webhook-subscriptions/providers/{v}   raw-ex: ['/internal/incoming-webhook-subscriptions/providers/${e}']
+/internal/incoming-webhook-subscriptions/providers/{v}/projects   raw-ex: ['/internal/incoming-webhook-subscriptions/providers/${n}/projects', '/internal/incoming-webhook-subscriptions/providers/${t}/projects']
+/internal/incoming-webhook-subscriptions/{v}   raw-ex: ['/internal/incoming-webhook-subscriptions/${e.subscriptionId}']
+/internal/insights/experiment-metrics   raw-ex: ['/internal/insights/experiment-metrics']
+/internal/insights/experiment-metrics/chart   raw-ex: ['/internal/insights/experiment-metrics/chart']
+/internal/insights/flag-cleanup   raw-ex: ['/internal/insights/flag-cleanup']
+/internal/insights/flag-usage   raw-ex: ['/internal/insights/flag-usage']
+/internal/insights/flags-created   raw-ex: ['/internal/insights/flags-created']
+/internal/insights/flags-created/chart   raw-ex: ['/internal/insights/flags-created/chart']
+/internal/insights/member-metrics   raw-ex: ['/internal/insights/member-metrics']
+/internal/insights/release-metrics   raw-ex: ['/internal/insights/release-metrics']
+/internal/insights/rollout-metrics   raw-ex: ['/internal/insights/rollout-metrics']
+/internal/insights/rollout-metrics/chart   raw-ex: ['/internal/insights/rollout-metrics/chart']
+/internal/insights/scores   raw-ex: ['/internal/insights/scores']
+/internal/integrations/{v}/capabilities/approval/map-members   raw-ex: ['/internal/integrations/${e}/capabilities/approval/map-members']
+/internal/invite/{v}   raw-ex: ['/internal/invite/${t}']
+/internal/invite/{v}/mfa   raw-ex: ['/internal/invite/${n}/mfa']
+/internal/launchlitely/calculate   raw-ex: ['/internal/launchlitely/calculate']
+/internal/list/environments   raw-ex: ['/internal/list/environments']
+/internal/login/mfa/confirm   raw-ex: ['/internal/login/mfa/confirm']
+/internal/members/access-summary/preview   raw-ex: ['/internal/members/access-summary/preview']
+/internal/members/{v}/access-summary   raw-ex: ['/internal/members/{id}/access-summary']
+/internal/metric-data-sources   raw-ex: ['/internal/metric-data-sources']
+/internal/new-hires   raw-ex: ['/internal/new-hires']
+/internal/notification-service/channels${a.toString   raw-ex: ['/internal/notification-service/channels${a.toString']
+/internal/notification-service/channels${n.toString   raw-ex: ['/internal/notification-service/channels${n.toString']
+/internal/notification-service/sync-channels   raw-ex: ['/internal/notification-service/sync-channels']
+/internal/plans   raw-ex: ['/internal/plans']
+/internal/profile   raw-ex: ['/internal/profile']
+/internal/profile/cancel-verification   raw-ex: ['/internal/profile/cancel-verification']
+/internal/profile/context   raw-ex: ['/internal/profile/context']
+/internal/profile/courier-token   raw-ex: ['/internal/profile/courier-token']
+/internal/profile/dismissals   raw-ex: ['/internal/profile/dismissals']
+/internal/profile/dismissals/{dismissalKey}   raw-ex: ['/internal/profile/dismissals/{dismissalKey}']
+/internal/profile/email-owner-verification   raw-ex: ['/internal/profile/email-owner-verification']
+/internal/profile/feature-previews   raw-ex: ['/internal/profile/feature-previews']
+/internal/profile/feature-previews/{featurePreviewKey}   raw-ex: ['/internal/profile/feature-previews/{featurePreviewKey}']
+/internal/profile/following   raw-ex: ['/internal/profile/following']
+/internal/profile/mfa/confirm   raw-ex: ['/internal/profile/mfa/confirm']
+/internal/profile/mfa/disable   raw-ex: ['/internal/profile/mfa/disable']
+/internal/profile/mfa/enable   raw-ex: ['/internal/profile/mfa/enable']
+/internal/profile/notification-settings   raw-ex: ['/internal/profile/notification-settings']
+/internal/profile/password   raw-ex: ['/internal/profile/password']
+/internal/profile/project-nav-mode   raw-ex: ['/internal/profile/project-nav-mode']
+/internal/profile/resend-verification   raw-ex: ['/internal/profile/resend-verification']
+/internal/profile/selected-environments   raw-ex: ['/internal/profile/selected-environments']
+/internal/profile/selected-environments/{projectKey}   raw-ex: ['/internal/profile/selected-environments/{projectKey}']
+/internal/profile/selected-view/{projKey}   raw-ex: ['/internal/profile/selected-view/{projKey}']
+/internal/profile/shortcuts/{projectKey}   raw-ex: ['/internal/profile/shortcuts/{projectKey}']
+/internal/projects   raw-ex: ['/internal/projects']
+/internal/projects/${encodeURIComponent   raw-ex: ['/internal/projects/${encodeURIComponent']
+/internal/projects/flag-count   raw-ex: ['/internal/projects/flag-count']
+/internal/projects/{projKey}/assignment-data-sources   raw-ex: ['/internal/projects/{projKey}/assignment-data-sources']
+/internal/projects/{projKey}/assignment-data-sources/{dataSourceKey}   raw-ex: ['/internal/projects/{projKey}/assignment-data-sources/{dataSourceKey}']
+/internal/projects/{projKey}/assignment-data-sources/{dataSourceKey}/probe   raw-ex: ['/internal/projects/{projKey}/assignment-data-sources/{dataSourceKey}/probe']
+/internal/projects/{projKey}/datasets   raw-ex: ['/internal/projects/{projKey}/datasets']
+/internal/projects/{projKey}/datasets/{datasetId}   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}']
+/internal/projects/{projKey}/datasets/{datasetId}/download   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/download']
+/internal/projects/{projKey}/datasets/{datasetId}/errors   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/errors']
+/internal/projects/{projKey}/datasets/{datasetId}/preview   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/preview']
+/internal/projects/{projKey}/datasets/{datasetId}/rows   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/rows']
+/internal/projects/{projKey}/datasets/{datasetId}/rows/changes   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/rows/changes']
+/internal/projects/{projKey}/datasets/{datasetId}/rows/versions   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/rows/versions']
+/internal/projects/{projKey}/datasets/{datasetId}/upload-url   raw-ex: ['/internal/projects/{projKey}/datasets/{datasetId}/upload-url']
+/internal/projects/{projKey}/environments/{envKey}/annotations/{traceId}/spans/{spanId}   raw-ex: ['/internal/projects/{projKey}/environments/{envKey}/annotations/{traceId}/spans/{spanId}']
+/internal/projects/{projKey}/environments/{envKey}/datasets/{datasetId}/jobs/{jobId}   raw-ex: ['/internal/projects/{projKey}/environments/{envKey}/datasets/{datasetId}/jobs/{jobId}']
+/internal/projects/{projKey}/environments/{envKey}/datasets/{datasetId}/rows   raw-ex: ['/internal/projects/{projKey}/environments/{envKey}/datasets/{datasetId}/rows']
+/internal/projects/{projKey}/evaluations   raw-ex: ['/internal/projects/{projKey}/evaluations']
+/internal/projects/{projKey}/evaluations/runs   raw-ex: ['/internal/projects/{projKey}/evaluations/runs']
+/internal/projects/{projKey}/evaluations/{evaluationId}   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}']
+/internal/projects/{projKey}/evaluations/{evaluationId}/runs   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}/runs']
+/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}']
+/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/cancel   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/cancel']
+/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/rows   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/rows']
+/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/summary   raw-ex: ['/internal/projects/{projKey}/evaluations/{evaluationId}/runs/{runId}/summary']
+/internal/projects/{projKey}/flag-archive-checks/{flagKey}   raw-ex: ['/internal/projects/{projKey}/flag-archive-checks/{flagKey}']
+/internal/projects/{projKey}/flag-templates   raw-ex: ['/internal/projects/{projKey}/flag-templates']
+/internal/projects/{projKey}/lifecycle-cleanup-preview   raw-ex: ['/internal/projects/{projKey}/lifecycle-cleanup-preview']
+/internal/projects/{projKey}/metric-data-sources   raw-ex: ['/internal/projects/{projKey}/metric-data-sources']
+/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}   raw-ex: ['/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}']
+/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}   raw-ex: ['/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}']
+/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}/last-seen   raw-ex: ['/internal/projects/{projKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}/last-seen']
+/internal/projects/{projKey}/playgrounds   raw-ex: ['/internal/projects/{projKey}/playgrounds']
+/internal/projects/{projKey}/playgrounds/{playgroundId}   raw-ex: ['/internal/projects/{projKey}/playgrounds/{playgroundId}']
+/internal/projects/{projKey}/warehouse-native-integrations/{integrationConfigurationId}/metric-data-source-preview   raw-ex: ['/internal/projects/{projKey}/warehouse-native-integrations/{integrationConfigurationId}/metric-data-source-preview']
+/internal/projects/{projectKey}/adaptive-triggers   raw-ex: ['/internal/projects/{projectKey}/adaptive-triggers']
+/internal/projects/{projectKey}/adaptive-triggers/counts   raw-ex: ['/internal/projects/{projectKey}/adaptive-triggers/counts']
+/internal/projects/{projectKey}/ai-config-insights   raw-ex: ['/internal/projects/{projectKey}/ai-config-insights']
+/internal/projects/{projectKey}/ai-configs/ai-tools/{toolKey}/bulk-version-update   raw-ex: ['/internal/projects/{projectKey}/ai-configs/ai-tools/{toolKey}/bulk-version-update']
+/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/bulk-version-update   raw-ex: ['/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/bulk-version-update']
+/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/references   raw-ex: ['/internal/projects/{projectKey}/ai-configs/model-configs/{modelConfigKey}/references']
+/internal/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/bulk-version-update   raw-ex: ['/internal/projects/{projectKey}/ai-configs/prompt-snippets/{snippetKey}/bulk-version-update']
+/internal/projects/{projectKey}/ai-configs/skills/{skillKey}/bulk-version-update   raw-ex: ['/internal/projects/{projectKey}/ai-configs/skills/{skillKey}/bulk-version-update']
+/internal/projects/{projectKey}/ai-configs/{configKey}   raw-ex: ['/internal/projects/{projectKey}/ai-configs/{configKey}']
+/internal/projects/{projectKey}/ai-configs/{configKey}/references   raw-ex: ['/internal/projects/{projectKey}/ai-configs/{configKey}/references']
+/internal/projects/{projectKey}/ai-configs/{configKey}/variationsBulk   raw-ex: ['/internal/projects/{projectKey}/ai-configs/{configKey}/variationsBulk']
+/internal/projects/{projectKey}/ai-monitoring-diagnostics   raw-ex: ['/internal/projects/{projectKey}/ai-monitoring-diagnostics']
+/internal/projects/{projectKey}/applications   raw-ex: ['/internal/projects/{projectKey}/applications']
+/internal/projects/{projectKey}/automated-rollout-configs/{v}/start   raw-ex: ['/internal/projects/{projectKey}/automated-rollout-configs/{id}/start']
+/internal/projects/{projectKey}/context-kinds/{v}   raw-ex: ['/internal/projects/{projectKey}/context-kinds/{key}']
+/internal/projects/{projectKey}/environments   raw-ex: ['/internal/projects/{projectKey}/environments']
+/internal/projects/{projectKey}/environments/{envKey}/flags/{flagKey}/diagnostics   raw-ex: ['/internal/projects/{projectKey}/environments/{envKey}/flags/{flagKey}/diagnostics']
+/internal/projects/{projectKey}/environments/{envKey}/metrics/diagnostics/bulk   raw-ex: ['/internal/projects/{projectKey}/environments/{envKey}/metrics/diagnostics/bulk']
+/internal/projects/{projectKey}/environments/{envKey}/metrics/{metricKey}/diagnostics   raw-ex: ['/internal/projects/{projectKey}/environments/{envKey}/metrics/{metricKey}/diagnostics']
+/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}']
+/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/exemplar-errors   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/exemplar-errors']
+/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-states/{metricKey}   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-states/{metricKey}']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/files   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/files']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/files/{fileId}   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/files/{fileId}']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/context-attributes   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/context-attributes']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/exposures   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/exposures']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/integration/status   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/integration/status']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/mab-analyses   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/mab-analyses']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/traffic/timeseries   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/iterations/{iterationId}/traffic/timeseries']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/analysis   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/analysis']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/segments-of-interest   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/metrics/{metricKey}/segments-of-interest']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/reload   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/reload']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/reload/status   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/reload/status']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/stratified-sampling   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/stratified-sampling']
+/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/stratified-sampling/{covariateId}   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/experiments/{experimentKey}/stratified-sampling/{covariateId}']
+/internal/projects/{projectKey}/environments/{environmentKey}/flags/config-dependencies   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/flags/config-dependencies']
+/internal/projects/{projectKey}/environments/{environmentKey}/flags/{flagKey}/context-kinds/{contextKind}/diagnostics   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/flags/{flagKey}/context-kinds/{contextKind}/diagnostics']
+/internal/projects/{projectKey}/environments/{environmentKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}']
+/internal/projects/{projectKey}/environments/{environmentKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}/instances   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/metric-data-sources/{dataSourceKey}/metric-events/{eventKind}/{eventKey}/instances']
+/internal/projects/{projectKey}/environments/{environmentKey}/segments/top-tags   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/segments/top-tags']
+/internal/projects/{projectKey}/environments/{environmentKey}/usage/experiment-exposure-active   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/usage/experiment-exposure-active']
+/internal/projects/{projectKey}/environments/{environmentKey}/warehouse-native-integrations/{integrationConfigurationId}/health   raw-ex: ['/internal/projects/{projectKey}/environments/{environmentKey}/warehouse-native-integrations/{integrationConfigurationId}/health']
+/internal/projects/{projectKey}/evaluationSummaries   raw-ex: ['/internal/projects/{projectKey}/evaluationSummaries']
+/internal/projects/{projectKey}/flag-templates/{templateKey}   raw-ex: ['/internal/projects/{projectKey}/flag-templates/{templateKey}']
+/internal/projects/{projectKey}/flags/compare   raw-ex: ['/internal/projects/{projectKey}/flags/compare']
+/internal/projects/{projectKey}/flags/search   raw-ex: ['/internal/projects/{projectKey}/flags/search']
+/internal/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/followers   raw-ex: ['/internal/projects/{projectKey}/flags/{featureFlagKey}/environments/{environmentKey}/followers']
+/internal/projects/{projectKey}/flags/{flagKey}/applications   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/applications']
+/internal/projects/{projectKey}/flags/{flagKey}/automated-releases   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/automated-releases']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/audience   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/audience']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/audience-phase-releases   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/audience-phase-releases']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-results/{metricKey}   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-results/{metricKey}']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-results/{metricKey}/timeseries   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/automated-releases/{automatedReleaseId}/metric-results/{metricKey}/timeseries']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback-summary   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback-summary']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/generate   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/generate']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/get_latest_groups   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/get_latest_groups']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/list_items   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/monitor/feedback/list_items']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/release-settings   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/release-settings']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/releases   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/releases']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/releases/{releaseId}   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/releases/{releaseId}']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/resolved-prerequisites   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/resolved-prerequisites']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/subscriptions   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/subscriptions']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/subscriptions/{subscriptionId}   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/subscriptions/{subscriptionId}']
+/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/targeting-analysis   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/environments/{environmentKey}/targeting-analysis']
+/internal/projects/{projectKey}/flags/{flagKey}/flag-releases   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/flag-releases']
+/internal/projects/{projectKey}/flags/{flagKey}/monitor/contextKinds   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/monitor/contextKinds']
+/internal/projects/{projectKey}/flags/{flagKey}/monitor/contexts   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/monitor/contexts']
+/internal/projects/{projectKey}/flags/{flagKey}/monitor/contextsCount   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/monitor/contextsCount']
+/internal/projects/{projectKey}/flags/{flagKey}/monitor/evaluations   raw-ex: ['/internal/projects/{projectKey}/flags/{flagKey}/monitor/evaluations']
+/internal/projects/{projectKey}/metric-events   raw-ex: ['/internal/projects/{projectKey}/metric-events']
+/internal/projects/{projectKey}/metrics/{metricKey}/event-instances   raw-ex: ['/internal/projects/{projectKey}/metrics/{metricKey}/event-instances']
+/internal/projects/{projectKey}/metrics/{metricKey}/event-last-seen   raw-ex: ['/internal/projects/{projectKey}/metrics/{metricKey}/event-last-seen']
+/internal/projects/{projectKey}/monitor/events/{eventKey}   raw-ex: ['/internal/projects/{projectKey}/monitor/events/{eventKey}']
+/internal/projects/{projectKey}/monitor/events/{eventKey}/metadata   raw-ex: ['/internal/projects/{projectKey}/monitor/events/{eventKey}/metadata']
+/internal/projects/{projectKey}/segments/{segmentKey}/flags   raw-ex: ['/internal/projects/{projectKey}/segments/{segmentKey}/flags']
+/internal/reset/{v}   raw-ex: ['/internal/reset/${t.params.passwordResetToken}']
+/internal/resources/project/{projectKey}/environment/{environmentKey}/{resourceKind}/{resourceKey}/followers   raw-ex: ['/internal/resources/project/{projectKey}/environment/{environmentKey}/{resourceKind}/{resourceKey}/followers']
+/internal/resources/project/{projectKey}/environment/{environmentKey}/{resourceKind}/{resourceKey}/followers/{memberId}   raw-ex: ['/internal/resources/project/{projectKey}/environment/{environmentKey}/{resourceKind}/{resourceKey}/followers/{memberId}']
+/internal/role-presets-bundle   raw-ex: ['/internal/role-presets-bundle']
+/internal/teams/{v}/access-summary   raw-ex: ['/internal/teams/{key}/access-summary']
+/internal/unauthenticated-members/organization-verifications   raw-ex: ['/internal/unauthenticated-members/organization-verifications']
+/internal/unauthenticated-members/organization-verifications/{v}   raw-ex: ['/internal/unauthenticated-members/organization-verifications/${e}', '/internal/unauthenticated-members/organization-verifications/${t}']
+/internal/usage/sdk-active   raw-ex: ['/internal/usage/sdk-active']
+/internal/usage/sdk-versions/{v}/{v}   raw-ex: ['/internal/usage/sdk-versions/${t}/${a}']
+/internal/warehouse-integrations-health   raw-ex: ['/internal/warehouse-integrations-health']

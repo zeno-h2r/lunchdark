@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[68364],{783937(e,r,n){n.r(r);var s=n(91987),a=n(143196),t=n(41027),c=n(304437);let o={breadcrumb:(0,n(477937).R)("releases.page.breadcrumb")},l=(0,a.Y)()?function(){let e,r=(0,t.c)(1);return r[0]===Symbol.for("react.memo_cache_sentinel")?(e=(0,s.jsx)(c.sv,{}),r[0]=e):e=r[0],e}:function(){return(0,s.jsx)(c.sv,{})};n.d(r,{},{Component:l,handle:o})}}]);
+//# sourceMappingURL=ReleasesLayout.bee718c659fc12fb.js.map

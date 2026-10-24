@@ -1,0 +1,2 @@
+"use strict";(globalThis.rspackChunkgonfalon||=[]).push([[31076],{843512(e,t,a){a.r(t);var c=a(477937),r=a(78972);let i={breadcrumb:(0,c.R)("metricDataSources_.page.title"),title:(0,c.R)("metricDataSources_.page.title"),activity:({params:e})=>e.projectKey?[{resources:[(0,r.dI)((0,r.QF)((0,r.cA)((0,r.Cv)(e.projectKey),"*"),"*"))],effect:"allow",actions:["*"]}]:[]};a.d(t,{},{handle:i})}}]);
+//# sourceMappingURL=MetricsDataSources_.e80d404cab9de161.js.map
