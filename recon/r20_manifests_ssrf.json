@@ -1,0 +1,2641 @@
+{
+ "datadog": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/datadog",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/datadog",
+    "type": "application/json"
+   }
+  },
+  "key": "datadog",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "DD-API-KEY",
+       "value": "{{apiKey}}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{hostURL}}/api/v1/events"
+    },
+    "includeErrorResponseBody": true,
+    "templates": {
+     "default": "templates/default.json.hbs",
+     "environment": "templates/environment.json.hbs",
+     "member": "templates/member.json.hbs",
+     "project": "templates/project.json.hbs",
+     "validation": "templates/default.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   },
+   "reservedCustomProperties": [
+    {
+     "description": "Tags are a way of adding additional dimension to LaunchDarkly change events in Datadog so they can be filtered, aggregated, and compared in visualizations.",
+     "key": "datadog",
+     "name": "Datadog tags"
+    }
+   ],
+   "trigger": {
+    "auth": "",
+    "defaultEventName": "",
+    "documentation": "https://launchdarkly.com/docs/integrations/datadog/triggers#connect-a-flag-trigger-to-datadog",
+    "parser": {
+     "eventName": "/title",
+     "url": "/url"
+    },
+    "testEventNameRegexp": ".+ \\[TEST\\].+"
+   }
+  },
+  "categories": [
+   "monitoring"
+  ],
+  "description": "Monitor LaunchDarkly flag and other change events in DataDog. Correlate feature rollouts to changes in your system\u2019s operational health.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Datadog [API key](https://app.datadoghq.com/organization-settings/api-keys).",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "apiKey",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Datadog API key",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": [
+     "https://api.datadoghq.com",
+     "https://api.datadoghq.eu",
+     "https://us3.datadoghq.com",
+     "https://us5.datadoghq.com",
+     "https://app.ddog-gov.com"
+    ],
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "https://api.datadoghq.com",
+    "dependsOn": null,
+    "description": "Your Datadog host URL. Read [How do I tell which Datadog site I am on?](https://docs.datadoghq.com/getting_started/site/#how-do-i-tell-which-datadog-site-i-am-on) if you are unsure which host URL to select.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "hostURL",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Datadog host URL",
+    "placeholder": "",
+    "type": "enum"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": false,
+    "dependsOn": null,
+    "description": "Don't send related member email and names.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "hideMemberDetails",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Hide member details",
+    "placeholder": "",
+    "type": "boolean"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/datadog/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/datadog/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/datadog",
+   "privacyPolicy": "https://www.datadoghq.com/legal/privacy",
+   "site": "https://www.datadoghq.com/",
+   "supportWebsite": ""
+  },
+  "name": "Datadog Events",
+  "overview": "Monitor LaunchDarkly changes in Datadog.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "splunk": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/splunk",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/splunk",
+    "type": "application/json"
+   }
+  },
+  "key": "splunk",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Splunk {{token}}"
+      },
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{base-url}}/services/collector/event"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/template.json.hbs",
+     "validation": "templates/template.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   }
+  },
+  "categories": [
+   "monitoring"
+  ],
+  "description": "Monitor LaunchDarkly flag and other change events in Splunk and include these events in your reports, charts, alerts, and dashboards.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your [Splunk HTTP event collector base URL](https://docs.splunk.com/Documentation/Splunk/latest/Data/UsetheHTTPEventCollector) (omitting the path).",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "base-url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "HTTP event collector base URL",
+    "placeholder": "https://http-inputs-<host>.splunkcloud.com",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your HTTP event collector token value.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "token",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Token",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Splunk Cloud instances sign their own SSL certificates by default. If you use Splunk Cloud, you may need to skip certificate validation in order for this integration to work.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "skip-ca-verification",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Skip certificate verification",
+    "placeholder": "",
+    "type": "boolean"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/splunk/assets/images/splunk-logo.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/splunk/assets/images/splunk-icon.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/splunk",
+   "privacyPolicy": "https://www.splunk.com/en_us/legal/splunk-data-security-and-privacy.html",
+   "site": "https://www.splunk.com/",
+   "supportWebsite": ""
+  },
+  "name": "Splunk",
+  "overview": "Monitor LaunchDarkly flag changes in Splunk.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "elastic": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/elastic",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/elastic",
+    "type": "application/json"
+   }
+  },
+  "key": "elastic",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "ApiKey {{token}}"
+      },
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{url}}/{{index}}/_doc"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/template.json.hbs",
+     "validation": "templates/template.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   }
+  },
+  "categories": [
+   "incident-response",
+   "monitoring"
+  ],
+  "description": "This integration sends LaunchDarkly audit log events to an Elasticsearch endpoint.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the URL for your Elasticsearch endpoint, including the socket",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Elasticsearch endpoint URL",
+    "placeholder": "https://cluster.region.aws.found.io:9243",
+    "type": "uri"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the base64 _credentials_ based on your [API Key](https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html)",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "token",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Authentication token",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the index name where you want to store your LaunchDarkly data",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "index",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Index",
+    "placeholder": "launchdarkly-audit",
+    "type": "string"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/elastic/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/elastic/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/elastic-stack",
+   "privacyPolicy": "https://www.elastic.co/legal/privacy-statement",
+   "site": "https://elastic.co",
+   "supportWebsite": ""
+  },
+  "name": "Elastic (ELK) Stack",
+  "overview": "Observe LaunchDarkly flag changes in the Elastic (ELK) Stack.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "grafana": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/grafana",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/grafana",
+    "type": "application/json"
+   }
+  },
+  "key": "grafana",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      },
+      {
+       "name": "Authorization",
+       "value": "Bearer {{ apiKey }}"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{ endpointUrl }}/api/annotations"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/template.json.hbs",
+     "validation": "templates/template.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   }
+  },
+  "categories": [
+   "monitoring"
+  ],
+  "description": "Send flag, environment, and project updates to Grafana to add context to your graphs.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Grafana instance's URL. This instance must be accessible to LaunchDarkly's servers. Do not include a trailing \"/\".",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "endpointUrl",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Grafana URL",
+    "placeholder": "https://grafana.example.org",
+    "type": "uri"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter Grafana [service account](https://grafana.com/docs/grafana/latest/administration/service-accounts/) token. The service account must have the \"Annotation writer\" role.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "apiKey",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Service account token",
+    "placeholder": "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijk=",
+    "type": "string"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/grafana/assets/images/grafana.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/grafana/assets/images/grafana.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/grafana",
+   "privacyPolicy": "https://grafana.com/terms/",
+   "site": "https://grafana.com/",
+   "supportWebsite": ""
+  },
+  "name": "Grafana",
+  "overview": "Annotate your Grafana dashboards with LaunchDarkly events.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "0.0.1"
+ },
+ "mattermost": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/mattermost",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/mattermost",
+    "type": "application/json"
+   }
+  },
+  "key": "mattermost",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{{url}}}"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/default.json.hbs",
+     "environment": "templates/environment.json.hbs",
+     "project": "templates/project.json.hbs",
+     "validation": "templates/default.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   }
+  },
+  "categories": [
+   "messaging"
+  ],
+  "description": "Receive LaunchDarkly notifications in your Mattermost channels. Subscribe to changes in flags, projects, environments, and other resources via Mattermost's incoming webhook integration.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Mattermost [incoming webhook URL](https://docs.mattermost.com/developer/webhooks-incoming.html).",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Incoming webhook URL",
+    "placeholder": "",
+    "type": "uri"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/mattermost/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/mattermost/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/mattermost",
+   "privacyPolicy": "https://mattermost.com/privacy-policy/",
+   "site": "https://mattermost.com",
+   "supportWebsite": ""
+  },
+  "name": "Mattermost incoming webhooks",
+  "overview": "Receive flag change notifications in your Mattermost channels.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "zapier": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/zapier",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/zapier",
+    "type": "application/json"
+   }
+  },
+  "key": "zapier",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{url}}"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/default.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   },
+   "hideConfiguration": true
+  },
+  "categories": [
+   "automation"
+  ],
+  "description": "Trigger Zaps based on LaunchDarkly audit log events, and take actions in LaunchDarkly from your Zaps.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your zap webhook URL",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Incoming webhook URL",
+    "placeholder": "",
+    "type": "uri"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/zapier/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/zapier/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/zapier",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://zapier.com",
+   "supportWebsite": ""
+  },
+  "name": "Zapier",
+  "overview": "Zapier triggers and actions for LaunchDarkly.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.4"
+ },
+ "msteams": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/msteams",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/msteams",
+    "type": "application/json"
+   }
+  },
+  "key": "msteams",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "*"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/production:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "POST",
+     "url": "{{{url}}}"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {
+     "default": "templates/default.json.hbs",
+     "environment": "templates/environment.json.hbs",
+     "project": "templates/project.json.hbs",
+     "validation": "templates/default.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   }
+  },
+  "categories": [
+   "messaging"
+  ],
+  "description": "Receive LaunchDarkly notifications in your Teams workspaces. Subscribe to changes in flags, projects, and other resources.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Microsoft Teams [incoming webhook URL](https://launchdarkly.com/docs/integrations/microsoft-teams/webhooks#set-up-a-workflow-in-microsoft-teams).",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Incoming webhook URL",
+    "placeholder": "",
+    "type": "uri"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/msteams/assets/images/microsoft-teams.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/msteams/assets/images/microsoft-teams.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/microsoft-teams/webhooks",
+   "privacyPolicy": "https://privacy.microsoft.com/en-us",
+   "site": "https://www.microsoft.com/microsoft-365/microsoft-teams/group-chat-software",
+   "supportWebsite": ""
+  },
+  "name": "Microsoft Teams incoming webhooks",
+  "overview": "Receive flag change notifications in your Teams workspaces.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "convex": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/convex",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/convex",
+    "type": "application/json"
+   }
+  },
+  "key": "convex",
+  "additionalFields": {
+   "status": "new",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "Convex",
+  "capabilities": {
+   "featureStore": {
+    "featureStoreRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{componentApiToken}}"
+       },
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "PUT",
+      "url": "{{deploymentPayloadUrl}}"
+     },
+     "payloadPrefix": "",
+     "payloadSuffix": ""
+    },
+    "formVariables": [
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": true,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the URL to the webhook exposed by the LaunchDarkly component for Convex.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "deploymentPayloadUrl",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Webhook URL",
+      "placeholder": "https://techno-kitten-138.convex.site/ld/webhook",
+      "type": "uri"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the API token generated by the LaunchDarkly component for Convex.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "componentApiToken",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Component API Token",
+      "placeholder": "",
+      "type": "string"
+     }
+    ],
+    "validationRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{componentApiToken}}"
+       },
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "GET",
+      "url": "{{deploymentPayloadUrl}}"
+     },
+     "parser": {
+      "errors": "/errors",
+      "success": "/success"
+     }
+    }
+   }
+  },
+  "categories": [
+   "infrastructure"
+  ],
+  "description": "Convex is the open-source backend for application builders. An all-in-one platform with thoughtful, product-centric APIs.",
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/convex/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/convex/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "",
+   "privacyPolicy": "https://convex.dev/privacy",
+   "site": "https://convex.dev/components/launchdarkly",
+   "supportWebsite": ""
+  },
+  "name": "Convex",
+  "overview": "Sync your LaunchDarkly feature flags to your Convex deployment.",
+  "supportEmail": "support@convex.dev",
+  "version": "0.0.1"
+ },
+ "kosli": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/kosli",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/kosli",
+    "type": "application/json"
+   }
+  },
+  "key": "kosli",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "Kosli",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "createFlag",
+       "updateOn"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/*:flag/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": {
+      "headerName": "X-LD-Signature",
+      "hmacSecretFormVariableKey": "secret"
+     },
+     "method": "POST",
+     "url": "{{webhookUrl}}"
+    },
+    "includeErrorResponseBody": false,
+    "templates": {},
+    "useStandardWebhookPayload": true
+   }
+  },
+  "categories": [
+   "developer-tools",
+   "monitoring"
+  ],
+  "description": "Kosli records all of the changes in your software delivery process to give you the easy buttons for audit, compliance, security and incident response. Integrate Kosli with LaunchDarkly to record all the changes made to feature flags. Get a versioned history of how they changed, when they changed, and who changed them.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Kosli webhook URL",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "webhookUrl",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Kosli Webhook URL",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter your Kosli secret",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "secret",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Kosli secret",
+    "placeholder": "",
+    "type": "string"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/kosli/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/kosli/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "",
+   "privacyPolicy": "https://www.kosli.com/privacy-policy/",
+   "site": "https://www.kosli.com",
+   "supportWebsite": "https://www.kosli.com/community/"
+  },
+  "name": "Kosli",
+  "otherCapabilities": [
+   "webhooks"
+  ],
+  "overview": "Use Kosli to keep a record of all the changes made to your feature flags.",
+  "supportEmail": "support@kosli.com",
+  "version": "1.0.0"
+ },
+ "cloudflare": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/cloudflare",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/cloudflare",
+    "type": "application/json"
+   }
+  },
+  "key": "cloudflare",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "featureStore": {
+    "featureStoreRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{apiToken}}"
+       },
+       {
+        "name": "Content-Type",
+        "value": "text/plain"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "PUT",
+      "url": "{{#if apiBaseUrl}}{{apiBaseUrl}}{{else}}https://api.cloudflare.com/client/v4{{/if}}/accounts/{{accountId}}/storage/kv/namespaces/{{namespaceId}}/values/{{_featureStoreKey}}"
+     },
+     "payloadPrefix": "",
+     "payloadSuffix": ""
+    },
+    "formVariables": [
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter your Cloudflare account ID. This can be found on your Workers Dashboard or using [Wrangler CLI](https://developers.cloudflare.com/workers/get-started/guide)",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "accountId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Account ID",
+      "placeholder": "e.g. 01a7362d577a6c3019a474fd6f485823",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "You must have a KV namespace available for flag updates. Enter the KV namespace ID associated with your Worker.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "namespaceId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "KV Namespace ID",
+      "placeholder": "e.g. 0f2ac74b498b48028cb68387c421e279",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": true,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Optional. Base URL of an API-compatible Cloudflare gateway, if you route requests through one instead of calling Cloudflare directly. No trailing \"/\". Leave blank for `https://api.cloudflare.com/client/v4`. Changing this clears your API token.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": true,
+      "isSecret": false,
+      "key": "apiBaseUrl",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "API Base URL",
+      "placeholder": "https://api.cloudflare.com/client/v4",
+      "type": "uri"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the API token generated from Cloudflare. Instructions for generating a [Cloudflare API token](https://developers.cloudflare.com/api/tokens/create).",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "apiToken",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "API Token",
+      "placeholder": "e.g. 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T",
+      "type": "string"
+     }
+    ],
+    "validationRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{apiToken}}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "GET",
+      "url": "{{#if apiBaseUrl}}{{apiBaseUrl}}{{else}}https://api.cloudflare.com/client/v4{{/if}}/accounts/{{accountId}}/storage/kv/namespaces/{{namespaceId}}/keys"
+     },
+     "parser": {
+      "errors": "",
+      "success": "/success"
+     }
+    }
+   }
+  },
+  "categories": [
+   "infrastructure"
+  ],
+  "description": "Evaluate feature flags and bootstrap the LaunchDarkly Javascript SDK from Cloudflare Workers by storing flag data in Cloudflare's KV offering.",
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/cloudflare/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/cloudflare/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/cloudflare",
+   "privacyPolicy": "https://www.cloudflare.com/privacypolicy/",
+   "site": "https://www.cloudflare.com/",
+   "supportWebsite": ""
+  },
+  "name": "Cloudflare",
+  "overview": "Evaluate feature flags and bootstrap the LaunchDarkly Javascript SDK from Cloudflare Workers.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "unleash": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/unleash",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/unleash",
+    "type": "application/json"
+   }
+  },
+  "key": "unleash",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "flagImport": {
+    "includeErrorResponseBody": false,
+    "templates": null
+   }
+  },
+  "categories": [
+   "automation",
+   "flag-import",
+   "migration"
+  ],
+  "description": "Import feature flags from Unleash to LaunchDarkly. Customize a tag to be assigned to each flag imported.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "The base URL used to connect to your Unleash instance",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "sourceBaseUrl",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Unleash Base URL",
+    "placeholder": "https://unleash.mysite.com",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "An SDK key for your selected environment.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "sourceApiKey",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Unleash SDK Key",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "The ID of the Unleash project to import from",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "sourceProjectId",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Unleash Project ID",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "The ID of the Unleash environment to import variants from",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "sourceEnvironmentId",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Unleash Environment ID",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "",
+    "dependsOn": null,
+    "description": "Provide a tag to only import a subset of your flags from Unleash based on the tag. Leave blank to import all flags.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "sourceTag",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Unleash Tag",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "An API key with create flag permissions on your LaunchDarkly account",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "ldApiKey",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "LaunchDarkly API Key",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "imported-from-unleash",
+    "dependsOn": null,
+    "description": "A tag to apply to all flags imported from Unleash to LaunchDarkly.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "ldTag",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "LaunchDarkly Tag",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "",
+    "dependsOn": null,
+    "description": "The member id of the LaunchDarkly user who will be the maintainer of the imported flags.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": true,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "ldMaintainer",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "LaunchDarkly Maintainer",
+    "placeholder": "",
+    "type": "string"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/unleash/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/unleash/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/home/flags/import",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://www.getunleash.io",
+   "supportWebsite": ""
+  },
+  "name": "Unleash",
+  "overview": "Import feature flags from Unleash to LaunchDarkly.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "akamai-edgeworkers": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/akamai-edgeworkers",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/akamai-edgeworkers",
+    "type": "application/json"
+   }
+  },
+  "key": "akamai-edgeworkers",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "featureStore": {
+    "featureStoreRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "{{edgeGridAuth 'PUT' '/edgekv/v1/networks/{{network}}/namespaces/{{namespaceId}}/groups/{{groupId}}/items/{{_featureStoreKey}}' hostname network namespaceId groupId _featureStoreKey clientSecret clientToken accessToken}}"
+       },
+       {
+        "name": "Content-Type",
+        "value": "text/plain"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "PUT",
+      "url": "https://{{hostname}}/edgekv/v1/networks/{{network}}/namespaces/{{namespaceId}}/groups/{{groupId}}/items/{{_featureStoreKey}}"
+     },
+     "payloadPrefix": "",
+     "payloadSuffix": ""
+    },
+    "formVariables": [
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": true,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "The unique host domain that will receive API requests. You can find this on your API client details page from your Akamai [Identity and Access Management](https://techdocs.akamai.com/developer/docs/create-a-client-with-custom-permissions) dashboard.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "hostname",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Host",
+      "placeholder": "e.g. abcd-xxxxxx-xxxx.luna-dev.akamaiapis.net",
+      "type": "string"
+     },
+     {
+      "allowedValues": [
+       "production",
+       "staging"
+      ],
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": "production",
+      "dependsOn": null,
+      "description": "Akamai network environment to execute the API request on.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "network",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Network",
+      "placeholder": "",
+      "type": "enum"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "EdgeKV namespace identifier where data will be stored.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "namespaceId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "EdgeKV namespace",
+      "placeholder": "e.g. default",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Unique identifier for the group within your EdgeKV namespace.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "groupId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "EdgeKV group",
+      "placeholder": "e.g. 12345",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the API client secret generated from the Akamai Control Center. To learn more, read the Akamai instructions for [authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "clientSecret",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Client secret",
+      "placeholder": "e.g. xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxx",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the API client token generated from the Akamai Control Center. To learn more, read the Akamai instructions for [authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "clientToken",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Client token",
+      "placeholder": "e.g. akaa-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxx",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Enter the API client access token generated from the Akamai Control Center. To learn more, read the Akamai instructions for [authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": false,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "accessToken",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Access token",
+      "placeholder": "e.g. akaa-xxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx",
+      "type": "string"
+     }
+    ],
+    "validationRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "{{edgeGridAuth 'GET' '/edgekv/v1/networks/{{network}}/namespaces/{{namespaceId}}' hostname network namespaceId groupId _featureStoreKey clientSecret clientToken accessToken}}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "GET",
+      "url": "https://{{hostname}}/edgekv/v1/networks/{{network}}/namespaces/{{namespaceId}}"
+     },
+     "parser": {
+      "errors": "",
+      "success": "/success"
+     }
+    }
+   }
+  },
+  "categories": [
+   "infrastructure"
+  ],
+  "description": "Evaluate feature flags with our LaunchDarkly Akamai Edge SDK from your Akamai EdgeWorker functions by storing flag data in Akamai's EdgeKV store.",
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/akamai-edgeworkers/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/akamai-edgeworkers/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/akamai",
+   "privacyPolicy": "https://www.akamai.com/legal/compliance/privacy-trust-center/",
+   "site": "https://www.akamai.com/",
+   "supportWebsite": ""
+  },
+  "name": "Akamai EdgeWorkers",
+  "overview": "Evaluate feature flags with our LaunchDarkly Akamai Edge SDK from your Akamai EdgeWorker functions.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "custom-approvals": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/custom-approvals",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/custom-approvals",
+    "type": "application/json"
+   }
+  },
+  "key": "custom-approvals",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "allowIntegrationConfigurations": true,
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "approval": {
+    "allowAdditionalApprovalFormVariables": true,
+    "allowApprovalIntegrationConfigurations": true,
+    "approvalFormVariables": [],
+    "creationRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "name": "Authorization",
+        "value": "Bearer {{ apiKey }}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "POST",
+      "url": "{{ baseURL }}/api/approvals"
+     },
+     "jsonBody": "{\"_site\": {\"href\": \"{{_links.approval.href}}\"}, \"_id\": \"{{approvalId}}\", {{#if details.plainText}}\"details\": \"{{{details.plainText}}}\",{{/if}} \"project\": {\"name\":\"{{{project.name}}}\", \"key\": \"{{project.key}}\", \"tags\":[{{#each project.tags}}\"{{{this}}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]}, \"environment\": {\"name\":\"{{{project.environment.name}}}\", \"key\": \"{{project.environment.key}}\", \"tags\":[{{#each project.environment.tags}}\"{{this}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]}, \"{{{resource.resourceKind}}}\": {\"name\":\"{{{resource.name}}}\", \"key\": \"{{resource.key}}\", \"tags\":[{{#each resource.tags}}\"{{this}}\"{{#if @last}}{{else}},{{/if}}{{/each}}]},{{#if title.member}}\"requestedBy\": {\"id\": \"{{member._id}}\", \"email\": \"{{member.email}}\"},{{/if}}\"shortDescription\": \"{{{title.plainText}}}\", \"timestamp\": \"{{timestamp.milliseconds}}\", \"approvalFormVariables\": { {{#each approvalFormVariables}} \"{{@key}}\": \"{{{this}}}\"{{#if @last}}{{else}},{{/if}}{{/each}} },\"comment\": \"{{{approvalDescription}}}\" }",
+     "parser": {
+      "approvalId": "/_id",
+      "approvalMatcher": "approved",
+      "rejectionMatcher": "declined",
+      "statusDisplay": "/status/display",
+      "statusValue": "/status/value",
+      "urlTemplate": "{{ baseURL }}/approvals?approvalID={{ context.approvalId }}"
+     }
+    },
+    "deletionRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "name": "Authorization",
+        "value": "Bearer {{ apiKey }}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "POST",
+      "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/cancel"
+     },
+     "jsonBody": "",
+     "parser": {
+      "approvalId": "",
+      "approvalMatcher": "approved",
+      "rejectionMatcher": "declined",
+      "statusDisplay": "/status/display",
+      "statusValue": "/status/value",
+      "urlTemplate": ""
+     }
+    },
+    "environmentFormVariables": null,
+    "memberListRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{apiKey}}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "GET",
+      "url": "{{baseURL}}/api/members"
+     },
+     "jsonBody": "",
+     "parser": {
+      "memberArrayPath": "/members",
+      "memberItems": {
+       "email": "/email",
+       "memberId": "/name"
+      }
+     }
+    },
+    "name": "Custom Approvals",
+    "postApplyRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "name": "Authorization",
+        "value": "Bearer {{ apiKey }}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "POST",
+      "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/apply"
+     },
+     "jsonBody": "",
+     "parser": {
+      "approvalId": "",
+      "approvalMatcher": "approved",
+      "rejectionMatcher": "declined",
+      "statusDisplay": "/status/display",
+      "statusValue": "/status/value",
+      "urlTemplate": ""
+     }
+    },
+    "statusRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{ apiKey }}"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "GET",
+      "url": "{{ baseURL }}/api/approvals/{{ context.approvalId }}/status"
+     },
+     "jsonBody": "",
+     "parser": {
+      "approvalId": "",
+      "approvalMatcher": "approved",
+      "rejectionMatcher": "declined",
+      "statusDisplay": "/status/display",
+      "statusValue": "/status/value",
+      "urlTemplate": ""
+     }
+    }
+   }
+  },
+  "categories": [
+   "approvals"
+  ],
+  "description": "Integrate LaunchDarkly approvals with an application of your own design.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the API your custom service will use to authenticate.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "apiKey",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "API Token",
+    "placeholder": "e.g. 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "The base URL of your custom approval service. This is where all of the API handlers should be set up.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "baseURL",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Custom approval service base URL",
+    "placeholder": "e.g. https://mycustomapprovalservice.com",
+    "type": "string"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/custom-approvals/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/custom-approvals/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/custom-approvals",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://launchdarkly.com/",
+   "supportWebsite": ""
+  },
+  "name": "Custom Approvals",
+  "overview": "Integrate LaunchDarkly approvals with an application of your own design.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "vercel-native": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/vercel-native",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/vercel-native",
+    "type": "application/json"
+   }
+  },
+  "key": "vercel-native",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "allowIntegrationConfigurations": true,
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "auditLogEventsHook": {
+    "defaultPolicy": [
+     {
+      "actions": [
+       "createFlag",
+       "cloneFlag",
+       "updateName",
+       "updateDescription",
+       "updateGlobalArchived",
+       "deleteFlag"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/*:flag/*"
+      ]
+     },
+     {
+      "actions": [
+       "createProject",
+       "updateProjectName",
+       "deleteProject"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*"
+      ]
+     },
+     {
+      "actions": [
+       "updateApiKey"
+      ],
+      "effect": "allow",
+      "resources": [
+       "proj/*:env/*"
+      ]
+     }
+    ],
+    "deliveryMethod": "",
+    "endpoint": {
+     "headers": [
+      {
+       "name": "Authorization",
+       "value": "Bearer {{accessToken}}"
+      },
+      {
+       "name": "Content-Type",
+       "value": "application/json"
+      }
+     ],
+     "hmacSignature": null,
+     "method": "{{#equal context.verbKind \"createFlag\"}}POST{{/equal}}{{#equal context.verbKind \"cloneFlag\"}}POST{{/equal}}{{#equal context.verbKind \"updateName\"}}PATCH{{/equal}}{{#equal context.verbKind \"updateDescription\"}}PATCH{{/equal}}{{#equal context.verbKind \"updateGlobalArchived\"}}PATCH{{/equal}}{{#equal context.verbKind \"deleteFlag\"}}DELETE{{/equal}}{{#equal context.verbKind \"createProject\"}}PUT{{/equal}}{{#equal context.verbKind \"updateProjectName\"}}PATCH{{/equal}}{{#equal context.verbKind \"deleteProject\"}}DELETE{{/equal}}{{#equal context.verbKind \"updateApiKey\"}}PATCH{{/equal}}",
+     "url": "https://api.vercel.com/v1/installations/{{installationId}}/resources/{{#equal context.kind \"flag\"}}{{context.project.key}}/experimentation/items{{#equal context.verbKind \"updateName\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"updateDescription\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"updateGlobalArchived\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{#equal context.verbKind \"deleteFlag\"}}/{{pathEncode context.project.key}}_{{pathEncode context.key}}{{/equal}}{{/equal}}{{#equal context.kind \"project\"}}{{context.key}}{{/equal}}{{#equal context.kind \"environment\"}}{{context.project.key}}{{/equal}}"
+    },
+    "includeErrorResponseBody": true,
+    "templates": {
+     "default": "templates/default.json.hbs",
+     "environment": "templates/environment.json.hbs",
+     "flag": "templates/flag.json.hbs",
+     "project": "templates/project.json.hbs"
+    },
+    "useStandardWebhookPayload": false
+   },
+   "featureStore": {
+    "featureStoreRequest": {
+     "endpoint": {
+      "headers": [
+       {
+        "name": "Authorization",
+        "value": "Bearer {{accessToken}}"
+       },
+       {
+        "name": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "name": "User-Agent",
+        "value": "launchdarkly"
+       }
+      ],
+      "hmacSignature": null,
+      "method": "PUT",
+      "url": "https://api.vercel.com/v1/installations/{{installationId}}/resources/{{resourceId}}/experimentation/edge-config"
+     },
+     "payloadPrefix": "{\"data\": {\"LD-Env-{{envId}}\": ",
+     "payloadSuffix": "}}"
+    },
+    "formVariables": [
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "Vercel access token.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": true,
+      "isOptional": false,
+      "isSecret": true,
+      "key": "accessToken",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Access Token",
+      "placeholder": "",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "The Vercel installation ID.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": true,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "installationId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Installation ID",
+      "placeholder": "",
+      "type": "string"
+     },
+     {
+      "allowedValues": null,
+      "clearSecretsOnChange": false,
+      "codeLanguage": "",
+      "defaultValue": null,
+      "dependsOn": null,
+      "description": "The Vercel resource ID for this project.",
+      "disableAfterSaving": false,
+      "divider": false,
+      "dynamicOptions": null,
+      "hideEmpty": false,
+      "instructions": null,
+      "instructionsHeading": "",
+      "isHidden": true,
+      "isOptional": false,
+      "isSecret": false,
+      "key": "resourceId",
+      "multiselectDefaultOptions": null,
+      "multiselectOptions": null,
+      "name": "Vercel Resource ID",
+      "placeholder": "",
+      "type": "string"
+     }
+    ],
+    "validationRequest": null
+   },
+   "hideConfiguration": true
+  },
+  "categories": [
+   "infrastructure"
+  ],
+  "description": "Evaluate feature flags and bootstrap the LaunchDarkly Vercel SDK.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the access token generated from Vercel.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": true,
+    "key": "accessToken",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Access Token",
+    "placeholder": "e.g. 8M7wS6hCpXVc-DoRnPPY_UCWPgy8aea4Wy6kCe5T",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Enter the installation ID generated from Vercel.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "installationId",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Installation ID",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "",
+    "dependsOn": null,
+    "description": "A link to the user's installation page on vercel.com",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": true,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "url",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "URL",
+    "placeholder": "",
+    "type": "string"
+   }
+  ],
+  "hideOnIntegrationsPage": true,
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/vercel-native/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/vercel-native/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/vercel",
+   "privacyPolicy": "https://vercel.com/legal/privacy-policy",
+   "site": "https://www.vercel.com/",
+   "supportWebsite": ""
+  },
+  "name": "Vercel Native",
+  "otherCapabilities": [
+   "external"
+  ],
+  "overview": "Evaluate feature flags and bootstrap the LaunchDarkly Vercel SDK.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "redis": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/redis",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/redis",
+    "type": "application/json"
+   }
+  },
+  "key": "redis",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "capabilities": {
+   "bigSegmentStore": {
+    "dbStyle": "redis"
+   }
+  },
+  "categories": [
+   "audience-sync",
+   "big-segment-store"
+  ],
+  "description": "Integrate with a persistent store for segments with over 15k targets or synced from external tools. The Redis big segment store syncs these LaunchDarkly segments with your Redis DB.",
+  "formVariables": [
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": true,
+    "codeLanguage": "",
+    "defaultValue": null,
+    "dependsOn": null,
+    "description": "Your Redis host.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": false,
+    "isSecret": false,
+    "key": "host",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Host",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "6379",
+    "dependsOn": null,
+    "description": "Your Redis port. Uses the default port of 6379 if not specified.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "port",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Port",
+    "placeholder": "6379",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "",
+    "dependsOn": null,
+    "description": "Your Redis username. Leave this field empty if your Redis DB does not have a username configured.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "username",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Username",
+    "placeholder": "default",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": "",
+    "dependsOn": null,
+    "description": "Your Redis password.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": true,
+    "key": "password",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Password",
+    "placeholder": "",
+    "type": "string"
+   },
+   {
+    "allowedValues": null,
+    "clearSecretsOnChange": false,
+    "codeLanguage": "",
+    "defaultValue": false,
+    "dependsOn": null,
+    "description": "Check this box if your Redis DB has TLS (SSL) enabled.",
+    "disableAfterSaving": false,
+    "divider": false,
+    "dynamicOptions": null,
+    "hideEmpty": false,
+    "instructions": null,
+    "instructionsHeading": "",
+    "isHidden": false,
+    "isOptional": true,
+    "isSecret": false,
+    "key": "tlsEnabled",
+    "multiselectDefaultOptions": null,
+    "multiselectOptions": null,
+    "name": "Connect with TLS",
+    "placeholder": "",
+    "type": "boolean"
+   }
+  ],
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/redis/assets/images/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/redis/assets/images/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/redis",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://redis.io/",
+   "supportWebsite": ""
+  },
+  "name": "Redis big segment store",
+  "overview": "Integrate with a persistent store for segments with over 15k targets or synced from external tools.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "datadog-flag-trigger": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/datadog-flag-trigger",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/datadog-flag-trigger",
+    "type": "application/json"
+   }
+  },
+  "key": "datadog-flag-trigger",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "categories": [
+   "developer-tools",
+   "monitoring"
+  ],
+  "description": "Flag triggers integrate with your existing tools to let you enable or disable flags when you hit specific operational health thresholds or receive certain alerts.",
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/datadog-flag-trigger/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/datadog-flag-trigger/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://launchdarkly.com/docs/integrations/datadog/triggers",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://www.datadoghq.com",
+   "supportWebsite": ""
+  },
+  "name": "Datadog Flag Trigger",
+  "otherCapabilities": [
+   "external"
+  ],
+  "overview": "Allow a Datadog alert to initiate a flag change remotely when created.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ },
+ "datadog-dashboard-widget": {
+  "_links": {
+   "parent": {
+    "href": "/api/v2/integration-manifests",
+    "type": "application/json"
+   },
+   "self": {
+    "href": "/api/v2/integration-manifests/datadog-dashboard-widget",
+    "type": "application/json"
+   },
+   "subscriptions": {
+    "href": "/api/v2/integrations/datadog-dashboard-widget",
+    "type": "application/json"
+   }
+  },
+  "key": "datadog-dashboard-widget",
+  "additionalFields": {
+   "status": "default",
+   "upsellKind": "none",
+   "shouldUpsell": false
+  },
+  "oauth": {
+   "connected": false,
+   "member": ""
+  },
+  "author": "LaunchDarkly",
+  "categories": [
+   "developer-tools",
+   "monitoring"
+  ],
+  "description": "Pin a subset of feature flag targeting toggles to your Datadog dashboards to monitor and perform a feature go-live from a single window.",
+  "icons": {
+   "horizontal": "https://static.launchdarkly.com/integrations/0c2514ac/datadog-dashboard-widget/assets/horizontal.svg",
+   "square": "https://static.launchdarkly.com/integrations/0c2514ac/datadog-dashboard-widget/assets/square.svg"
+  },
+  "links": {
+   "launchdarklyDocs": "https://docs.datadoghq.com/integrations/launchdarkly/#dashboard-widget-1/",
+   "privacyPolicy": "https://launchdarkly.com/policies/privacy/",
+   "site": "https://www.datadoghq.com",
+   "supportWebsite": ""
+  },
+  "name": "Datadog Dashboard Widget",
+  "otherCapabilities": [
+   "external"
+  ],
+  "overview": "View and manage feature flags from within your Datadog Dashboard.",
+  "supportEmail": "support@launchdarkly.com",
+  "version": "1.0.0"
+ }
+}

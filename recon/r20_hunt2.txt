@@ -1,0 +1,54 @@
+=== R20 HUNT2: integration setup SSRF matrix ===
+form keys per kind:
+  splunk: ['base-url', 'token', 'skip-ca-verification']
+  mattermost: ['url']
+  elastic: ['url', 'token', 'index']
+  grafana: ['endpointUrl', 'apiKey']
+  kosli: ['webhookUrl', 'secret']
+  custom-approvals: ['apiKey', 'baseURL']
+
+=== pass 1: collector control URL ===
+[splunk/ctrl] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"splunk\\" does not allow integration configurations"}'
+[splunk/ctrl] collector hits: 0
+[mattermost/ctrl] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"mattermost\\" does not allow integration configurations"}'
+[mattermost/ctrl] collector hits: 0
+[elastic/ctrl] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"elastic\\" does not allow integration configurations"}'
+[elastic/ctrl] collector hits: 0
+[grafana/ctrl] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"grafana\\" does not allow integration configurations"}'
+[grafana/ctrl] collector hits: 0
+[kosli/ctrl] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"kosli\\" does not allow integration configurations"}'
+[kosli/ctrl] collector hits: 0
+[custom-approvals/ctrl] create -> 400 id=None b'{"code":"invalid_request","message":"Required config value not found: \'apiKey\'"}'
+[custom-approvals/ctrl] collector hits: 0
+
+=== pass 2: IMDS / private URLs on responsive kinds ===
+[splunk/imds] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"splunk\\" does not allow integration configurations"}'
+[splunk/imds] collector hits: 0
+[splunk/loopback] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"splunk\\" does not allow integration configurations"}'
+[splunk/loopback] collector hits: 0
+[mattermost/imds] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"mattermost\\" does not allow integration configurations"}'
+[mattermost/imds] collector hits: 0
+[mattermost/loopback] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"mattermost\\" does not allow integration configurations"}'
+[mattermost/loopback] collector hits: 0
+[elastic/imds] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"elastic\\" does not allow integration configurations"}'
+[elastic/imds] collector hits: 0
+[elastic/loopback] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"elastic\\" does not allow integration configurations"}'
+[elastic/loopback] collector hits: 0
+[grafana/imds] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"grafana\\" does not allow integration configurations"}'
+[grafana/imds] collector hits: 0
+[grafana/loopback] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"grafana\\" does not allow integration configurations"}'
+[grafana/loopback] collector hits: 0
+[kosli/imds] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"kosli\\" does not allow integration configurations"}'
+[kosli/imds] collector hits: 0
+[kosli/loopback] create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"kosli\\" does not allow integration configurations"}'
+[kosli/loopback] collector hits: 0
+[custom-approvals/imds] create -> 400 id=None b'{"code":"invalid_request","message":"Required config value not found: \'apiKey\'"}'
+[custom-approvals/imds] collector hits: 0
+[custom-approvals/loopback] create -> 400 id=None b'{"code":"invalid_request","message":"Required config value not found: \'apiKey\'"}'
+[custom-approvals/loopback] collector hits: 0
+
+=== redis big-segment-store TCP probe ===
+redis create -> 403 id=None b'{"code":"forbidden","message":"Integration \\"redis\\" does not allow integration configurations"}'
+
+=== final collector state ===
+total hits: 0

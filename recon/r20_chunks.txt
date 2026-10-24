@@ -1,0 +1,35 @@
+runtime -> 200 (66884b)
+chunks available: 551
+integration/destination chunks: ['ApprovalSettings.2d2c8c9bde373287.js', 'IntegrationsGoaltenderSubscriptionErrors.b86dbcc8a43166ca.js', 'IntegrationsWebhookEdit.0c590f10f952f4a7.js', 'IntegrationsDestinationsNew.f15bd670d354b509.js', 'Integrations.5e7c1abd438d3db4.js', 'IntegrationsGithubApp.81cd0fccd612ff23.js', 'IntegrationsWebhookNew.24e95117e60ad563.js', 'IntegrationsGoaltenderSubscriptionNew.36537eb42f693c3b.js', 'IntegrationsGoaltenderLearnMore.41223520904e0934.js', 'ApprovalsUpsellContent.e3553fdb739658e6.js', 'IntegrationsSentry.20dc5002062e4196.js', 'IntegrationsGoaltenderSubscriptionEdit.2c74fc3e34568896.js', 'productAnalyticsIntegrationsPage.ac4726743309cc4d.js', 'EnvironmentApprovalSettings.ffc4554899ede53d.js', 'IntegrationsSlackEdit.a0ed757fd1d68922.js', 'IntegrationsRepositoryEdit.50f89439b46f534a.js', 'IntegrationsSlackNew.869d41bb2f66d4e9.js']
+
+=== routes found in integration chunks ===
+/api/v2/destinations/${r}/${o}/${t}
+/api/v2/destinations/generate-warehouse-destination-key-pair
+/api/v2/destinations/projects/{projKey}/environments/{envKey}/test-warehouse-destination-connection
+/api/v2/integration-capabilities/big-segment-store
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}
+/api/v2/integration-capabilities/big-segment-store/{projectKey}/{environmentKey}/{integrationKey}/{integrationId}
+/api/v2/integration-capabilities/featureStore
+/api/v2/integration-capabilities/flag-import
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}
+/api/v2/integration-capabilities/flag-import/{projectKey}/{integrationKey}/{integrationId}/trigger
+/integrations/partner-integrations/form-variables
+/settings/integrations/${a}/${e._id}/edit
+/settings/integrations/${i}/${t._id}/edit
+/settings/integrations/${tQ.B_}/${e._id}/edit
+/settings/integrations/${tQ.B_}/${t._id}/edit
+/settings/integrations/${tQ.XZ}/${e._id}/edit
+/settings/integrations/${tQ.XZ}/${t._id}/edit
+/settings/integrations/${tQ.hB}/${e._id}/edit
+/settings/integrations/${tQ.hB}/${t._id}/edit
+/settings/integrations/${tq.B_}/${e._id}/edit
+/settings/integrations/${tq.B_}/${t._id}/edit
+/settings/integrations/${tq.XZ}/${e._id}/edit
+/settings/integrations/${tq.XZ}/${t._id}/edit
+/settings/integrations/${tq.hB}/${e._id}/edit
+/settings/integrations/${tq.hB}/${t._id}/edit
+/settings/integrations/bigquery
+/settings/integrations/clickhouse
+/settings/integrations/destinations/${t}/edit
+/settings/integrations/redshift

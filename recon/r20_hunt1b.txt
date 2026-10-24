@@ -1,0 +1,75 @@
+=== R20 HUNT1b: integration manifests (SSRF-relevant kinds) ===
+datadog: OK steps=[]
+   fields=[('Datadog API key', 'string', '?', False), ('Datadog host URL', 'enum', '?', False), ('Hide member details', 'boolean', '?', False)]
+   capabilities=['auditLogEventsHook', 'reservedCustomProperties', 'trigger']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "application/
+     cap[reservedCustomProperties]: [{"description": "Tags are a way of adding additional dimension to LaunchDarkly change events in Datadog so they can be filtered, aggregated, and compared in visualizations.", "key": "datadog", "name"
+     cap[trigger]: {"auth": "", "defaultEventName": "", "documentation": "https://launchdarkly.com/docs/integrations/datadog/triggers#connect-a-flag-trigger-to-datadog", "parser": {"eventName": "/title", "url": "/url"},
+splunk: OK steps=[]
+   fields=[('HTTP event collector base URL', 'string', '?', False), ('Token', 'string', '?', False), ('Skip certificate verification', 'boolean', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Authorization", "value": "Splunk {{to
+elastic: OK steps=[]
+   fields=[('Elasticsearch endpoint URL', 'uri', '?', False), ('Authentication token', 'string', '?', False), ('Index', 'string', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Authorization", "value": "ApiKey {{to
+grafana: OK steps=[]
+   fields=[('Grafana URL', 'uri', '?', False), ('Service account token', 'string', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "application/
+mattermost: OK steps=[]
+   fields=[('Incoming webhook URL', 'uri', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "application/
+zapier: OK steps=[]
+   fields=[('Incoming webhook URL', 'uri', '?', False)]
+   capabilities=['auditLogEventsHook', 'hideConfiguration']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "application/
+     cap[hideConfiguration]: true
+msteams: OK steps=[]
+   fields=[('Incoming webhook URL', 'uri', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["*"], "effect": "allow", "resources": ["proj/*:env/production:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "application/
+convex: OK steps=[]
+   fields=[]
+   capabilities=['featureStore']
+     cap[featureStore]: {"featureStoreRequest": {"endpoint": {"headers": [{"name": "Authorization", "value": "Bearer {{componentApiToken}}"}, {"name": "Content-Type", "value": "application/json"}], "hmacSignature": null, "me
+kosli: OK steps=[]
+   fields=[('Kosli Webhook URL', 'string', '?', False), ('Kosli secret', 'string', '?', False)]
+   capabilities=['auditLogEventsHook']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["createFlag", "updateOn"], "effect": "allow", "resources": ["proj/*:env/*:flag/*"]}], "deliveryMethod": "", "endpoint": {"headers": [{"name": "Content-Type", "value": "
+cloudflare: OK steps=[]
+   fields=[]
+   capabilities=['featureStore']
+     cap[featureStore]: {"featureStoreRequest": {"endpoint": {"headers": [{"name": "Authorization", "value": "Bearer {{apiToken}}"}, {"name": "Content-Type", "value": "text/plain"}], "hmacSignature": null, "method": "PUT", "
+unleash: OK steps=[]
+   fields=[('Unleash Base URL', 'string', '?', False), ('Unleash SDK Key', 'string', '?', False), ('Unleash Project ID', 'string', '?', False), ('Unleash Environment ID', 'string', '?', False), ('Unleash Tag', 'string', '?', False), ('LaunchDarkly API Key', 'string', '?', False), ('LaunchDarkly Tag', 'string', '?', False), ('LaunchDarkly Maintainer', 'string', '?', False)]
+   capabilities=['flagImport']
+     cap[flagImport]: {"includeErrorResponseBody": false, "templates": null}
+akamai-edgeworkers: OK steps=[]
+   fields=[]
+   capabilities=['featureStore']
+     cap[featureStore]: {"featureStoreRequest": {"endpoint": {"headers": [{"name": "Authorization", "value": "{{edgeGridAuth 'PUT' '/edgekv/v1/networks/{{network}}/namespaces/{{namespaceId}}/groups/{{groupId}}/items/{{_featu
+custom-approvals: OK steps=[]
+   fields=[('API Token', 'string', '?', False), ('Custom approval service base URL', 'string', '?', False)]
+   capabilities=['approval']
+     cap[approval]: {"allowAdditionalApprovalFormVariables": true, "allowApprovalIntegrationConfigurations": true, "approvalFormVariables": [], "creationRequest": {"endpoint": {"headers": [{"name": "Content-Type", "value
+vercel-native: OK steps=[]
+   fields=[('Access Token', 'string', '?', False), ('Installation ID', 'string', '?', False), ('URL', 'string', '?', False)]
+   capabilities=['auditLogEventsHook', 'featureStore', 'hideConfiguration']
+     cap[auditLogEventsHook]: {"defaultPolicy": [{"actions": ["createFlag", "cloneFlag", "updateName", "updateDescription", "updateGlobalArchived", "deleteFlag"], "effect": "allow", "resources": ["proj/*:env/*:flag/*"]}, {"actions
+     cap[featureStore]: {"featureStoreRequest": {"endpoint": {"headers": [{"name": "Authorization", "value": "Bearer {{accessToken}}"}, {"name": "Content-Type", "value": "application/json"}, {"name": "User-Agent", "value": "
+     cap[hideConfiguration]: true
+redis: OK steps=[]
+   fields=[('Host', 'string', '?', False), ('Port', 'string', '?', False), ('Username', 'string', '?', False), ('Password', 'string', '?', False), ('Connect with TLS', 'boolean', '?', False)]
+   capabilities=['bigSegmentStore']
+     cap[bigSegmentStore]: {"dbStyle": "redis"}
+datadog-flag-trigger: OK steps=[]
+   fields=[]
+   capabilities=[]
+datadog-dashboard-widget: OK steps=[]
+   fields=[]
+   capabilities=[]
+
+saved 17 manifests -> recon/r20_manifests_ssrf.json
+integration-configurations list -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'

@@ -1,0 +1,28 @@
+=== R20 HUNT1a: webhook-kind auditlog entries ===
+page 1 -> 400
+scanned 20 entries, webhook-kind=6
+--- 6adbb1301b0bf60741cb7941 1792782640901 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the webhook superz\-r13\-ssrf\-trigger\-1792782627 \(via API\)
+    description=""
+    metadata_keys=[]
+--- 6adbb124dce6f30797100452 1792782628659 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) updated the webhook [superz-r13-ssrf-trigger-1792782627](https://app.launchdarkly.com/integrations) \(via API\)
+    description="* Changed the name from ~~`superz-r13-ssrf-aws-metadata`~~ to `superz-r13-ssrf-trigger-1792782627`\n"
+    metadata_keys=[]
+--- 6adbb123820bfb07a9b30cf5 1792782627823 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) enabled the webhook [superz-r13-ssrf-aws-metadata](https://app.launchdarkly.com/integrations) \(via API\)
+    description=""
+    metadata_keys=[]
+--- 6adbb1222a1c6e0758ea6ca9 1792782626763 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the webhook [superz-r13-ssrf-aws-metadata](https://app.launchdarkly.com/integrations) \(via API\)
+    description=""
+    metadata_keys=[]
+--- 6adb9ae3df16eb07a6ee2dbd 1792776931758 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the webhook superz\-r11\-sign\-secret\-test
+    description=""
+    metadata_keys=[]
+--- 6adb9adc2a02590734aad9b5 1792776924408 title=[zeno test](mailto:zeno0+org@bugcrowdninja.com) created the webhook [superz-r11-sign-secret-test](https://app.launchdarkly.com/integrations)
+    description=""
+    metadata_keys=[]
+
+entries mentioning 'deliver': 0
+
+=== destinations route probe ===
+GET /api/v2/destinations/default/test -> 405 b''
+GET /api/v2/destinations?project=default&environment=test -> 200 b'{"_links":{"self":{"href":"/api/v2/destinations","type":"application/json"}},"items":[{"_id":"6ada7183022a1f07bba87677","_links":{"parent":{"href":"/a'
+GET /internal/projects/default/destinations?environment=test -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="L'

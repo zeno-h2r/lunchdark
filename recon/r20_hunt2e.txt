@@ -1,0 +1,29 @@
+=== R20 HUNT2e: CA segment-approvals SSRF ===
+segment create -> 201 b'{"name":"zeno-r20 ssrf segment","tags":["zeno-r20"],"creationDate":1792843197135,"lastModifiedDate":1792843197135,"key":"zeno-r20-ssrf-seg","included"'
+
+--- kind discovery + phase 1: segment + collector control ---
+CA ctrl create -> 201 id=a3781738-ee99-4430-8e8f-0690b112c7db
+PATCH settings[segment] -> 200 b'{"segment":{"environments":{"test":{"autoApplyApprovedChanges":false,"bypassApprovalsForPendingChanges":false,"canApplyDeclinedChanges":true,"canReviewOwnRequest":false,"minNumApprovals":1,"required":'
+[ctrl] approval POST -> 404 id=None serviceKind=None
+    full: b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n\n    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com'
+[ctrl] collector hits total=0
+
+--- phase 2: segment + IMDS ---
+CA imds create -> 201 id=c7793842-cb6c-4186-9cb9-82c4ece10e11
+PATCH settings[segment] -> 200 b'{"segment":{"environments":{"test":{"autoApplyApprovedChanges":false,"bypassApprovalsForPendingChanges":false,"canApplyDeclinedChanges":true,"canReviewOwnRequest":false,"minNumApprovals":1,"required":'
+[imds] approval POST -> 404 id=None serviceKind=None
+    full: b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n\n    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com'
+[imds] collector hits total=0
+
+--- phase 3: segment + NX host ---
+CA nx create -> 201 id=419f95ec-c766-48fe-8469-0ed2bcd63e64
+PATCH settings[segment] -> 200 b'{"segment":{"environments":{"test":{"autoApplyApprovedChanges":false,"bypassApprovalsForPendingChanges":false,"canApplyDeclinedChanges":true,"canReviewOwnRequest":false,"minNumApprovals":1,"required":'
+[nx] approval POST -> 404 id=None serviceKind=None
+    full: b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="width=device-width">\n\n    <link rel="icon" type="image/svg+xml" href="https://static.launchdarkly.com'
+[nx] collector hits total=0
+
+=== revert + cleanup ===
+settings revert(segment) -> 200 b'{"segment":{"environments":{"test":{"autoApplyApprovedChanges":null,"bypassApprovalsForPendingChanges":false,"canApplyDe'
+CA config 419f95ec-c766-48fe-8469-0ed2bcd63e64 DEL -> 204
+segment DEL -> 204
+settings final: b'{"aiconfig":{"environments":{}},"segment":{"environments":{"test":{"autoApplyApprovedChanges":null,"bypassApprovalsForPendingChanges":false,"canApplyDeclinedChanges":true,"canReviewOwnRequest":false,"'

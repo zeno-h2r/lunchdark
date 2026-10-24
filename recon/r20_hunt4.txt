@@ -1,0 +1,33 @@
+=== R20 HUNT4: webhook delivery oracle empirical ===
+control webhook -> 201 id=6adca00102edff07cc84e77e
+orig desc: ssrf-fire-1792707328-1
+desc change -> 200 (marker=zeno-r20-fire-1792843778)
+waiting 45s for deliveries...
+collector hits: 2
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ip=None ua=LD-Integrations/1.0
+  body[:300]: 
+  hit: POST https://webhook.site/581be5ae-b84d-4440-98de-9f6773b5d534 ip=None ua=LD-Integrations/1.0
+auditlog recent 20:
+  flag | [zeno test](mailto:zeno0+org@bugcrowdninja.com) updated the flag [zeno-esc-test](https://app.launchdarkly.com/default/~/features/z
+  webhook | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the webhook [zeno-r20-oracle-ctrl](https://app.launchdarkly.com/integratio
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-nx \(via API\)
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the Custom Approvals integration [zeno-r20-ca-nx](https://app.launchdarkly
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-imds \(via API\)
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the Custom Approvals integration [zeno-r20-ca-imds](https://app.launchdark
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-ctrl \(via API\)
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the Custom Approvals integration [zeno-r20-ca-ctrl](https://app.launchdark
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the segment zeno\-r20 ssrf segment \(via API\)
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-nx \(via API\)
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted an approval request for the segment zeno\-r20\-ssrf\-seg in `Test` \(via A
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted an approval request for the segment zeno\-r20\-ssrf\-seg in `Test` \(via A
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted an approval request for the segment zeno\-r20\-ssrf\-seg in `Test` \(via A
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) requested approval for changes to the segment [zeno-r20-ssrf-seg](https://app.laun
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the Custom Approvals integration [zeno-r20-ca-nx](https://app.launchdarkly
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-imds \(via API\)
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) requested approval for changes to the segment [zeno-r20-ssrf-seg](https://app.laun
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) created the Custom Approvals integration [zeno-r20-ca-imds](https://app.launchdark
+  integration | [zeno test](mailto:zeno0+org@bugcrowdninja.com) deleted the Custom Approvals integration zeno\-r20\-ca\-ctrl \(via API\)
+  segment | [zeno test](mailto:zeno0+org@bugcrowdninja.com) requested approval for changes to the segment [zeno-r20-ssrf-seg](https://app.laun
+desc revert -> 200
+flag final desc=ssrf-fire-1792707328-1 v=8
+control webhook DEL -> 204

@@ -1,0 +1,5 @@
+=== HUNT6: warehouse complete-setup IP-encoding rebinding probes ===
+ch setup -> 201 b'{"script":"/*\\nExecute each of the following steps in your ClickHouse SQL console.\\nAll statements are idempotent and safe to re-run.\\n*/\\n\\n-- Step 1: Create database\\nCREATE DATABASE IF NOT EXISTS `'
+rebinding svc 1u.ms: resolves 206.81.28.151
+rebinding svc rbndr.us: [Errno -3] Temporary failure in name resolution
+rebinding svc rebind.networks: [Errno -2] Name or service not known

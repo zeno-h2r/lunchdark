@@ -1,0 +1,14 @@
+=== R20 HUNT3: destinations test-event ===
+list -> 200 total=2
+kinds: {'s3': 1, 'clickhouse': 1}
+sample item keys: ['_id', '_links', 'name', 'kind', 'version', 'config', 'on', 'createdAt', 'maintainerId']
+sample: {"_id": "6ada7183022a1f07bba87677", "_links": {"parent": {"href": "/api/v2/destinations", "type": "application/json"}, "self": {"href": "/api/v2/destinations/default/test/6ada7183022a1f07bba87677", "type": "application/json"}}, "name": "S3 Data Export - test", "kind": "s3", "version": 1, "config": {"exportProviderDestinationId": ""}, "on": true, "createdAt": 1792700803000, "maintainerId": "6ac28fd
+[ctrl] dest create -> 403 id=None b'{"code":"forbidden","message":"Destination kind webhook is unavailable"}'
+[ctrl] dest create(alt route) -> 404 id=None b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[imds] dest create -> 403 id=None b'{"code":"forbidden","message":"Destination kind webhook is unavailable"}'
+[imds] dest create(alt route) -> 404 id=None b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+[nx] dest create -> 403 id=None b'{"code":"forbidden","message":"Destination kind webhook is unavailable"}'
+[nx] dest create(alt route) -> 404 id=None b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+
+=== cleanup (my destinations only) ===
+verify leftover zeno-r20-dest count: 0 (total dests now 2)

@@ -1,0 +1,31 @@
+=== R20 HUNT2d: CA approval-settings SSRF ===
+GET settings -> 200 b'{"aiconfig":{"environments":{}},"segment":{"environments":{}}}\n'
+
+--- phase 1: collector control ---
+CA ctrl create -> 201 id=4cebe345-5120-467f-bab9-e4b03275b2a9
+PATCH settings -> custom-approvals/4cebe345-5120-467f-bab9-e4b03275b2a9 : 400 b'{"code":"invalid_request","message":"Invalid resource kind"}'
+[ctrl] approval POST -> 201 id=6adc9d7f572ea107bc2f7aa0 serviceKind=launchdarkly integrationInfo=""
+[ctrl] collector hits total=0
+
+--- phase 2: IMDS ---
+CA imds create -> 201 id=dcf99e6d-9aaa-4582-834e-9b0b1b91a574
+PATCH settings -> custom-approvals/dcf99e6d-9aaa-4582-834e-9b0b1b91a574 : 400 b'{"code":"invalid_request","message":"Invalid resource kind"}'
+[imds] approval POST -> 201 id=6adc9d89572ea107bc2f7aae serviceKind=launchdarkly integrationInfo=""
+[imds] collector hits total=0
+
+--- phase 3: NX host (error reflection?) ---
+CA nx create -> 201 id=5b677ccc-a56a-4a44-b1fc-49af11311d67
+PATCH settings -> custom-approvals/5b677ccc-a56a-4a44-b1fc-49af11311d67 : 400 b'{"code":"invalid_request","message":"Invalid resource kind"}'
+[nx] approval POST -> 201 id=6adc9d96f8e79f0758c1f54f serviceKind=launchdarkly integrationInfo=""
+[nx] collector hits total=0
+
+=== revert + cleanup ===
+orig settings snapshot: {"aiconfig": {"environments": {}}, "segment": {"environments": {}}}
+settings revert -> 400 b'{"code":"invalid_request","message":"Invalid resource kind"}' (orig={"aiconfig": {"environments": {}}, "segment": {"environments": {}}})
+approval 6adc9d7f572ea107bc2f7aa0 DEL -> 204
+approval 6adc9d89572ea107bc2f7aae DEL -> 204
+approval 6adc9d96f8e79f0758c1f54f DEL -> 204
+CA config 4cebe345-5120-467f-bab9-e4b03275b2a9 DEL -> 204
+CA config dcf99e6d-9aaa-4582-834e-9b0b1b91a574 DEL -> 204
+CA config 5b677ccc-a56a-4a44-b1fc-49af11311d67 DEL -> 204
+flag final: desc=ssrf-fire-1792707328-1 v=6

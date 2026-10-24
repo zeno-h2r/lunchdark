@@ -1,0 +1,25 @@
+=== enumerate 110 kinds via GET ===
+  aiconfig-test-run: 200 CONFIGURABLE b'{"items":[],"_links":{"self":{"href":"/api/v2/integration-configurations/keys/ai'
+  custom-approvals: 200 CONFIGURABLE b'{"items":[],"_links":{"self":{"href":"/api/v2/integration-configurations/keys/cu'
+  launchdarkly-developer-toolbar: 200 CONFIGURABLE b'{"items":[],"_links":{"self":{"href":"/api/v2/integration-configurations/keys/la'
+  pagerduty-guardian-edition: 200 CONFIGURABLE b'{"items":[],"_links":{"self":{"href":"/api/v2/integration-configurations/keys/pa'
+  vercel-native: 200 CONFIGURABLE b'{"items":[],"_links":{"self":{"href":"/api/v2/integration-configurations/keys/ve'
+CONFIGURABLE kinds: ['aiconfig-test-run', 'custom-approvals', 'launchdarkly-developer-toolbar', 'pagerduty-guardian-edition', 'vercel-native']
+
+=== custom-approvals: collector control ===
+[CA/ctrl] create -> 201 id=e2449818-a550-4ae9-8502-a5a8db80201f err=
+[CA/ctrl] complete-setup -> 400 b'{"code":"invalid_request","message":"complete-setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}'
+[CA/ctrl] collector hits total=0
+[CA/ctrl] cleanup DELETE -> 204
+
+=== custom-approvals: IMDS ===
+[CA/imds] create -> 201 id=b67ed13d-bb51-4b01-9d90-d9b065014803 err=
+[CA/imds] complete-setup -> 400 b'{"code":"invalid_request","message":"complete-setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}'
+[CA/imds] collector hits total=0
+[CA/imds] cleanup DELETE -> 204
+
+=== custom-approvals: loopback:8080 ===
+[CA/loopback] create -> 201 id=0a28b777-122b-4e5b-9217-fc0ee9c295d5 err=
+[CA/loopback] complete-setup -> 400 b'{"code":"invalid_request","message":"complete-setup is only supported for snowflake-experimentation, redshift-experimentation and clickhouse-experimentation"}'
+[CA/loopback] collector hits total=0
+[CA/loopback] cleanup DELETE -> 204

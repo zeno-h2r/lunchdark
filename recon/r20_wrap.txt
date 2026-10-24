@@ -1,0 +1,20 @@
+=== R20 WRAP: cleanup + verification ===
+webhooks total=3 zeno-ssrf-tagged=0
+webhooks remaining: 3
+  kept: zeno-ssrf-test tags=['bounty']
+  kept: zeno-oast-hook tags=['bounty']
+  kept: zeno-badhost-hook tags=['bounty']
+integration-config[aiconfig-test-run] -> 200 items=0
+integration-config[custom-approvals] -> 200 items=0
+integration-config[launchdarkly-developer-toolbar] -> 200 items=0
+integration-config[pagerduty-guardian-edition] -> 200 items=0
+integration-config[vercel-native] -> 200 items=0
+segments total=1 zeno-r20=0
+flags total=14 zeno-r20-new=0
+zeno-allowed-1: desc=ssrf-fire-1792707328-1 v=8 approvalSettings=None
+ai-configs zeno-r20 leftovers: 0
+model-configs zeno-r20 leftovers: 0
+destinations: [('s3', 'S3 Data Export - test'), ('clickhouse', 'ClickHouse Data Export - test')] (expect 2 canaries only)
+approval-requests remaining: 1
+  6ada9379831a640734b4ffda pending proj/default:env/test:flag/zeno-allowed-1
+wrap done

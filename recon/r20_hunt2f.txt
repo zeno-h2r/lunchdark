@@ -1,0 +1,28 @@
+=== R20 HUNT2f: generic approval-requests + CA SSRF ===
+segment create (unbounded) -> 201 b'{"name":"zeno-r20 ssrf segment","tags":["zeno-r20"],"creationDate":1792843481242,"lastModifiedDate":1792843481242,"key":'
+
+--- phase 1: collector control ---
+CA ctrl create -> 201 id=63bd1a75-dfa1-4b4f-8568-ee0529db1fc4
+settings bind SKIPPED (per-request integrationConfig mode)
+[ctrl] approval POST -> 201 id=4d100fef-645a-46de-a8d5-7976adffd41f serviceKind=launchdarkly
+[ctrl] collector hits total=0
+
+--- phase 2: IMDS ---
+CA imds create -> 201 id=17b22fe1-75b6-493b-b0fb-06b78bfedd14
+settings bind SKIPPED (per-request integrationConfig mode)
+[imds] approval POST -> 201 id=6074c4ec-d062-4e87-a56d-ea1323449730 serviceKind=launchdarkly
+[imds] collector hits total=0
+
+--- phase 3: NX host ---
+CA nx create -> 201 id=51ce0ebb-686e-4819-94c8-94b1c618825b
+settings bind SKIPPED (per-request integrationConfig mode)
+[nx] approval POST -> 201 id=890a9b6e-8740-4a12-868b-198f337f3cac serviceKind=launchdarkly
+[nx] collector hits total=0
+
+=== revert + cleanup ===
+settings revert -> 200
+approval 4d100fef-645a-46de-a8d5-7976adffd41f DEL -> 204
+approval 6074c4ec-d062-4e87-a56d-ea1323449730 DEL -> 204
+approval 890a9b6e-8740-4a12-868b-198f337f3cac DEL -> 204
+CA 51ce0ebb-686e-4819-94c8-94b1c618825b DEL -> 204
+segment DEL -> 204

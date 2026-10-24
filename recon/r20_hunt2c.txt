@@ -1,0 +1,21 @@
+=== R20 HUNT2c: custom-approvals SSRF trigger ===
+baseline collector hits: 0
+
+--- phase 1: baseURL=collector (control) ---
+[ctrl] CA config create -> 201 id=45ca37b4-4b99-4217-8ed7-2e4d36f72492
+[ctrl] approval-requests POST -> 400 b'{"code":"invalid_request","message":"unable to parse request body"}'
+[ctrl] collector hits total=0
+
+--- phase 2: baseURL=IMDS ---
+[imds] CA config create -> 201 id=a422c862-4528-40dc-863f-89da71de3d88
+[imds] approval-requests POST -> 400 b'{"code":"invalid_request","message":"unable to parse request body"}'
+[imds] collector hits total=0
+
+--- phase 3: baseURL=nonexistent-host (error text capture) ---
+[nxhost] CA config create -> 201 id=2158b408-390b-4eae-9a1e-6a6d1290d963
+[nxhost] approval-requests POST -> 400 b'{"code":"invalid_request","message":"unable to parse request body"}'
+[nxhost] collector hits total=0
+
+=== cleanup ===
+CA config 2158b408-390b-4eae-9a1e-6a6d1290d963 DELETE -> 204
+flag final: desc=ssrf-fire-1792707328-1 version=6

@@ -1,0 +1,12 @@
+=== HUNT5d: enable targeting + completion ===
+mc4 -> 200
+aicfg -> 201 b'{"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"application/json"},"self":'
+var -> 201 id=b89f40fa-63ad-4cf5-a94d-c41d35cb245f key=zeno-r20-var
+enable -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+enable -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="viewport" content="w'
+completion -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r20-aicfg\\" is not configured"}'
+collector hits: 3
+  hit path= ua=LD-Integrations/1.0
+  hit path= ua=LD-Integrations/1.0
+aicfg DEL -> 204
+mc4 DEL -> 204

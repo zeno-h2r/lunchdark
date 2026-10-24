@@ -1,0 +1,11 @@
+mc -> 200 b'{"global":false,"id":"zeno-r20-model3","isRestricted":false,"key":"zeno-r20-model3","name":"zeno-r20 model3","params":{"'
+aicfg -> 201 b'{"_links":{"parent":{"href":"/api/v2/projects/default/ai-configs","type":"applic'
+var -> 201 b'{"_id":"f1b7176e-6948-4c35-8111-614651330c1c","_links":{"parent":{"href":"/api/v2/projects/default/a'
+completion {"input": {"messages": [{"role": "user", "content": "zeno ss -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r20-aicfg\\" is not configured"}'
+completion {"input": {"variables": {"q": "zeno"}}, "modelConfigKey": "z -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r20-aicfg\\" is not configured"}'
+completion {"input": {}} -> 400 b'{"code":"invalid_request","message":"AI config \\"zeno-r20-aicfg\\" is not configured"}'
+collector hits: 3
+  hit: POST  ua=LD-Integrations/1.0
+  hit: POST  ua=LD-Integrations/1.0
+aicfg DEL -> 204
+mc DEL -> 204

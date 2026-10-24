@@ -1,0 +1,15 @@
+=== R20 HUNT2g: per-flag approvalSettings + CA SSRF ===
+--- phase 1: collector control ---
+CA ctrl -> 201 id=5904bd29-e0d3-4fa6-b22e-de2c0fd201c0
+flag approvalSettings bind -> 400 b'{"code":"invalid_patch","message":"invalid json-patch document, extra fields: approvalSettings"}'
+--- phase 2: IMDS ---
+CA imds -> 201 id=592194cc-11ce-479b-a0cc-84a4c3f145c5
+flag approvalSettings bind -> 400 b'{"code":"invalid_patch","message":"invalid json-patch document, extra fields: approvalSettings"}'
+--- phase 3: NX ---
+CA nx -> 201 id=bd0a6e0c-317a-4efe-afbd-2fb0304912b9
+flag approvalSettings bind -> 400 b'{"code":"invalid_patch","message":"invalid json-patch document, extra fields: approvalSettings"}'
+
+=== revert + cleanup ===
+approvalSettings revert -> 400 b'{"code":"invalid_patch","message":"invalid json-patch document, extra fields: approvalSettings"}'
+flag final: approvalSettings=None desc=ssrf-fire-1792707328-1 v=6
+CA bd0a6e0c-317a-4efe-afbd-2fb0304912b9 DEL -> 204
