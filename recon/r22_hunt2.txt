@@ -1,0 +1,56 @@
+=== topology pin: which account does each identity see ===
+[M] members/f363 -> 200 email=zeno0+org@bugcrowdninja.com role=owner
+[M] projects -> 200 ['zxorg-proj-7f3a', 'default']
+[NA] members/f363 -> 200 email=zeno0+org@bugcrowdninja.com role=owner
+[NA] projects -> 200 ['zxorg-proj-7f3a', 'default']
+[TF] members/f363 -> 200 email=zeno0+org@bugcrowdninja.com role=owner
+[TF] projects -> 200 ['zxorg-proj-7f3a', 'default']
+[ORGCK] members/f363 -> 200 email=zeno0+org@bugcrowdninja.com role=owner
+[ORGCK] projects -> 200 ['zxorg-proj-7f3a', 'default']
+[TSTCK] members/f363 -> 404 email=None role=None
+[TSTCK] projects -> 200 ['zenovictimproj', 'default']
+
+=== HUNT2a: SECRET READ differentials (env apiKey/mobileKey) ===
+[M] env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1-a938-4c7378ddd667 mobileKey=mob-08e184a6-329b-4eb8-8be1-ab9466868298 _id=6ac28fd11c28fb07516cf364
+[NA] env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1-a938-4c7378ddd667 mobileKey=mob-08e184a6-329b-4eb8-8be1-ab9466868298 _id=6ac28fd11c28fb07516cf364
+[TF] env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1-a938-4c7378ddd667 mobileKey=mob-08e184a6-329b-4eb8-8be1-ab9466868298 _id=6ac28fd11c28fb07516cf364
+[ORGCK] env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1-a938-4c7378ddd667 mobileKey=mob-08e184a6-329b-4eb8-8be1-ab9466868298 _id=6ac28fd11c28fb07516cf364
+[TSTCK] env GET -> 200 apiKey=sdk-96141640-0ec1-4e0c-9747-f705d19b2867 mobileKey=mob-63e3ab35-e884-489a-912b-faff800d82f4 _id=6ac29057ccacd606b1576cba
+
+=== HUNT2b: members LIST vs DETAIL differential ===
+[M] members LIST -> 200 n=2 ['zeno0+org@bugcrowdninja.com', 'zeno0+second@bugcrowdninja.com']
+[NA] members LIST -> 200 n=2 ['zeno0+org@bugcrowdninja.com', 'zeno0+second@bugcrowdninja.com']
+[TF] members LIST -> 200 n=2 ['zeno0+org@bugcrowdninja.com', 'zeno0+second@bugcrowdninja.com']
+[TSTCK] members LIST -> 200 n=2 ['zeno0+tester@bugcrowdninja.com', 'zeno0+member@bugcrowdninja.com']
+
+=== HUNT2c: auditlog LIST vs DETAIL differential ===
+[M] auditlog LIST -> 200 n=3
+[M] auditlog/6adcae7e DETAIL -> 200 delta={}
+[NA] auditlog LIST -> 200 n=3
+[NA] auditlog/6adcae7e DETAIL -> 200 delta={}
+[TF] auditlog LIST -> 200 n=3
+[TF] auditlog/6adcae7e DETAIL -> 200 delta={}
+
+=== HUNT2d: relay-auto-configs + oauth clients differentials ===
+[NA] relay-auto-configs -> 200 items=1 valueField=False
+   body: b'{"items":[{"_id":"6adca48821be3707a68ab288","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"name":"fats","policy":[{"resources":["proj/*:env/*"],"actions":["*"],"effect":"allow"}],"displayKey":"b37c","creationDate":'
+[TF] relay-auto-configs -> 200 items=1 valueField=False
+   body: b'{"items":[{"_id":"6adca48821be3707a68ab288","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno0+org@bugcrowdninja.com"},"name":"fats","policy":[{"resources":["proj/*:env/*"],"actions":["*"],"effect":"allow"}],"displayKey":"b37c","creationDate":'
+
+=== HUNT2e: TRUE cross-tenant (TST session reading ORG global ids) ===
+[TSTCK] ORG approval read -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+[TSTCK] ORG auditlog read -> 404 b''
+[TSTCK] ORG member read -> 404 email=None role=None
+
+=== HUNT2f: TST-side object -> ORG identities read (cross fwd) ===
+[TSTCK] flag -> 201
+[TSTCK] approval -> 201 id=6adcaeebe8e2be07aa764000
+[M] TST approval read -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+[NA] TST approval read -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+[ORGCK] TST approval read -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+[TSTCK] tst auditlog id: 6adcaeebe8e2be07aa764004
+[M] TST auditlog read -> 404 b''
+[NA] TST auditlog read -> 404 b''
+[TSTCK] env apiKey (TST): sdk-96141640-0ec1-4e... (self-evident)
+[M] TST env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1
+[NA] TST env GET -> 200 apiKey=sdk-c6ce7a15-4f85-4db1

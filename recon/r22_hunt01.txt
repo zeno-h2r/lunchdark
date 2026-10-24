@@ -1,0 +1,50 @@
+=== HUNT0: credential-field census (M/TST baseline) ===
+env GET fields: ['_id', '_links', 'apiKey', 'approvalSettings', 'color', 'confirmChanges', 'critical', 'defaultTrackEvents', 'defaultTtl', 'key', 'mobileKey', 'name', 'requireComments', 'resourceApprovalSettings', 'secureMode', 'tags']
+env cred-ish fields: ['key', 'apiKey', 'mobileKey']
+webhooks: 3
+webhook detail fields: ['_id', '_links', 'name', 'on', 'tags', 'url']
+webhook secret fields present: []
+tokens/self -> 404 fields: ['code', 'message']
+relay-auto-configs -> 200 b'{"items":[{"_id":"6adca48821be3707a68ab288","_creator":{"_links":{"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"}},"_id":"6ac28fd11c28fb07516cf363","firstName":"zeno","lastName":"test","role":"owner","email":"zeno'
+GET /api/v2/account -> 200 items=0
+probe /internal/projects/default/environments/test -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+probe /api/v2/projects/default/environments/test/api-keys -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+probe /api/v2/projects/default/environments/test/apiKeys -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+probe /api/v2/projects/default/environments/test/tokens -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta'
+
+=== HUNT1: create fresh approval on TST temp flag for cross-account tests ===
+flag -> 201
+approval -> 201 id=6adcae78e8e2be07aa763f7c
+[NA] GET /api/v2/approval-requests (list) -> 200 b'{"items":[{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516c'
+[M] GET /api/v2/approval-requests (list) -> 200 b'{"items":[{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 idor probe","reviewS'
+
+=== HUNT1a: cross-account global-id reads (approval-requests/{id}) ===
+[NA-org] GET approval 6adcae78e8e2.. -> 200 b'{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 idor probe","reviewStatus":"pending","allReviews":'
+[TF-org] GET approval 6adcae78e8e2.. -> 200 b'{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 idor probe","reviewStatus":"pending","allReviews":'
+[M-tst] GET approval 6adcae78e8e2.. -> 200 b'{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 idor probe","reviewStatus":"pending","allReviews":'
+[orgcookie] GET approval 6adcae78e8e2.. -> 200 b'{"_id":"6adcae78e8e2be07aa763f7c","_version":0,"creationDate":1792847480267,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 idor probe","reviewStatus":"pending","allReviews":'
+
+=== HUNT1b: deleted-object retention + wrong-account reads ===
+[M] approval read AFTER flag delete -> 404 b'{"code":"not_found","message":"Approval request not found: Associated flag has been deleted"}'
+[M] DELETED approval 6adc9d7f572e.. -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+[M] DELETED approval 6adc9d89572e.. -> 404 b'{"code":"not_found","message":"Unable to find approval request"}'
+
+=== HUNT1c: cross-account member / account / auditlog ===
+[NA-org] GET internal/members/f363 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="'
+[NA-org] GET api/v2/members/f363 -> 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest"'
+[TF-org] GET internal/members/f363 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="'
+[TF-org] GET api/v2/members/f363 -> 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest"'
+[M-tst] GET internal/members/f363 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkly">\n    <meta name="'
+[M-tst] GET api/v2/members/f363 -> 200 b'{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363","type":"application/json"},"sendMfaEnableRequest"'
+TST auditlog entry id: 6adcae7edb0cc6074dbac75a
+[NA-org] GET auditlog/6adcae7e.. -> 200 b'{"_links":{"canonical":{"href":"/api/v2/flags/default/zeno-r22-idor","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adcae7e'
+[TF-org] GET auditlog/6adcae7e.. -> 200 b'{"_links":{"canonical":{"href":"/api/v2/flags/default/zeno-r22-idor","type":"application/json"},"parent":{"href":"/api/v2/auditlog","type":"application/json"},"self":{"href":"/api/v2/auditlog/6adcae7e'
+
+=== HUNT1d: OAuth clients cross-identity (F2 breadth check) ===
+[NA-org] GET internal/oauth/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[TF-org] GET internal/oauth/clients -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+
+=== HUNT1e: account-object routes with explicit id ===
+[M-tst] /api/v2/account/6ac28fd11c28fb07516cf361 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[M-tst] /internal/account/6ac28fd11c28fb07516cf361 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+[M-tst] /api/v2/account/6ac28fd11c28fb07516cf361/settings -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'

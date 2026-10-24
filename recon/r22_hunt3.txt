@@ -1,0 +1,27 @@
+flag -> 200 version=None desc=zeno-r22-appr original
+M approval create -> 201 id=6adcaf3d0724eb083480a1fc reviewStatus=pending
+[a] NA review POST -> 400 b'{"code":"invalid_request","message":"invalid review kind"}'
+[a2] NA review POST approve-shape -> 400 b'{"code":"invalid_request","message":"invalid review kind"}'
+    reviewStatus after NA review: pending allReviews=[]
+[b] NA apply POST -> 403 b'{"code":"forbidden","message":"Not allowed to apply approval request"}'
+    flag after NA apply: version=None desc=zeno-r22-appr original
+[c] NA own request -> 403 id=
+[d] M request2 -> 201 id=6adcaf44d5880c0786dfea92
+[d2] NA apply no-review -> 403 b'{"code":"forbidden","message":"Not allowed to apply approval request"}'
+    flag after: version=None desc=zeno-r22-appr original
+[e] NA access-summary/preview -> 403 b'{"code":"forbidden","message":"Plan does not allow this operation"}'
+[f] NA /api/v2/projects/default/flags/zeno-r22-appr/environments/test/approval-requests -> 200 b'{"items":[{"_id":"6adcaf44d5880c0786dfea92","_version":0,"creationDate":1792847684491,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c'
+[f] NA /api/v2/auditlog?limit=100 -> 400 b'{"code":"invalid_request","message":"`limit` must be a valid integer between 0 and 20"}'
+[f] NA /api/v2/auditlog?q=zeno&limit=20 -> 200 b'{"items":[{"_links":{"canonical":{"href":"/api/v2/flags/default/zeno-r22-appr","type":"application/json"},"parent":{"href":"/api/v2/auditlog'
+[f] NA /api/v2/projects/default/flags?limit=1000 -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" '
+[f] NA /api/v2/members?limit=100&expand=teams -> 200 b'{"items":[{"_links":{"parent":{"href":"/api/v2/members","type":"application/json"},"self":{"href":"/api/v2/members/6ac28fd11c28fb07516cf363"'
+[f] NA /api/v2/projects/default/flags/zeno-r22-appr/schema/preview -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" '
+[f] NA /api/v2/projects/default/view-associations/flag/zeno-r22-appr -> 400 b'{"code":"invalid_request","message":"The path parameter \'resourceType\' has pre-defined values set via an enum. The value \'flag\' is not one o'
+[f] NA /internal/projects/default/monitor/events/zeno/metadata -> 403 b'{"code":"forbidden","message":"Plan does not allow this operation"}'
+
+=== CLEANUP ===
+approval 6adcaf3d DEL -> 204
+approval 6adcaf44 DEL -> 204
+desc revert -> 200
+verify: version=None desc=zeno-r22-appr original
+flag DEL -> 204

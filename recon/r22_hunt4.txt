@@ -1,0 +1,23 @@
+request -> 201 id=6adcaf8be190da0780768239
+  review {"kind": "approve"} -> 403 Not allowed to review approval request
+  review {"kind": "approved"} -> 400 invalid review kind
+  review {"kind": "comment"} -> 200 b'{"_id":"6adcaf8be190da0780768239","_version":1,"creationDate":1792847755977,"serviceKind":'
+  !!! reviewStatus -> pending reviews=b'{"_id":"6adcaf8be190da0780768239","_version":1,"creationDate":1792847755977,"serviceKind":"launchdarkly","requestorId":"6ac28fd11c28fb07516cf363","description":"zeno-r22 review enum","reviewStatus":"p'
+
+=== NA write-census ===
+[webhook] POST /api/v2/webhooks -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createWebhook","resource":'
+[dest] POST /api/v2/destinations/projects/default/environments/test -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="des'
+[token] POST /api/v2/tokens -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createAccessToken","resour'
+[project] POST /api/v2/projects -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createProject","resource":'
+[segment] POST /api/v2/segments/default/test -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createSegment","resource":'
+[metric] POST /api/v2/metrics/default -> 400 b'{"code":"invalid_request","message":"Unexpected JSON representation"}'
+[view] POST /api/v2/projects/default/views -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createView","resource":"pr'
+[team] POST /api/v2/teams -> 403 b'{"code":"forbidden","message":"Access to the requested resource was denied"}'
+[workflow] POST /api/v2/projects/default/flags/zeno-r22-rev/workflows -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="des'
+[env-secmode] PATCH -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"updateSecureMode","resourc'
+[role] POST /api/v2/roles -> 403 b'{"message":"Access to the requested resource was denied","reason":{"effect":"deny"},"access":{"action":"createRole","resource":"ro'
+
+=== CLEANUP ===
+approval DEL -> 204
+flag DEL -> 204
+verify secMode=False

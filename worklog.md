@@ -679,3 +679,23 @@ Stage Summary:
 - CUSTOM-APPROVALS SSRF FINAL SHAPE: writer/admin-only config, arbitrary server-side POST {{baseURL}}/api/approvals + full response-body readback, PUBLIC-EGRESS-FENCED (private/metadata blocked at fetch + redirect; no port oracle). By-design self-integration URL => P4-candidate hardening note (upgrades R20 "trigger unfired" to "trigger fired, egress-fenced"). Response-parse error leaks upstream body verbatim = the only reflection.
 - Cloud creds: NOT obtainable (IMDS blocked both direct + via redirect). Internal services: NOT reachable. Port scan: NO differential (uniform status 0).
 - Open items: (1) AI completion baseUrl fetch = entitlement-gated, re-test if account gains AI Configs; (2) warehouse TOCTOU w/ controlled DNS (operator); (3) SCIM harness ready at recon/r19_hunt8_harness.py awaiting support key; (4) SUBMISSION-1 writeup still pending.
+---
+Task ID: R22-IDOR-INFOLEAK
+Agent: Super Z (main)
+Task: "new surface — focus on IDOR, info leak, queries and endpoints, whole app; exclude /t/graphql gateway; keep until P1/P2." RESULT: no new P1/P2. Cross-tenant isolation VERIFIED CLEAN both directions (approval/auditlog/member global-id routes 404 across accounts); approvals write-plane correctly gated (apply/create/approve denied under no_access); full write-census denied; NEW minor crack: comment-kind approval reviews accepted under no_access (F2-family, P4-candidate). F2 breadth reconfirmed end-to-end.
+
+Work Log:
+- Topology pinned: M/NA/TF/orgcookie = ORG account (6ac28fd11c28fb07516cf361); tester.cookie = TST (6ac29057ccacd606b1576cb7). Earlier R22 hunt01 "cross-account" reads were same-account (corrected via reverse matrix).
+- CROSS-TENANT (fenced, clean): TST session -> ORG approval 6adcae78/auditlog/member f363 = 404; ORG tokens -> TST approval 6adcaeeb/auditlog/env = 404. Global-id routes (approval-requests/{id}, auditlog/{id}, members/{id}) are account-resolved server-side; no cross-tenant IDOR.
+- SAME-ACCOUNT differentials (F2 reconfirm): env GET returns FULL apiKey (sdk-) + mobileKey (mob-) to no_access NA token (byte-identical owner values); members LIST with emails + auditlog LIST+DETAIL + relay-auto-configs + teams + context-attributes (incl /email /name attr names) all 200 under NA. Consistent with chain-proven FINDING_002 (submissions already on GitHub).
+- APPROVALS WRITE-CHAIN (negatives): NA review {kind:approve} -> 403 policy; NA apply (reviewed + unreviewed) -> 403 "Not allowed to apply approval request"; NA create request -> 403; flag never mutated (version/desc verified). review body schema: kind enum {approve|approved|decline|accepted|comment} — only "comment" valid shape besides approve.
+- NEW CRACK (F2-family, P4-candidate): NA {"kind":"comment"} review on ANOTHER member's pending approval -> 200 (_version bump, comment stored). Authorization gates approve/decline kinds only — comment-kind reviews bypass the reviewApprovalRequest policy check = unauthorized content injection into approval workflow (comments render in SPA + approval notification emails -> spam/phish vector). No approve authority gained; apply stays gated.
+- WRITE-CENSUS under NA (all policy effect:deny — plane solid): createWebhook, createAccessToken, createProject, createSegment, createView, createRole, updateSecureMode, teams. metric create = validation-first (isNumeric) 400 (not policy — shape retried same 400 for M too). destinations create = route-shape 404 (kind plan-locked per R20 anyway). relay-auto-configs readable but secret (fullKey) NOT returned (displayKey only — matches R13).
+- Query sweep: auditlog limit<=20 hard cap (400 above); q= search works under NA; approvals list 200 under NA (policy-filtered view); access-summary/preview + monitor/events metadata = "Plan does not allow" (plan-gated account-wide). view-associations resourceType = server enum (disclosed via validation error).
+- GraphQL gateway EXCLUDED per user instruction (deferred).
+- CLEANUP: TST approval 6adcaeeb + flag zeno-r22-idor-tst DELETED (204); ORG zeno-r22 flags (idor/appr/rev) deleted in-run; env secMode=False verified; 0 approvals remaining; user's 3 bounty webhooks untouched; no zeno-r22 residue on either account.
+
+Stage Summary:
+- No new P1/P2. Portfolio: F1 (P3), F2 (P2-min/P1-arguable — R22 reconfirms secret-read chain + breadth), F3 (P3), F4 (P2). NEW note: comment-review no_access crack (P4-candidate, F2-family).
+- Cross-tenant = clean; approvals write-plane = clean; NA write census = clean. GraphQL reserved for later round per operator.
+- Critical-path reminder: strongest P1/P2 submission remains SUBMISSION-1 (F2+F4, reports already in submissions/ on GitHub) + SCIM report chain pending support key (harness ready).
