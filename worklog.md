@@ -619,3 +619,17 @@ Stage Summary:
 - No new P1/P2. Portfolio unchanged: F1 (P3), F2 (P2-min/P1-arguable), F3 (P3), F4 (P2). NEW: P4-candidate OAuth consent auto-approval (pending ldso SameSite verification).
 - SCIM attack surface verdict: scim scope unobtainable outside IdP-wizard/support path; every bypass shape tested (casing, whitespace, comma/space-delimited, refresh escalation, grant-type confusion) correctly rejected.
 - Operator items: (1) paste support-provided SCIM key OR SCIM-enabled client creds -> run hunt6 harness immediately; (2) check ldso SameSite flag (consent-CSRF impact decision); (3) prior standing items unchanged (F1 secure_id read, OTLP landing, secureMode).
+---
+Task ID: R19b-SCIM-DOCS
+Agent: Super Z (main)
+Task: user instruction — read LD SCIM docs (launchdarkly.com/docs/home/account/scim-api + 8 sub-pages) before key delivery; prep harness v2. RESULT: docs read end-to-end; POST /Users/.search confirmed live; Okta UA-sniffing gate identified; harness r19_hunt8.py ready to fire on support key.
+
+Work Log:
+- docs fetched via agent-browser (SPA blocks WebFetch): scim-api home + endpoints + user-schema + user-requests + group-schema + errors + troubleshooting + scim + okta pages -> recon/r19_docs_*.txt.
+- DOC FACTS: base /trust/scim/v2; OAuth2-only + scim scope (PATs rejected — matches R19); manual providers need Client ID/Secret from Support ticket (= user's current path); ServiceProviderConfig/ResourceTypes NOT implemented (docs list only GET /Schemas — R18 404s are per-design, downgraded from inconsistency note); Group endpoints = Okta team-sync only; group members[].value = LD MEMBER ID; emails required (userName optional, defaults to email); roles settable on create (reader/writer/admin/noAccess, owner blocked, owner-role updates SILENTLY IGNORED); PATCH supports SCIM PatchOp AND RFC6902 JSON Patch; 409 "member already exists" = per-account email-uniqueness oracle; okta requests identified by User-Agent prefix.
+- NEW ROUTE CONFIRMED: POST /Users/.search (body filter/startIndex/count) — unauth 401 SCIM-format (live route, never tested in R18/R19). UN precheck -> recon/r19_hunt8_precheck.txt. UA differential inert unauth (expected).
+- HARNESS v2 BUILT: scripts/r19_hunt8.py — accepts raw bearer OR client_id/secret (file .r19_support_key.json or CLI); mints via /trust/oauth/token client_credentials scope=scim; chain = identity probe -> inventory -> okta-UA differential on /Groups -> own zeno- user lifecycle (create/PUT rename/PATCH role revert/JSON-Patch) -> REPORT CHAIN (POST /Groups zeno-r19-group -> PATCH members add ORG member 6ac28fd11c28fb07516cf363 -> verify -> victim profile read -> TST pending-members check -> victim rename+REVERT if injected) -> cross-org filter enumeration -> filter injection GET+.search -> pagination abuse -> same-run cleanup (group member removal, DELETE group, DELETE users, revert verified). Verified clean-exit without key.
+
+Stage Summary:
+- Docs study complete; no new findings (UN-only probes). Harness ready: paste support key (any format) -> run scripts/r19_hunt8.py -> full report chain executes with auto-cleanup.
+- Operator: deliver SCIM key/creds; ldso SameSite check still open (consent-CSRF P4-candidate).

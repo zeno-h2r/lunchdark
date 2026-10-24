@@ -1,0 +1,11 @@
+=== R19 HUNT8 precheck (docs-driven, UN identity) ===
+POST /Users/.search [default] -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+GET  /Groups         [default] -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+GET  /ServiceProviderConfig [default] -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+POST /Users/.search [okta] -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+GET  /Groups         [okta] -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+GET  /ServiceProviderConfig [okta] -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+GET  /ResourceTypes [UN] -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+GET  /Schemas [UN] -> 401 b'{"detail":"Invalid key","schemas":["urn:ietf:params:scim:api:messages:2.0:Error"],"status":401}'
+GET  /Me [UN] -> 404 b' \n<!DOCTYPE html>\n<html lang="en">\n  <head>\n    \n\n    <meta charset="utf-8">\n    \n    <title>Not found</title>\n    <meta name="description" content="LaunchDarkl'
+precheck done

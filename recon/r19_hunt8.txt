@@ -1,0 +1,2 @@
+=== R19 HUNT8 v2 (docs-driven SCIM harness) ===
+NO KEY: provide scripts/.r19_support_key.json or --token/--client-id args
